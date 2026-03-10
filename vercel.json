@@ -1,0 +1,6 @@
+{
+  "buildCommand": "cd MouaDev-Energy && npm run build",
+  "outputDirectory": "MouaDev-Energy/.next",
+  "installCommand": "cd MouaDev-Energy && npm install",
+  "framework": "nextjs"
+}
