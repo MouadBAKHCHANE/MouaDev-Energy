@@ -83,6 +83,17 @@ button {
   display: flex;
 }
 
+/* Header responsive visibility — in static CSS to prevent FOUC on refresh */
+.header-desktop-nav { display: flex; }
+.header-desktop-cta { display: inline-flex; }
+.header-hamburger { display: flex; }
+.drawer-nav-links { display: none; }
+@media (max-width: 1024px) {
+  .header-desktop-nav { display: none !important; }
+  .header-desktop-cta { display: none !important; }
+  .drawer-nav-links { display: flex !important; }
+}
+
 /* ===== LAYOUT: Footer ===== */
 .footer-top {
   display: flex;

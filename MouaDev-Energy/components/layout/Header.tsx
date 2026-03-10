@@ -1,7 +1,8 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import ArrowIcon from '@/components/ui/ArrowIcon'
 
@@ -19,7 +20,7 @@ const navItems = [
     ]
   },
   { label: 'À propos', href: '/about-us' },
-  { label: 'Actualités', href: '/#news' },
+  { label: 'Actualités', href: '/blogs' },
   { label: 'Contact', href: '/contact-us' }
 ]
 
@@ -28,6 +29,10 @@ export default function Header() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const [isMobileContractsOpen, setIsMobileContractsOpen] = useState(false)
+  const [isSearchOpen, setIsSearchOpen] = useState(false)
+  const [searchQuery, setSearchQuery] = useState('')
+  const searchInputRef = useRef<HTMLInputElement>(null)
+  const router = useRouter()
 
   useEffect(() => {
     let ticking = false
@@ -45,11 +50,29 @@ export default function Header() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // Lock body scroll when drawer is open
+  // Lock body scroll when drawer or search is open
   useEffect(() => {
-    document.body.style.overflow = isDrawerOpen ? 'hidden' : ''
+    document.body.style.overflow = (isDrawerOpen || isSearchOpen) ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
-  }, [isDrawerOpen])
+  }, [isDrawerOpen, isSearchOpen])
+
+  // Auto-focus search input + close on Escape
+  useEffect(() => {
+    if (isSearchOpen) {
+      setTimeout(() => searchInputRef.current?.focus(), 50)
+    }
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setIsSearchOpen(false) }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [isSearchOpen])
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!searchQuery.trim()) return
+    setIsSearchOpen(false)
+    setSearchQuery('')
+    router.push(`/blogs?q=${encodeURIComponent(searchQuery.trim())}`)
+  }
 
   const isScrolled = scrollY > 50
   const textColor = isScrolled ? '#000' : '#fff'
@@ -181,6 +204,8 @@ export default function Header() {
           {/* Search icon */}
           <button
             className="header-search-btn"
+            onClick={() => setIsSearchOpen(true)}
+            aria-label="Rechercher"
             style={{
               width: 44, height: 44, display: 'flex', alignItems: 'center', justifyContent: 'center',
               background: 'none', border: 'none', cursor: 'pointer', color: textColor, transition: 'color 0.2s ease',
@@ -236,17 +261,6 @@ export default function Header() {
           </Link>
         </div>
 
-        <style jsx global>{`
-          .header-desktop-nav { display: flex; }
-          .header-desktop-cta { display: inline-flex; }
-          .header-hamburger { display: flex; }
-          .drawer-nav-links { display: none; }
-          @media (max-width: 1024px) {
-            .header-desktop-nav { display: none !important; }
-            .header-desktop-cta { display: none !important; }
-            .drawer-nav-links { display: flex !important; }
-          }
-        `}</style>
       </nav>
 
       {/* Off-canvas Drawer */}
@@ -487,6 +501,108 @@ export default function Header() {
                     <ArrowIcon direction="right" size={20} strokeColor="#fff" />
                   </div>
                 </Link>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+
+      {/* ── Search Overlay ── */}
+      <AnimatePresence>
+        {isSearchOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={() => setIsSearchOpen(false)}
+              style={{
+                position: 'fixed', inset: 0,
+                background: 'rgba(0,0,0,0.55)',
+                backdropFilter: 'blur(6px)',
+                WebkitBackdropFilter: 'blur(6px)',
+                zIndex: 1100,
+              }}
+            />
+
+            {/* Search bar */}
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.25, ease: 'easeOut' }}
+              style={{
+                position: 'fixed', top: 0, left: 0, right: 0,
+                zIndex: 1101,
+                background: 'rgba(255,255,255,0.97)',
+                backdropFilter: 'blur(20px)',
+                WebkitBackdropFilter: 'blur(20px)',
+                boxShadow: '0 4px 40px rgba(0,0,0,0.12)',
+                padding: '20px 24px',
+              }}
+            >
+              <form onSubmit={handleSearch} style={{ maxWidth: 860, margin: '0 auto', display: 'flex', alignItems: 'center', gap: 16 }}>
+                {/* Search icon */}
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#50B5A2" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+                  <circle cx="11" cy="11" r="8" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+
+                {/* Input */}
+                <input
+                  ref={searchInputRef}
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Rechercher un article, un service…"
+                  style={{
+                    flex: 1, border: 'none', outline: 'none', background: 'transparent',
+                    fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
+                    fontSize: 'clamp(18px, 2.5vw, 26px)', fontWeight: 500,
+                    color: '#000', letterSpacing: -0.5,
+                  }}
+                />
+
+                {/* Submit — appears when query is non-empty */}
+                {searchQuery.trim() && (
+                  <motion.button
+                    type="submit"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    style={{
+                      background: '#50B5A2', color: '#000', border: 'none', cursor: 'pointer',
+                      borderRadius: 12, padding: '10px 20px',
+                      fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
+                      fontSize: 15, fontWeight: 600, whiteSpace: 'nowrap' as const,
+                    }}
+                  >
+                    Rechercher
+                  </motion.button>
+                )}
+
+                {/* Close */}
+                <button
+                  type="button"
+                  onClick={() => setIsSearchOpen(false)}
+                  style={{
+                    width: 36, height: 36, borderRadius: '50%', border: '1px solid #e8e8e8',
+                    background: '#f5f5f5', cursor: 'pointer', display: 'flex',
+                    alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+                  }}
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#333" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+                  </svg>
+                </button>
+              </form>
+
+              {/* Hint */}
+              <div style={{ maxWidth: 860, margin: '10px auto 0', paddingLeft: 38 }}>
+                <span style={{ fontFamily: "var(--font-inter), 'Inter', sans-serif", fontSize: 13, color: '#999' }}>
+                  Appuyez sur <kbd style={{ background: '#f0f0f0', border: '1px solid #ddd', borderRadius: 4, padding: '1px 6px', fontSize: 12 }}>Échap</kbd> pour fermer
+                </span>
               </div>
             </motion.div>
           </>
