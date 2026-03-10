@@ -22,44 +22,44 @@ const cardReveal = {
 const articles = [
   {
     img: '/Photos HD/Visuels Technique/Technique - PV/Entretien panneaux solaires.webp',
-    title: "Comment entretenir vos panneaux solaires efficacement",
+    title: "Pourquoi entretenir régulièrement ses panneaux photovoltaïques ?",
     author: 'Zen Énergie',
     read: '4 min',
     slug: 'entretien-panneaux-solaires',
   },
   {
     img: '/Photos HD/Visuels Technique/Technique - PAC/Heat pump AdobeStock.webp',
-    title: "Pompe à chaleur : signes que votre PAC a besoin d'entretien",
+    title: "Comment bien utiliser sa pompe à chaleur ?",
     author: 'Zen Énergie',
     read: '3 min',
     slug: 'entretien-pompe-a-chaleur',
   },
   {
     img: '/Photos HD/Visuels Technique/Technique - Boiler/Boiler AdobeStock.webp',
-    title: "Boiler thermodynamique : maintenance et durée de vie",
+    title: "Pourquoi entretenir son boiler thermodynamique ?",
     author: 'Zen Énergie',
     read: '2 min',
     slug: 'maintenance-boiler',
   },
   {
-    img: '/Photos HD/Visuels Technique/Nettoyage - PV/cleaning-dirty-solar-panels-maintenance.webp',
-    title: "Nettoyage de panneaux solaires : quand et pourquoi ?",
+    img: '/Photos HD/Visuels Technique/Nettoyage - PV/man-clean-up-solar-panels-that-are-dirty-with-dust-birds-droppings.webp',
+    title: "Tout savoir sur le nettoyage des panneaux solaires",
     author: 'Zen Énergie',
     read: '2 min',
     slug: 'nettoyage-panneaux-solaires',
   },
   {
-    img: '/Photos HD/Photos produits/Panneaux solaires/solar-generator-field-outside-small-rural-town.webp',
-    title: "Optimiser le rendement de vos installations solaires",
+    img: '/Photos HD/Photos d_ambiance/person-near-alternative-energy-plant.webp',
+    title: "Quels sont les risques sans entretien régulier de vos installations ?",
     author: 'Zen Énergie',
     read: '2 min',
     slug: 'optimiser-rendement-solaire',
   },
   {
-    img: '/Photos HD/Photos d_ambiance/person-near-alternative-energy-plant.webp',
-    title: "Les avantages d'un contrat d'entretien Zen Énergie Services",
+    img: '/Photos HD/Photos d_ambiance/Zen.webp',
+    title: "Quels sont les atouts des contrats d'entretien Zen ?",
     author: 'Zen Énergie',
-    read: '2 min',
+    read: '4 min',
     slug: 'avantages-contrat-entretien',
   },
 ]
@@ -96,7 +96,7 @@ export default function BlogsPage() {
       <PageHero
         crumbs={[{ label: 'Accueil', href: '/' }, { label: 'Actualités' }]}
         title="Actualités"
-        bgImage="/Photos HD/Photos produits/Panneaux solaires/solar-generator-field-outside-small-rural-town.webp"
+        bgImage="/Photos%20HD/Paysages%20suisses/AdobeStock_277430203.webp"
       />
 
       {/* ── Article Grid ── */}
@@ -106,58 +106,59 @@ export default function BlogsPage() {
           {/* 3-col grid */}
           <div className="bl-grid">
             {articles.slice(0, visibleCount).map((article, i) => (
-              <motion.div
-                key={article.slug}
-                variants={cardReveal} initial="hidden" whileInView="visible"
-                viewport={{ once: true, amount: 0.1 }}
-                transition={{ duration: 0.7, ease: 'easeOut', delay: (i % 3) * 0.12 }}
-                className="bl-card"
-              >
-                {/* Image + overlay */}
-                <div style={{ position: 'relative', borderRadius: 16, overflow: 'hidden', marginBottom: 18 }}>
-                  <img
-                    src={article.img} alt={article.title}
-                    style={{ width: '100%', height: 220, objectFit: 'cover', display: 'block', transition: 'transform 0.4s ease' }}
-                    className="bl-card-img"
-                  />
-                  {/* Bottom overlay tag */}
-                  <div style={{
-                    position: 'absolute', bottom: 0, left: 0, right: 0,
-                    padding: '32px 14px 12px',
-                    background: 'linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 100%)',
-                    display: 'flex', alignItems: 'center', gap: 14,
-                    fontFamily: "var(--font-inter), 'Inter', sans-serif",
-                    fontSize: 13, color: '#fff',
-                  }}>
-                    <span style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                      {article.author}
-                    </span>
-                    <span style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                      {article.read} de lecture
-                    </span>
+              <Link key={article.slug} href={`/blogs/${article.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                <motion.div
+                  variants={cardReveal} initial="hidden" whileInView="visible"
+                  viewport={{ once: true, amount: 0.1 }}
+                  transition={{ duration: 0.7, ease: 'easeOut', delay: (i % 3) * 0.12 }}
+                  className="bl-card"
+                >
+                  {/* Image + overlay */}
+                  <div style={{ position: 'relative', borderRadius: 16, overflow: 'hidden', marginBottom: 18 }}>
+                    <img
+                      src={article.img} alt={article.title}
+                      style={{ width: '100%', height: 220, objectFit: 'cover', display: 'block', transition: 'transform 0.4s ease' }}
+                      className="bl-card-img"
+                    />
+                    {/* Bottom overlay tag */}
+                    <div style={{
+                      position: 'absolute', bottom: 0, left: 0, right: 0,
+                      padding: '32px 14px 12px',
+                      background: 'linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 100%)',
+                      display: 'flex', alignItems: 'center', gap: 14,
+                      fontFamily: "var(--font-inter), 'Inter', sans-serif",
+                      fontSize: 13, color: '#fff',
+                    }}>
+                      <span style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        {article.author}
+                      </span>
+                      <span style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                        {article.read} de lecture
+                      </span>
+                    </div>
                   </div>
-                </div>
 
-                {/* Title */}
-                <h3 className="bl-card-title" style={{
-                  fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
-                  fontSize: 20, fontWeight: 600, lineHeight: '28px',
-                  color: '#000', margin: '0 0 14px 0',
-                  transition: 'color 0.2s ease',
-                }}>{article.title}</h3>
+                  {/* Title */}
+                  <h3 className="bl-card-title" style={{
+                    fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
+                    fontSize: 20, fontWeight: 600, lineHeight: '28px',
+                    color: '#000', margin: '0 0 14px 0',
+                    transition: 'color 0.2s ease',
+                  }}>{article.title}</h3>
 
-                {/* Arrow link */}
-                <Link href={`/blogs/${article.slug}`} className="bl-card-arrow" style={{
-                  display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-                  width: 40, height: 40, borderRadius: '50%',
-                  border: '1px solid #e8e8e8', color: '#000',
-                  transition: 'background 0.2s ease, border-color 0.2s ease',
-                }}>
-                  <ArrowIcon direction="diagonal" size={16} strokeColor="currentColor" />
-                </Link>
-              </motion.div>
+                  {/* Arrow */}
+                  <span className="bl-card-arrow" style={{
+                    display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                    width: 40, height: 40, borderRadius: '50%',
+                    border: '1px solid #e8e8e8', color: '#000',
+                    transition: 'background 0.2s ease, border-color 0.2s ease',
+                  }}>
+                    <ArrowIcon direction="diagonal" size={16} strokeColor="currentColor" />
+                  </span>
+                </motion.div>
+              </Link>
             ))}
           </div>
 
@@ -192,31 +193,32 @@ export default function BlogsPage() {
       {/* ── FAQ — split layout ── */}
       <section style={{ background: '#fff', padding: '100px 20px', borderTop: '1px solid #f0f0f0' }}>
         <div style={{ maxWidth: 1400, margin: '0 auto' }}>
+          {/* Title — full width above the row */}
+          <motion.div
+            variants={reveal} initial="hidden" whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.7, ease: 'easeOut' }}
+            style={{ marginBottom: 16 }}
+          >
+            <SectionLabel text="QUESTIONS FRÉQUENTES" />
+          </motion.div>
+          <motion.h2
+            variants={reveal} initial="hidden" whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.7, ease: 'easeOut', delay: 0.1 }}
+            style={{
+              fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
+              fontSize: 48, fontWeight: 600, letterSpacing: -2,
+              color: '#000', marginBottom: 48, lineHeight: '56px',
+            }}
+          >
+            Tout ce que vous devez savoir
+          </motion.h2>
+
           <div className="bl-faq-row">
 
             {/* Left — accordion */}
             <div className="bl-faq-left">
-              <motion.div
-                variants={reveal} initial="hidden" whileInView="visible"
-                viewport={{ once: true, amount: 0.1 }}
-                transition={{ duration: 0.7, ease: 'easeOut' }}
-                style={{ marginBottom: 16 }}
-              >
-                <SectionLabel text="QUESTIONS FRÉQUENTES" />
-              </motion.div>
-              <motion.h2
-                variants={reveal} initial="hidden" whileInView="visible"
-                viewport={{ once: true, amount: 0.1 }}
-                transition={{ duration: 0.7, ease: 'easeOut', delay: 0.1 }}
-                style={{
-                  fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
-                  fontSize: 48, fontWeight: 600, letterSpacing: -2,
-                  color: '#000', maxWidth: 520, marginBottom: 48, lineHeight: '56px',
-                }}
-              >
-                Tout ce que vous devez savoir
-              </motion.h2>
-
               {faqs.map((faq, i) => {
                 const isActive = activeIdx === i
                 return (
@@ -269,9 +271,9 @@ export default function BlogsPage() {
               transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
               style={{
                 background: '#0a1e1d',
-                borderRadius: 28, padding: 44,
+                borderRadius: 28, padding: 32,
                 display: 'flex', flexDirection: 'column',
-                justifyContent: 'space-between',
+                justifyContent: 'flex-start', gap: 24,
                 position: 'relative', overflow: 'hidden',
               }}
             >
@@ -283,13 +285,13 @@ export default function BlogsPage() {
                 pointerEvents: 'none',
               }} />
 
-              <div style={{ position: 'relative', zIndex: 1 }}>
+              <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', gap: 12 }}>
                 {/* Icon */}
                 <div style={{
                   width: 48, height: 48, borderRadius: 14,
                   background: '#50B5A2',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  marginBottom: 28,
+                  marginBottom: 20,
                 }}>
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
@@ -298,15 +300,15 @@ export default function BlogsPage() {
 
                 <h3 style={{
                   fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
-                  fontSize: 30, fontWeight: 600, lineHeight: '38px',
-                  color: '#fff', margin: '0 0 16px 0',
+                  fontSize: 24, fontWeight: 600, lineHeight: '32px',
+                  color: '#fff', margin: '0 0 12px 0',
                 }}>
                   Vous avez encore des questions ? On est là pour vous aider.
                 </h3>
                 <p style={{
                   fontFamily: "var(--font-inter), 'Inter', sans-serif",
-                  fontSize: 16, lineHeight: '26px',
-                  color: 'rgba(255,255,255,0.55)', margin: '0 0 40px 0',
+                  fontSize: 15, lineHeight: '24px',
+                  color: 'rgba(255,255,255,0.55)', margin: 0,
                 }}>
                   Choisir un contrat d'entretien est une décision importante. Nos experts sont disponibles pour vous guider et répondre à toutes vos questions.
                 </p>
@@ -370,7 +372,7 @@ export default function BlogsPage() {
           align-items: flex-start;
         }
         .bl-faq-left { flex: 1.1; }
-        .bl-faq-right { flex: 0.7; min-height: 480px; }
+        .bl-faq-right { flex: 0.7; }
 
         @media (max-width: 1024px) {
           .bl-grid { grid-template-columns: repeat(2, 1fr); }
