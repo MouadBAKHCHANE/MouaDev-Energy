@@ -18,7 +18,7 @@ const logos = [
 
 export default function Clients() {
   return (
-    <section style={{ padding: '20px 20px', background: '#fff' }}>
+    <section style={{ padding: '20px 20px', background: '#fff', overflow: 'hidden', width: '100%', maxWidth: '100vw', boxSizing: 'border-box' }}>
       <motion.div
         variants={reveal}
         initial="hidden"
@@ -26,7 +26,7 @@ export default function Clients() {
         viewport={{ once: true, margin: '0px 0px -50px 0px', amount: 0.1 }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
         className="clients-inner"
-        style={{ display: 'flex', alignItems: 'center', gap: 40, maxWidth: 1400, margin: '0 auto' }}
+        style={{ display: 'flex', alignItems: 'center', gap: 40, width: '100%', maxWidth: 1400, margin: '0 auto', boxSizing: 'border-box' }}
       >
         <h4
           style={{
@@ -41,6 +41,8 @@ export default function Clients() {
           style={{
             overflow: 'hidden',
             flex: 1,
+            width: '100%',
+            maxWidth: '100%',
             maskImage: 'linear-gradient(90deg, transparent 2%, black 15%, black 85%, transparent 98%)',
             WebkitMaskImage: 'linear-gradient(90deg, transparent 2%, black 15%, black 85%, transparent 98%)',
           }}

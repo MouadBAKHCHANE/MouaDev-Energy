@@ -166,11 +166,17 @@ export default function About() {
           }
         }
         @media (max-width: 640px) {
+          .about-section {
+            overflow: hidden !important;
+            width: 100% !important;
+            max-width: 100vw !important;
+            box-sizing: border-box !important;
+          }
           .about-spin-badge {
             bottom: auto !important;
             left: auto !important;
-            top: -10px !important;
-            right: -30px !important;
+            top: -20px !important;
+            right: -10px !important;
           }
         }
       `}</style>

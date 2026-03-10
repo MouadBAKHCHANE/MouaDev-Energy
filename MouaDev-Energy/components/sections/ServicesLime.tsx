@@ -80,6 +80,7 @@ export default function ServicesLime() {
             variants={reveal} initial="hidden" whileInView="visible"
             viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.7, ease: 'easeOut', delay: 0.15 }}
+            className="svc2-p"
             style={{
               fontFamily: "var(--font-inter), 'Inter', sans-serif",
               fontSize: 16, lineHeight: '26px', color: 'rgba(255,255,255,0.55)',
@@ -248,7 +249,12 @@ export default function ServicesLime() {
         }
         @media (max-width: 640px) {
           .svc2-h2 {
-            font-size: 30px !important;
+            font-size: 19px !important;
+            line-height: 1.15 !important;
+          }
+          .svc2-p {
+            font-size: 14px !important;
+            line-height: 22px !important;
           }
         }
       `}</style>

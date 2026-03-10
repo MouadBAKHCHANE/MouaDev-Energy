@@ -221,11 +221,14 @@ export default function ServicesPage() {
                   <img className="svc-card-img" src={card.img} alt={card.title} />
                   {/* Teal hover overlay */}
                   <div className="svc-card-overlay" />
-                  {/* Brand icon badge */}
-                  <div className="svc-card-badge">
+                  {/* Brand icon - no background, white */}
+                  <div style={{ position: 'absolute', bottom: 20, left: 24, zIndex: 2 }}>
                     <img
                       src={card.icon} alt=""
-                      style={{ width: 44, height: 44, objectFit: 'contain', filter: 'brightness(0) invert(1)' }}
+                      style={{ 
+                        width: 48, height: 48, objectFit: 'contain', 
+                        filter: 'brightness(0) invert(1)' 
+                      }}
                     />
                   </div>
                   {/* Top-right arrow — appears on hover */}
@@ -718,9 +721,9 @@ export default function ServicesPage() {
           position: absolute;
           bottom: 20px;
           left: 20px;
-          width: 80px;
-          height: 80px;
-          border-radius: 18px;
+          width: 60px;
+          height: 60px;
+          border-radius: 16px;
           background: #2a9b96;
           display: flex;
           align-items: center;

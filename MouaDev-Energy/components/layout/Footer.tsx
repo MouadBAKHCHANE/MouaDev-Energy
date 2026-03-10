@@ -268,11 +268,11 @@ export default function Footer() {
         }}>
           {/* Policy Links */}
           <div style={{ display: 'flex', gap: 18, flexWrap: 'wrap' }}>
-            <Link href="/legal/mentions-legales" style={{ fontFamily: "var(--font-inter)", fontSize: 12, color: 'rgba(255, 255, 255, 0.4)', textDecoration: 'none' }}>MENTIONS LÉGALES</Link>
-            <Link href="/legal/conditions-generales-utilisation" style={{ fontFamily: "var(--font-inter)", fontSize: 12, color: 'rgba(255, 255, 255, 0.4)', textDecoration: 'none' }}>CONDITIONS GÉNÉRALES D'UTILISATION</Link>
-            <Link href="/legal/conditions-generales-vente" style={{ fontFamily: "var(--font-inter)", fontSize: 12, color: 'rgba(255, 255, 255, 0.4)', textDecoration: 'none' }}>CONDITIONS GÉNÉRALES DE VENTE</Link>
-            <Link href="/legal/conditions-generales-entretien" style={{ fontFamily: "var(--font-inter)", fontSize: 12, color: 'rgba(255, 255, 255, 0.4)', textDecoration: 'none' }}>CONDITIONS GÉNÉRALES D'ENTRETIEN</Link>
-            <Link href="/legal/politique-confidentialite-cookies" style={{ fontFamily: "var(--font-inter)", fontSize: 12, color: 'rgba(255, 255, 255, 0.4)', textDecoration: 'none' }}>POLITIQUE DE CONFIDENTIALITÉ & COOKIES</Link>
+            <Link href="/legal/mentions-legales" style={{ fontFamily: "var(--font-inter)", fontSize: 12, color: 'rgba(255, 255, 255, 0.4)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.color = brandGreen} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255, 255, 255, 0.4)'}>MENTIONS LÉGALES</Link>
+            <Link href="/legal/conditions-generales-utilisation" style={{ fontFamily: "var(--font-inter)", fontSize: 12, color: 'rgba(255, 255, 255, 0.4)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.color = brandGreen} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255, 255, 255, 0.4)'}>CONDITIONS GÉNÉRALES D'UTILISATION</Link>
+            <Link href="/legal/conditions-generales-vente" style={{ fontFamily: "var(--font-inter)", fontSize: 12, color: 'rgba(255, 255, 255, 0.4)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.color = brandGreen} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255, 255, 255, 0.4)'}>CONDITIONS GÉNÉRALES DE VENTE</Link>
+            <Link href="/legal/conditions-generales-entretien" style={{ fontFamily: "var(--font-inter)", fontSize: 12, color: 'rgba(255, 255, 255, 0.4)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.color = brandGreen} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255, 255, 255, 0.4)'}>CONDITIONS GÉNÉRALES D'ENTRETIEN</Link>
+            <Link href="/legal/politique-confidentialite-cookies" style={{ fontFamily: "var(--font-inter)", fontSize: 12, color: 'rgba(255, 255, 255, 0.4)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.color = brandGreen} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255, 255, 255, 0.4)'}>POLITIQUE DE CONFIDENTIALITÉ & COOKIES</Link>
           </div>
 
           {/* Copyright */}

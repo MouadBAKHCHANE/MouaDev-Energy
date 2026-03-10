@@ -32,7 +32,9 @@ export default function Button({
     lineHeight: '22.4px',
     cursor: 'pointer',
     transition: 'all 0.18s ease',
-    whiteSpace: 'nowrap',
+    whiteSpace: 'normal',
+    textAlign: 'left',
+    maxWidth: '100%',
     textDecoration: 'none',
   }
 

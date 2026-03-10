@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import PageHero from '@/components/layout/PageHero'
 import SectionLabel from '@/components/ui/SectionLabel'
-import Partners from '@/components/sections/Partners'
 
 const reveal = {
   hidden: { opacity: 0, y: 44 },
@@ -185,8 +184,6 @@ export default function ContactUsPage() {
           </motion.div>
         </div>
       </section>
-
-      <Partners />
 
       <style>{`
         .contact-inner {
