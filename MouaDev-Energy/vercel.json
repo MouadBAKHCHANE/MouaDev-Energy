@@ -1,6 +1,0 @@
-{
-  "buildCommand": "cd solshine-next && npm run build",
-  "outputDirectory": "solshine-next/.next",
-  "framework": "nextjs",
-  "installCommand": "cd solshine-next && npm install"
-}
