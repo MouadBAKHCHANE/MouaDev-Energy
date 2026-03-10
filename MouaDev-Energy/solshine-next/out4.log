@@ -1,0 +1,247 @@
+
+Running 1 test using 1 worker
+
+
+📸 Full page screenshots saved: original-full.png, nextjs-full.png
+📸 14 section screenshot pairs saved
+
+================================================================================
+CSS VALUE COMPARISON
+================================================================================
+⚠️  Selector found only in NEXT.JS: .btn, a[style*="border-radius: 100px"], a[style*="borderRadius"] (first match: <a class="">)
+⚠️  Selector found only in NEXT.JS: .section-label, [style*="uppercase"] (first match: <div class="">)
+
+================================================================================
+ELEMENT-BY-ELEMENT DEEP COMPARISON
+================================================================================
+❌ [Hero H1] — NOT FOUND in original (sel: .h1)
+❌ [Hero desc] — NOT FOUND in original (sel: .hero-desc)
+❌ [Hero section] — NOT FOUND in original (sel: .hero)
+❌ [Header] — NOT FOUND in original (sel: .header)
+❌ [Nav logo] — NOT FOUND in original (sel: .nav-logo img)
+⏭️  [Nav links pill] — selector not found in either page
+⏭️  [Clients section] — selector not found in either page
+❌ [Clients label] — NOT FOUND in original (sel: .clients-label)
+❌ [Client logo] — NOT FOUND in original (sel: .clients-logos img)
+❌ [Services Lime bg] — NOT FOUND in original (sel: .services-lime)
+❌ [Svc item h3] — NOT FOUND in original (sel: .svc-item h3)
+❌ [Svc item p] — NOT FOUND in original (sel: .svc-item p)
+❌ [Svc icon] — NOT FOUND in original (sel: .svc-item .icon)
+❌ [Carousel slide] — NOT FOUND in original (sel: .slide)
+❌ [Slide image] — NOT FOUND in original (sel: .slide-img)
+❌ [Slide name] — NOT FOUND in original (sel: .slide-name)
+⏭️  [Carousel arrow] — selector not found in either page
+❌ [About section] — NOT FOUND in original (sel: .about)
+❌ [About stat] — NOT FOUND in original (sel: .about-stat)
+❌ [About image] — NOT FOUND in original (sel: .about-col-2 img)
+❌ [About circle] — NOT FOUND in original (sel: .about-circle)
+⏭️  [Check icon] — selector not found in either page
+❌ [Exp grid] — NOT FOUND in original (sel: .exp-grid)
+❌ [Exp card] — NOT FOUND in original (sel: .exp-card)
+❌ [Exp card icon] — NOT FOUND in original (sel: .exp-card .card-icon)
+❌ [Exp card h3] — NOT FOUND in original (sel: .exp-card h3)
+❌ [Card arrow circle] — NOT FOUND in original (sel: .card-arr)
+❌ [Team grid] — NOT FOUND in original (sel: .team-grid)
+❌ [Team intro] — NOT FOUND in original (sel: .team-intro)
+⏭️  [Team member] — selector not found in either page
+⏭️  [Team member img] — selector not found in either page
+❌ [Pricing inner] — NOT FOUND in original (sel: .pricing-inner)
+❌ [Price card light] — NOT FOUND in original (sel: .price-card.light)
+❌ [Price value] — NOT FOUND in original (sel: .price-val)
+⏭️  [Price button] — selector not found in either page
+⏭️  [PF yes icon] — selector not found in either page
+⏭️  [Marquee light row] — selector not found in either page
+⏭️  [Marquee text] — selector not found in either page
+⏭️  [FF grid] — selector not found in either page
+⏭️  [FF card] — selector not found in either page
+❌ [FAQ inner] — NOT FOUND in original (sel: .faq-inner)
+❌ [FAQ question] — NOT FOUND in original (sel: .faq-q)
+⏭️  [FAQ toggle] — selector not found in either page
+❌ [Partners grid] — NOT FOUND in original (sel: .partners-grid)
+❌ [Partner logo card] — NOT FOUND in original (sel: .p-logo)
+❌ [News grid] — NOT FOUND in original (sel: .news-grid)
+❌ [News card meta] — NOT FOUND in original (sel: .news-card .meta)
+❌ [News card h3] — NOT FOUND in original (sel: .news-card .card-body h3)
+❌ [Footer] — NOT FOUND in original (sel: .footer)
+❌ [Footer top] — NOT FOUND in original (sel: .footer-top)
+⏭️  [Footer brand] — selector not found in either page
+⏭️  [Footer cols] — selector not found in either page
+⏭️  [Footer col h4] — selector not found in either page
+⏭️  [Footer col link] — selector not found in either page
+⏭️  [Footer copyright] — selector not found in either page
+⏭️  [Footer social icon] — selector not found in either page
+❌ [Scroll top btn] — NOT FOUND in original (sel: .scroll-top)
+❌ [Section label] — NOT FOUND in original (sel: .section-label)
+⏭️  [Button dark] — selector not found in either page
+⏭️  [Button lime] — selector not found in either page
+
+================================================================================
+TEXT CONTENT COMPARISON
+================================================================================
+❌ [Hero title] — not found in original
+❌ [Hero desc] — not found in original
+❌ [Clients label] — not found in original
+❌ [Services H2] — not found in original
+❌ [Our Services H2] — not found in original
+❌ [About H2] — not found in original
+❌ [Experience H2] — not found in original
+❌ [Pricing H2] — not found in original
+❌ [Fun Fact H2] — not found in original
+❌ [FAQ H2] — not found in original
+❌ [Partners H2] — not found in original
+❌ [News H2] — not found in original
+❌ [FAQ Q1] — not found in original
+❌ [FAQ A1] — not found in original
+⏭️  [Price card 1 name] — not found in either
+❌ [Price card 1 value] — not found in original
+❌ [Footer copyright] — not found in original
+
+================================================================================
+STRUCTURAL CHECKS (element counts)
+================================================================================
+✅ [Nav links] count: 0
+❌ [Client logos] count: ORIGINAL=0 vs NEXT=16
+❌ [Service items] count: ORIGINAL=0 vs NEXT=3
+❌ [Carousel slides] count: ORIGINAL=0 vs NEXT=5
+❌ [Exp cards] count: ORIGINAL=0 vs NEXT=6
+✅ [Team members] count: 0
+❌ [Price cards] count: ORIGINAL=0 vs NEXT=3
+❌ [FAQ items] count: ORIGINAL=0 vs NEXT=4
+❌ [Partner logos] count: ORIGINAL=0 vs NEXT=10
+❌ [News cards] count: ORIGINAL=0 vs NEXT=3
+✅ [Footer columns] count: 0
+✅ [Footer social icons] count: 0
+❌ [Hero avatars] count: ORIGINAL=0 vs NEXT=4
+✅ [Checklist items] count: 0
+✅ [Marquee light spans] count: 0
+❌ [Ticker spans] count: ORIGINAL=0 vs NEXT=12
+
+================================================================================
+IMAGE URL COMPARISON
+================================================================================
+❌ Image in ORIGINAL but missing in NEXT: 0HSvl4Kh9UWjFClIJIkYs1QIO0.jpg?width=3584&height=5120
+❌ Image in ORIGINAL but missing in NEXT: 11KSGbIZoRSg4pjdnUoif6MKHI.svg?arrow=right
+❌ Image in ORIGINAL but missing in NEXT: 1EnacoluFALIJqQC2THjamugM.jpg?width=700&height=1033
+❌ Image in ORIGINAL but missing in NEXT: 1rLEspARYhhuJ5AhgeapVxWeFA.jpg?width=700&height=1033
+❌ Image in ORIGINAL but missing in NEXT: 2jvk0kJxyokxITdWGVCBwINpl6w.png?width=512&height=512
+❌ Image in ORIGINAL but missing in NEXT: 42fsssGMOp2HC9D72RDmDV5sJow.svg?width=16&height=16
+❌ Image in ORIGINAL but missing in NEXT: 4BI6OSeH8gcr9Ya0NP7LM9J1M8.jpg?width=550&height=700
+❌ Image in ORIGINAL but missing in NEXT: 4I0nUFgLGKqAqwEE0S5l6yrCXzQ.svg?width=132&height=35
+❌ Image in ORIGINAL but missing in NEXT: 6QEz8kJbwqWFzbNDcgcMwaBk7Jk.svg?width=176&height=40
+❌ Image in ORIGINAL but missing in NEXT: 6tTbkXggWgQCAJ4DO2QEdXXmgM.svg?arrow=left
+❌ Image in ORIGINAL but missing in NEXT: 7ZLR5nIwrQ1G9rH5l5Jd5o7pOY.svg?width=12&height=17
+❌ Image in ORIGINAL but missing in NEXT: 7ahob399syUX6jMpG4G4YK63E.jpg?width=6048&height=4024
+❌ Image in ORIGINAL but missing in NEXT: 84rQ0xS0GSXogxfHmYXKT30ETM.jpg?width=600&height=600
+❌ Image in ORIGINAL but missing in NEXT: 8MGbLgt1qCHDtoeeols5V043HfU.svg?width=169&height=42
+❌ Image in ORIGINAL but missing in NEXT: 8lO1MDdXOmRLodroWn2TxIpCBQ4.jpg?width=600&height=600
+❌ Image in ORIGINAL but missing in NEXT: 8pp5kzVhwpOfHWE5mU8I5BsEYXc.png?width=512&height=512
+❌ Image in ORIGINAL but missing in NEXT: 8xn45SyMTHf47SVTvVMykuSUs.png?width=512&height=512
+❌ Image in ORIGINAL but missing in NEXT: 9RTthQjtszhXNikLkOAskVakcY.svg?width=16&height=12
+❌ Image in ORIGINAL but missing in NEXT: B6SAUcWOaxeRbm7TmftAKKuE3bo.jpg?width=600&height=600
+❌ Image in ORIGINAL but missing in NEXT: BrSvSHXO0TEgMV8PBsJNMJBsMzc.svg?width=134&height=34
+❌ Image in ORIGINAL but missing in NEXT: GIK8uZI3M0K4ofRzG3UQCXutM.svg?width=155&height=40
+❌ Image in ORIGINAL but missing in NEXT: GPSxJ7zrNG4isyTYg1gr1HjRTA.svg?width=175&height=40
+❌ Image in ORIGINAL but missing in NEXT: Hyv2Ql52EMBz3P3BmYwhd17lDc.png?width=512&height=512
+❌ Image in ORIGINAL but missing in NEXT: LF8nCSm6jlCbgioPD1ghg1FV4.png?width=512&height=512
+❌ Image in ORIGINAL but missing in NEXT: Qifbcz2UjIveHTCuImUZcqT9kZg.svg?width=140&height=30
+❌ Image in ORIGINAL but missing in NEXT: R1Nc0cZIZe9itgYCE5FJSDaSJc.png?width=512&height=512
+❌ Image in ORIGINAL but missing in NEXT: SHszoY6WQxqBKoXMDaecS6vEmk.png?width=512&height=512
+❌ Image in ORIGINAL but missing in NEXT: SotZXXPsS3rKeaDqLHmOcIsk2tM.png?width=512&height=512
+❌ Image in ORIGINAL but missing in NEXT: ThiPMi5yUjVdKo6t4N9wLOgcQ.svg?width=168&height=40
+❌ Image in ORIGINAL but missing in NEXT: WioQWlXxVQDqe2KhkHeOjhO9KA.svg?width=229&height=68
+❌ Image in ORIGINAL but missing in NEXT: XvHWqouzRd8NA25OWGOH1f8UMY.jpg?width=6000&height=4000
+❌ Image in ORIGINAL but missing in NEXT: YkROzWcb2tUmAxdUcRfBLgHacU.jpg?width=700&height=1033
+❌ Image in ORIGINAL but missing in NEXT: aVsvLJkR2RekklaZEFisskMVMr0.jpg?width=600&height=600
+❌ Image in ORIGINAL but missing in NEXT: arGA85cgsigolEQsZOeBSaQ4qI.jpg?width=6000&height=4000
+❌ Image in ORIGINAL but missing in NEXT: b4KzHV67W4mrSOMheANfAzfdYEM.png?width=512&height=512
+❌ Image in ORIGINAL but missing in NEXT: baGPQhxMT3drvtvGMT0f0VIDA.webp?width=2740&height=2740
+❌ Image in ORIGINAL but missing in NEXT: d609Uzv5sske4DYDYAIapU3M.jpg?width=700&height=1033
+❌ Image in ORIGINAL but missing in NEXT: duZwjP73YzY6931zuqasWWfWDZY.svg?width=163&height=42
+❌ Image in ORIGINAL but missing in NEXT: dzRxE4gVbVi1wRzrhrYjLRMpN4Y.png?width=512&height=512
+❌ Image in ORIGINAL but missing in NEXT: ecIydEaqGIKuHaQqFsbw8tRCA.png?width=512&height=512
+❌ Image in ORIGINAL but missing in NEXT: gY3cWZMLXhPg9FmxaSD4I4kAPRM.jpg?width=1920&height=1080
+❌ Image in ORIGINAL but missing in NEXT: gjmyWxGl1gWzjkyIh4cJfB7rg.svg?width=132&height=35
+❌ Image in ORIGINAL but missing in NEXT: gp6Np2Uen8OhQsWCt1S2LSz71zo.jpg?width=700&height=1033
+❌ Image in ORIGINAL but missing in NEXT: gz6zByfwfxSk9G6Guihznt9CnjM.png?width=512&height=512
+❌ Image in ORIGINAL but missing in NEXT: jpxArhZs8VwgsAK7U5D5B5MqU.png?width=512&height=512
+❌ Image in ORIGINAL but missing in NEXT: oeigtHFhM0qf1CThkR9gRSymB0.svg?width=119&height=30
+❌ Image in ORIGINAL but missing in NEXT: qkP6xU2UlwWYUURNcxwVeo2gEY.svg?width=16&height=16
+❌ Image in ORIGINAL but missing in NEXT: rGDjx8YMbG9oRVmwoQAAeYflmO0.jpg?width=7360&height=4912
+❌ Image in ORIGINAL but missing in NEXT: sxqGwXa7qjplji4ZcgX8fmYOs.svg?width=152&height=19
+❌ Image in ORIGINAL but missing in NEXT: tYjjjnV08Cc8JGQRKY9g3S1qvLU.png?width=512&height=512
+❌ Image in ORIGINAL but missing in NEXT: zwPzGRmwV4iFo5B3YcijQ9Ma8Nw.jpg?width=4096&height=2800
+❌ Image in NEXT but missing in ORIGINAL: 0HSvl4Kh9UWjFClIJIkYs1QIO0.jpg
+❌ Image in NEXT but missing in ORIGINAL: 11KSGbIZoRSg4pjdnUoif6MKHI.svg
+❌ Image in NEXT but missing in ORIGINAL: 1EnacoluFALIJqQC2THjamugM.jpg
+❌ Image in NEXT but missing in ORIGINAL: 1rLEspARYhhuJ5AhgeapVxWeFA.jpg
+❌ Image in NEXT but missing in ORIGINAL: 2jvk0kJxyokxITdWGVCBwINpl6w.png
+❌ Image in NEXT but missing in ORIGINAL: 42fsssGMOp2HC9D72RDmDV5sJow.svg
+❌ Image in NEXT but missing in ORIGINAL: 4BI6OSeH8gcr9Ya0NP7LM9J1M8.jpg
+❌ Image in NEXT but missing in ORIGINAL: 4I0nUFgLGKqAqwEE0S5l6yrCXzQ.svg
+❌ Image in NEXT but missing in ORIGINAL: 4IYsIb0v1oKwTl7EqitohJPpc.jpg
+❌ Image in NEXT but missing in ORIGINAL: 6QEz8kJbwqWFzbNDcgcMwaBk7Jk.svg
+❌ Image in NEXT but missing in ORIGINAL: 6tTbkXggWgQCAJ4DO2QEdXXmgM.svg
+❌ Image in NEXT but missing in ORIGINAL: 7ZLR5nIwrQ1G9rH5l5Jd5o7pOY.svg
+❌ Image in NEXT but missing in ORIGINAL: 7ahob399syUX6jMpG4G4YK63E.jpg
+❌ Image in NEXT but missing in ORIGINAL: 84rQ0xS0GSXogxfHmYXKT30ETM.jpg
+❌ Image in NEXT but missing in ORIGINAL: 8MGbLgt1qCHDtoeeols5V043HfU.svg
+❌ Image in NEXT but missing in ORIGINAL: 8lO1MDdXOmRLodroWn2TxIpCBQ4.jpg
+❌ Image in NEXT but missing in ORIGINAL: 8pp5kzVhwpOfHWE5mU8I5BsEYXc.png
+❌ Image in NEXT but missing in ORIGINAL: 8xn45SyMTHf47SVTvVMykuSUs.png
+❌ Image in NEXT but missing in ORIGINAL: 9RTthQjtszhXNikLkOAskVakcY.svg
+❌ Image in NEXT but missing in ORIGINAL: B6SAUcWOaxeRbm7TmftAKKuE3bo.jpg
+❌ Image in NEXT but missing in ORIGINAL: BrSvSHXO0TEgMV8PBsJNMJBsMzc.svg
+❌ Image in NEXT but missing in ORIGINAL: D6NjmeWaBY1FiFMHLr429HxpKRM.jpg
+❌ Image in NEXT but missing in ORIGINAL: GIK8uZI3M0K4ofRzG3UQCXutM.svg
+❌ Image in NEXT but missing in ORIGINAL: GPSxJ7zrNG4isyTYg1gr1HjRTA.svg
+❌ Image in NEXT but missing in ORIGINAL: Hyv2Ql52EMBz3P3BmYwhd17lDc.png
+❌ Image in NEXT but missing in ORIGINAL: LF8nCSm6jlCbgioPD1ghg1FV4.png
+❌ Image in NEXT but missing in ORIGINAL: Qifbcz2UjIveHTCuImUZcqT9kZg.svg
+❌ Image in NEXT but missing in ORIGINAL: R1Nc0cZIZe9itgYCE5FJSDaSJc.png
+❌ Image in NEXT but missing in ORIGINAL: SHszoY6WQxqBKoXMDaecS6vEmk.png
+❌ Image in NEXT but missing in ORIGINAL: SotZXXPsS3rKeaDqLHmOcIsk2tM.png
+❌ Image in NEXT but missing in ORIGINAL: ThiPMi5yUjVdKo6t4N9wLOgcQ.svg
+❌ Image in NEXT but missing in ORIGINAL: W0YDkN2aIKIGEe2LbILwOdRJAjk.jpg
+❌ Image in NEXT but missing in ORIGINAL: WioQWlXxVQDqe2KhkHeOjhO9KA.svg
+❌ Image in NEXT but missing in ORIGINAL: XvHWqouzRd8NA25OWGOH1f8UMY.jpg
+❌ Image in NEXT but missing in ORIGINAL: YkROzWcb2tUmAxdUcRfBLgHacU.jpg
+❌ Image in NEXT but missing in ORIGINAL: aVsvLJkR2RekklaZEFisskMVMr0.jpg
+❌ Image in NEXT but missing in ORIGINAL: arGA85cgsigolEQsZOeBSaQ4qI.jpg
+❌ Image in NEXT but missing in ORIGINAL: b4KzHV67W4mrSOMheANfAzfdYEM.png
+❌ Image in NEXT but missing in ORIGINAL: d609Uzv5sske4DYDYAIapU3M.jpg
+❌ Image in NEXT but missing in ORIGINAL: duZwjP73YzY6931zuqasWWfWDZY.svg
+❌ Image in NEXT but missing in ORIGINAL: dzRxE4gVbVi1wRzrhrYjLRMpN4Y.png
+❌ Image in NEXT but missing in ORIGINAL: ecIydEaqGIKuHaQqFsbw8tRCA.png
+❌ Image in NEXT but missing in ORIGINAL: gY3cWZMLXhPg9FmxaSD4I4kAPRM.jpg
+❌ Image in NEXT but missing in ORIGINAL: gjmyWxGl1gWzjkyIh4cJfB7rg.svg
+❌ Image in NEXT but missing in ORIGINAL: gz6zByfwfxSk9G6Guihznt9CnjM.png
+❌ Image in NEXT but missing in ORIGINAL: jpxArhZs8VwgsAK7U5D5B5MqU.png
+❌ Image in NEXT but missing in ORIGINAL: jwXvxAQ61mfcjjrQsvoreqxnrMg.jpg
+❌ Image in NEXT but missing in ORIGINAL: oeigtHFhM0qf1CThkR9gRSymB0.svg
+❌ Image in NEXT but missing in ORIGINAL: qkP6xU2UlwWYUURNcxwVeo2gEY.svg
+❌ Image in NEXT but missing in ORIGINAL: rGDjx8YMbG9oRVmwoQAAeYflmO0.jpg
+❌ Image in NEXT but missing in ORIGINAL: sxqGwXa7qjplji4ZcgX8fmYOs.svg
+❌ Image in NEXT but missing in ORIGINAL: tYjjjnV08Cc8JGQRKY9g3S1qvLU.png
+❌ Image in NEXT but missing in ORIGINAL: ugOirwbvxWR0SU7YDwnuLLvlcZQ.svg
+❌ Image in NEXT but missing in ORIGINAL: zwPzGRmwV4iFo5B3YcijQ9Ma8Nw.jpg
+📊 Original: 113 images, Next.js: 76 images
+
+================================================================================
+RESPONSIVE CHECK (768px viewport)
+================================================================================
+⏭️  [H1 at 768px] — not found in original
+⏭️  [H2 at 768px] — not found in original
+⏭️  [Nav links hidden at 768px] — not found in original
+⏭️  [Exp grid at 768px] — not found in original
+⏭️  [News grid at 768px] — not found in original
+⏭️  [Partners grid at 768px] — not found in original
+⏭️  [FF grid at 768px] — not found in original
+⏭️  [Footer cols at 768px] — not found in original
+⏭️  [Clients inner at 768px] — not found in original
+
+
+📁 Full report saved to: C:/Users/EliteBook/Desktop/work/prof-of-concept/solshine/solshine-next/comparison-report/DIFFERENCES.md
+📸 Screenshots saved to: C:/Users/EliteBook/Desktop/work/prof-of-concept/solshine/solshine-next/comparison-report/
+  ✓  1 compare.spec.ts:44:5 › Compare original vs Next.js — full page screenshots (2.4m)
+
+  1 passed (2.5m)
