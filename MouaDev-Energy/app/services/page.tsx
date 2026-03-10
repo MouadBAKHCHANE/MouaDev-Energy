@@ -686,6 +686,8 @@ export default function ServicesPage() {
           border: 1px solid #e8e8e8;
           background: #fff;
           cursor: pointer;
+          will-change: transform, box-shadow;
+          transform: translateZ(0);
           transition: box-shadow 0.4s cubic-bezier(0.165,0.84,0.44,1),
                       transform 0.4s cubic-bezier(0.165,0.84,0.44,1),
                       background 0.4s ease,
@@ -901,6 +903,12 @@ export default function ServicesPage() {
         @media (max-width: 640px) {
           .svc-card-grid { grid-template-columns: 1fr; }
           .svc-stats-grid { grid-template-columns: 1fr !important; }
+          .svc-card:hover { transform: none; }
+          .svc-card-img { aspect-ratio: 4 / 3; }
+        }
+        @media (hover: none) {
+          .svc-card:hover { transform: none; box-shadow: none; }
+          .svc-card { will-change: auto; }
         }
       `}</style>
     </main>

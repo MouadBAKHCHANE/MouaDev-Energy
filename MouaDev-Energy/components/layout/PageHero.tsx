@@ -17,13 +17,14 @@ interface PageHeroProps {
 export default function PageHero({ crumbs, title, bgImage }: PageHeroProps) {
   return (
     <section
+      className="page-hero-section"
       style={{
         position: 'relative',
-        minHeight: 480,
+        minHeight: 'clamp(360px, 50vh, 580px)',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-end',
-        padding: '160px 20px 80px',
+        padding: 'clamp(100px, 15vw, 160px) 20px clamp(40px, 6vw, 80px)',
         background: '#000',
         overflow: 'hidden',
       }}

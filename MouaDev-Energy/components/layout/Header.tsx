@@ -45,6 +45,12 @@ export default function Header() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  // Lock body scroll when drawer is open
+  useEffect(() => {
+    document.body.style.overflow = isDrawerOpen ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [isDrawerOpen])
+
   const isScrolled = scrollY > 50
   const textColor = isScrolled ? '#000' : '#fff'
   const isDark = isScrolled
@@ -74,16 +80,23 @@ export default function Header() {
         }}
       >
         {/* Logo */}
-        <a href="/" style={{ display: 'flex', alignItems: 'center' }}>
+        <a href="/" style={{ display: 'flex', alignItems: 'center', position: 'relative', height: 48, width: 160 }}>
           <img
             src="/Logo complet/Blanc.webp"
             alt="Zen Energie Services"
-            style={{ height: 48, width: 'auto', objectFit: 'contain', display: isDark ? 'none' : 'block' }}
+            style={{
+              position: 'absolute', height: 48, width: 'auto', objectFit: 'contain',
+              opacity: isDark ? 0 : 1, transition: 'opacity 0.3s ease', pointerEvents: isDark ? 'none' : 'auto',
+            }}
           />
           <img
             src="/Logo complet/Vert medium.webp"
-            alt="Zen Energie Services"
-            style={{ height: 48, width: 'auto', objectFit: 'contain', display: isDark ? 'block' : 'none' }}
+            alt=""
+            aria-hidden="true"
+            style={{
+              position: 'absolute', height: 48, width: 'auto', objectFit: 'contain',
+              opacity: isDark ? 1 : 0, transition: 'opacity 0.3s ease', pointerEvents: isDark ? 'auto' : 'none',
+            }}
           />
         </a>
 

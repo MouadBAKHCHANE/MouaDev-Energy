@@ -237,7 +237,7 @@ button {
 
 .ff-lime-panel {
   flex: 0 0 auto;
-  width: 527px;
+  width: clamp(280px, 35vw, 527px);
   height: 100%;
   background: #50B5A2;
   border-radius: 50px;
@@ -543,9 +543,9 @@ button {
    ============================================ */
 @media (max-width: 480px) {
   .hero-h1 {
-    font-size: 45px !important;
-    line-height: 50px !important;
-    letter-spacing: -2px !important;
+    font-size: 36px !important;
+    line-height: 44px !important;
+    letter-spacing: -1px !important;
   }
 
   .svc-h2,
@@ -556,8 +556,8 @@ button {
   .faq-h2,
   .partners-h2,
   .news-h2 {
-    font-size: 32px !important;
-    line-height: 40px !important;
+    font-size: 28px !important;
+    line-height: 36px !important;
   }
 
   .nav-cta-btn {
@@ -565,12 +565,12 @@ button {
   }
 
   .about-stat {
-    font-size: 150px !important;
-    line-height: 150px !important;
+    font-size: 120px !important;
+    line-height: 120px !important;
   }
 
   .price-val {
-    font-size: 40px !important;
+    font-size: 36px !important;
   }
 
   .team-preview-grid {
@@ -579,5 +579,24 @@ button {
 
   .full-team-grid {
     grid-template-columns: 1fr !important;
+  }
+
+  /* Inner page sections — reduce vertical padding on tiny screens */
+  .about-intro-row {
+    gap: 32px !important;
+  }
+
+  .footer-top {
+    gap: 28px !important;
+  }
+
+  .footer-cols {
+    gap: 24px !important;
+  }
+
+  /* Page hero padding override for very small phones */
+  .page-hero-section {
+    padding-top: 100px !important;
+    padding-bottom: 36px !important;
   }
 }
