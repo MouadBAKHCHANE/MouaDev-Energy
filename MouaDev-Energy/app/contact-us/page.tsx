@@ -33,7 +33,7 @@ export default function ContactUsPage() {
       <PageHero
         crumbs={[{ label: 'Accueil', href: '/' }, { label: 'Contactez-nous' }]}
         title="Contactez-nous"
-        bgImage="https://framerusercontent.com/images/gY3cWZMLXhPg9FmxaSD4I4kAPRM.jpg"
+        bgImage="/Photos%20HD/Photos%20d_ambiance/happy-family-background-house-with-solar-panels-roof-selective-focus.webp"
       />
 
       {/* ── Contact Section ───────────────────────────────────────────────── */}

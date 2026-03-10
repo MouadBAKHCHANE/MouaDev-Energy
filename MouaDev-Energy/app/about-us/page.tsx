@@ -157,7 +157,7 @@ export default function AboutUsPage() {
               </div>
               <h2 className="au-h2" style={{
                 fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
-                fontSize: 36, fontWeight: 600, lineHeight: '44px', letterSpacing: -1,
+                fontSize: 'clamp(26px, 3.5vw, 36px)', fontWeight: 600, lineHeight: 1.25, letterSpacing: -1,
                 color: '#000', marginBottom: 20,
               }}>
                 Votre partenaire de confiance pour des installations énergétiques fiables et pérennes
@@ -234,7 +234,7 @@ export default function AboutUsPage() {
             transition={{ duration: 0.7, ease: 'easeOut', delay: 0.1 }}
             style={{
               fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
-              fontSize: 52, fontWeight: 600, lineHeight: '62px', letterSpacing: -2,
+              fontSize: 'clamp(28px, 4.5vw, 52px)', fontWeight: 600, lineHeight: 1.2, letterSpacing: -2,
               color: '#000', marginBottom: 16, maxWidth: 700,
             }}
           >
@@ -333,7 +333,7 @@ export default function AboutUsPage() {
             className="au-section-h2"
             style={{
               fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
-              fontSize: 52, fontWeight: 600, lineHeight: '60px', letterSpacing: -2,
+              fontSize: 'clamp(28px, 4.5vw, 52px)', fontWeight: 600, lineHeight: 1.2, letterSpacing: -2,
               color: '#000', marginBottom: 16, textAlign: 'center',
             }}
           >
@@ -375,7 +375,7 @@ export default function AboutUsPage() {
                 }}
               >
                 {/* Image */}
-                <div style={{ width: '100%', height: 220, borderRadius: 20, overflow: 'hidden', marginBottom: 28 }}>
+                <div style={{ width: '100%', height: 'clamp(160px, 20vw, 220px)', borderRadius: 20, overflow: 'hidden', marginBottom: 28 }}>
                   <img
                     src={svc.image} alt={svc.title}
                     style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.4s ease' }}
