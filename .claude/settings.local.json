@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:solshine.framer.website)",
+      "Bash(curl -s http://localhost:3000 | head -100)",
+      "WebFetch(domain:localhost)",
+      "Bash(npx playwright test compare.spec.ts --reporter=list)",
+      "Bash(npx playwright test compare.spec.ts --reporter=list --timeout=180000)",
+      "Bash(npx tsc --noEmit)",
+      "Bash(npx next build)",
+      "Bash(pdftotext \"c:/Users/EliteBook/OneDrive/Desktop/naoenergy.ch/ZEN ÉNERGIE SERVICES/ZEN ÉNERGIE SERVICES/Textes complémentaires/Confidentialite & cookies.pdf\" -)",
+      "Bash(pdftotext \"c:/Users/EliteBook/OneDrive/Desktop/naoenergy.ch/ZEN ÉNERGIE SERVICES/ZEN ÉNERGIE SERVICES/Arborescence/Architecture zen-energieservices.ch.pdf\" -)",
+      "Bash(unzip -q \"c:/Users/EliteBook/OneDrive/Desktop/naoenergy.ch/ZEN ÉNERGIE SERVICES/ZEN ÉNERGIE SERVICES/Articles/Article Zen Suisse_Comment bien tuliser sa pompe à chaleur _.docx\" -d article2)",
+      "Bash(for f in *.docx)",
+      "Bash(do echo \"File: $f\")",
+      "Bash(done)",
+      "Bash(unzip -q \"c:/Users/EliteBook/OneDrive/Desktop/naoenergy.ch/ZEN ÉNERGIE SERVICES/ZEN ÉNERGIE SERVICES/Articles\"/*Comment* -d article2)"
+    ]
+  }
+}
