@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react'
@@ -39,10 +39,60 @@ const slides = [
   },
 ]
 
+// Infinite carousel: [clone_last, s0, s1, s2, s3, clone_first]
+const extendedSlides = [slides[slides.length - 1], ...slides, slides[0]]
+
 export default function OurServices() {
-  const [active, setActive] = useState(0)
-  const prev = () => setActive(i => (i - 1 + slides.length) % slides.length)
-  const next = () => setActive(i => (i + 1) % slides.length)
+  // active starts at 1 = first real slide
+  const [active, setActive] = useState(1)
+  const [animated, setAnimated] = useState(true)
+  const lockRef = useRef(false)
+
+  const prev = () => {
+    if (lockRef.current) return
+    lockRef.current = true
+    setAnimated(true)
+    setActive(i => i - 1)
+  }
+  const next = () => {
+    if (lockRef.current) return
+    lockRef.current = true
+    setAnimated(true)
+    setActive(i => i + 1)
+  }
+
+  // After transition ends, silently reset position if at a clone
+  const handleTransitionEnd = () => {
+    if (active === 0) {
+      setAnimated(false)
+      setActive(slides.length)
+    } else if (active === extendedSlides.length - 1) {
+      setAnimated(false)
+      setActive(1)
+    } else {
+      lockRef.current = false
+    }
+  }
+
+  // Re-enable animation after silent jump, then unlock
+  useEffect(() => {
+    if (!animated) {
+      const raf = requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setAnimated(true)
+          lockRef.current = false
+        })
+      })
+      return () => cancelAnimationFrame(raf)
+    }
+  }, [animated])
+
+  // Real slide index for dots (0-based)
+  const realIndex = active === 0
+    ? slides.length - 1
+    : active === extendedSlides.length - 1
+      ? 0
+      : active - 1
 
   return (
     <section className="our-svc-section" style={{ padding: '100px 20px', background: '#fff' }}>
@@ -137,8 +187,12 @@ export default function OurServices() {
         <div className="svc-carousel">
           {/* Card + side arrows overlay */}
           <div style={{ position: 'relative', overflow: 'hidden', borderRadius: 24 }}>
-            <div className="svc-carousel-track" style={{ transform: `translateX(${-active * 100}%)` }}>
-              {slides.map((slide, i) => (
+            <div
+              className="svc-carousel-track"
+              style={{ transform: `translateX(${-active * 100}%)`, transition: animated ? undefined : 'none' }}
+              onTransitionEnd={handleTransitionEnd}
+            >
+              {extendedSlides.map((slide, i) => (
                 <div key={i} className="svc-carousel-slide">
                   <Link href={slide.href} className="svc-card-link" style={{ display: 'block', textDecoration: 'none', borderRadius: 20, overflow: 'hidden', position: 'relative', aspectRatio: '1.1', background: '#000' }}>
                     <img src={slide.img} alt={slide.name} style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.9, display: 'block' }} />
@@ -175,8 +229,8 @@ export default function OurServices() {
           {/* Dots */}
           <div style={{ display: 'flex', justifyContent: 'center', gap: 8, marginTop: 20 }}>
             {slides.map((_, i) => (
-              <button key={i} onClick={() => setActive(i)}
-                style={{ width: i === active ? 24 : 8, height: 8, borderRadius: 4, background: i === active ? '#50b5a2' : '#ddd', border: 'none', padding: 0, cursor: 'pointer', transition: 'all 0.3s ease' }}
+              <button key={i} onClick={() => { setAnimated(true); setActive(i + 1) }}
+                style={{ width: i === realIndex ? 24 : 8, height: 8, borderRadius: 4, background: i === realIndex ? '#50b5a2' : '#ddd', border: 'none', padding: 0, cursor: 'pointer', transition: 'all 0.3s ease' }}
                 aria-label={`Slide ${i + 1}`}
               />
             ))}
