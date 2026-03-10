@@ -1,0 +1,12 @@
+# Brand assets — never commit these (large files, not needed by Vercel)
+ZEN ÉNERGIE SERVICES/
+
+# Node
+node_modules/
+
+# Next.js build output
+.next/
+out/
+
+# Claude settings
+.claude/
