@@ -159,7 +159,7 @@ function Counter({ value, prefix = '', suffix = '' }: { value: number, prefix?: 
 
 export default function ServicesPage() {
   return (
-    <main>
+    <main style={{ overflowX: 'hidden' }}>
       <PageHero
         crumbs={[{ label: 'Accueil', href: '/' }, { label: 'Nos Services' }]}
         title="Nos solutions d'entretien"
@@ -266,7 +266,7 @@ export default function ServicesPage() {
       </section>
 
       {/* ── Stats Banner ────────────────────────────────────────────────── */}
-      <section style={{ background: '#fff', padding: '90px 20px' }}>
+      <section style={{ background: '#fff', padding: '90px 20px', overflow: 'hidden' }}>
         <div style={{ maxWidth: 1320, margin: '0 auto' }}>
           <div className="stats-header-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 60, marginBottom: 60 }}>
             <div style={{ flex: '0 0 55%' }}>
@@ -467,7 +467,7 @@ export default function ServicesPage() {
       {services.map((svc, i) => (
         <section
           key={svc.id}
-          style={{ padding: '100px 20px', background: i % 2 === 0 ? '#fff' : '#f7f9f8' }}
+          style={{ padding: '100px 20px', background: i % 2 === 0 ? '#fff' : '#f7f9f8', overflow: 'hidden' }}
         >
           <div
             className="svc-detail-row"
