@@ -410,23 +410,22 @@ export default function ServicesPage() {
               Les atouts de nos <br /> contrats d'entretien
             </motion.h2>
 
-            {[
-              {
+            {[{
                 num: '01',
-                title: 'Contrat 100% Digitalisé',
-                text: "Votre contrat, vos documents et l'historique de vos interventions accessibles en ligne à tout moment depuis votre espace client personnel.",
+                title: 'Contrat digitalisé avec maintenance téléphonique',
+                text: "Votre contrat digitalisé avec une maintenance téléphonique à disposition pour vous accompagner à tout moment en cas de besoin.",
                 icon: '/Ic%C3%B4nes/CHARTEGRAPHIQUENAOSERVICE-35.webp',
               },
               {
                 num: '02',
-                title: 'Techniciens Certifiés',
-                text: "Des experts qualifiés interviennent sur vos installations selon les normes suisses en vigueur, avec un rapport d'intervention détaillé après chaque passage.",
+                title: 'Espace client personnel',
+                text: "Votre espace client personnel pour gérer l'entièreté de votre contrat et de vos interventions, accessible en ligne à tout moment.",
                 icon: '/Ic%C3%B4nes/CHARTEGRAPHIQUENAOSERVICE-14.webp',
               },
               {
                 num: '03',
-                title: 'Flexibilité Sur-Mesure',
-                text: "Des contrats souples pensés pour s'adapter à l'évolution de vos besoins — avec 10% de remise pour tout contrat multi-équipement.",
+                title: 'Contrats flexibles adaptés à vos besoins',
+                text: "Des contrats flexibles adaptés à vos besoins.",
                 icon: '/Ic%C3%B4nes/CHARTEGRAPHIQUENAOSERVICE-22.webp',
               },
             ].map((item, i) => (
