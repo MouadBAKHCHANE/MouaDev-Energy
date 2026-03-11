@@ -550,9 +550,9 @@ export default function PanneauxSolairesPage() {
                     }} />
                     {/* ZEN logo — top */}
                     <img
-                      src="/zen-logo-vert-fonce.webp"
+                      src="/Logo image/Blanc.webp"
                       alt="Zen Énergie Services"
-                      style={{ position: 'relative', zIndex: 1, width: 100, height: 'auto', objectFit: 'contain', filter: 'brightness(0) invert(1)' }}
+                      style={{ position: 'relative', zIndex: 1, width: 100, height: 'auto', objectFit: 'contain' }}
                     />
                     {/* Text — bottom */}
                     <div style={{ position: 'relative', zIndex: 1 }}>

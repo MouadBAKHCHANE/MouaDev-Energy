@@ -294,9 +294,9 @@ export default function PvCleanPage() {
                       background: 'rgba(26,54,54,0.55)',
                     }} />
                     <img
-                      src="/zen-logo-vert-fonce.webp"
+                      src="/Logo image/Blanc.webp"
                       alt="Zen Énergie Services"
-                      style={{ position: 'relative', zIndex: 1, width: 100, height: 'auto', objectFit: 'contain', filter: 'brightness(0) invert(1)' }}
+                      style={{ position: 'relative', zIndex: 1, width: 100, height: 'auto', objectFit: 'contain' }}
                     />
                     <div style={{ position: 'relative', zIndex: 1 }}>
                       <div style={{
