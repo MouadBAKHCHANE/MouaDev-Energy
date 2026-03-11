@@ -164,11 +164,42 @@ export default function FunFact() {
           transition={{ duration: 0.8, ease: 'easeOut', delay: 0.3 }}
           style={{ marginTop: 20 }}
         >
-          <Button
-            variant="dark"
-            label="Vous avez une question ? +41 21 512 05 74"
+          <a
             href="tel:+41215120574"
-          />
+            style={{
+              display: 'inline-flex', alignItems: 'center',
+              borderRadius: 14, background: '#0a1f1e', color: '#fff',
+              padding: '9px 8px 9px 24px', gap: 24,
+              textDecoration: 'none', cursor: 'pointer',
+              transition: 'all 0.18s ease',
+            }}
+            onMouseEnter={e => {
+              const arr = e.currentTarget.querySelector('.ff-arr') as HTMLElement
+              if (arr) arr.style.background = '#50B5A2'
+            }}
+            onMouseLeave={e => {
+              const arr = e.currentTarget.querySelector('.ff-arr') as HTMLElement
+              if (arr) arr.style.background = '#fff'
+            }}
+          >
+            <span style={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+              <span style={{ fontFamily: "var(--font-inter), 'Inter', sans-serif", fontSize: 15, fontWeight: 500, lineHeight: 1.3, color: 'rgba(255,255,255,0.7)' }}>
+                Vous avez une question ?
+              </span>
+              <span style={{ fontFamily: "var(--font-inter), 'Inter', sans-serif", fontSize: 17, fontWeight: 700, lineHeight: 1.3, letterSpacing: '-0.3px' }}>
+                +41 21 512 05 74
+              </span>
+            </span>
+            <span className="ff-arr" style={{
+              width: 48, height: 44, borderRadius: 14, background: '#fff', flexShrink: 0,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              transition: 'background 0.3s ease',
+            }}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </span>
+          </a>
         </motion.div>
 
       </div>

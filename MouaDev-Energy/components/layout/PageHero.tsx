@@ -1,6 +1,5 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 
 interface Crumb {
@@ -53,12 +52,9 @@ export default function PageHero({ crumbs, title, bgImage }: PageHeroProps) {
       />
 
       {/* Content */}
-      <div style={{ position: 'relative', zIndex: 1, maxWidth: 1400, margin: '0 auto', width: '100%' }}>
+      <div className="page-hero-content" style={{ position: 'relative', zIndex: 1, maxWidth: 1400, margin: '0 auto', width: '100%' }}>
         {/* Breadcrumb */}
-        <motion.nav
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
+        <nav
           style={{
             display: 'flex',
             alignItems: 'center',
@@ -107,13 +103,10 @@ export default function PageHero({ crumbs, title, bgImage }: PageHeroProps) {
               )}
             </span>
           ))}
-        </motion.nav>
+        </nav>
 
         {/* Title */}
-        <motion.h1
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: 'easeOut', delay: 0.1 }}
+        <h1
           style={{
             fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
             fontSize: 'clamp(40px, 6vw, 80px)',
@@ -126,8 +119,18 @@ export default function PageHero({ crumbs, title, bgImage }: PageHeroProps) {
           }}
         >
           {title}
-        </motion.h1>
+        </h1>
       </div>
+
+      <style>{`
+        .page-hero-content {
+          animation: heroFadeIn 0.5s ease forwards;
+        }
+        @keyframes heroFadeIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
     </section>
   )
 }

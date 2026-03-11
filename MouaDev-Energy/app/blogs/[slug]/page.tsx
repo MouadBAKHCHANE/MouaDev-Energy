@@ -66,7 +66,7 @@ export default function BlogPostPage() {
             </span>
             <span
               style={{
-                background: '#000',
+                background: '#0a1f1e',
                 color: '#fff',
                 padding: '6px 16px',
                 borderRadius: 100,
@@ -252,7 +252,7 @@ export default function BlogPostPage() {
                   >
                     <span
                       style={{
-                        background: '#000',
+                        background: '#0a1f1e',
                         color: '#fff',
                         padding: '4px 12px',
                         borderRadius: 100,

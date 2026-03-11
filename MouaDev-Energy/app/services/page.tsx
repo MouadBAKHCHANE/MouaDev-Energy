@@ -146,7 +146,7 @@ function Counter({ value, prefix = '', suffix = '' }: { value: number, prefix?: 
 
   useEffect(() => {
     if (inView) {
-      animate(count, value, { duration: 2, ease: 'easeOut' })
+      animate(count, value, { duration: 1.2, ease: 'easeOut' })
     }
   }, [inView, count, value])
 
@@ -159,7 +159,7 @@ function Counter({ value, prefix = '', suffix = '' }: { value: number, prefix?: 
 
 export default function ServicesPage() {
   return (
-    <main style={{ overflowX: 'hidden' }}>
+    <main>
       <PageHero
         crumbs={[{ label: 'Accueil', href: '/' }, { label: 'Nos Services' }]}
         title="Nos solutions d'entretien"
@@ -174,13 +174,13 @@ export default function ServicesPage() {
             <div style={{ flex: '0 0 55%' }}>
               <motion.div
                 initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
-                viewport={vp} transition={{ duration: 0.7 }} style={{ marginBottom: 16 }}
+                viewport={vp} transition={{ duration: 0.5 }} style={{ marginBottom: 16 }}
               >
                 <SectionLabel text="NOS SERVICES" />
               </motion.div>
               <motion.h2
                 initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
-                viewport={vp} transition={{ duration: 0.7, delay: 0.1 }}
+                viewport={vp} transition={{ duration: 0.5, delay: 0.1 }}
                 style={{
                   fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
                   fontSize: 'clamp(32px, 5vw, 54px)', fontWeight: 600,
@@ -192,7 +192,7 @@ export default function ServicesPage() {
             </div>
             <motion.div
               initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
-              viewport={vp} transition={{ duration: 0.7, delay: 0.2 }}
+              viewport={vp} transition={{ duration: 0.5, delay: 0.2 }}
               style={{ flex: 1 }}
             >
               <p style={{
@@ -272,13 +272,13 @@ export default function ServicesPage() {
             <div style={{ flex: '0 0 55%' }}>
               <motion.div
                 initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
-                viewport={vp} transition={{ duration: 0.7 }} style={{ marginBottom: 20 }}
+                viewport={vp} transition={{ duration: 0.5 }} style={{ marginBottom: 20 }}
               >
                 <SectionLabel text="RÉSULTATS CONCRETS" />
               </motion.div>
               <motion.h2
                 initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
-                viewport={vp} transition={{ duration: 0.7, delay: 0.1 }}
+                viewport={vp} transition={{ duration: 0.5, delay: 0.1 }}
                 style={{
                   fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
                   fontSize: 'clamp(32px, 5vw, 62px)', fontWeight: 600,
@@ -290,7 +290,7 @@ export default function ServicesPage() {
             </div>
             <motion.div
               initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
-              viewport={vp} transition={{ duration: 0.7, delay: 0.2 }}
+              viewport={vp} transition={{ duration: 0.5, delay: 0.2 }}
               style={{ flex: 1, paddingTop: 30 }}
             >
               <p style={{
@@ -308,7 +308,7 @@ export default function ServicesPage() {
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }}
-                viewport={vp} transition={{ duration: 0.8, delay: i * 0.15 }}
+                viewport={vp} transition={{ duration: 0.5, delay: i * 0.15 }}
                 style={{ position: 'relative' }}
               >
                 <div style={{ width: '100%', height: 1.5, background: '#000', marginBottom: 20 }} />
@@ -339,7 +339,7 @@ export default function ServicesPage() {
           {/* Quote card */}
           <motion.div
             initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }}
-            viewport={vp} transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={vp} transition={{ duration: 0.5, delay: 0.4 }}
             style={{
               marginTop: 80, padding: '40px',
               background: '#f8fbfc', borderRadius: 32,
@@ -375,6 +375,7 @@ export default function ServicesPage() {
             <img
               src="/Photos%20HD/Photos%20d_ambiance/Zen.webp"
               alt="L'expérience Zen"
+              loading="lazy"
               style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
             />
             <div style={{
@@ -387,7 +388,7 @@ export default function ServicesPage() {
           <div className="zen-exp-content">
             <motion.div
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-              viewport={vp} transition={{ duration: 0.7 }}
+              viewport={vp} transition={{ duration: 0.5 }}
               style={{ marginBottom: 16 }}
             >
               <span style={{
@@ -399,7 +400,7 @@ export default function ServicesPage() {
 
             <motion.h2
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-              viewport={vp} transition={{ duration: 0.7, delay: 0.1 }}
+              viewport={vp} transition={{ duration: 0.5, delay: 0.1 }}
               style={{
                 fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
                 fontSize: 'clamp(30px, 3.5vw, 46px)', fontWeight: 600,
@@ -432,7 +433,7 @@ export default function ServicesPage() {
               <motion.div
                 key={i}
                 initial={{ opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }}
-                viewport={vp} transition={{ duration: 0.7, delay: i * 0.15 }}
+                viewport={vp} transition={{ duration: 0.5, delay: i * 0.15 }}
                 className="zen-exp-item"
               >
                 <div className="zen-exp-num">{item.num}</div>
@@ -479,12 +480,13 @@ export default function ServicesPage() {
             <motion.div
               variants={svc.imgLeft ? slideLeft : slideRight}
               initial="hidden" whileInView="visible"
-              viewport={vp} transition={{ duration: 0.85, ease: 'easeOut' }}
+              viewport={vp} transition={{ duration: 0.55, ease: 'easeOut' }}
               style={{ flex: '0 0 48%' }}
             >
               <div style={{ borderRadius: 28, overflow: 'hidden', aspectRatio: '4/3', background: '#eee' }}>
                 <img
                   src={svc.img} alt={svc.label}
+                  loading="lazy"
                   style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                 />
               </div>
@@ -493,7 +495,7 @@ export default function ServicesPage() {
             <motion.div
               variants={svc.imgLeft ? slideRight : slideLeft}
               initial="hidden" whileInView="visible"
-              viewport={vp} transition={{ duration: 0.85, ease: 'easeOut', delay: 0.12 }}
+              viewport={vp} transition={{ duration: 0.55, ease: 'easeOut', delay: 0.08 }}
               style={{ flex: 1, minWidth: 0 }}
             >
               <SectionLabel text={svc.label} />

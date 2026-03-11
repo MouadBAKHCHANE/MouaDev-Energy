@@ -340,7 +340,7 @@ export default function BlogsPage() {
                 <span className="bl-cta-arr" style={{
                   width: 40, height: 36, borderRadius: 10,
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  background: '#000', color: '#fff', transition: 'background 0.18s ease, color 0.18s ease',
+                  background: '#0a1f1e', color: '#fff', transition: 'background 0.18s ease, color 0.18s ease',
                 }}>
                   <ArrowIcon direction="right" size={16} strokeColor="currentColor" />
                 </span>
