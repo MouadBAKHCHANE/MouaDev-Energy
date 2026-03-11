@@ -7,19 +7,32 @@ import ScrollTopButton from '@/components/ui/ScrollTopButton'
 
 const barlow = Barlow({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
+  weight: ['400', '500', '600', '700'],
   variable: '--font-barlow',
+  display: 'swap',
+  preload: true,
 })
 
 const inter = Inter({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700', '900'],
+  weight: ['400', '500', '600', '700'],
   variable: '--font-inter',
+  display: 'swap',
+  preload: true,
 })
 
 export const metadata: Metadata = {
-  title: 'Zen Énergie Services - Maintenance et Entretien Suisse',
-  description: 'Votre partenaire de confiance pour la maintenance et l’entretien de vos installations énergétiques en Suisse romande.',
+  title: 'Zen Énergie Services — Maintenance et Entretien Suisse',
+  description: "Votre partenaire de confiance pour la maintenance et l'entretien de vos installations énergétiques en Suisse romande. Pompes à chaleur, panneaux solaires, boilers thermodynamiques.",
+  keywords: ['maintenance énergétique', 'pompe à chaleur', 'panneaux solaires', 'boiler thermodynamique', 'Genève', 'Suisse romande', 'entretien'],
+  authors: [{ name: 'Zen Énergie Services' }],
+  openGraph: {
+    title: 'Zen Énergie Services — Maintenance et Entretien Suisse',
+    description: "Partenaire de référence pour la maintenance de vos installations énergétiques en Suisse romande.",
+    locale: 'fr_CH',
+    type: 'website',
+  },
+  robots: { index: true, follow: true },
 }
 
 export default function RootLayout({

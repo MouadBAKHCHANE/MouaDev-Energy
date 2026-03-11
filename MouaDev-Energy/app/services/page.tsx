@@ -218,7 +218,7 @@ export default function ServicesPage() {
               >
                 {/* Image area */}
                 <div className="svc-card-img-wrap">
-                  <img className="svc-card-img" src={card.img} alt={card.title} />
+                  <img className="svc-card-img" src={card.img} alt={card.title} loading="lazy" decoding="async" />
                   {/* Teal hover overlay */}
                   <div className="svc-card-overlay" />
                   {/* Brand icon - no background, white */}

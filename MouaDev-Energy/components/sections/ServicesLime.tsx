@@ -173,6 +173,7 @@ export default function ServicesLime() {
               {/* Icon */}
               <motion.img
                 src={svc.icon} alt={svc.title}
+                loading="lazy" decoding="async"
                 style={{ width: 80, height: 80, objectFit: 'contain', filter: 'brightness(0) invert(1) sepia(1) saturate(2) hue-rotate(130deg)', flexShrink: 0, cursor: 'pointer' }}
                 whileHover={{ scale: 1.18, rotate: 6, filter: 'brightness(0) invert(1) sepia(1) saturate(4) hue-rotate(130deg)' }}
                 transition={{ type: 'spring', stiffness: 400, damping: 12 }}
