@@ -2,6 +2,7 @@
 
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
+import Image from 'next/image'
 import SectionLabel from '@/components/ui/SectionLabel'
 import Button from '@/components/ui/Button'
 
@@ -13,32 +14,32 @@ const revealHeading = {
 
 const cards = [
   {
-    img: '/Photos%20HD/Visuels%20Technique/Technique%20-%20Boiler/Femme%20ve%CC%81rifiant%20Boiler.webp',
-    imgAlt: 'Prise de rendez-vous',
-    icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-33.webp',
-    title: '1. Prise de rendez-vous',
-    desc: 'Dès votre contrat souscrit en ligne, un expert Zen prendra contact avec vous dans les 48heures pour planifier votre 1ère intervention.',
+    img: "/Photos%20HD/Visuels%20Technique/Technique%20-%20Boiler/Femme%20ve%CC%81rifiant%20Boiler.webp",
+    imgAlt: "Prise de rendez-vous",
+    icon: "/icons/CHARTEGRAPHIQUENAOSERVICE-33.webp",
+    title: "1. Prise de rendez-vous",
+    desc: "Dès votre contrat souscrit en ligne, un expert Zen prendra contact avec vous dans les 48heures pour planifier votre 1ère intervention.",
   },
   {
-    img: '/Photos%20HD/Visuels%20Technique/Technique%20-%20PAC/technician-discussing-heat-pump-setup-with-homeowner-garden.webp',
-    imgAlt: 'Diagnostic et intervention',
-    icon: 'https://framerusercontent.com/images/2jvk0kJxyokxITdWGVCBwINpl6w.png',
-    title: '2. Diagnostic et intervention',
-    desc: 'Nos experts se déplacent avec un équipement de pointe pour entretenir ou dépanner vos installations.',
+    img: "/Photos%20HD/Visuels%20Technique/Technique%20-%20PAC/technician-discussing-heat-pump-setup-with-homeowner-garden.webp",
+    imgAlt: "Diagnostic et intervention",
+    icon: "https://framerusercontent.com/images/2jvk0kJxyokxITdWGVCBwINpl6w.png",
+    title: "2. Diagnostic et intervention",
+    desc: "Nos experts se déplacent avec un équipement de pointe pour entretenir ou dépanner vos installations.",
   },
   {
-    img: '/Photos%20HD/Visuels%20Technique/Technique%20-%20PAC/Technicien%20Inspection%20Pompe%20Chaleur.webp',
-    imgAlt: 'Envoi du rapport d’intervention',
-    icon: 'https://framerusercontent.com/images/jpxArhZs8VwgsAK7U5D5B5MqU.png',
-    title: '3. Envoi du rapport d’intervention',
-    desc: 'Un rapport d’intervention vous sera transmis à la suite de la visite de nos experts.',
+    img: "/Photos%20HD/Visuels%20Technique/Technique%20-%20PAC/Technicien%20Inspection%20Pompe%20Chaleur.webp",
+    imgAlt: "Envoi du rapport d’intervention",
+    icon: "https://framerusercontent.com/images/jpxArhZs8VwgsAK7U5D5B5MqU.png",
+    title: "3. Envoi du rapport d’intervention",
+    desc: "Un rapport d’intervention vous sera transmis à la suite de la visite de nos experts.",
   },
   {
-    img: '/Photos%20HD/Photos%20d_ambiance/iStock%20Image%201484x707.webp',
-    imgAlt: 'Suivi en ligne',
-    icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-35.webp',
-    title: '4. Suivi en ligne',
-    desc: 'Gérez votre contrat, vos rapports d’interventions et vos demandes directement depuis votre espace client Zen.',
+    img: "/Photos%20HD/Photos%20d_ambiance/iStock%20Image%201484x707.webp",
+    imgAlt: "Suivi en ligne",
+    icon: "/icons/CHARTEGRAPHIQUENAOSERVICE-35.webp",
+    title: "4. Suivi en ligne",
+    desc: "Gérez votre contrat, vos rapports d’interventions et vos demandes directement depuis votre espace client Zen.",
   },
 ]
 
@@ -69,10 +70,12 @@ function StackCard({ card, index, totalCards }: { card: typeof cards[0]; index: 
         }}
       >
         {/* Image half — left */}
-        <div className="ff-img" style={{ flex: '1 1 60%', height: '100%', borderRadius: 40, overflow: 'hidden' }}>
-          <img
+        <div className="ff-img" style={{ flex: '1 1 60%', height: '100%', borderRadius: 40, overflow: 'hidden', position: 'relative' }}>
+          <Image
             src={card.img} alt={card.imgAlt}
-            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 50%', display: 'block' }}
+            fill
+            sizes="(max-width: 640px) 100vw, 60vw"
+            style={{ objectFit: 'cover', objectPosition: '50% 50%' }}
           />
         </div>
 

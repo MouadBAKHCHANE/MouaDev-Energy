@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
+import Image from 'next/image'
 import SectionLabel from '@/components/ui/SectionLabel'
 import CheckIcon from '@/components/ui/CheckIcon'
 import Button from '@/components/ui/Button'
@@ -76,10 +77,12 @@ export default function About() {
             transition={{ duration: 0.8, ease: 'easeOut', delay: 0.1 }}
             style={{ flex: '0 0 393px', position: 'relative', height: 530 }}
           >
-            <img
+            <Image
               src="/Photos%20HD/Visuels%20Technique/Technique%20-%20PV/Re%CC%81paration%20panneau%20solaire.webp"
               alt="Two men fix solar panel"
-              style={{ width: '100%', height: '100%', borderRadius: 50, objectFit: 'cover', objectPosition: '60% 50%' }}
+              fill
+              sizes="(max-width: 1024px) 100vw, 393px"
+              style={{ borderRadius: 50, objectFit: 'cover', objectPosition: '60% 50%' }}
             />
             {/* Lime circle with spinning "About us" text */}
             <div className="about-spin-badge" style={{
