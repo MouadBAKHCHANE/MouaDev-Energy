@@ -26,7 +26,7 @@ export default function ContactUsPage() {
       <PageHero
         crumbs={[{ label: 'Accueil', href: '/' }, { label: 'Contactez-nous' }]}
         title="Contactez-nous"
-        bgImage="/Photos%20HD/Photos%20d_ambiance/happy-family-background-house-with-solar-panels-roof-selective-focus.webp"
+        bgImage="/Photos%20HD/Photos%20d_ambiance/iStock%20Image%201484x707.webp"
       />
 
       <section style={{ background: '#fff', padding: '80px 20px' }}>
@@ -163,9 +163,9 @@ export default function ContactUsPage() {
                 <div style={{ gridColumn: '1 / -1' }}>
                   <label style={labelStyle}>Message</label>
                   <textarea
-                    name="message" placeholder="Écrivez votre message..." rows={5}
+                    name="message" placeholder="Écrivez votre message..." rows={3}
                     value={formData.message} onChange={handleChange}
-                    style={{ ...inputStyle, borderRadius: 10, resize: 'vertical' }}
+                    style={{ ...inputStyle, borderRadius: 10, resize: 'none' }}
                     onFocus={e => { e.currentTarget.style.borderColor = '#50B5A2' }}
                     onBlur={e => { e.currentTarget.style.borderColor = '#e0e0e0' }}
                   />
@@ -177,14 +177,14 @@ export default function ContactUsPage() {
                     type="submit"
                     style={{
                       width: '100%', padding: '16px',
-                      borderRadius: 10, background: '#50B5A2', border: 'none',
+                      borderRadius: 10, background: 'linear-gradient(135deg, #0a1e1a 0%, #0d2e28 60%, #0f3a30 100%)', border: 'none',
                       fontSize: 16, fontWeight: 600,
                       fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
-                      color: '#000', cursor: 'pointer',
+                      color: '#fff', cursor: 'pointer',
                       transition: 'background 0.18s ease, color 0.18s ease',
                     }}
-                    onMouseEnter={e => { e.currentTarget.style.background = 'linear-gradient(135deg, #0a1e1a 0%, #0d2e28 60%, #0f3a30 100%)'; e.currentTarget.style.color = '#fff' }}
-                    onMouseLeave={e => { e.currentTarget.style.background = '#50B5A2'; e.currentTarget.style.color = '#000' }}
+                    onMouseEnter={e => { e.currentTarget.style.background = '#50B5A2'; e.currentTarget.style.color = '#000' }}
+                    onMouseLeave={e => { e.currentTarget.style.background = 'linear-gradient(135deg, #0a1e1a 0%, #0d2e28 60%, #0f3a30 100%)'; e.currentTarget.style.color = '#fff' }}
                   >
                     Envoyer le message
                   </button>
@@ -199,7 +199,7 @@ export default function ContactUsPage() {
       {/* ── Map ── */}
       <section style={{ background: '#fff', paddingBottom: 80 }}>
         <iframe
-          src="https://maps.google.com/maps?q=Chemin+du+Pr%C3%A9-Fleuri+1%2C+1228+Plan-les-Ouates%2C+Gen%C3%A8ve%2C+Suisse&output=embed&z=15"
+          src="https://maps.google.com/maps?q=46.167925,6.106813&output=embed&z=17"
           width="100%"
           height="480"
           style={{ border: 0, display: 'block' }}

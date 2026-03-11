@@ -40,7 +40,7 @@ export default function Footer() {
     {
       label: 'Localisation',
       value: 'Genève, Suisse',
-      href: 'https://maps.app.goo.gl/HP1p9P6YucuwoQC97',
+      href: 'https://www.google.com/maps/place/Zen+%C3%89nergie+Services+Suisse/@46.1679287,6.1042381,17z/data=!3m1!4b1!4m6!3m5!1s0x478c7b159ea4d829:0x8e6093da28a7d236!8m2!3d46.167925!4d6.106813!16s%2Fg%2F11x2l3y6bv?entry=ttu&g_ep=EgoyMDI2MDMwOC4wIKXMDSoASAFQAw%3D%3D',
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z" />
