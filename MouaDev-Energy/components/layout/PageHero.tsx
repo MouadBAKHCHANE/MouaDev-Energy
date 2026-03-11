@@ -1,7 +1,9 @@
 'use client'
 
+import { useRef } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
 
 interface Crumb {
   label: string
@@ -15,8 +17,22 @@ interface PageHeroProps {
 }
 
 export default function PageHero({ crumbs, title, bgImage }: PageHeroProps) {
+  const sectionRef = useRef<HTMLElement>(null)
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end start'],
+  })
+
+  // Smooth spring for silky motion
+  const smoothProgress = useSpring(scrollYProgress, { stiffness: 60, damping: 20, restDelta: 0.001 })
+
+  const scale = useTransform(smoothProgress, [0, 1], [1, 1.18])
+  const y     = useTransform(smoothProgress, [0, 1], ['0%', '14%'])
+
   return (
     <section
+      ref={sectionRef}
       className="page-hero-section"
       style={{
         position: 'relative',
@@ -29,16 +45,26 @@ export default function PageHero({ crumbs, title, bgImage }: PageHeroProps) {
         overflow: 'hidden',
       }}
     >
-      {/* Background image — priority loaded (LCP) */}
+      {/* Background image — parallax zoom on scroll */}
       {bgImage && (
-        <Image
-          src={bgImage}
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          style={{ objectFit: 'cover', objectPosition: 'center 35%', opacity: 0.6 }}
-        />
+        <motion.div
+          style={{
+            position: 'absolute', inset: 0,
+            scale,
+            y,
+            transformOrigin: 'center center',
+            willChange: 'transform',
+          }}
+        >
+          <Image
+            src={bgImage}
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            style={{ objectFit: 'cover', objectPosition: 'center 35%', opacity: 0.6 }}
+          />
+        </motion.div>
       )}
 
       {/* Dark gradient overlay */}
@@ -54,50 +80,25 @@ export default function PageHero({ crumbs, title, bgImage }: PageHeroProps) {
       {/* Content */}
       <div className="page-hero-content" style={{ position: 'relative', zIndex: 2, maxWidth: 1400, margin: '0 auto', width: '100%' }}>
         {/* Breadcrumb */}
-        <nav
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 8,
-            marginBottom: 24,
-            flexWrap: 'wrap',
-          }}
-        >
+        <nav style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 24, flexWrap: 'wrap' }}>
           {crumbs.map((crumb, i) => (
             <span key={i} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
               {i > 0 && (
-                <span
-                  style={{
-                    fontFamily: "var(--font-jost), 'Jost', sans-serif",
-                    fontSize: 14,
-                    color: 'rgba(255,255,255,0.4)',
-                  }}
-                >
+                <span style={{ fontFamily: "var(--font-jost), 'Jost', sans-serif", fontSize: 14, color: 'rgba(255,255,255,0.4)' }}>
                   /
                 </span>
               )}
               {crumb.href ? (
                 <Link
                   href={crumb.href}
-                  style={{
-                    fontFamily: "var(--font-jost), 'Jost', sans-serif",
-                    fontSize: 14,
-                    color: 'rgba(255,255,255,0.55)',
-                    transition: 'color 0.18s ease',
-                  }}
+                  style={{ fontFamily: "var(--font-jost), 'Jost', sans-serif", fontSize: 14, color: 'rgba(255,255,255,0.55)', transition: 'color 0.18s ease' }}
                   onMouseEnter={(e) => { e.currentTarget.style.color = '#50B5A2' }}
                   onMouseLeave={(e) => { e.currentTarget.style.color = 'rgba(255,255,255,0.55)' }}
                 >
                   {crumb.label}
                 </Link>
               ) : (
-                <span
-                  style={{
-                    fontFamily: "var(--font-jost), 'Jost', sans-serif",
-                    fontSize: 14,
-                    color: '#50B5A2',
-                  }}
-                >
+                <span style={{ fontFamily: "var(--font-jost), 'Jost', sans-serif", fontSize: 14, color: '#50B5A2' }}>
                   {crumb.label}
                 </span>
               )}
@@ -124,10 +125,10 @@ export default function PageHero({ crumbs, title, bgImage }: PageHeroProps) {
 
       <style>{`
         .page-hero-content {
-          animation: heroFadeIn 0.5s ease forwards;
+          animation: heroFadeIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
         }
         @keyframes heroFadeIn {
-          from { opacity: 0; transform: translateY(20px); }
+          from { opacity: 0; transform: translateY(24px); }
           to   { opacity: 1; transform: translateY(0); }
         }
       `}</style>
