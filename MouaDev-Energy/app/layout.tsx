@@ -33,6 +33,13 @@ export const metadata: Metadata = {
     type: 'website',
   },
   robots: { index: true, follow: true },
+  icons: {
+    icon: [
+      { url: '/Logo image/Vert medium.webp', type: 'image/webp' },
+    ],
+    shortcut: '/Logo image/Vert medium.webp',
+    apple: '/Logo image/Vert medium.webp',
+  },
 }
 
 export default function RootLayout({
