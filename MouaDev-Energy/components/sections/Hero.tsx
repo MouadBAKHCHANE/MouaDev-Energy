@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 import ArrowIcon from '@/components/ui/ArrowIcon'
 
 const reveal = {
@@ -27,13 +28,14 @@ export default function Hero() {
     >
       {/* Background */}
       <div style={{ position: 'absolute', inset: 0, zIndex: 0, background: '#000', overflow: 'hidden' }}>
-        <img
+        <Image
           src="/Photos HD/Photos d_ambiance/Famille AdobeStock.webp"
-          alt="Famille"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
           className="hero-bg-img"
           style={{
-            width: '100%',
-            height: '100%',
             objectFit: 'cover',
             objectPosition: '40% center',
             transform: 'scale(1.05)',

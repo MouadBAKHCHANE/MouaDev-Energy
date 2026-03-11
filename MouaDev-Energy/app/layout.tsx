@@ -51,6 +51,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr" className={`${barlow.variable} ${inter.variable}`}>
+      <head>
+        <link rel="preconnect" href="https://framerusercontent.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://framerusercontent.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://maps.google.com" crossOrigin="anonymous" />
+      </head>
       <body>
         <Header />
         {children}
