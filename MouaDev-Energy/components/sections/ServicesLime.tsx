@@ -65,7 +65,7 @@ export default function ServicesLime() {
             className="svc2-h2"
             style={{
               fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
-              fontSize: 44, fontWeight: 600, lineHeight: 1.08, letterSpacing: -1,
+              fontSize: 'clamp(30px, 5vw, 44px)', fontWeight: 600, lineHeight: 1.08, letterSpacing: -1,
               color: '#fff', marginBottom: 20,
             }}
           >
@@ -238,13 +238,18 @@ export default function ServicesLime() {
         @media (max-width: 1024px) {
           .svc2-inner {
             flex-direction: column;
-            gap: 56px;
+            gap: 40px;
           }
           .svc2-left {
             position: static;
           }
           .svc2-h2 {
-            font-size: 36px !important;
+            font-size: 22px !important;
+            line-height: 1.15 !important;
+          }
+          .svc2-p {
+            font-size: 14px !important;
+            line-height: 22px !important;
           }
         }
         @media (max-width: 640px) {

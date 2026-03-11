@@ -84,7 +84,7 @@ export default function PompeAChaleurPage() {
                         fontFamily: "var(--font-jost), 'Jost', sans-serif",
                         fontWeight: isCurrent ? 600 : 400,
                         color: isCurrent ? '#000' : '#444',
-                        background: isCurrent ? '#50B5A2' : '#fff',
+                        background: isCurrent ? '#E8552C' : '#fff',
                         borderRadius: 16,
                         border: isCurrent ? 'none' : '1px solid #ebebeb',
                         textDecoration: 'none',
@@ -124,7 +124,7 @@ export default function PompeAChaleurPage() {
                       type="text" name="name" placeholder="Prénom *"
                       value={formData.name} onChange={handleChange} required
                       style={formInputStyle}
-                      onFocus={(e) => { e.currentTarget.style.borderColor = '#50B5A2' }}
+                      onFocus={(e) => { e.currentTarget.style.borderColor = '#E8552C' }}
                       onBlur={(e) => { e.currentTarget.style.borderColor = '#e0e0e0' }}
                     />
                   </div>
@@ -134,7 +134,7 @@ export default function PompeAChaleurPage() {
                       type="email" name="email" placeholder="Adresse e-mail *"
                       value={formData.email} onChange={handleChange} required
                       style={formInputStyle}
-                      onFocus={(e) => { e.currentTarget.style.borderColor = '#50B5A2' }}
+                      onFocus={(e) => { e.currentTarget.style.borderColor = '#E8552C' }}
                       onBlur={(e) => { e.currentTarget.style.borderColor = '#e0e0e0' }}
                     />
                   </div>
@@ -144,7 +144,7 @@ export default function PompeAChaleurPage() {
                       type="tel" name="phone" placeholder="Numéro de téléphone *"
                       value={formData.phone} onChange={handleChange}
                       style={formInputStyle}
-                      onFocus={(e) => { e.currentTarget.style.borderColor = '#50B5A2' }}
+                      onFocus={(e) => { e.currentTarget.style.borderColor = '#E8552C' }}
                       onBlur={(e) => { e.currentTarget.style.borderColor = '#e0e0e0' }}
                     />
                   </div>
@@ -153,22 +153,22 @@ export default function PompeAChaleurPage() {
                     <textarea
                       name="message" placeholder="Écrivez votre message..."
                       value={formData.message} onChange={handleChange} rows={4}
-                      style={{ ...formInputStyle, borderRadius: 14, resize: 'vertical' }}
-                      onFocus={(e) => { e.currentTarget.style.borderColor = '#50B5A2' }}
+                      style={{ ...formInputStyle, borderRadius: 10, resize: 'vertical' }}
+                      onFocus={(e) => { e.currentTarget.style.borderColor = '#E8552C' }}
                       onBlur={(e) => { e.currentTarget.style.borderColor = '#e0e0e0' }}
                     />
                   </div>
                   <button type="submit" style={{
                     width: '100%', padding: '14px',
-                    borderRadius: 8, background: '#0a1f1e', border: 'none',
+                    borderRadius: 8, background: 'linear-gradient(135deg, #0a1e1a 0%, #0d2e28 60%, #0f3a30 100%)', border: 'none',
                     fontSize: 15, fontWeight: 700,
                     fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
                     color: '#fff', cursor: 'pointer',
-                    transition: 'background 0.18s ease',
+                    transition: 'background 0.18s ease, color 0.18s ease',
                     marginTop: 4,
                   }}
-                    onMouseEnter={(e) => { e.currentTarget.style.background = '#222' }}
-                    onMouseLeave={(e) => { e.currentTarget.style.background = '#000' }}
+                    onMouseEnter={(e) => { e.currentTarget.style.background = '#50B5A2'; e.currentTarget.style.color = '#000' }}
+                    onMouseLeave={(e) => { e.currentTarget.style.background = 'linear-gradient(135deg, #0a1e1a 0%, #0d2e28 60%, #0f3a30 100%)'; e.currentTarget.style.color = '#fff' }}
                   >
                     Envoyer un message
                   </button>
@@ -187,7 +187,7 @@ export default function PompeAChaleurPage() {
                   pointerEvents: 'none',
                 }} />
                 <div style={{
-                  width: 40, height: 40, borderRadius: 10, background: '#50B5A2',
+                  width: 40, height: 40, borderRadius: 10, background: '#E8552C',
                   display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 16,
                 }}>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
@@ -208,14 +208,14 @@ export default function PompeAChaleurPage() {
                 </p>
                 <Link href="https://form.typeform.com/to/rRhOu7eb" target="_blank" style={{
                   display: 'inline-flex', alignItems: 'center', gap: 10,
-                  background: '#50B5A2', color: '#000',
+                  background: '#E8552C', color: '#000',
                   borderRadius: 8, padding: '10px 20px',
                   fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
                   fontSize: 14, fontWeight: 600, textDecoration: 'none',
                   transition: 'background 0.18s ease',
                 }}
-                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = '#3da090' }}
-                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = '#50B5A2' }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = '#c94010' }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = '#E8552C' }}
                 >
                   Demander une offre →
                 </Link>
@@ -266,7 +266,7 @@ export default function PompeAChaleurPage() {
                     fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
                     fontSize: 22, fontWeight: 700, color: '#000', whiteSpace: 'nowrap', margin: 0,
                   }}>
-                    À partir de CHF 420.-/ an&nbsp;!
+                    À partir de CHF 450.-/ an&nbsp;!
                   </h3>
                   <div style={{ flex: 1, height: 1, background: '#000' }} />
                 </div>
@@ -279,40 +279,28 @@ export default function PompeAChaleurPage() {
                       title: 'ZEN ACCÈS',
                       subtitle: 'La tranquillité essentielle',
                       features: ['Compte client online', 'Entretien tous les 2 ans'],
-                      prices: [
-                        { label: 'PAC Air/Eau', sub: 'monobloc ou bibloc', price: '420 CHF / 2 ans' },
-                        { label: 'PAC Air/Air', sub: 'jusqu\'à 3 unités', price: '390 CHF / 2 ans' },
-                        { label: 'PAC Géothermique', sub: 'sur devis', price: 'Sur devis' },
-                      ],
+                      price: '450 CHF / 2 ans',
                     },
                     {
                       num: '2',
                       title: 'ZEN ÉQUILIBRE',
                       subtitle: 'La couverture complète',
                       features: ['Compte client online', 'Entretien annuel'],
-                      prices: [
-                        { label: 'PAC Air/Eau', sub: 'monobloc ou bibloc', price: '470 CHF / an' },
-                        { label: 'PAC Air/Air', sub: 'jusqu\'à 3 unités', price: '440 CHF / an' },
-                        { label: 'PAC Géothermique', sub: 'sur devis', price: 'Sur devis' },
-                      ],
+                      price: '510 CHF / an',
                     },
                     {
                       num: '3',
                       title: 'ZEN PLUS',
                       subtitle: 'La sérénité assurée',
                       features: ['Compte client online', 'Entretien annuel', "Dépannage, main d'œuvre et déplacement"],
-                      prices: [
-                        { label: 'PAC Air/Eau', sub: 'monobloc ou bibloc', price: '520 CHF / an' },
-                        { label: 'PAC Air/Air', sub: 'jusqu\'à 3 unités', price: '490 CHF / an' },
-                        { label: 'PAC Géothermique', sub: 'sur devis', price: 'Sur devis' },
-                      ],
+                      price: '600 CHF / an',
                     },
                   ].map((plan) => (
                     <div key={plan.num} className="ps-contract-card">
 
-                      {/* ── Teal gradient top ── */}
+                      {/* ── Orange top ── */}
                       <div style={{ position: 'relative', padding: '16px 18px 14px', flex: 1,
-                        background: 'linear-gradient(160deg, #0d7570 0%, #2a9b96 55%, #3dbfaf 100%)',
+                        background: 'linear-gradient(160deg, #c94010 0%, #e8552c 55%, #f07040 100%)',
                       }}>
                         {/* Radial glow */}
                         <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none',
@@ -323,7 +311,7 @@ export default function PompeAChaleurPage() {
                         <div style={{
                           position: 'absolute', top: 10, left: 10, zIndex: 1,
                           width: 22, height: 22, borderRadius: '50%',
-                          background: 'rgba(0,0,0,0.28)',
+                          background: '#1a2744',
                           border: '1.5px solid rgba(255,255,255,0.3)',
                           display: 'flex', alignItems: 'center', justifyContent: 'center',
                           fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
@@ -339,21 +327,10 @@ export default function PompeAChaleurPage() {
                             display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
                             boxShadow: '0 6px 20px rgba(0,0,0,0.22), inset 0 1px 0 rgba(255,255,255,0.22)',
                           }}>
-                            <svg width="54" height="54" viewBox="0 0 54 54" style={{ position: 'absolute' }} fill="none">
-                              {[0,45,90,135,180,225,270,315].map((deg, i) => (
-                                <line key={i}
-                                  x1={27 + Math.cos(deg * Math.PI / 180) * 21}
-                                  y1={27 + Math.sin(deg * Math.PI / 180) * 21}
-                                  x2={27 + Math.cos(deg * Math.PI / 180) * 26}
-                                  y2={27 + Math.sin(deg * Math.PI / 180) * 26}
-                                  stroke="rgba(255,255,255,0.2)" strokeWidth="1.5" strokeLinecap="round"
-                                />
-                              ))}
-                            </svg>
                             <img
                               src="/Ic%C3%B4nes/CHARTEGRAPHIQUENAOSERVICE-20.webp"
                               alt=""
-                              style={{ width: 26, height: 26, objectFit: 'contain', filter: 'brightness(0) invert(1)', position: 'relative', zIndex: 1 }}
+                              style={{ width: 26, height: 26, objectFit: 'contain', filter: 'brightness(0) invert(1)' }}
                             />
                           </div>
                         </div>
@@ -399,73 +376,80 @@ export default function PompeAChaleurPage() {
                       </div>
 
                       {/* ── Dark pricing bottom ── */}
-                      <div style={{ background: '#0d2420', padding: '14px 18px 16px' }}>
-                        {plan.prices.map((p, pi) => (
-                          <div key={pi} style={{
-                            paddingBottom: pi < plan.prices.length - 1 ? 8 : 0,
-                            marginBottom: pi < plan.prices.length - 1 ? 8 : 0,
-                            borderBottom: pi < plan.prices.length - 1 ? '1px solid rgba(255,255,255,0.07)' : 'none',
-                          }}>
-                            <div style={{
-                              fontFamily: "var(--font-jost), 'Jost', sans-serif",
-                              fontSize: 10, color: 'rgba(255,255,255,0.45)', fontStyle: 'italic', marginBottom: 1,
-                            }}>
-                              {p.label} <span>({p.sub})</span>
-                            </div>
-                            <div style={{
-                              fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
-                              fontSize: 18, fontWeight: 800, color: '#fff', lineHeight: 1.15, letterSpacing: -0.5,
-                            }}>{p.price}</div>
-                          </div>
-                        ))}
+                      <div style={{ background: '#1a2744', padding: '14px 18px 16px' }}>
+                        <div style={{
+                          fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
+                          fontSize: 22, fontWeight: 800, color: '#fff', lineHeight: 1.15, letterSpacing: -0.5,
+                        }}>{plan.price}</div>
                       </div>
 
                     </div>
                   ))}
                 </div>
 
-                {/* Discount banner */}
+                {/* Discount banner — 2 dashed boxes */}
                 <div style={{
                   marginTop: 20, borderRadius: 16, overflow: 'hidden',
-                  background: '#1a3535', padding: '20px 28px',
-                  display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap',
+                  background: '#1a2744', padding: '20px 24px',
+                  display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap',
                 }}>
-                  <div style={{
-                    width: 52, height: 52, borderRadius: '50%',
-                    border: '2px solid #50B5A2',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
-                  }}>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                      <circle cx="12" cy="12" r="10" stroke="#50B5A2" strokeWidth="1.5" fill="none"/>
-                      <text x="12" y="16" textAnchor="middle" fontSize="9" fontWeight="700" fill="#50B5A2">%</text>
-                    </svg>
-                  </div>
-                  <div style={{ flex: 1 }}>
+                  {/* Left: icon + text */}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 12, flex: '0 0 auto' }}>
+                    <div style={{
+                      width: 48, height: 48, borderRadius: '50%',
+                      border: '2px solid #E8552C',
+                      display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+                    }}>
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                        <circle cx="8" cy="8" r="2.5" stroke="#E8552C" strokeWidth="1.8"/>
+                        <circle cx="16" cy="16" r="2.5" stroke="#E8552C" strokeWidth="1.8"/>
+                        <line x1="5" y1="19" x2="19" y2="5" stroke="#E8552C" strokeWidth="1.8" strokeLinecap="round"/>
+                      </svg>
+                    </div>
                     <div style={{
                       fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
-                      fontSize: 15, fontWeight: 600, color: '#fff', marginBottom: 2,
+                      fontSize: 13, fontWeight: 600, color: '#fff', maxWidth: 160,
                     }}>
                       Vous possédez plusieurs équipements différents ?
                     </div>
-                    <div style={{
-                      fontFamily: "var(--font-jost), 'Jost', sans-serif",
-                      fontSize: 13, color: 'rgba(255,255,255,0.6)',
-                    }}>
-                      sur la 1ère année de contrat à partir de 2 contrats d'entretien souscrits !
-                    </div>
                   </div>
-                  <div style={{
-                    background: '#50B5A2', borderRadius: 8, padding: '8px 20px',
-                    display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0,
-                  }}>
-                    <span style={{
-                      fontFamily: "var(--font-jost), 'Jost', sans-serif",
-                      fontSize: 14, color: '#000',
-                    }}>Profitez d'un rabais de</span>
-                    <span style={{
-                      fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
-                      fontSize: 28, fontWeight: 800, color: '#000', lineHeight: 1,
-                    }}>10 %</span>
+
+                  {/* Two dashed boxes */}
+                  <div style={{ display: 'flex', gap: 12, flex: 1, flexWrap: 'wrap' }}>
+                    {[
+                      { pct: '10 %', desc: 'sur votre contrat pour', highlight: '2 pompes à chaleur', icons: 2 },
+                      { pct: '15 %', desc: 'à partir de', highlight: '3 pompes à chaleur', icons: 3 },
+                    ].map((box, bi) => (
+                      <div key={bi} style={{
+                        flex: 1, minWidth: 140,
+                        border: '1.5px dashed rgba(255,255,255,0.35)',
+                        borderRadius: 10, padding: '12px 14px',
+                        display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 4,
+                      }}>
+                        <div style={{
+                          fontFamily: "var(--font-jost), 'Jost', sans-serif",
+                          fontSize: 10, fontWeight: 700, color: '#E8552C', letterSpacing: 1, textTransform: 'uppercase',
+                        }}>PROFITEZ D'UN RABAIS DE</div>
+                        <div style={{
+                          fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
+                          fontSize: 30, fontWeight: 800, color: '#fff', lineHeight: 1,
+                        }}>{box.pct}</div>
+                        <div style={{
+                          fontFamily: "var(--font-jost), 'Jost', sans-serif",
+                          fontSize: 11, color: 'rgba(255,255,255,0.7)',
+                        }}>{box.desc}<br/><span style={{ color: '#fff', fontWeight: 600 }}>{box.highlight}</span></div>
+                        <div style={{ display: 'flex', gap: 4, marginTop: 4 }}>
+                          {Array.from({ length: box.icons }).map((_, ii) => (
+                            <div key={ii} style={{
+                              width: 28, height: 28,
+                              background: '#E8552C',
+                              WebkitMask: `url("/Ic%C3%B4nes/CHARTEGRAPHIQUENAOSERVICE-20.webp") center/contain no-repeat`,
+                              mask: `url("/Ic%C3%B4nes/CHARTEGRAPHIQUENAOSERVICE-20.webp") center/contain no-repeat`,
+                            }} />
+                          ))}
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </motion.div>
@@ -513,7 +497,7 @@ export default function PompeAChaleurPage() {
                   ].map((item, i) => (
                     <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
                       <span style={{
-                        width: 10, height: 10, minWidth: 10, background: '#50B5A2', borderRadius: 2,
+                        width: 10, height: 10, minWidth: 10, background: '#E8552C', borderRadius: 2,
                         marginTop: 7, display: 'inline-block',
                       }} />
                       <span style={{
@@ -533,8 +517,8 @@ export default function PompeAChaleurPage() {
                   style={{ borderRadius: 16, overflow: 'hidden' }}
                 >
                   <img
-                    src="/Photos%20HD/Visuels%20Technique/Technique%20-%20PAC/Pompes%20a%CC%80%20chaleur%20avantages%20et%20inconve%CC%81nients.webp"
-                    alt="Pompe à chaleur avantages"
+                    src="/Photos%20HD/Visuels%20Technique/Technique%20-%20PAC/side-view-man-working-construction-site.webp"
+                    alt="Technicien pompe à chaleur"
                     loading="lazy"
                     style={{ width: '100%', height: 240, objectFit: 'cover', display: 'block' }}
                   />
@@ -545,8 +529,8 @@ export default function PompeAChaleurPage() {
                   style={{ borderRadius: 16, overflow: 'hidden' }}
                 >
                   <img
-                    src="/Photos%20HD/Visuels%20Technique/Technique%20-%20PAC/heat-pump-airwater-technology-home.webp"
-                    alt="Pompe à chaleur installation"
+                    src="/Photos%20HD/Visuels%20Technique/Technique%20-%20PAC/Heat%20pump%20AdobeStock.webp"
+                    alt="Pompe à chaleur installation maison"
                     loading="lazy"
                     style={{ width: '100%', height: 240, objectFit: 'cover', display: 'block' }}
                   />
@@ -564,14 +548,14 @@ export default function PompeAChaleurPage() {
                   target="_blank"
                   style={{
                     display: 'inline-flex', alignItems: 'center', gap: 12,
-                    background: '#50B5A2', color: '#000',
+                    background: '#E8552C', color: '#000',
                     borderRadius: 14, padding: '14px 14px 14px 28px',
                     fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
                     fontSize: 16, fontWeight: 600, textDecoration: 'none',
                     transition: 'background 0.18s ease',
                   }}
-                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = '#3da090' }}
-                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = '#50B5A2' }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = '#c94010' }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = '#E8552C' }}
                 >
                   Souscrire un contrat d'entretien
                   <span style={{
@@ -624,8 +608,8 @@ export default function PompeAChaleurPage() {
                       <span>{faq.q}</span>
                       <span style={{
                         width: 34, height: 34, borderRadius: '50%', flexShrink: 0,
-                        border: isActive ? '1px solid #50B5A2' : '1px solid #e8e8e8',
-                        background: isActive ? '#50B5A2' : 'transparent',
+                        border: isActive ? '1px solid #E8552C' : '1px solid #e8e8e8',
+                        background: isActive ? '#E8552C' : 'transparent',
                         display: 'flex', alignItems: 'center', justifyContent: 'center',
                         fontSize: 20, lineHeight: 1,
                         transform: isActive ? 'rotate(45deg)' : 'none',
@@ -643,7 +627,7 @@ export default function PompeAChaleurPage() {
                         {faq.a.split('\n').map((line, li) =>
                           line.startsWith('•') ? (
                             <div key={li} style={{ display: 'flex', gap: 8, marginBottom: 4 }}>
-                              <span style={{ color: '#50B5A2', flexShrink: 0 }}>•</span>
+                              <span style={{ color: '#E8552C', flexShrink: 0 }}>•</span>
                               <span>{line.slice(1).trim()}</span>
                             </div>
                           ) : line.match(/^\d+\./) ? (
@@ -716,7 +700,9 @@ export default function PompeAChaleurPage() {
             width: 100% !important;
             position: static !important;
             max-height: none !important;
+            order: 2 !important;
           }
+          .ps-content { order: 1 !important; }
         }
         @media (max-width: 640px) {
           .ps-duo-grid { grid-template-columns: 1fr; }
@@ -738,7 +724,7 @@ const labelStyle: React.CSSProperties = {
 const formInputStyle: React.CSSProperties = {
   width: '100%',
   padding: '12px 18px',
-  borderRadius: 100,
+  borderRadius: 10,
   border: '1px solid #e0e0e0',
   fontSize: 14,
   fontFamily: "var(--font-jost), 'Jost', sans-serif",

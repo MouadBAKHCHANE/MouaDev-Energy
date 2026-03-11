@@ -84,7 +84,7 @@ export default function BoilerThermodynamiquePage() {
                         fontFamily: "var(--font-jost), 'Jost', sans-serif",
                         fontWeight: isCurrent ? 600 : 400,
                         color: isCurrent ? '#000' : '#444',
-                        background: isCurrent ? '#50B5A2' : '#fff',
+                        background: isCurrent ? '#3b82f6' : '#fff',
                         borderRadius: 16,
                         border: isCurrent ? 'none' : '1px solid #ebebeb',
                         textDecoration: 'none',
@@ -124,7 +124,7 @@ export default function BoilerThermodynamiquePage() {
                       type="text" name="name" placeholder="Prénom *"
                       value={formData.name} onChange={handleChange} required
                       style={formInputStyle}
-                      onFocus={(e) => { e.currentTarget.style.borderColor = '#50B5A2' }}
+                      onFocus={(e) => { e.currentTarget.style.borderColor = '#3b82f6' }}
                       onBlur={(e) => { e.currentTarget.style.borderColor = '#e0e0e0' }}
                     />
                   </div>
@@ -134,7 +134,7 @@ export default function BoilerThermodynamiquePage() {
                       type="email" name="email" placeholder="Adresse e-mail *"
                       value={formData.email} onChange={handleChange} required
                       style={formInputStyle}
-                      onFocus={(e) => { e.currentTarget.style.borderColor = '#50B5A2' }}
+                      onFocus={(e) => { e.currentTarget.style.borderColor = '#3b82f6' }}
                       onBlur={(e) => { e.currentTarget.style.borderColor = '#e0e0e0' }}
                     />
                   </div>
@@ -144,7 +144,7 @@ export default function BoilerThermodynamiquePage() {
                       type="tel" name="phone" placeholder="Numéro de téléphone *"
                       value={formData.phone} onChange={handleChange}
                       style={formInputStyle}
-                      onFocus={(e) => { e.currentTarget.style.borderColor = '#50B5A2' }}
+                      onFocus={(e) => { e.currentTarget.style.borderColor = '#3b82f6' }}
                       onBlur={(e) => { e.currentTarget.style.borderColor = '#e0e0e0' }}
                     />
                   </div>
@@ -153,22 +153,22 @@ export default function BoilerThermodynamiquePage() {
                     <textarea
                       name="message" placeholder="Écrivez votre message..."
                       value={formData.message} onChange={handleChange} rows={4}
-                      style={{ ...formInputStyle, borderRadius: 14, resize: 'vertical' }}
-                      onFocus={(e) => { e.currentTarget.style.borderColor = '#50B5A2' }}
+                      style={{ ...formInputStyle, borderRadius: 10, resize: 'vertical' }}
+                      onFocus={(e) => { e.currentTarget.style.borderColor = '#3b82f6' }}
                       onBlur={(e) => { e.currentTarget.style.borderColor = '#e0e0e0' }}
                     />
                   </div>
                   <button type="submit" style={{
                     width: '100%', padding: '14px',
-                    borderRadius: 8, background: '#0a1f1e', border: 'none',
+                    borderRadius: 8, background: 'linear-gradient(135deg, #0a1e1a 0%, #0d2e28 60%, #0f3a30 100%)', border: 'none',
                     fontSize: 15, fontWeight: 700,
                     fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
                     color: '#fff', cursor: 'pointer',
-                    transition: 'background 0.18s ease',
+                    transition: 'background 0.18s ease, color 0.18s ease',
                     marginTop: 4,
                   }}
-                    onMouseEnter={(e) => { e.currentTarget.style.background = '#222' }}
-                    onMouseLeave={(e) => { e.currentTarget.style.background = '#000' }}
+                    onMouseEnter={(e) => { e.currentTarget.style.background = '#50B5A2'; e.currentTarget.style.color = '#000' }}
+                    onMouseLeave={(e) => { e.currentTarget.style.background = 'linear-gradient(135deg, #0a1e1a 0%, #0d2e28 60%, #0f3a30 100%)'; e.currentTarget.style.color = '#fff' }}
                   >
                     Envoyer un message
                   </button>
@@ -177,7 +177,7 @@ export default function BoilerThermodynamiquePage() {
 
               {/* CTA promo card */}
               <div style={{
-                background: '#0a1e1d', borderRadius: 20, padding: '28px 24px',
+                background: '#060d24', borderRadius: 20, padding: '28px 24px',
                 position: 'relative', overflow: 'hidden',
               }}>
                 <div style={{
@@ -187,7 +187,7 @@ export default function BoilerThermodynamiquePage() {
                   pointerEvents: 'none',
                 }} />
                 <div style={{
-                  width: 40, height: 40, borderRadius: 10, background: '#50B5A2',
+                  width: 40, height: 40, borderRadius: 10, background: '#3b82f6',
                   display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 16,
                 }}>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
@@ -208,14 +208,14 @@ export default function BoilerThermodynamiquePage() {
                 </p>
                 <Link href="https://form.typeform.com/to/rRhOu7eb" target="_blank" style={{
                   display: 'inline-flex', alignItems: 'center', gap: 10,
-                  background: '#50B5A2', color: '#000',
+                  background: '#3b82f6', color: '#000',
                   borderRadius: 8, padding: '10px 20px',
                   fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
                   fontSize: 14, fontWeight: 600, textDecoration: 'none',
                   transition: 'background 0.18s ease',
                 }}
-                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = '#3da090' }}
-                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = '#50B5A2' }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = '#2563eb' }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = '#3b82f6' }}
                 >
                   Demander une offre →
                 </Link>
@@ -266,7 +266,7 @@ export default function BoilerThermodynamiquePage() {
                     fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
                     fontSize: 22, fontWeight: 700, color: '#000', whiteSpace: 'nowrap', margin: 0,
                   }}>
-                    À partir de CHF 420.-/ an&nbsp;!
+                    À partir de CHF 140.-/ an&nbsp;!
                   </h3>
                   <div style={{ flex: 1, height: 1, background: '#000' }} />
                 </div>
@@ -279,40 +279,31 @@ export default function BoilerThermodynamiquePage() {
                       title: 'ZEN ACCÈS',
                       subtitle: 'La tranquillité essentielle',
                       features: ['Compte client online', 'Entretien tous les 2 ans'],
-                      prices: [
-                        { label: 'Boiler 150–200 L', sub: '1 à 2 personnes', price: '420 CHF / 2 ans' },
-                        { label: 'Boiler 200–300 L', sub: '3 à 4 personnes', price: '480 CHF / 2 ans' },
-                        { label: 'Boiler > 300 L', sub: '5 personnes et +', price: '540 CHF / 2 ans' },
-                      ],
+                      price: '140',
+                      period: 'CHF / 2 ans',
                     },
                     {
                       num: '2',
                       title: 'ZEN ÉQUILIBRE',
                       subtitle: 'La couverture complète',
                       features: ['Compte client online', 'Entretien annuel'],
-                      prices: [
-                        { label: 'Boiler 150–200 L', sub: '1 à 2 personnes', price: '470 CHF / an' },
-                        { label: 'Boiler 200–300 L', sub: '3 à 4 personnes', price: '530 CHF / an' },
-                        { label: 'Boiler > 300 L', sub: '5 personnes et +', price: '590 CHF / an' },
-                      ],
+                      price: '190',
+                      period: 'CHF / an',
                     },
                     {
                       num: '3',
                       title: 'ZEN PLUS',
                       subtitle: 'La sérénité assurée',
                       features: ['Compte client online', 'Entretien annuel', "Dépannage, main d'œuvre et déplacement"],
-                      prices: [
-                        { label: 'Boiler 150–200 L', sub: '1 à 2 personnes', price: '520 CHF / an' },
-                        { label: 'Boiler 200–300 L', sub: '3 à 4 personnes', price: '580 CHF / an' },
-                        { label: 'Boiler > 300 L', sub: '5 personnes et +', price: '640 CHF / an' },
-                      ],
+                      price: '250',
+                      period: 'CHF / an',
                     },
                   ].map((plan) => (
                     <div key={plan.num} className="ps-contract-card">
 
                       {/* ── Teal gradient top ── */}
                       <div style={{ position: 'relative', padding: '16px 18px 14px', flex: 1,
-                        background: 'linear-gradient(160deg, #0d7570 0%, #2a9b96 55%, #3dbfaf 100%)',
+                        background: 'linear-gradient(160deg, #1d4ed8 0%, #3b82f6 55%, #60a5fa 100%)',
                       }}>
                         {/* Radial glow */}
                         <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none',
@@ -399,25 +390,15 @@ export default function BoilerThermodynamiquePage() {
                       </div>
 
                       {/* ── Dark pricing bottom ── */}
-                      <div style={{ background: '#0d2420', padding: '14px 18px 16px' }}>
-                        {plan.prices.map((p, pi) => (
-                          <div key={pi} style={{
-                            paddingBottom: pi < plan.prices.length - 1 ? 8 : 0,
-                            marginBottom: pi < plan.prices.length - 1 ? 8 : 0,
-                            borderBottom: pi < plan.prices.length - 1 ? '1px solid rgba(255,255,255,0.07)' : 'none',
-                          }}>
-                            <div style={{
-                              fontFamily: "var(--font-jost), 'Jost', sans-serif",
-                              fontSize: 10, color: 'rgba(255,255,255,0.45)', fontStyle: 'italic', marginBottom: 1,
-                            }}>
-                              {p.label} <span>({p.sub})</span>
-                            </div>
-                            <div style={{
-                              fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
-                              fontSize: 18, fontWeight: 800, color: '#fff', lineHeight: 1.15, letterSpacing: -0.5,
-                            }}>{p.price}</div>
-                          </div>
-                        ))}
+                      <div style={{ background: '#060d24', padding: '18px 18px 20px', textAlign: 'center' }}>
+                        <div style={{
+                          fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
+                          fontSize: 48, fontWeight: 800, color: '#fff', lineHeight: 1, letterSpacing: -2,
+                        }}>{plan.price}</div>
+                        <div style={{
+                          fontFamily: "var(--font-jost), 'Jost', sans-serif",
+                          fontSize: 13, color: 'rgba(255,255,255,0.5)', marginTop: 4,
+                        }}>{plan.period}</div>
                       </div>
 
                     </div>
@@ -426,46 +407,37 @@ export default function BoilerThermodynamiquePage() {
 
                 {/* Discount banner */}
                 <div style={{
-                  marginTop: 20, borderRadius: 16, overflow: 'hidden',
-                  background: '#1a3535', padding: '20px 28px',
+                  marginTop: 20, borderRadius: 16,
+                  border: '2px dashed rgba(80,181,162,0.5)',
+                  background: '#060d24', padding: '20px 28px',
                   display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap',
                 }}>
-                  <div style={{
-                    width: 52, height: 52, borderRadius: '50%',
-                    border: '2px solid #50B5A2',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
-                  }}>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                      <circle cx="12" cy="12" r="10" stroke="#50B5A2" strokeWidth="1.5" fill="none"/>
-                      <text x="12" y="16" textAnchor="middle" fontSize="9" fontWeight="700" fill="#50B5A2">%</text>
-                    </svg>
+                  <div style={{ flexShrink: 0 }}>
+                    <div style={{ width: 44, height: 44, background: '#3b82f6', WebkitMask: 'url("/Icônes/CHARTEGRAPHIQUENAOSERVICE-15.webp") center/contain no-repeat', mask: 'url("/Icônes/CHARTEGRAPHIQUENAOSERVICE-15.webp") center/contain no-repeat' }} />
                   </div>
                   <div style={{ flex: 1 }}>
                     <div style={{
                       fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
-                      fontSize: 15, fontWeight: 600, color: '#fff', marginBottom: 2,
+                      fontSize: 14, fontWeight: 600, color: 'rgba(255,255,255,0.7)', marginBottom: 2,
                     }}>
                       Vous possédez plusieurs équipements différents ?
                     </div>
                     <div style={{
                       fontFamily: "var(--font-jost), 'Jost', sans-serif",
-                      fontSize: 13, color: 'rgba(255,255,255,0.6)',
+                      fontSize: 13, color: 'rgba(255,255,255,0.5)',
                     }}>
                       sur la 1ère année de contrat à partir de 2 contrats d'entretien souscrits !
                     </div>
                   </div>
-                  <div style={{
-                    background: '#50B5A2', borderRadius: 8, padding: '8px 20px',
-                    display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0,
-                  }}>
-                    <span style={{
+                  <div style={{ textAlign: 'center', flexShrink: 0 }}>
+                    <div style={{
                       fontFamily: "var(--font-jost), 'Jost', sans-serif",
-                      fontSize: 14, color: '#000',
-                    }}>Profitez d'un rabais de</span>
-                    <span style={{
+                      fontSize: 12, color: 'rgba(255,255,255,0.6)', marginBottom: 2,
+                    }}>Profitez d'un rabais de</div>
+                    <div style={{
                       fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
-                      fontSize: 28, fontWeight: 800, color: '#000', lineHeight: 1,
-                    }}>10 %</span>
+                      fontSize: 38, fontWeight: 800, color: '#3b82f6', lineHeight: 1, letterSpacing: -1,
+                    }}>10 %</div>
                   </div>
                 </div>
               </motion.div>
@@ -513,7 +485,7 @@ export default function BoilerThermodynamiquePage() {
                   ].map((item, i) => (
                     <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
                       <span style={{
-                        width: 10, height: 10, minWidth: 10, background: '#50B5A2', borderRadius: 2,
+                        width: 10, height: 10, minWidth: 10, background: '#3b82f6', borderRadius: 2,
                         marginTop: 7, display: 'inline-block',
                       }} />
                       <span style={{
@@ -533,7 +505,7 @@ export default function BoilerThermodynamiquePage() {
                   style={{ borderRadius: 16, overflow: 'hidden' }}
                 >
                   <img
-                    src="/Photos%20HD/Visuels%20Technique/Technique%20-%20Boiler/Ajustement%20de%20re%CC%81troe%CC%81clairage.webp"
+                    src="/Photos%20HD/Visuels%20Technique/Technique%20-%20Boiler/Boiler%20AdobeStock.webp"
                     alt="Boiler thermodynamique entretien"
                     loading="lazy"
                     style={{ width: '100%', height: 240, objectFit: 'cover', display: 'block' }}
@@ -545,7 +517,7 @@ export default function BoilerThermodynamiquePage() {
                   style={{ borderRadius: 16, overflow: 'hidden' }}
                 >
                   <img
-                    src="/Photos%20HD/Photos%20produits/Boiler/1.webp"
+                    src="/Photos%20HD/Photos%20produits/Boiler/4.webp"
                     alt="Boiler thermodynamique"
                     loading="lazy"
                     style={{ width: '100%', height: 240, objectFit: 'cover', display: 'block' }}
@@ -564,18 +536,18 @@ export default function BoilerThermodynamiquePage() {
                   target="_blank"
                   style={{
                     display: 'inline-flex', alignItems: 'center', gap: 12,
-                    background: '#50B5A2', color: '#000',
+                    background: '#3b82f6', color: '#000',
                     borderRadius: 14, padding: '14px 14px 14px 28px',
                     fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
                     fontSize: 16, fontWeight: 600, textDecoration: 'none',
                     transition: 'background 0.18s ease',
                   }}
-                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = '#3da090' }}
-                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = '#50B5A2' }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = '#2563eb' }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = '#3b82f6' }}
                 >
                   Souscrire un contrat d'entretien
                   <span style={{
-                    width: 40, height: 36, borderRadius: 10, background: '#0a1f1e',
+                    width: 40, height: 36, borderRadius: 10, background: '#060d24',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     color: '#fff', fontSize: 18,
                   }}>→</span>
@@ -624,8 +596,8 @@ export default function BoilerThermodynamiquePage() {
                       <span>{faq.q}</span>
                       <span style={{
                         width: 34, height: 34, borderRadius: '50%', flexShrink: 0,
-                        border: isActive ? '1px solid #50B5A2' : '1px solid #e8e8e8',
-                        background: isActive ? '#50B5A2' : 'transparent',
+                        border: isActive ? '1px solid #3b82f6' : '1px solid #e8e8e8',
+                        background: isActive ? '#3b82f6' : 'transparent',
                         display: 'flex', alignItems: 'center', justifyContent: 'center',
                         fontSize: 20, lineHeight: 1,
                         transform: isActive ? 'rotate(45deg)' : 'none',
@@ -643,7 +615,7 @@ export default function BoilerThermodynamiquePage() {
                         {faq.a.split('\n').map((line, li) =>
                           line.startsWith('•') ? (
                             <div key={li} style={{ display: 'flex', gap: 8, marginBottom: 4 }}>
-                              <span style={{ color: '#50B5A2', flexShrink: 0 }}>•</span>
+                              <span style={{ color: '#3b82f6', flexShrink: 0 }}>•</span>
                               <span>{line.slice(1).trim()}</span>
                             </div>
                           ) : line.match(/^\d+\./) ? (
@@ -716,7 +688,9 @@ export default function BoilerThermodynamiquePage() {
             width: 100% !important;
             position: static !important;
             max-height: none !important;
+            order: 2 !important;
           }
+          .ps-content { order: 1 !important; }
         }
         @media (max-width: 640px) {
           .ps-duo-grid { grid-template-columns: 1fr; }
@@ -738,7 +712,7 @@ const labelStyle: React.CSSProperties = {
 const formInputStyle: React.CSSProperties = {
   width: '100%',
   padding: '12px 18px',
-  borderRadius: 100,
+  borderRadius: 10,
   border: '1px solid #e0e0e0',
   fontSize: 14,
   fontFamily: "var(--font-jost), 'Jost', sans-serif",
