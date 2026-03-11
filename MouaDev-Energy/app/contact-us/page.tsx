@@ -29,7 +29,7 @@ export default function ContactUsPage() {
         bgImage="/Photos%20HD/Photos%20d_ambiance/iStock%20Image%201484x707.webp"
       />
 
-      <section style={{ background: '#fff', padding: '80px 20px' }}>
+      <section className="contact-section" style={{ background: '#fff', padding: '80px 20px' }}>
         <div className="contact-inner" style={{ maxWidth: 1400, margin: '0 auto' }}>
 
           {/* ── LEFT ── */}
@@ -67,7 +67,7 @@ export default function ContactUsPage() {
             </div>
 
             {/* Email + Phone row */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+            <div className="contact-info-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
               {/* Email */}
               <div style={{
                 background: 'linear-gradient(135deg, #0a1e1a 0%, #0d2e28 60%, #0f3a30 100%)', borderRadius: 16, padding: '28px 22px',
@@ -202,6 +202,7 @@ export default function ContactUsPage() {
           src="https://maps.google.com/maps?q=46.167925,6.106813&output=embed&z=17"
           width="100%"
           height="480"
+          className="contact-map"
           style={{ border: 0, display: 'block' }}
           allowFullScreen
           loading="lazy"
@@ -227,8 +228,13 @@ export default function ContactUsPage() {
           .contact-inner { flex-direction: column; gap: 50px; }
           .contact-left { flex: none; width: 100%; }
         }
-        @media (max-width: 600px) {
-          .contact-form-grid { grid-template-columns: 1fr; }
+        @media (max-width: 640px) {
+          .contact-section { padding: 48px 16px !important; }
+          .contact-form-grid { grid-template-columns: 1fr; gap: 14px; }
+          .contact-info-row { grid-template-columns: 1fr !important; }
+          .contact-inner { gap: 36px; }
+          .contact-right { width: 100% !important; flex: none !important; }
+          .contact-map { height: 280px !important; }
         }
       `}</style>
     </main>

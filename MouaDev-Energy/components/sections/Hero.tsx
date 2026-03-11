@@ -35,7 +35,7 @@ export default function Hero() {
             width: '100%',
             height: '100%',
             objectFit: 'cover',
-            objectPosition: 'center',
+            objectPosition: '40% center',
             transform: 'scale(1.05)',
           }}
         />
@@ -282,7 +282,7 @@ export default function Hero() {
             margin-top: 8px !important;
           }
           .hero-bg-img {
-            object-position: 40% center !important;
+            transform: none !important;
           }
           .hero-h1 {
             font-size: 32px !important;
