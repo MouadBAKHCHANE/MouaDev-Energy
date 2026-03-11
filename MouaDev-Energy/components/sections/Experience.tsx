@@ -68,7 +68,7 @@ export default function Experience() {
               }}
             >
               <div style={{ width: 60, height: 60, marginBottom: 25 }}>
-                <img src={card.icon} alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                <img src={card.icon} alt="" loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
               </div>
               <h3 style={{
                 fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",

@@ -46,7 +46,7 @@ export default function Partners() {
         <motion.div variants={reveal} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '0px 0px -50px 0px', amount: 0.1 }} transition={{ duration: 0.8, ease: 'easeOut' }} className="partners-grid">
           {logos.map((logo, i) => (
             <div key={i} style={{ background: '#fff', borderRadius: 40, padding: '35px 28px', display: 'flex', alignItems: 'center', justifyContent: 'center', aspectRatio: '2/1', boxShadow: 'rgba(0,0,0,0.04) 0px 5px 30px' }}>
-              <img src={logo.src} alt={logo.alt} style={{ maxHeight: 22, width: 'auto', opacity: 0.5, filter: 'grayscale(100%)' }} />
+              <img src={logo.src} alt={logo.alt} loading="lazy" decoding="async" style={{ maxHeight: 22, width: 'auto', opacity: 0.5, filter: 'grayscale(100%)' }} />
             </div>
           ))}
         </motion.div>

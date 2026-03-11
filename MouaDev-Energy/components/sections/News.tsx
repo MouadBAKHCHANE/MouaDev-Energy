@@ -58,7 +58,7 @@ export default function News() {
             <Link key={i} href={`/blogs/${article.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}>
               <motion.div className="news-card" variants={cardReveal} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '0px 0px -50px 0px', amount: 0.1 }} transition={{ duration: 0.75, ease: 'easeOut', delay: i * 0.18 }}>
                 <div style={{ position: 'relative', borderRadius: 50, overflow: 'hidden', aspectRatio: '16/10' }}>
-                  <img src={article.img} alt={article.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <img src={article.img} alt={article.title} loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                   <div style={{
                     position: 'absolute', bottom: 0, left: 0, right: 0, padding: '24px 16px 12px',
                     background: 'linear-gradient(to top, rgba(80, 181, 162, 0.9) 0%, rgba(80, 181, 162, 0) 100%)',

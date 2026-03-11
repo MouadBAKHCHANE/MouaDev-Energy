@@ -158,6 +158,7 @@ export default function OurServices() {
               >
                 <Link href={slide.href} style={{ display: 'contents', textDecoration: 'none' }}>
                   <motion.img src={slide.img} alt={slide.name}
+                    loading="lazy" decoding="async"
                     variants={{ rest: { scale: 1 }, hover: { scale: 1.06 } }}
                     transition={{ duration: 0.5, ease: 'easeOut' }}
                     style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: (slide as any).imgPosition || 'center center', opacity: 0.9, display: 'block' }}
@@ -199,7 +200,7 @@ export default function OurServices() {
               {extendedSlides.map((slide, i) => (
                 <div key={i} className="svc-carousel-slide">
                   <Link href={slide.href} className="svc-card-link" style={{ display: 'block', textDecoration: 'none', borderRadius: 20, overflow: 'hidden', position: 'relative', aspectRatio: '1.1', background: '#000' }}>
-                    <img src={slide.img} alt={slide.name} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: (slide as any).imgPositionMobile || (slide as any).imgPosition || 'center center', opacity: 0.9, display: 'block' }} />
+                    <img src={slide.img} alt={slide.name} loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: (slide as any).imgPositionMobile || (slide as any).imgPosition || 'center center', opacity: 0.9, display: 'block' }} />
                     <div style={{ position: 'absolute', inset: 0, padding: '16px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', background: 'linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.6) 70%, #000 100%)', zIndex: 2 }}>
                       {/* Arrow — hidden by default, shown on hover via CSS */}
                       <div style={{ display: 'flex', justifyContent: 'flex-end' }}>

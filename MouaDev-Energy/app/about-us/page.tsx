@@ -141,6 +141,7 @@ export default function AboutUsPage() {
               <img
                 src="/Photos HD/Photos d_ambiance/person-near-alternative-energy-plant.webp"
                 alt="Personne près d'une installation énergétique"
+                loading="lazy" decoding="async"
                 style={{ width: '100%', height: 480, objectFit: 'cover', objectPosition: 'center', borderRadius: 40, display: 'block' }}
               />
             </motion.div>

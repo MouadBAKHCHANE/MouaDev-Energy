@@ -331,7 +331,7 @@ export default function Header() {
 
               {/* Logo */}
               <div style={{ marginBottom: 20, marginTop: 4 }}>
-                <img src="/Logo complet/Vert medium.webp" alt="Zen" style={{ height: 38, width: 'auto' }} />
+                <img src="/Logo complet/Vert medium.webp" alt="Zen" decoding="async" style={{ height: 38, width: 'auto' }} />
               </div>
 
               {/* Nav Links — mobile only */}

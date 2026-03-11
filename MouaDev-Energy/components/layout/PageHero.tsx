@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 
 interface Crumb {
   label: string
@@ -28,17 +29,15 @@ export default function PageHero({ crumbs, title, bgImage }: PageHeroProps) {
         overflow: 'hidden',
       }}
     >
-      {/* Background image */}
+      {/* Background image — priority loaded (LCP) */}
       {bgImage && (
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            backgroundImage: `url("${bgImage}")`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center 35%',
-            opacity: 0.6,
-          }}
+        <Image
+          src={bgImage}
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          style={{ objectFit: 'cover', objectPosition: 'center 35%', opacity: 0.6 }}
         />
       )}
 
@@ -48,11 +47,12 @@ export default function PageHero({ crumbs, title, bgImage }: PageHeroProps) {
           position: 'absolute',
           inset: 0,
           background: 'linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.5) 100%)',
+          zIndex: 1,
         }}
       />
 
       {/* Content */}
-      <div className="page-hero-content" style={{ position: 'relative', zIndex: 1, maxWidth: 1400, margin: '0 auto', width: '100%' }}>
+      <div className="page-hero-content" style={{ position: 'relative', zIndex: 2, maxWidth: 1400, margin: '0 auto', width: '100%' }}>
         {/* Breadcrumb */}
         <nav
           style={{
