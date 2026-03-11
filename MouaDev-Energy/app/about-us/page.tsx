@@ -216,103 +216,104 @@ export default function AboutUsPage() {
         </div>
       </section>
 
-      {/* ── 3. Nos atouts (Why Choose) ── */}
-      <section style={{ padding: '100px 20px', background: '#f8f8f8' }}>
-        <div style={{ maxWidth: 1400, margin: '0 auto' }}>
+      {/* ── 3. Pourquoi nous choisir (Why Choose) ── */}
+      <section style={{ position: 'relative', paddingTop: 56, overflow: 'hidden' }}>
+
+        {/* Background image */}
+        <div className="wc-bg" style={{
+          position: 'absolute', inset: 0,
+          backgroundImage: "url('/Photos%20HD/Photos%20d_ambiance/man-showing-thumbs-up-gesture-ie-class-front-roof-with-installed-solar-panels.webp')",
+          backgroundSize: 'cover', backgroundPosition: 'center 20%',
+          zIndex: 0,
+        }} />
+        {/* Dark overlay */}
+        <div style={{ position: 'absolute', inset: 0, background: 'rgba(8,22,20,0.78)', zIndex: 1 }} />
+
+        {/* Content */}
+        <div style={{ position: 'relative', zIndex: 2, maxWidth: 1400, margin: '0 auto', padding: '0 20px' }}>
+
+          {/* Top label — centered */}
           <motion.div
             variants={reveal} initial="hidden" whileInView="visible"
             viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.7, ease: 'easeOut' }}
-            style={{ marginBottom: 20 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, marginBottom: 12 }}
           >
-            <SectionLabel text="NOS ATOUTS" />
+            <img src="/Logo image/Blanc.webp" alt="" style={{ width: 22, height: 22, objectFit: 'contain' }} />
+            <span style={{
+              fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
+              fontSize: 13, fontWeight: 700, letterSpacing: '0.14em',
+              color: '#50B5A2', textTransform: 'uppercase',
+            }}>POURQUOI NOUS CHOISIR</span>
           </motion.div>
+
+          {/* Heading — centered */}
           <motion.h2
-            className="au-section-h2"
             variants={reveal} initial="hidden" whileInView="visible"
             viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.7, ease: 'easeOut', delay: 0.1 }}
+            transition={{ duration: 0.7, ease: 'easeOut', delay: 0.08 }}
             style={{
               fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
-              fontSize: 'clamp(28px, 4.5vw, 52px)', fontWeight: 600, lineHeight: 1.2, letterSpacing: -2,
-              color: '#000', marginBottom: 16, maxWidth: 700,
+              fontSize: 'clamp(26px, 4vw, 48px)', fontWeight: 700, lineHeight: 1.08,
+              letterSpacing: -1.5, color: '#fff', textAlign: 'center', marginBottom: 40,
             }}
           >
-            Simplifiez-vous la vie avec un entretien professionnel sans complications
+            Votre premier choix pour<br />la maintenance énergétique
           </motion.h2>
-          <motion.p
-            variants={reveal} initial="hidden" whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.7, ease: 'easeOut', delay: 0.15 }}
-            style={{
-              fontFamily: "var(--font-inter), 'Inter', sans-serif",
-              fontSize: 17, lineHeight: '27px', color: '#777',
-              marginBottom: 50, maxWidth: 600,
-            }}
-          >
-            Avec Zen Énergie Services, profitez d'un entretien professionnel sans complications.
-          </motion.p>
 
-          {/* 2×2 grid */}
-          <div className="au-why-grid">
+          {/* 2×2 features grid — centered */}
+          <div className="wc-features">
             {atouts.map((card, i) => (
               <motion.div
                 key={i}
                 variants={reveal} initial="hidden" whileInView="visible"
                 viewport={{ once: true, amount: 0.1 }}
-                transition={{ duration: 0.8, ease: 'easeOut', delay: i * 0.08 }}
-                style={{ background: '#fff', borderRadius: 20, padding: 40 }}
+                transition={{ duration: 0.7, ease: 'easeOut', delay: i * 0.09 }}
+                style={{ display: 'flex', flexDirection: 'column', gap: 10 }}
               >
-                <div style={{
-                  width: 50, height: 50, borderRadius: '50%', background: '#50B5A2',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  marginBottom: 24, flexShrink: 0,
-                }}>
+                <motion.div
+                  style={{
+                    width: 44, height: 44, borderRadius: '50%',
+                    background: '#50B5A2',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    flexShrink: 0, cursor: 'default',
+                  }}
+                  whileInView={{ rotate: [0, -12, 12, -8, 8, 0], scale: [1, 1.15, 1.15, 1.1, 1.1, 1] }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.7, ease: 'easeOut', delay: 0.3 + i * 0.12 }}
+                  whileHover={{ scale: 1.2, rotate: 8, background: '#3da090' }}
+                >
                   {card.icon}
-                </div>
+                </motion.div>
                 <h3 style={{
                   fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
-                  fontSize: 22, fontWeight: 600, color: '#000', margin: '0 0 12px 0',
+                  fontSize: 17, fontWeight: 700, color: '#fff', margin: 0,
                 }}>{card.title}</h3>
                 <p style={{
                   fontFamily: "var(--font-inter), 'Inter', sans-serif",
-                  fontSize: 17, lineHeight: '26px', color: '#777', margin: 0,
+                  fontSize: 14, lineHeight: '22px', color: 'rgba(255,255,255,0.6)', margin: 0,
                 }}>{card.desc}</p>
               </motion.div>
             ))}
           </div>
 
-          {/* Bottom CTA */}
-          <motion.div
-            variants={reveal} initial="hidden" whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.7, ease: 'easeOut', delay: 0.3 }}
-            style={{ marginTop: 50, display: 'flex', justifyContent: 'center' }}
-          >
-            <Link
-              href="https://form.typeform.com/to/rRhOu7eb"
-              style={{
-                display: 'inline-flex', alignItems: 'center',
-                background: '#50B5A2', color: '#000',
-                borderRadius: 14, padding: '8px 8px 8px 28px', gap: 20,
-                fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
-                fontSize: 17, fontWeight: 600, textDecoration: 'none',
-                transition: 'background 0.18s ease',
-              }}
-              onMouseEnter={(e) => (e.currentTarget as HTMLElement).style.background = '#3da090'}
-              onMouseLeave={(e) => (e.currentTarget as HTMLElement).style.background = '#50B5A2'}
-            >
-              Demander une offre
-              <span style={{
-                width: 44, height: 40, borderRadius: 12,
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                background: '#0a1f1e', color: '#fff',
-              }}>
-                <ArrowIcon direction="right" size={18} strokeColor="currentColor" />
-              </span>
-            </Link>
-          </motion.div>
         </div>
+
+        {/* Bottom dark ticker */}
+        <div style={{ position: 'relative', zIndex: 2, background: 'rgba(8,22,20,0.9)', marginTop: 48, overflow: 'hidden', padding: '18px 0' }}>
+          <div className="wc-ticker-track">
+            {[...Array(10)].map((_, i) => (
+              <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 28, flexShrink: 0, paddingRight: 28 }}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="#50B5A2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                <span style={{
+                  fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
+                  fontSize: 22, fontWeight: 600, color: '#fff', whiteSpace: 'nowrap',
+                }}>Énergie Renouvelable</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
       </section>
 
       {/* ── 8. FAQ ── */}
@@ -352,11 +353,23 @@ export default function AboutUsPage() {
           gap: 20px;
         }
 
-        /* Why choose grid */
-        .au-why-grid {
+        /* Why choose section */
+        .wc-features {
           display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 20px;
+          grid-template-columns: 1fr 1fr;
+          gap: 28px 48px;
+          max-width: 860px;
+          margin: 0 auto;
+          padding-bottom: 0;
+        }
+        .wc-ticker-track {
+          display: flex;
+          animation: wcTicker 28s linear infinite;
+          width: max-content;
+        }
+        @keyframes wcTicker {
+          from { transform: translateX(0); }
+          to { transform: translateX(-50%); }
         }
 
         /* Section headings responsive */
@@ -365,9 +378,9 @@ export default function AboutUsPage() {
           .au-intro-right img { height: 380px !important; }
           .au-svc-grid { grid-template-columns: 1fr !important; }
           .au-stat-grid { grid-template-columns: 1fr !important; }
-          .au-why-grid { grid-template-columns: 1fr !important; }
           .au-h2 { font-size: 38px !important; line-height: 46px !important; }
           .au-section-h2 { font-size: 38px !important; line-height: 48px !important; }
+          .wc-features { grid-template-columns: 1fr; gap: 36px; }
         }
         @media (max-width: 768px) {
           .au-svc-grid { grid-template-columns: 1fr !important; }
@@ -376,6 +389,8 @@ export default function AboutUsPage() {
           .au-h2 { font-size: 30px !important; line-height: 38px !important; }
           .au-section-h2 { font-size: 28px !important; line-height: 36px !important; }
           .au-intro-right img { height: 260px !important; border-radius: 28px !important; }
+          .wc-features { grid-template-columns: 1fr; gap: 36px; }
+          .wc-bg { background-position: 20% 70% !important; }
         }
       `}</style>
     </main>
