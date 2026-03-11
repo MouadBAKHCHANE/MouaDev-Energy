@@ -302,7 +302,7 @@ export default function AboutUsPage() {
               onMouseEnter={(e) => (e.currentTarget as HTMLElement).style.background = '#3da090'}
               onMouseLeave={(e) => (e.currentTarget as HTMLElement).style.background = '#50B5A2'}
             >
-              Demandez votre devis
+              Demander une offre
               <span style={{
                 width: 44, height: 40, borderRadius: 12,
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -312,100 +312,6 @@ export default function AboutUsPage() {
               </span>
             </Link>
           </motion.div>
-        </div>
-      </section>
-
-      {/* ── 4. Nos domaines d'expertise (Service categories) ── */}
-      <section style={{ padding: '100px 20px', background: '#f8f8f8' }}>
-        <div style={{ maxWidth: 1400, margin: '0 auto' }}>
-          <motion.div
-            variants={reveal} initial="hidden" whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.7, ease: 'easeOut' }}
-            style={{ display: 'flex', justifyContent: 'center', marginBottom: 20 }}
-          >
-            <SectionLabel text="NOS DOMAINES D'EXPERTISE" />
-          </motion.div>
-          <motion.h2
-            variants={reveal} initial="hidden" whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.7, ease: 'easeOut', delay: 0.1 }}
-            className="au-section-h2"
-            style={{
-              fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
-              fontSize: 'clamp(28px, 4.5vw, 52px)', fontWeight: 600, lineHeight: 1.2, letterSpacing: -2,
-              color: '#000', marginBottom: 16, textAlign: 'center',
-            }}
-          >
-            Une expertise complète<br />en maintenance énergétique
-          </motion.h2>
-          <motion.p
-            variants={reveal} initial="hidden" whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.7, ease: 'easeOut', delay: 0.15 }}
-            style={{
-              fontFamily: "var(--font-inter), 'Inter', sans-serif",
-              fontSize: 17, lineHeight: '27px', color: '#777',
-              marginBottom: 56, textAlign: 'center',
-            }}
-          >
-            Panneaux solaires, pompes à chaleur ou boilers — nous intervenons sur tous vos équipements.
-          </motion.p>
-
-          {/* 3-column cards */}
-          <div className="au-svc-grid">
-            {serviceCategories.map((svc, i) => (
-              <motion.div
-                key={i}
-                variants={reveal} initial="hidden" whileInView="visible"
-                viewport={{ once: true, amount: 0.1 }}
-                transition={{ duration: 0.8, ease: 'easeOut', delay: i * 0.1 }}
-                className="au-svc-card"
-                onMouseEnter={(e) => {
-                  const el = e.currentTarget as HTMLElement
-                  el.style.boxShadow = '0 10px 30px rgba(2,6,23,0.12)'
-                  const arr = el.querySelector('.au-arr') as HTMLElement
-                  if (arr) { arr.style.background = '#50B5A2'; arr.style.borderColor = '#50B5A2' }
-                }}
-                onMouseLeave={(e) => {
-                  const el = e.currentTarget as HTMLElement
-                  el.style.boxShadow = 'none'
-                  const arr = el.querySelector('.au-arr') as HTMLElement
-                  if (arr) { arr.style.background = 'transparent'; arr.style.borderColor = '#e8e8e8' }
-                }}
-              >
-                {/* Image */}
-                <div style={{ width: '100%', height: 'clamp(160px, 20vw, 220px)', borderRadius: 20, overflow: 'hidden', marginBottom: 28 }}>
-                  <img
-                    src={svc.image} alt={svc.title}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.4s ease' }}
-                    onMouseEnter={(e) => (e.currentTarget as HTMLElement).style.transform = 'scale(1.04)'}
-                    onMouseLeave={(e) => (e.currentTarget as HTMLElement).style.transform = 'scale(1)'}
-                  />
-                </div>
-                <span style={{
-                  fontFamily: "var(--font-inter), 'Inter', sans-serif",
-                  fontSize: 11, fontWeight: 600, letterSpacing: '0.08em',
-                  color: '#50B5A2', textTransform: 'uppercase', marginBottom: 10, display: 'block',
-                }}>{svc.label}</span>
-                <h3 style={{
-                  fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
-                  fontSize: 22, fontWeight: 600, lineHeight: '28px', color: '#000', marginBottom: 12,
-                }}>{svc.title}</h3>
-                <p style={{
-                  fontFamily: "var(--font-inter), 'Inter', sans-serif",
-                  fontSize: 16, lineHeight: '24px', color: '#777', marginBottom: 28, flex: 1,
-                }}>{svc.desc}</p>
-                <div className="au-arr" style={{
-                  width: 44, height: 44, borderRadius: '50%', border: '1px solid #e8e8e8',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  transition: 'background 0.18s ease, border-color 0.18s ease',
-                }}>
-                  <ArrowIcon direction="diagonal" size={18} strokeColor="#000" />
-                </div>
-              </motion.div>
-            ))}
-          </div>
         </div>
       </section>
 

@@ -155,22 +155,22 @@ export default function PanneauxSolairesPage() {
                     <textarea
                       name="message" placeholder="Écrivez votre message..."
                       value={formData.message} onChange={handleChange} rows={4}
-                      style={{ ...formInputStyle, borderRadius: 14, resize: 'vertical' }}
+                      style={{ ...formInputStyle, borderRadius: 10, resize: 'vertical' }}
                       onFocus={(e) => { e.currentTarget.style.borderColor = '#50B5A2' }}
                       onBlur={(e) => { e.currentTarget.style.borderColor = '#e0e0e0' }}
                     />
                   </div>
                   <button type="submit" style={{
                     width: '100%', padding: '14px',
-                    borderRadius: 8, background: '#0a1f1e', border: 'none',
+                    borderRadius: 8, background: 'linear-gradient(135deg, #0a1e1a 0%, #0d2e28 60%, #0f3a30 100%)', border: 'none',
                     fontSize: 15, fontWeight: 700,
                     fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
                     color: '#fff', cursor: 'pointer',
-                    transition: 'background 0.18s ease',
+                    transition: 'background 0.18s ease, color 0.18s ease',
                     marginTop: 4,
                   }}
-                    onMouseEnter={(e) => { e.currentTarget.style.background = '#222' }}
-                    onMouseLeave={(e) => { e.currentTarget.style.background = '#000' }}
+                    onMouseEnter={(e) => { e.currentTarget.style.background = '#50B5A2'; e.currentTarget.style.color = '#000' }}
+                    onMouseLeave={(e) => { e.currentTarget.style.background = 'linear-gradient(135deg, #0a1e1a 0%, #0d2e28 60%, #0f3a30 100%)'; e.currentTarget.style.color = '#fff' }}
                   >
                     Envoyer un message
                   </button>
@@ -439,9 +439,9 @@ export default function PanneauxSolairesPage() {
                     display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
                   }}>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" fill="#50B5A2"/>
-                      <circle cx="12" cy="12" r="10" stroke="#50B5A2" strokeWidth="1.5" fill="none"/>
-                      <text x="12" y="16" textAnchor="middle" fontSize="9" fontWeight="700" fill="#50B5A2">%</text>
+                      <circle cx="8" cy="8" r="2.5" stroke="#50B5A2" strokeWidth="1.8"/>
+                      <circle cx="16" cy="16" r="2.5" stroke="#50B5A2" strokeWidth="1.8"/>
+                      <line x1="5" y1="19" x2="19" y2="5" stroke="#50B5A2" strokeWidth="1.8" strokeLinecap="round"/>
                     </svg>
                   </div>
                   <div style={{ flex: 1 }}>
@@ -863,7 +863,9 @@ export default function PanneauxSolairesPage() {
             width: 100% !important;
             position: static !important;
             max-height: none !important;
+            order: 2 !important;
           }
+          .ps-content { order: 1 !important; }
         }
         @media (max-width: 640px) {
           .ps-duo-grid { grid-template-columns: 1fr; }
@@ -876,7 +878,7 @@ export default function PanneauxSolairesPage() {
 const inputStyle: React.CSSProperties = {
   width: '100%',
   padding: '11px 16px',
-  borderRadius: 100,
+  borderRadius: 10,
   border: '1px solid #e8e8e8',
   fontSize: 14,
   fontFamily: "var(--font-jost), 'Jost', sans-serif",
@@ -898,7 +900,7 @@ const labelStyle: React.CSSProperties = {
 const formInputStyle: React.CSSProperties = {
   width: '100%',
   padding: '12px 18px',
-  borderRadius: 100,
+  borderRadius: 10,
   border: '1px solid #e0e0e0',
   fontSize: 14,
   fontFamily: "var(--font-jost), 'Jost', sans-serif",
