@@ -21,19 +21,19 @@ const sidebarServices = [
 const faqs = [
   {
     q: 'À quelle fréquence dois-je faire entretenir ma pompe à chaleur ?',
-    a: 'Un entretien annuel est recommandé pour votre pompe à chaleur. Cela permet de maintenir ses performances optimales et de détecter toute anomalie avant qu\'elle ne devienne une panne coûteuse.',
+    a: 'En Suisse, il est recommandé de faire vérifier et entretenir votre pompe à chaleur une fois par an par un technicien certifié. Voici quelques cas particuliers :\n\n• Usage intensif ou zones froides : si votre pompe fonctionne toute l\'année, un contrôle annuel est indispensable.\n• Circuits avec fluide frigorigène : selon la loi, un contrôle peut être obligatoire tous les 1 à 2 ans pour garantir l\'étanchéité du circuit.\n• Entretiens saisonniers : avant l\'hiver, pour assurer une performance optimale, et au printemps, pour un nettoyage post-saison froide.',
   },
   {
-    q: 'Comment se déroule un entretien Zen pour une pompe à chaleur ?',
-    a: 'Notre intervention comprend :\n\n1. Inspection des unités intérieure et extérieure :\n• Nettoyage des filtres et des échangeurs\n• Vérification des connexions électriques\n• Contrôle du circuit frigorigène\n\n2. Vérifications fonctionnelles :\n• Relevé des températures et pressions\n• Test des organes de sécurité\n• Rapport d\'intervention complet',
+    q: 'Est-ce que l\'entretien de ma pompe à chaleur est obligatoire ?',
+    a: 'En Suisse, l\'entretien des pompes à chaleur n\'est pas strictement obligatoire pour les particuliers. Toutefois, des obligations peuvent s\'appliquer dans certains cas :\n\n• Si votre pompe utilise un fluide frigorigène, un contrôle régulier de l\'étanchéité est exigé par la législation suisse.\n• Certains contrats de garantie ou d\'assurance exigent un entretien annuel pour rester valides.\n• Dans le cadre d\'une copropriété ou d\'un bâtiment collectif, un entretien périodique peut être imposé par le règlement.\n\nMême en l\'absence d\'obligation légale, un entretien annuel est fortement recommandé pour assurer la sécurité, l\'efficacité et la longévité de votre installation.',
   },
   {
-    q: 'Quelle est la durée de vie d\'une pompe à chaleur bien entretenue ?',
-    a: 'Une pompe à chaleur correctement entretenue peut fonctionner de 15 à 20 ans, voire plus. Sans entretien régulier, sa durée de vie peut être réduite de moitié et ses performances se dégraderont rapidement.',
+    q: 'Comment se déroule une intervention d\'entretien ?',
+    a: 'L\'intervention comprend :\n\n• Nettoyage des filtres\n• Nettoyage de l\'unité extérieure et des unités intérieures (si présentes)\n• Nettoyage des bacs de réception des condensats et vérification de l\'écoulement (si présent)\n• Nettoyage des filtres à tamis et du pot à boue (si présents)\n• Nettoyage des échangeurs hydrauliques (si présents)\n• Contrôle visuel et auditif de l\'ensemble des unités intérieures et extérieures\n• Contrôle d\'étanchéité des installations de fluide frigorigène\n• Vérification et resserrage des connexions électriques\n• Vérification des circuits électroniques et des organes de sécurité\n• Vérification du bon fonctionnement de la pompe à chaleur et de l\'appoint électrique éventuel\n• Vérification du fonctionnement de la régulation et des réglages\n• Vérification électrique concernant la mise à terre\n• Contrôle des performances (températures entrées et sortie d\'air ou d\'eau)\n• Contrôle des paramètres de fonctionnement\n• Relevé des températures, des pressions et de la tension\n• Vérification du niveau d\'eau\n• Vérification des vis et écrous\n• Vérification de l\'état de l\'isolation\n• Contrôle du fluide caloporteur (si présent)\n• Contrôle du pot à boues et contrôle d\'absence de gaz en points hauts\n• Contrôle du désembouage\n• Rapport d\'intervention complet',
   },
   {
-    q: 'Quels sont les signes indiquant que ma pompe à chaleur nécessite un entretien ?',
-    a: 'Plusieurs signes doivent vous alerter :\n\n• Augmentation anormale de la facture énergétique\n• Bruit inhabituel lors du fonctionnement\n• Température de confort moins bonne qu\'habituellement\n• Cycles de démarrage/arrêt trop fréquents\n• Apparition de givre sur l\'unité extérieure',
+    q: 'Quelle est la durée de vie de ma pompe à chaleur régulièrement entretenue ?',
+    a: 'Une pompe à chaleur bien entretenue peut durer 15 à 20 ans en moyenne, et parfois plus, selon les conditions d\'utilisation et la qualité initiale de l\'installation. Avec un entretien annuel, vous maximisez la durée de vie des composants essentiels, comme le compresseur, tout en réduisant les risques de pannes coûteuses. Sans entretien, les performances de la pompe déclinent rapidement, et les réparations imprévues augmentent, réduisant sa durée de vie à 10–12 ans dans certains cas.',
   },
 ]
 

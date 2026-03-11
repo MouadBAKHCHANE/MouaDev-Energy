@@ -21,15 +21,15 @@ const sidebarServices = [
 const faqs = [
   {
     q: 'À quelle fréquence dois-je faire entretenir mon boiler thermodynamique ?',
-    a: 'Un entretien annuel est recommandé pour votre boiler thermodynamique. Cela permet de maintenir son efficacité et de prévenir les pannes avant qu\'elles ne surviennent.',
+    a: 'En Suisse, il est recommandé de faire entretenir votre boiler thermodynamique tous les 12 à 24 mois, selon les conditions suivantes :\n\n• Régions avec eau dure : si vous habitez dans une zone où l\'eau est très calcaire, un entretien annuel est indispensable pour éviter les dépôts.\n• Utilisation intensive : si votre boiler chauffe l\'eau pour une grande famille ou une activité commerciale, un contrôle plus fréquent peut être nécessaire.\n• Conditions standard : un entretien tous les 18 à 24 mois suffit pour garantir des performances optimales.',
   },
   {
-    q: 'Comment se déroule un entretien Zen pour un boiler thermodynamique ?',
-    a: 'Notre intervention comprend :\n\n1. Inspection générale :\n• Contrôle de l\'étanchéité et détection de fuites\n• Nettoyage du boiler et des grilles de ventilation\n• Vérification des connexions électriques\n\n2. Vérifications fonctionnelles :\n• Contrôle du circuit frigorifique\n• Vérification du thermostat et des organes de sécurité\n• Optimisation des réglages énergétiques\n• Rapport d\'intervention complet',
+    q: 'Comment se déroule une intervention d\'entretien ?',
+    a: 'L\'intervention comprend :\n\n1. Inspection générale :\n• Vérification de l\'état du ballon et des éléments chauffants\n• Analyse des éventuelles fuites ou trace de corrosion\n\n2. Nettoyage :\n• Nettoyage du boiler\n• Nettoyage des grilles de ventilation\n\n3. Contrôle du circuit frigorifique :\n• Inspection des pressions et températures de fonctionnement\n• Recherche de fuites éventuelles de fluide frigorigène\n• Contrôle d\'étanchéité gaz et eau\n\n4. Diagnostic technique :\n• Vérification du thermostat et des ondes de température\n• Tests de sécurité\n\n5. Maintenance :\n• Vérification des réglages pour optimiser la consommation énergétique\n\n6. Rapport d\'intervention',
   },
   {
-    q: 'Quelle est la durée de vie d\'un boiler thermodynamique bien entretenu ?',
-    a: 'Un boiler thermodynamique correctement entretenu peut fonctionner de 10 à 15 ans. Sans entretien régulier, des problèmes comme le calcaire et la corrosion peuvent réduire significativement sa durée de vie.',
+    q: 'Quelle est la durée de vie de mon boiler thermodynamique régulièrement entretenu ?',
+    a: 'Un boiler thermodynamique bien entretenu peut durer 15 à 20 ans, voire plus. Les avantages d\'un entretien régulier sont :\n\n• Une diminution des risques de panne majeure.\n• Une efficacité maintenue tout au long de sa durée de vie.\n• Une réduction des coûts énergétiques grâce à des performances optimales.\n\nSans entretien, la durée de vie peut être réduite de moitié en raison des problèmes liés au calcaire, aux fuites ou à l\'usure prématurée des composants.',
   },
   {
     q: 'Quels sont les signes indiquant que mon boiler nécessite un entretien ?',
