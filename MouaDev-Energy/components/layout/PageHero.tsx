@@ -25,7 +25,7 @@ export default function PageHero({ crumbs, title, bgImage }: PageHeroProps) {
         flexDirection: 'column',
         justifyContent: 'flex-end',
         padding: 'clamp(100px, 15vw, 160px) 20px clamp(40px, 6vw, 80px)',
-        background: '#000',
+        background: 'linear-gradient(135deg, #0a1e1a 0%, #0d2e28 60%, #0f3a30 100%)',
         overflow: 'hidden',
       }}
     >
