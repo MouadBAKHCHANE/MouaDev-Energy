@@ -14,9 +14,9 @@ const navItems = [
     subItems: [
       { label: 'Toutes nos offres', href: '/services' },
       { label: 'Panneaux solaires', href: '/services/panneaux-solaires' },
-      { label: 'Pompes à chaleur', href: '/services/pompes-a-chaleur' },
+      { label: 'Pompe à chaleur', href: '/services/pompe-a-chaleur' },
       { label: 'Boiler thermodynamique', href: '/services/boiler-thermodynamique' },
-      { label: 'Nettoyage panneaux solaires', href: '/services/nettoyage-panneaux-solaires' },
+      { label: 'PV Clean — Nettoyage', href: '/services/pv-clean' },
     ]
   },
   { label: 'À propos', href: '/about-us' },
@@ -254,7 +254,7 @@ export default function Header() {
             Demander une offre
             <span className="cta-arrow" style={{
               width: 40, height: 40, borderRadius: 14, display: 'flex', alignItems: 'center',
-              justifyContent: 'center', flexShrink: 0, background: '#000', color: '#fff', transition: 'background 0.18s ease',
+              justifyContent: 'center', flexShrink: 0, background: '#0a1f1e', color: '#fff', transition: 'background 0.18s ease',
             }}>
               <ArrowIcon direction="right" size={20} strokeColor="currentColor" />
             </span>
@@ -314,7 +314,7 @@ export default function Header() {
                   width: 36,
                   height: 36,
                   borderRadius: '50%',
-                  background: '#000',
+                  background: '#0a1f1e',
                   color: '#fff',
                   border: 'none',
                   cursor: 'pointer',
@@ -492,7 +492,7 @@ export default function Header() {
                     width: 40,
                     height: 40,
                     borderRadius: 10,
-                    background: '#000',
+                    background: '#0a1f1e',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',

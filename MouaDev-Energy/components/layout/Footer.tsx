@@ -75,7 +75,7 @@ export default function Footer() {
   ]
 
   return (
-    <footer style={{ background: '#000', color: '#fff', padding: '40px 20px 20px' }}>
+    <footer style={{ background: '#0a1f1e', color: '#fff', padding: '40px 20px 20px' }}>
       <div style={{ maxWidth: 1400, margin: '0 auto' }}>
 
         {/* TOP BAR: Logo and Contact Blocks */}
@@ -141,6 +141,11 @@ export default function Footer() {
         }}>
           {/* Col 1: About */}
           <div>
+            <img
+              src="/Logo image/Blanc.webp"
+              alt=""
+              style={{ height: 36, width: 'auto', marginBottom: 14, opacity: 0.9 }}
+            />
             <h4 style={{ fontFamily: "var(--font-barlow)", fontSize: 18, fontWeight: 600, marginBottom: 15 }}>À propos de Zen</h4>
             <p style={{ fontFamily: "var(--font-inter)", fontSize: 15, lineHeight: 1.5, color: 'rgba(255, 255, 255, 0.7)', maxWidth: 260 }}>
               Votre partenaire de confiance pour la maintenance et l’entretien de vos installations énergétiques en Suisse Romande.

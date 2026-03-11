@@ -83,7 +83,7 @@ export default function About() {
             />
             {/* Lime circle with spinning "About us" text */}
             <div className="about-spin-badge" style={{
-              position: 'absolute', bottom: -57, left: -63,
+              position: 'absolute', bottom: 16, left: 16,
               width: 124, height: 124, borderRadius: 150, background: '#50B5A2',
               padding: 10, display: 'flex', alignItems: 'center', justifyContent: 'center',
             }}>
@@ -173,10 +173,10 @@ export default function About() {
             box-sizing: border-box !important;
           }
           .about-spin-badge {
-            bottom: auto !important;
-            left: auto !important;
-            top: -20px !important;
-            right: -10px !important;
+            bottom: 16px !important;
+            left: 16px !important;
+            top: auto !important;
+            right: auto !important;
           }
         }
       `}</style>

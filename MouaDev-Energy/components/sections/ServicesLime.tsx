@@ -121,7 +121,7 @@ export default function ServicesLime() {
               <span className="svc2-arr" style={{
                 width: 44, height: 40, borderRadius: 12,
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                background: '#000', color: '#fff', transition: 'background 0.18s ease',
+                background: '#0a1f1e', color: '#fff', transition: 'background 0.18s ease',
               }}>
                 <ArrowIcon direction="right" size={18} strokeColor="currentColor" />
               </span>

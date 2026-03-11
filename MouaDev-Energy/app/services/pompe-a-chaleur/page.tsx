@@ -18,28 +18,26 @@ const sidebarServices = [
   { label: 'PV Clean — Nettoyage', href: '/services/pv-clean' },
 ]
 
-
-
 const faqs = [
   {
-    q: 'À quelle fréquence dois-je faire nettoyer mes panneaux photovoltaïques ?',
-    a: 'En règle générale, un nettoyage annuel est recommandé pour la majorité des installations. Cependant, plusieurs facteurs peuvent nécessiter une fréquence plus élevée :\n\n• En zone rurale ou agricole (poussières, pollen, fientes d\'oiseaux) : 2 fois par an\n• En zone urbaine ou industrielle (pollution, suie) : 1 à 2 fois par an\n• En zone de montagne avec chutes de neige importantes : après chaque enneigement prolongé\n\nDes facteurs spécifiques comme une faible inclinaison des panneaux (< 15°) ou la proximité d\'arbres peuvent également justifier un nettoyage plus régulier, car les salissures s\'accumulent plus rapidement et s\'écoulent moins facilement.',
+    q: 'À quelle fréquence dois-je faire entretenir ma pompe à chaleur ?',
+    a: 'Un entretien annuel est recommandé pour votre pompe à chaleur. Cela permet de maintenir ses performances optimales et de détecter toute anomalie avant qu\'elle ne devienne une panne coûteuse.',
   },
   {
-    q: 'Comment se déroule un entretien et une maintenance Zen ?',
-    a: 'Notre intervention se déroule en 3 phases :\n\n1. Sur le toit :\n• Inspection visuelle des panneaux (micro-fissures, délamination, ombrage)\n• Vérification des fixations mécaniques et de l\'étanchéité\n• Contrôle des câbles et des connecteurs\n• Nettoyage professionnel des surfaces (eau déminéralisée + outils homologués)\n• Mesure de la tension et du courant en conditions réelles\n\n2. En bas de l\'habitat :\n• Vérification du tableau électrique et des protections (disjoncteurs, parafoudres)\n• Contrôle et diagnostic de l\'onduleur (température, erreurs, rendement)\n• Vérification du compteur de production et remontée des données\n\n3. Monitoring à distance (selon contrat) :\n• Analyse des courbes de production sur les derniers mois\n• Comparaison avec les données météo pour détecter toute anomalie\n• Rapport d\'intervention complet remis au client',
+    q: 'Comment se déroule un entretien Zen pour une pompe à chaleur ?',
+    a: 'Notre intervention comprend :\n\n1. Inspection des unités intérieure et extérieure :\n• Nettoyage des filtres et des échangeurs\n• Vérification des connexions électriques\n• Contrôle du circuit frigorigène\n\n2. Vérifications fonctionnelles :\n• Relevé des températures et pressions\n• Test des organes de sécurité\n• Rapport d\'intervention complet',
   },
   {
-    q: 'Quelle est la durée de vie des panneaux photovoltaïques régulièrement entretenus ?',
-    a: 'Les panneaux photovoltaïques modernes ont une durée de vie estimée entre 25 et 30 ans. Avec un entretien régulier et professionnel, vous pouvez maintenir :\n\n• 90 à 95 % du rendement initial après 10 ans\n• 80 à 90 % du rendement initial après 25 ans\n\nSans entretien, la dégradation s\'accélère significativement : encrassement, micro-fissures non détectées, corrosion des connexions et problèmes d\'onduleur peuvent réduire la production de 15 à 25 % en quelques années seulement. Un entretien régulier protège donc directement votre retour sur investissement.',
+    q: 'Quelle est la durée de vie d\'une pompe à chaleur bien entretenue ?',
+    a: 'Une pompe à chaleur correctement entretenue peut fonctionner de 15 à 20 ans, voire plus. Sans entretien régulier, sa durée de vie peut être réduite de moitié et ses performances se dégraderont rapidement.',
   },
   {
-    q: 'Quelles sont les étapes de nettoyage de l\'offre PV Clean ?',
-    a: 'Notre offre PV Clean comprend 4 étapes clés :\n\n1. Dépoussiérage à sec : élimination des poussières grossières, fientes et débris à l\'aide d\'outils doux pour ne pas rayer les surfaces\n2. Nettoyage mécanique humide : lavage à l\'eau déminéralisée avec des brosses à poils souples rotatives, sans détergent chimique agressif, pour préserver les traitements de surface\n3. Application d\'une couche protectrice (en option) : traitement hydrophobe permettant aux salissures de glisser plus facilement et de réduire la fréquence de nettoyage\n4. Rapport d\'intervention : photos avant/après, mesures de production, recommandations personnalisées\n\nL\'offre PV Clean est disponible sans contrat d\'entretien, à partir de CHF 392 pour 8 panneaux.',
+    q: 'Quels sont les signes indiquant que ma pompe à chaleur nécessite un entretien ?',
+    a: 'Plusieurs signes doivent vous alerter :\n\n• Augmentation anormale de la facture énergétique\n• Bruit inhabituel lors du fonctionnement\n• Température de confort moins bonne qu\'habituellement\n• Cycles de démarrage/arrêt trop fréquents\n• Apparition de givre sur l\'unité extérieure',
   },
 ]
 
-export default function PanneauxSolairesPage() {
+export default function PompeAChaleurPage() {
   const [activeIdx, setActiveIdx] = useState(-1)
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' })
 
@@ -56,10 +54,10 @@ export default function PanneauxSolairesPage() {
         crumbs={[
           { label: 'Accueil', href: '/' },
           { label: 'Services', href: '/services' },
-          { label: 'Panneaux solaires' },
+          { label: 'Pompe à chaleur' },
         ]}
-        title="Panneaux Photovoltaïques"
-        bgImage="/Photos HD/Photos produits/Panneaux solaires/roof-house-with-solar-panels-roof-natureproduced-energy-sunproduced-energy-ph.webp"
+        title="Pompe à Chaleur"
+        bgImage="/Photos%20HD/Visuels%20Technique/Technique%20-%20PAC/Pompes%20a%CC%80%20chaleur%20avantages%20et%20inconve%CC%81nients.webp"
       />
 
       {/* ── Main layout: sticky left + scrolling right ── */}
@@ -70,10 +68,10 @@ export default function PanneauxSolairesPage() {
             {/* ── LEFT SIDEBAR (sticky) ── */}
             <aside className="ps-sidebar">
 
-              {/* Service nav — individual cards */}
+              {/* Service nav */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 24 }}>
                 {sidebarServices.map((s) => {
-                  const isCurrent = s.href === '/services/panneaux-solaires'
+                  const isCurrent = s.href === '/services/pompe-a-chaleur'
                   return (
                     <Link
                       key={s.href}
@@ -237,9 +235,8 @@ export default function PanneauxSolairesPage() {
                   color: '#000', lineHeight: 1.2, marginBottom: 20,
                 }}
               >
-                Maximisez votre production solaire grâce à un entretien régulier de vos panneaux photovoltaïques
+                Profitez d'un confort thermique optimal grâce à l'entretien régulier de votre pompe à chaleur
               </motion.h2>
-
 
               {/* Main image */}
               <motion.div
@@ -248,8 +245,8 @@ export default function PanneauxSolairesPage() {
                 style={{ borderRadius: 20, overflow: 'hidden', marginBottom: 56 }}
               >
                 <img
-                  src="/Photos HD/Visuels Technique/Nettoyage - PV/cleaning-solar-panel-with-microfiber-mop-wet-roof-solar-panel-photovoltaic-module-maintenance.webp"
-                  alt="Entretien panneaux solaires"
+                  src="/Photos%20HD/Visuels%20Technique/Technique%20-%20PAC/heat-pump-airwater-technology-home.webp"
+                  alt="Entretien pompe à chaleur"
                   style={{ width: '100%', height: 420, objectFit: 'cover', display: 'block' }}
                 />
               </motion.div>
@@ -283,9 +280,9 @@ export default function PanneauxSolairesPage() {
                       subtitle: 'La tranquillité essentielle',
                       features: ['Compte client online', 'Entretien tous les 2 ans'],
                       prices: [
-                        { label: '< 6 kWc', sub: "jusqu'à 14 panneaux", price: '420 CHF / 2 ans' },
-                        { label: '> 6 kWc', sub: 'de 15 à 30 panneaux', price: '510 CHF / 2 ans' },
-                        { label: '> 12 kWc', sub: '+ de 30 panneaux', price: '610 CHF / 2 ans' },
+                        { label: 'PAC Air/Eau', sub: 'monobloc ou bibloc', price: '420 CHF / 2 ans' },
+                        { label: 'PAC Air/Air', sub: 'jusqu\'à 3 unités', price: '390 CHF / 2 ans' },
+                        { label: 'PAC Géothermique', sub: 'sur devis', price: 'Sur devis' },
                       ],
                     },
                     {
@@ -294,9 +291,9 @@ export default function PanneauxSolairesPage() {
                       subtitle: 'La couverture complète',
                       features: ['Compte client online', 'Entretien annuel'],
                       prices: [
-                        { label: '< 6 kWc', sub: "jusqu'à 14 panneaux", price: '470 CHF / an' },
-                        { label: '> 6 kWc', sub: 'de 15 à 30 panneaux', price: '550 CHF / an' },
-                        { label: '> 12 kWc', sub: '+ de 30 panneaux', price: '650 CHF / an' },
+                        { label: 'PAC Air/Eau', sub: 'monobloc ou bibloc', price: '470 CHF / an' },
+                        { label: 'PAC Air/Air', sub: 'jusqu\'à 3 unités', price: '440 CHF / an' },
+                        { label: 'PAC Géothermique', sub: 'sur devis', price: 'Sur devis' },
                       ],
                     },
                     {
@@ -305,9 +302,9 @@ export default function PanneauxSolairesPage() {
                       subtitle: 'La sérénité assurée',
                       features: ['Compte client online', 'Entretien annuel', "Dépannage, main d'œuvre et déplacement"],
                       prices: [
-                        { label: '< 6 kWc', sub: "jusqu'à 14 panneaux", price: '520 CHF / an' },
-                        { label: '> 6 kWc', sub: 'de 15 à 30 panneaux', price: '650 CHF / an' },
-                        { label: '> 12 kWc', sub: '+ de 30 panneaux', price: '750 CHF / an' },
+                        { label: 'PAC Air/Eau', sub: 'monobloc ou bibloc', price: '520 CHF / an' },
+                        { label: 'PAC Air/Air', sub: 'jusqu\'à 3 unités', price: '490 CHF / an' },
+                        { label: 'PAC Géothermique', sub: 'sur devis', price: 'Sur devis' },
                       ],
                     },
                   ].map((plan) => (
@@ -354,7 +351,7 @@ export default function PanneauxSolairesPage() {
                               ))}
                             </svg>
                             <img
-                              src="/Ic%C3%B4nes/CHARTEGRAPHIQUENAOSERVICE-18.webp"
+                              src="/Ic%C3%B4nes/CHARTEGRAPHIQUENAOSERVICE-20.webp"
                               alt=""
                               style={{ width: 26, height: 26, objectFit: 'contain', filter: 'brightness(0) invert(1)', position: 'relative', zIndex: 1 }}
                             />
@@ -439,7 +436,6 @@ export default function PanneauxSolairesPage() {
                     display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
                   }}>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" fill="#50B5A2"/>
                       <circle cx="12" cy="12" r="10" stroke="#50B5A2" strokeWidth="1.5" fill="none"/>
                       <text x="12" y="16" textAnchor="middle" fontSize="9" fontWeight="700" fill="#50B5A2">%</text>
                     </svg>
@@ -487,142 +483,8 @@ export default function PanneauxSolairesPage() {
                   fontFamily: "var(--font-jost), 'Jost', sans-serif",
                   fontSize: 13, color: '#777', lineHeight: '20px', margin: 0,
                 }}>
-                  <strong style={{ color: '#555' }}>*</strong> Contrats d'une durée d'engagement de 4 ans. Les pièces de rechange sont à la totale charge du client. Les contrats d'entretien sont résiliables sous conditions en période de contrat selon les conditions générales de vente applicables ; et avec un préavis écrit de trois mois avant le prochain renouvellement de contrat de 4 ans. Sans cette résiliation, le contrat est automatiquement prolongé pour une période 4 années supplémentaires. Tous les prix s'entendent TVA comprise. Le nettoyage des panneaux n'est pas inclus.
+                  <strong style={{ color: '#555' }}>*</strong> Contrats d'une durée d'engagement de 4 ans. Les pièces de rechange sont à la totale charge du client. Les contrats d'entretien sont résiliables sous conditions en période de contrat selon les conditions générales de vente applicables ; et avec un préavis écrit de trois mois avant le prochain renouvellement de contrat de 4 ans. Sans cette résiliation, le contrat est automatiquement prolongé pour une période 4 années supplémentaires. Tous les prix s'entendent TVA comprise.
                 </p>
-              </motion.div>
-
-              {/* PV Clean section */}
-              <motion.div
-                variants={reveal} initial="hidden" whileInView="visible"
-                viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.7, ease: 'easeOut' }}
-                style={{ marginBottom: 48 }}
-              >
-                {/* Header */}
-                <div style={{ marginBottom: 16 }}>
-                  <div style={{
-                    fontFamily: "var(--font-jost), 'Jost', sans-serif",
-                    fontSize: 13, fontWeight: 600, color: '#2a9b96', letterSpacing: 1, textTransform: 'uppercase', marginBottom: 6,
-                  }}>NOS SOLUTIONS D'ENTRETIEN :</div>
-                  <h3 style={{
-                    fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
-                    fontSize: 22, fontWeight: 700, color: '#000', margin: '0 0 12px', letterSpacing: -0.5,
-                  }}>
-                    Pensez à faire nettoyer vos panneaux solaires par un professionnel
-                  </h3>
-                  <p style={{
-                    fontFamily: "var(--font-jost), 'Jost', sans-serif",
-                    fontSize: 15, color: '#555', lineHeight: '23px', margin: '0 0 6px',
-                  }}>
-                    La garantie de la performance maximale de vos panneaux solaires passe inévitablement par leur propreté. 15% de production annuelle sont en moyenne perdus en raison de la saleté de l'installation.
-                  </p>
-                  <p style={{
-                    fontFamily: "var(--font-jost), 'Jost', sans-serif",
-                    fontSize: 15, color: '#555', lineHeight: '23px', margin: '0 0 20px',
-                  }}>
-                    Notre service de nettoyage spécialisé utilise des techniques de pointe pour éliminer débris, mousses et saletés diverses et s'adapte à la surface et à la configuration de votre installation existante.
-                  </p>
-                </div>
-
-                {/* PV Clean card — 2 columns */}
-                <div className="ps-pv-clean-grid">
-                  {/* Left: brand/promo */}
-                  <div style={{
-                    position: 'relative', overflow: 'hidden',
-                    borderRadius: 16, padding: '32px 28px',
-                    display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
-                    minHeight: 220,
-                  }}>
-                    {/* Background photo */}
-                    <img
-                      src="/Photos%20HD/Photos%20produits/Panneaux%20solaires/man-solar-technician-installing-solar-panel-outdoors.webp"
-                      alt=""
-                      loading="lazy"
-                      style={{
-                        position: 'absolute', inset: 0,
-                        width: '100%', height: '100%', objectFit: 'cover',
-                        objectPosition: 'center 30%',
-                      }}
-                    />
-                    {/* Dark green overlay */}
-                    <div style={{
-                      position: 'absolute', inset: 0,
-                      background: 'rgba(26,54,54,0.55)',
-                    }} />
-                    {/* ZEN logo — top */}
-                    <img
-                      src="/zen-logo-vert-fonce.webp"
-                      alt="Zen Énergie Services"
-                      style={{ position: 'relative', zIndex: 1, width: 100, height: 'auto', objectFit: 'contain', filter: 'brightness(0) invert(1)' }}
-                    />
-                    {/* Text — bottom */}
-                    <div style={{ position: 'relative', zIndex: 1 }}>
-                      <div style={{
-                        fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
-                        fontSize: 17, fontWeight: 800, color: '#50b5a2', letterSpacing: 0.5,
-                        textTransform: 'uppercase', marginBottom: 10,
-                      }}>OFFRE PV CLEAN :</div>
-                      <div style={{
-                        fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
-                        fontSize: 20, fontWeight: 700, color: '#fff', lineHeight: 1.25,
-                      }}>
-                        L'EFFICACITÉ RETROUVÉE DE VOS PANNEAUX PHOTOVOLTAÏQUES !
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Right: price + features */}
-                  <div style={{
-                    background: '#1a3535', borderRadius: 16, padding: '28px 24px',
-                    display: 'flex', flexDirection: 'column',
-                  }}>
-                    {/* Price */}
-                    <div style={{ marginBottom: 20 }}>
-                      <div style={{
-                        fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
-                        fontSize: 34, fontWeight: 800, color: '#fff', lineHeight: 1,
-                      }}>49 CHF / panneau</div>
-                      <div style={{
-                        fontFamily: "var(--font-jost), 'Jost', sans-serif",
-                        fontSize: 13, color: 'rgba(255,255,255,0.65)', marginTop: 4,
-                      }}>(avec min. forfaitaire de 8 PV de 392 CHF)</div>
-                    </div>
-
-                    {/* Included */}
-                    <div style={{
-                      fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
-                      fontSize: 13, fontWeight: 600, color: '#50B5A2', marginBottom: 12, letterSpacing: 0.3,
-                    }}>Ce que contient votre offre PV Clean :</div>
-                    <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: 10, flex: 1 }}>
-                      {[
-                        'Nettoyage simple : dépoussiérage',
-                        'Nettoyage mécanique : utilisation de perches télescopiques ou brosses rotatives et d\'eau déminéralisée.',
-                        'Pose d\'une couche protectrice',
-                        'Rapport de nettoyage complet',
-                      ].map((item, i) => (
-                        <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
-                          <span style={{
-                            width: 20, height: 20, borderRadius: '50%', flexShrink: 0,
-                            background: '#50B5A2', display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 1,
-                          }}>
-                            <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
-                              <path d="M2 6.5L4.5 9L10 3" stroke="#000" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-                            </svg>
-                          </span>
-                          <span style={{
-                            fontFamily: "var(--font-jost), 'Jost', sans-serif",
-                            fontSize: 14, color: 'rgba(255,255,255,0.85)', lineHeight: '20px',
-                          }}>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <p style={{
-                      fontFamily: "var(--font-jost), 'Jost', sans-serif",
-                      fontSize: 11, color: 'rgba(255,255,255,0.4)', lineHeight: '17px', margin: '16px 0 0',
-                    }}>
-                      * Offre tarifaire valable pour une intervention à partir de 8 panneaux.
-                    </p>
-                  </div>
-                </div>
               </motion.div>
 
               {/* Why maintain section */}
@@ -635,19 +497,19 @@ export default function PanneauxSolairesPage() {
                   fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
                   fontSize: 20, fontWeight: 700, color: '#000', marginBottom: 14, letterSpacing: -0.5, lineHeight: 1.3,
                 }}>
-                  Pourquoi dois-je entretenir régulièrement mes panneaux photovoltaïques ?
+                  Pourquoi dois-je entretenir régulièrement ma pompe à chaleur ?
                 </h3>
                 <p style={{
                   fontFamily: "var(--font-jost), 'Jost', sans-serif",
                   fontSize: 15, color: '#444', lineHeight: '24px', marginBottom: 14,
                 }}>
-                  L'entretien régulier de vos panneaux photovoltaïques est essentiel pour garantir leur performance et leur durabilité. En Suisse, les conditions climatiques (neige, pollen, poussière) peuvent réduire l'efficacité des panneaux en formant des dépôts sur leur surface. Un entretien régulier permet :
+                  L'entretien régulier de votre pompe à chaleur est indispensable pour garantir son efficacité et prolonger sa durée de vie. Un entretien régulier permet :
                 </p>
                 <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: 10 }}>
                   {[
-                    "D'optimiser la production d'énergie en assurant que vos panneaux captent un maximum de lumière.",
-                    "De prévenir les dommages, comme les microfissures ou la corrosion, qui pourraient réduire leur durée de vie.",
-                    "De répondre aux exigences de garantie, car certains fabricants demandent un entretien périodique pour maintenir la couverture.",
+                    "De maintenir un coefficient de performance (COP) optimal et réduire votre consommation énergétique.",
+                    "De détecter et corriger les pertes de fluide frigorigène avant qu'elles n'endommagent le compresseur.",
+                    "De respecter les obligations légales suisses en matière d'entretien des équipements thermiques.",
                   ].map((item, i) => (
                     <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
                       <span style={{
@@ -671,8 +533,8 @@ export default function PanneauxSolairesPage() {
                   style={{ borderRadius: 16, overflow: 'hidden' }}
                 >
                   <img
-                    src="/Photos%20HD/Visuels%20Technique/Technique%20-%20PV/Ouvrier%20et%20panneaux%20solaires.webp"
-                    alt="Ouvrier panneaux solaires"
+                    src="/Photos%20HD/Visuels%20Technique/Technique%20-%20PAC/Pompes%20a%CC%80%20chaleur%20avantages%20et%20inconve%CC%81nients.webp"
+                    alt="Pompe à chaleur avantages"
                     loading="lazy"
                     style={{ width: '100%', height: 240, objectFit: 'cover', display: 'block' }}
                   />
@@ -683,14 +545,13 @@ export default function PanneauxSolairesPage() {
                   style={{ borderRadius: 16, overflow: 'hidden' }}
                 >
                   <img
-                    src="/Photos%20HD/Visuels%20Technique/Technique%20-%20PV/Re%CC%81paration%20de%20panneaux%20solaires.webp"
-                    alt="Réparation panneaux solaires"
+                    src="/Photos%20HD/Visuels%20Technique/Technique%20-%20PAC/heat-pump-airwater-technology-home.webp"
+                    alt="Pompe à chaleur installation"
                     loading="lazy"
                     style={{ width: '100%', height: 240, objectFit: 'cover', display: 'block' }}
                   />
                 </motion.div>
               </div>
-
 
               {/* CTA button */}
               <motion.div
@@ -738,7 +599,7 @@ export default function PanneauxSolairesPage() {
                   color: '#000', marginBottom: 32, lineHeight: '36px',
                 }}
               >
-                Questions sur l'entretien de vos panneaux
+                Questions sur l'entretien de votre pompe à chaleur
               </motion.h3>
 
               {faqs.map((faq, i) => {
@@ -843,14 +704,6 @@ export default function PanneauxSolairesPage() {
         @media (max-width: 900px) {
           .ps-pricing-grid { grid-template-columns: 1fr; }
         }
-        .ps-pv-clean-grid {
-          display: grid;
-          grid-template-columns: 1fr 1.4fr;
-          gap: 20px;
-        }
-        @media (max-width: 700px) {
-          .ps-pv-clean-grid { grid-template-columns: 1fr; }
-        }
         .ps-duo-grid {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
@@ -871,19 +724,6 @@ export default function PanneauxSolairesPage() {
       `}</style>
     </main>
   )
-}
-
-const inputStyle: React.CSSProperties = {
-  width: '100%',
-  padding: '11px 16px',
-  borderRadius: 100,
-  border: '1px solid #e8e8e8',
-  fontSize: 14,
-  fontFamily: "var(--font-jost), 'Jost', sans-serif",
-  outline: 'none',
-  background: '#fff',
-  color: '#000',
-  transition: 'border-color 0.18s ease',
 }
 
 const labelStyle: React.CSSProperties = {

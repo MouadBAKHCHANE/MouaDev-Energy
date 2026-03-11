@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useLayoutEffect, useRef } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react'
@@ -8,7 +8,7 @@ import SectionLabel from '@/components/ui/SectionLabel'
 import Button from '@/components/ui/Button'
 
 const reveal = {
-  hidden: { opacity: 0, y: 150 },
+  hidden: { opacity: 0, y: 40 },
   visible: { opacity: 1, y: 0 },
 }
 
@@ -62,7 +62,9 @@ export default function OurServices() {
   }
 
   // After transition ends, silently reset position if at a clone
-  const handleTransitionEnd = () => {
+  // Guard on propertyName so it only fires once per slide (transform only)
+  const handleTransitionEnd = (e: React.TransitionEvent) => {
+    if (e.propertyName !== 'transform') return
     if (active === 0) {
       setAnimated(false)
       setActive(slides.length)
@@ -74,16 +76,16 @@ export default function OurServices() {
     }
   }
 
-  // Re-enable animation after silent jump, then unlock
-  useEffect(() => {
+  // Re-enable animation after silent jump (useLayoutEffect fires after DOM
+  // paint so the browser sees translateX at the real position before transition
+  // is re-enabled — preventing any visible snap)
+  useLayoutEffect(() => {
     if (!animated) {
-      const raf = requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          setAnimated(true)
-          lockRef.current = false
-        })
+      const id = requestAnimationFrame(() => {
+        setAnimated(true)
+        lockRef.current = false
       })
-      return () => cancelAnimationFrame(raf)
+      return () => cancelAnimationFrame(id)
     }
   }, [animated])
 
@@ -100,7 +102,7 @@ export default function OurServices() {
         <motion.div
           variants={reveal} initial="hidden" whileInView="visible"
           viewport={{ once: true, margin: '0px 0px -50px 0px', amount: 0.1 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
           style={{ marginBottom: 15, display: 'flex', justifyContent: 'center' }}
         >
           <SectionLabel text="NOS SERVICES" />
@@ -108,7 +110,7 @@ export default function OurServices() {
         <motion.h2
           variants={reveal} initial="hidden" whileInView="visible"
           viewport={{ once: true, margin: '0px 0px -50px 0px', amount: 0.1 }}
-          transition={{ duration: 0.8, ease: 'easeOut', delay: 0.1 }}
+          transition={{ duration: 0.5, ease: 'easeOut', delay: 0.07 }}
           className="our-svc-h2"
           style={{
             fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
@@ -121,7 +123,7 @@ export default function OurServices() {
         <motion.p
           variants={reveal} initial="hidden" whileInView="visible"
           viewport={{ once: true, margin: '0px 0px -50px 0px', amount: 0.1 }}
-          transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
+          transition={{ duration: 0.5, ease: 'easeOut', delay: 0.12 }}
           className="our-svc-body"
           style={{
             fontFamily: "var(--font-jost), 'Jost', sans-serif",
@@ -134,7 +136,7 @@ export default function OurServices() {
         <motion.div
           variants={reveal} initial="hidden" whileInView="visible"
           viewport={{ once: true, margin: '0px 0px -50px 0px', amount: 0.1 }}
-          transition={{ duration: 0.8, ease: 'easeOut', delay: 0.3 }}
+          transition={{ duration: 0.5, ease: 'easeOut', delay: 0.18 }}
           style={{ display: 'flex', justifyContent: 'center', marginBottom: 60 }}
         >
           <Button variant="lime" label="Découvrir nos offres d’entretien" href="/services" />
@@ -189,7 +191,7 @@ export default function OurServices() {
           <div style={{ position: 'relative', overflow: 'hidden', borderRadius: 24 }}>
             <div
               className="svc-carousel-track"
-              style={{ transform: `translateX(${-active * 100}%)`, transition: animated ? undefined : 'none' }}
+              style={{ transform: `translateX(${-active * 100}%)`, transition: animated ? 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)' : 'none' }}
               onTransitionEnd={handleTransitionEnd}
             >
               {extendedSlides.map((slide, i) => (
@@ -264,7 +266,6 @@ export default function OurServices() {
           }
           .svc-carousel-track {
             display: flex;
-            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
           }
           .svc-carousel-slide {
             flex: 0 0 100%;

@@ -200,7 +200,7 @@ export default function Hero() {
                   style={{
                     width: 48, height: 44, borderRadius: 14,
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    flexShrink: 0, background: '#000', color: '#fff',
+                    flexShrink: 0, background: '#0a1f1e', color: '#fff',
                     transition: 'background 0.2s ease',
                   }}
                 >
