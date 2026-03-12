@@ -82,7 +82,7 @@ function StackCard({ card, index, totalCards }: { card: typeof cards[0]; index: 
         {/* Lime content half — right */}
         <div className="ff-lime-panel" style={{
           flex: '0 0 auto', width: 400, height: 400,
-          background: '#0a1e1d', borderRadius: 40, padding: 35,
+          background: '#2c6262', borderRadius: 40, padding: 35,
           display: 'flex', flexDirection: 'column', alignItems: 'flex-start',
           justifyContent: 'flex-start', gap: 30,
         }}>
@@ -171,7 +171,7 @@ export default function FunFact() {
             href="tel:+41215120574"
             style={{
               display: 'inline-flex', alignItems: 'center',
-              borderRadius: 14, background: '#0a1f1e', color: '#fff',
+              borderRadius: 14, background: '#2c6262', color: '#fff',
               padding: '9px 8px 9px 24px', gap: 24,
               textDecoration: 'none', cursor: 'pointer',
               transition: 'all 0.18s ease',

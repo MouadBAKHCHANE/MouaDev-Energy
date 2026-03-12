@@ -254,7 +254,7 @@ export default function Header() {
             Demander une offre
             <span className="cta-arrow" style={{
               width: 40, height: 40, borderRadius: 14, display: 'flex', alignItems: 'center',
-              justifyContent: 'center', flexShrink: 0, background: '#0a1f1e', color: '#fff', transition: 'background 0.18s ease',
+              justifyContent: 'center', flexShrink: 0, background: '#2c6262', color: '#fff', transition: 'background 0.18s ease',
             }}>
               <ArrowIcon direction="right" size={20} strokeColor="currentColor" />
             </span>
@@ -314,7 +314,7 @@ export default function Header() {
                   width: 36,
                   height: 36,
                   borderRadius: '50%',
-                  background: '#0a1f1e',
+                  background: '#2c6262',
                   color: '#fff',
                   border: 'none',
                   cursor: 'pointer',
@@ -492,7 +492,7 @@ export default function Header() {
                     width: 40,
                     height: 40,
                     borderRadius: 10,
-                    background: '#0a1f1e',
+                    background: '#2c6262',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',

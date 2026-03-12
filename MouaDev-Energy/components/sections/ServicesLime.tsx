@@ -38,7 +38,7 @@ const services = [
 
 export default function ServicesLime() {
   return (
-    <section id="services" style={{ padding: '100px 20px', background: '#0a1e1d', position: 'relative', overflow: 'hidden' }}>
+    <section id="services" style={{ padding: '100px 20px', background: '#2c6262', position: 'relative', overflow: 'hidden' }}>
 
       {/* Decorative blob */}
       <div style={{
@@ -121,7 +121,7 @@ export default function ServicesLime() {
               <span className="svc2-arr" style={{
                 width: 44, height: 40, borderRadius: 12,
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                background: '#0a1f1e', color: '#fff', transition: 'background 0.18s ease',
+                background: '#2c6262', color: '#fff', transition: 'background 0.18s ease',
               }}>
                 <ArrowIcon direction="right" size={18} strokeColor="currentColor" />
               </span>

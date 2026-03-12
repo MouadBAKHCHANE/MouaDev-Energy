@@ -160,7 +160,7 @@ export default function PvCleanPage() {
                   </div>
                   <button type="submit" style={{
                     width: '100%', padding: '14px',
-                    borderRadius: 8, background: 'linear-gradient(135deg, #0a1e1a 0%, #0d2e28 60%, #0f3a30 100%)', border: 'none',
+                    borderRadius: 8, background: 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)', border: 'none',
                     fontSize: 15, fontWeight: 700,
                     fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
                     color: '#fff', cursor: 'pointer',
@@ -168,7 +168,7 @@ export default function PvCleanPage() {
                     marginTop: 4,
                   }}
                     onMouseEnter={(e) => { e.currentTarget.style.background = '#50B5A2'; e.currentTarget.style.color = '#000' }}
-                    onMouseLeave={(e) => { e.currentTarget.style.background = 'linear-gradient(135deg, #0a1e1a 0%, #0d2e28 60%, #0f3a30 100%)'; e.currentTarget.style.color = '#fff' }}
+                    onMouseLeave={(e) => { e.currentTarget.style.background = 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)'; e.currentTarget.style.color = '#fff' }}
                   >
                     Envoyer un message
                   </button>
@@ -177,7 +177,7 @@ export default function PvCleanPage() {
 
               {/* CTA promo card */}
               <div style={{
-                background: '#0a1e1d', borderRadius: 20, padding: '28px 24px',
+                background: '#2c6262', borderRadius: 20, padding: '28px 24px',
                 position: 'relative', overflow: 'hidden',
               }}>
                 <div style={{
@@ -315,7 +315,7 @@ export default function PvCleanPage() {
 
                   {/* Right: price + features */}
                   <div style={{
-                    background: '#1a3535', borderRadius: 16, padding: '28px 24px',
+                    background: '#2c6262', borderRadius: 16, padding: '28px 24px',
                     display: 'flex', flexDirection: 'column',
                   }}>
                     <div style={{ marginBottom: 20 }}>
@@ -454,7 +454,7 @@ export default function PvCleanPage() {
                 >
                   Demander un nettoyage PV Clean
                   <span style={{
-                    width: 40, height: 36, borderRadius: 10, background: '#0a1f1e',
+                    width: 40, height: 36, borderRadius: 10, background: '#2c6262',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     color: '#fff', fontSize: 18,
                   }}>→</span>

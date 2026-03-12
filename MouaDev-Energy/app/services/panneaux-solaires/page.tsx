@@ -162,7 +162,7 @@ export default function PanneauxSolairesPage() {
                   </div>
                   <button type="submit" style={{
                     width: '100%', padding: '14px',
-                    borderRadius: 8, background: 'linear-gradient(135deg, #0a1e1a 0%, #0d2e28 60%, #0f3a30 100%)', border: 'none',
+                    borderRadius: 8, background: 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)', border: 'none',
                     fontSize: 15, fontWeight: 700,
                     fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
                     color: '#fff', cursor: 'pointer',
@@ -170,7 +170,7 @@ export default function PanneauxSolairesPage() {
                     marginTop: 4,
                   }}
                     onMouseEnter={(e) => { e.currentTarget.style.background = '#50B5A2'; e.currentTarget.style.color = '#000' }}
-                    onMouseLeave={(e) => { e.currentTarget.style.background = 'linear-gradient(135deg, #0a1e1a 0%, #0d2e28 60%, #0f3a30 100%)'; e.currentTarget.style.color = '#fff' }}
+                    onMouseLeave={(e) => { e.currentTarget.style.background = 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)'; e.currentTarget.style.color = '#fff' }}
                   >
                     Envoyer un message
                   </button>
@@ -179,7 +179,7 @@ export default function PanneauxSolairesPage() {
 
               {/* CTA promo card */}
               <div style={{
-                background: '#0a1e1d', borderRadius: 20, padding: '28px 24px',
+                background: '#2c6262', borderRadius: 20, padding: '28px 24px',
                 position: 'relative', overflow: 'hidden',
               }}>
                 <div style={{
@@ -402,7 +402,7 @@ export default function PanneauxSolairesPage() {
                       </div>
 
                       {/* ── Dark pricing bottom ── */}
-                      <div style={{ background: '#0d2420', padding: '14px 18px 16px' }}>
+                      <div style={{ background: '#2c6262', padding: '14px 18px 16px' }}>
                         {plan.prices.map((p, pi) => (
                           <div key={pi} style={{
                             paddingBottom: pi < plan.prices.length - 1 ? 8 : 0,
@@ -430,7 +430,7 @@ export default function PanneauxSolairesPage() {
                 {/* Discount banner */}
                 <div style={{
                   marginTop: 20, borderRadius: 16, overflow: 'hidden',
-                  background: '#1a3535', padding: '20px 28px',
+                  background: '#2c6262', padding: '20px 28px',
                   display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap',
                 }}>
                   <div style={{
@@ -572,7 +572,7 @@ export default function PanneauxSolairesPage() {
 
                   {/* Right: price + features */}
                   <div style={{
-                    background: '#1a3535', borderRadius: 16, padding: '28px 24px',
+                    background: '#2c6262', borderRadius: 16, padding: '28px 24px',
                     display: 'flex', flexDirection: 'column',
                   }}>
                     {/* Price */}
@@ -714,7 +714,7 @@ export default function PanneauxSolairesPage() {
                 >
                   Souscrire un contrat d'entretien
                   <span style={{
-                    width: 40, height: 36, borderRadius: 10, background: '#0a1f1e',
+                    width: 40, height: 36, borderRadius: 10, background: '#2c6262',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     color: '#fff', fontSize: 18,
                   }}>→</span>

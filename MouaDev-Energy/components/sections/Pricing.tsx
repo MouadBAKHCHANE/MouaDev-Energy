@@ -96,7 +96,7 @@ export default function Pricing() {
               transition={{ duration: 0.8, ease: 'easeOut' }}
               className="price-card"
               style={{
-                borderRadius: 40, padding: 32, display: 'flex', gap: 25, alignItems: 'center', marginBottom: 20,
+                borderRadius: 40, padding: '64px 56px', minHeight: 220, display: 'flex', gap: 25, alignItems: 'center', marginBottom: 20,
                 position: 'relative', overflow: 'hidden',
                 ...(plan.theme === 'light'
                   ? { background: '#f8f8f8', border: '1px solid #e8e8e8' }
@@ -122,17 +122,6 @@ export default function Pricing() {
               )}
               <div style={{ flex: 1, position: 'relative', zIndex: 2 }}>
                 <div style={{ fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif", fontSize: 22, fontWeight: 600, lineHeight: '28px', marginBottom: 12 }}>{plan.name}</div>
-                <div className="price-val" style={{ fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif", fontSize: 32, fontWeight: 500, lineHeight: '1.2', letterSpacing: -1, marginBottom: 12 }}>
-                  {plan.price}
-                  <span style={{
-                    fontFamily: "var(--font-inter), 'Inter', sans-serif",
-                    fontSize: 16,
-                    fontWeight: 600,
-                    letterSpacing: '-0.32px'
-                  }}>
-                    {plan.period}
-                  </span>
-                </div>
                 {plan.desc && (
                   <p style={{ fontFamily: "var(--font-jost), 'Jost', sans-serif", fontSize: 15, lineHeight: '22px', color: plan.theme === 'dark' || plan.image ? '#fff' : '#000', margin: '12px 0 20px' }}>{plan.desc}</p>
                 )}
