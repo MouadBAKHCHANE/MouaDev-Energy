@@ -51,7 +51,7 @@ export default function ContactUsPage() {
 
             {/* Address card — full width */}
             <div style={{
-              background: 'linear-gradient(135deg, #0a1e1a 0%, #0d2e28 60%, #0f3a30 100%)', borderRadius: 16, padding: '28px 28px',
+              background: 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)', borderRadius: 16, padding: '28px 28px',
               marginBottom: 16, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 10,
             }}>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#50B5A2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -70,7 +70,7 @@ export default function ContactUsPage() {
             <div className="contact-info-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
               {/* Email */}
               <div style={{
-                background: 'linear-gradient(135deg, #0a1e1a 0%, #0d2e28 60%, #0f3a30 100%)', borderRadius: 16, padding: '28px 22px',
+                background: 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)', borderRadius: 16, padding: '28px 22px',
                 display: 'flex', flexDirection: 'column', gap: 10, alignItems: 'center', textAlign: 'center',
               }}>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#50B5A2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -87,7 +87,7 @@ export default function ContactUsPage() {
 
               {/* Phone */}
               <div style={{
-                background: 'linear-gradient(135deg, #0a1e1a 0%, #0d2e28 60%, #0f3a30 100%)', borderRadius: 16, padding: '28px 22px',
+                background: 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)', borderRadius: 16, padding: '28px 22px',
                 display: 'flex', flexDirection: 'column', gap: 10, alignItems: 'center', textAlign: 'center',
               }}>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#50B5A2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -177,14 +177,14 @@ export default function ContactUsPage() {
                     type="submit"
                     style={{
                       width: '100%', padding: '16px',
-                      borderRadius: 10, background: 'linear-gradient(135deg, #0a1e1a 0%, #0d2e28 60%, #0f3a30 100%)', border: 'none',
+                      borderRadius: 10, background: 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)', border: 'none',
                       fontSize: 16, fontWeight: 600,
                       fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
                       color: '#fff', cursor: 'pointer',
                       transition: 'background 0.18s ease, color 0.18s ease',
                     }}
                     onMouseEnter={e => { e.currentTarget.style.background = '#50B5A2'; e.currentTarget.style.color = '#000' }}
-                    onMouseLeave={e => { e.currentTarget.style.background = 'linear-gradient(135deg, #0a1e1a 0%, #0d2e28 60%, #0f3a30 100%)'; e.currentTarget.style.color = '#fff' }}
+                    onMouseLeave={e => { e.currentTarget.style.background = 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)'; e.currentTarget.style.color = '#fff' }}
                   >
                     Envoyer le message
                   </button>

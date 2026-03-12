@@ -270,7 +270,7 @@ export default function BlogsPage() {
               viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
               style={{
-                background: '#0a1e1d',
+                background: 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)',
                 borderRadius: 28, padding: 32,
                 display: 'flex', flexDirection: 'column',
                 justifyContent: 'flex-start', gap: 24,
@@ -301,7 +301,7 @@ export default function BlogsPage() {
                 <h3 style={{
                   fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
                   fontSize: 24, fontWeight: 600, lineHeight: '32px',
-                  color: '#fff', margin: '0 0 12px 0',
+                  color: '#e0f5f3', margin: '0 0 12px 0',
                 }}>
                   Vous avez encore des questions ? On est là pour vous aider.
                 </h3>
@@ -340,7 +340,7 @@ export default function BlogsPage() {
                 <span className="bl-cta-arr" style={{
                   width: 40, height: 36, borderRadius: 10,
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  background: '#0a1f1e', color: '#fff', transition: 'background 0.18s ease, color 0.18s ease',
+                  background: '#2c6262', color: '#fff', transition: 'background 0.18s ease, color 0.18s ease',
                 }}>
                   <ArrowIcon direction="right" size={16} strokeColor="currentColor" />
                 </span>

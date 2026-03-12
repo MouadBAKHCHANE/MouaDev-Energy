@@ -205,7 +205,7 @@ export default function AboutUsPage() {
                   <span className="au-btn-arr" style={{
                     width: 44, height: 40, borderRadius: 12,
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    background: '#0a1f1e', color: '#fff', transition: 'background 0.18s ease',
+                    background: '#2c6262', color: '#fff', transition: 'background 0.18s ease',
                   }}>
                     <ArrowIcon direction="right" size={18} strokeColor="currentColor" />
                   </span>
@@ -228,7 +228,7 @@ export default function AboutUsPage() {
           zIndex: 0,
         }} />
         {/* Dark overlay */}
-        <div style={{ position: 'absolute', inset: 0, background: 'rgba(8,22,20,0.78)', zIndex: 1 }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'rgba(44,98,98,0.72)', zIndex: 1 }} />
 
         {/* Content */}
         <div style={{ position: 'relative', zIndex: 2, maxWidth: 1400, margin: '0 auto', padding: '0 20px' }}>
@@ -301,7 +301,7 @@ export default function AboutUsPage() {
         </div>
 
         {/* Bottom dark ticker */}
-        <div style={{ position: 'relative', zIndex: 2, background: 'rgba(8,22,20,0.9)', marginTop: 48, overflow: 'hidden', padding: '18px 0' }}>
+        <div style={{ position: 'relative', zIndex: 2, background: 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)', marginTop: 48, overflow: 'hidden', padding: '18px 0' }}>
           <div className="wc-ticker-track">
             {[...Array(10)].map((_, i) => (
               <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 28, flexShrink: 0, paddingRight: 28 }}>

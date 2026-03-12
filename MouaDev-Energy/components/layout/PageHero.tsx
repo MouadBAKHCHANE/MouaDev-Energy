@@ -41,7 +41,7 @@ export default function PageHero({ crumbs, title, bgImage }: PageHeroProps) {
         flexDirection: 'column',
         justifyContent: 'flex-end',
         padding: 'clamp(100px, 15vw, 160px) 20px clamp(40px, 6vw, 80px)',
-        background: 'linear-gradient(135deg, #0a1e1a 0%, #0d2e28 60%, #0f3a30 100%)',
+        background: 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)',
         overflow: 'hidden',
       }}
     >
@@ -62,6 +62,8 @@ export default function PageHero({ crumbs, title, bgImage }: PageHeroProps) {
             fill
             priority
             sizes="100vw"
+            placeholder="blur"
+            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAIAAABLbSncAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAAEUlEQVR4nGPQSUrCihiGlgQAZKE8AQyy75wAAAAASUVORK5CYII="
             style={{ objectFit: 'cover', objectPosition: 'center 35%', opacity: 0.6 }}
           />
         </motion.div>

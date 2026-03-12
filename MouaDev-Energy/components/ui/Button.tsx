@@ -41,7 +41,7 @@ export default function Button({
   // Variant styles
   if (variant === 'dark') {
     Object.assign(baseStyle, {
-      background: '#0a1f1e', color: '#fff',
+      background: '#2c6262', color: '#fff',
       padding: isSm ? '8px 6px 8px 20px' : '9px 8px 9px 24px',
       gap: isSm ? 12 : 24,
     })
@@ -79,9 +79,9 @@ export default function Button({
   if (variant === 'dark') {
     arrStyle.background = '#fff'
   } else if (variant === 'lime') {
-    arrStyle.background = '#0a1f1e'
+    arrStyle.background = '#2c6262'
   } else if (variant === 'outline') {
-    arrStyle.background = '#0a1f1e'
+    arrStyle.background = '#2c6262'
   }
 
   const arrowStroke =
@@ -120,9 +120,9 @@ export default function Button({
         arr.querySelectorAll('line, path, polyline').forEach(s => (s as SVGElement).setAttribute('stroke', '#000'))
       }
     } else if (variant === 'outline') {
-      el.style.background = '#0a1f1e'
+      el.style.background = '#2c6262'
       el.style.color = '#fff'
-      el.style.borderColor = '#0a1f1e'
+      el.style.borderColor = '#2c6262'
       if (arr) {
         arr.style.background = '#fff'
         arr.querySelectorAll('line, path, polyline').forEach(s => (s as SVGElement).setAttribute('stroke', '#000'))
@@ -146,7 +146,7 @@ export default function Button({
       }
     } else if (variant === 'lime') {
       if (arr) {
-        arr.style.background = '#0a1f1e'
+        arr.style.background = '#2c6262'
         arr.querySelectorAll('line, path, polyline').forEach(s => (s as SVGElement).setAttribute('stroke', '#fff'))
       }
     } else if (variant === 'outline') {
@@ -154,7 +154,7 @@ export default function Button({
       el.style.color = '#000'
       el.style.borderColor = '#000'
       if (arr) {
-        arr.style.background = '#0a1f1e'
+        arr.style.background = '#2c6262'
         arr.querySelectorAll('line, path, polyline').forEach(s => (s as SVGElement).setAttribute('stroke', '#fff'))
       }
     }

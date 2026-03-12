@@ -368,7 +368,7 @@ export default function ServicesPage() {
       </section>
 
       {/* ── L'EXPÉRIENCE ZEN — Redesigned ──────────────────────────────── */}
-      <section style={{ background: '#0d2b2b', padding: '0', overflow: 'hidden' }}>
+      <section style={{ background: 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)', padding: '0', overflow: 'hidden' }}>
         <div className="zen-exp-inner">
           {/* Left: full-bleed photo */}
           <div className="zen-exp-photo">
@@ -380,7 +380,7 @@ export default function ServicesPage() {
             />
             <div style={{
               position: 'absolute', inset: 0,
-              background: 'linear-gradient(to right, transparent 60%, #0d2b2b 100%)',
+              background: 'linear-gradient(to right, transparent 60%, #2a9b96 100%)',
             }} />
           </div>
 
@@ -394,7 +394,7 @@ export default function ServicesPage() {
               <span style={{
                 fontFamily: "var(--font-jost), 'Jost', sans-serif",
                 fontSize: 13, fontWeight: 700, letterSpacing: '0.12em',
-                textTransform: 'uppercase', color: '#50b5a2'
+                textTransform: 'uppercase', color: '#000'
               }}>L'expérience Zen</span>
             </motion.div>
 
@@ -541,7 +541,7 @@ export default function ServicesPage() {
       ))}
 
       {/* ── CTA Banner ──────────────────────────────────────────────────── */}
-      <section style={{ background: '#0d2b2b', padding: '0 20px', overflow: 'hidden' }}>
+      <section style={{ background: 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)', padding: '0 20px', overflow: 'hidden' }}>
         <div style={{ maxWidth: 1320, margin: '0 auto' }}>
           <div className="cta-banner-inner">
 
@@ -866,7 +866,7 @@ export default function ServicesPage() {
             height: 360px;
           }
           .zen-exp-photo > div {
-            background: linear-gradient(to bottom, transparent 60%, #0d2b2b 100%) !important;
+            background: linear-gradient(to bottom, transparent 60%, #2c6262 100%) !important;
           }
           .zen-exp-content {
             padding: 60px 30px;

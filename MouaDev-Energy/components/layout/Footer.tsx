@@ -75,7 +75,7 @@ export default function Footer() {
   ]
 
   return (
-    <footer style={{ background: '#0a1f1e', color: '#fff', padding: '40px 20px 20px' }}>
+    <footer style={{ background: '#2c6262', color: '#fff', padding: '40px 20px 20px' }}>
       <div style={{ maxWidth: 1400, margin: '0 auto' }}>
 
         {/* TOP BAR: Logo and Contact Blocks */}
@@ -118,7 +118,7 @@ export default function Footer() {
                   <div style={{
                     fontFamily: "var(--font-inter)",
                     fontSize: 12,
-                    color: 'rgba(255, 255, 255, 0.6)',
+                    color: 'rgba(255, 255, 255, 0.8)',
                     marginBottom: 2
                   }}>{item.label}</div>
                   <div style={{
@@ -147,7 +147,7 @@ export default function Footer() {
               style={{ height: 36, width: 'auto', marginBottom: 14, opacity: 0.9 }}
             />
             <h4 style={{ fontFamily: "var(--font-barlow)", fontSize: 18, fontWeight: 600, marginBottom: 15 }}>À propos de Zen</h4>
-            <p style={{ fontFamily: "var(--font-inter)", fontSize: 15, lineHeight: 1.5, color: 'rgba(255, 255, 255, 0.7)', maxWidth: 260 }}>
+            <p style={{ fontFamily: "var(--font-inter)", fontSize: 15, lineHeight: 1.5, color: 'rgba(255, 255, 255, 0.88)', maxWidth: 260 }}>
               Votre partenaire de confiance pour la maintenance et l’entretien de vos installations énergétiques en Suisse Romande.
             </p>
             {/* Social Icons moved here */}
@@ -157,7 +157,7 @@ export default function Footer() {
                   key={social.name}
                   href={social.href}
                   style={{ color: 'rgba(255, 255, 255, 0.8)', transition: 'color 0.2s' }}
-                  onMouseEnter={(e) => e.currentTarget.style.color = brandGreen}
+                  onMouseEnter={(e) => e.currentTarget.style.color = '#000'}
                   onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255, 255, 255, 0.8)'}
                 >
                   {social.icon}
@@ -175,12 +175,12 @@ export default function Footer() {
                   <Link href={link.href} style={{
                     fontFamily: "var(--font-inter)",
                     fontSize: 15,
-                    color: 'rgba(255, 255, 255, 0.7)',
+                    color: 'rgba(255, 255, 255, 0.88)',
                     textDecoration: 'none',
                     transition: 'color 0.2s'
                   }}
-                    onMouseEnter={(e) => e.currentTarget.style.color = brandGreen}
-                    onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255, 255, 255, 0.7)'}
+                    onMouseEnter={(e) => e.currentTarget.style.color = '#000'}
+                    onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255, 255, 255, 0.88)'}
                   >
                     {link.text}
                   </Link>
@@ -202,7 +202,7 @@ export default function Footer() {
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={brandGreen} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginTop: 4 }}>
                     {item.icon}
                   </svg>
-                  <span style={{ fontFamily: "var(--font-inter)", fontSize: 15, color: 'rgba(255, 255, 255, 0.7)', lineHeight: 1.3 }}>{item.text}</span>
+                  <span style={{ fontFamily: "var(--font-inter)", fontSize: 15, color: 'rgba(255, 255, 255, 0.88)', lineHeight: 1.3 }}>{item.text}</span>
                 </div>
               ))}
             </div>
@@ -211,7 +211,7 @@ export default function Footer() {
           {/* Col 4: Newsletter */}
           <div>
             <h4 style={{ fontFamily: "var(--font-barlow)", fontSize: 18, fontWeight: 600, marginBottom: 15 }}>Newsletter</h4>
-            <p style={{ fontFamily: "var(--font-inter)", fontSize: 15, color: 'rgba(255, 255, 255, 0.7)', marginBottom: 15 }}>
+            <p style={{ fontFamily: "var(--font-inter)", fontSize: 15, color: 'rgba(255, 255, 255, 0.88)', marginBottom: 15 }}>
               Inscrivez-vous pour recevoir nos dernières actualités et offres.
             </p>
             <div style={{
@@ -273,15 +273,15 @@ export default function Footer() {
         }}>
           {/* Policy Links */}
           <div style={{ display: 'flex', gap: 18, flexWrap: 'wrap' }}>
-            <Link href="/legal/mentions-legales" style={{ fontFamily: "var(--font-inter)", fontSize: 12, color: 'rgba(255, 255, 255, 0.4)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.color = brandGreen} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255, 255, 255, 0.4)'}>MENTIONS LÉGALES</Link>
-            <Link href="/legal/conditions-generales-utilisation" style={{ fontFamily: "var(--font-inter)", fontSize: 12, color: 'rgba(255, 255, 255, 0.4)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.color = brandGreen} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255, 255, 255, 0.4)'}>CONDITIONS GÉNÉRALES D'UTILISATION</Link>
-            <Link href="/legal/conditions-generales-vente" style={{ fontFamily: "var(--font-inter)", fontSize: 12, color: 'rgba(255, 255, 255, 0.4)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.color = brandGreen} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255, 255, 255, 0.4)'}>CONDITIONS GÉNÉRALES DE VENTE</Link>
-            <Link href="/legal/conditions-generales-entretien" style={{ fontFamily: "var(--font-inter)", fontSize: 12, color: 'rgba(255, 255, 255, 0.4)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.color = brandGreen} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255, 255, 255, 0.4)'}>CONDITIONS GÉNÉRALES D'ENTRETIEN</Link>
-            <Link href="/legal/politique-confidentialite-cookies" style={{ fontFamily: "var(--font-inter)", fontSize: 12, color: 'rgba(255, 255, 255, 0.4)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.color = brandGreen} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255, 255, 255, 0.4)'}>POLITIQUE DE CONFIDENTIALITÉ & COOKIES</Link>
+            <Link href="/legal/mentions-legales" style={{ fontFamily: "var(--font-inter)", fontSize: 12, color: 'rgba(255, 255, 255, 0.65)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.color = '#000'} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255, 255, 255, 0.65)'}>MENTIONS LÉGALES</Link>
+            <Link href="/legal/conditions-generales-utilisation" style={{ fontFamily: "var(--font-inter)", fontSize: 12, color: 'rgba(255, 255, 255, 0.65)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.color = '#000'} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255, 255, 255, 0.65)'}>CONDITIONS GÉNÉRALES D'UTILISATION</Link>
+            <Link href="/legal/conditions-generales-vente" style={{ fontFamily: "var(--font-inter)", fontSize: 12, color: 'rgba(255, 255, 255, 0.65)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.color = '#000'} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255, 255, 255, 0.65)'}>CONDITIONS GÉNÉRALES DE VENTE</Link>
+            <Link href="/legal/conditions-generales-entretien" style={{ fontFamily: "var(--font-inter)", fontSize: 12, color: 'rgba(255, 255, 255, 0.65)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.color = '#000'} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255, 255, 255, 0.65)'}>CONDITIONS GÉNÉRALES D'ENTRETIEN</Link>
+            <Link href="/legal/politique-confidentialite-cookies" style={{ fontFamily: "var(--font-inter)", fontSize: 12, color: 'rgba(255, 255, 255, 0.65)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.color = '#000'} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255, 255, 255, 0.65)'}>POLITIQUE DE CONFIDENTIALITÉ & COOKIES</Link>
           </div>
 
           {/* Copyright */}
-          <div style={{ fontFamily: "var(--font-inter)", fontSize: 12, color: 'rgba(255, 255, 255, 0.4)' }}>
+          <div style={{ fontFamily: "var(--font-inter)", fontSize: 12, color: 'rgba(255, 255, 255, 0.65)' }}>
             &copy; 2026 Zen Énergie Services Suisse. Tous droits réservés.
           </div>
 

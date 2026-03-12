@@ -160,7 +160,7 @@ export default function BoilerThermodynamiquePage() {
                   </div>
                   <button type="submit" style={{
                     width: '100%', padding: '14px',
-                    borderRadius: 8, background: 'linear-gradient(135deg, #0a1e1a 0%, #0d2e28 60%, #0f3a30 100%)', border: 'none',
+                    borderRadius: 8, background: 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)', border: 'none',
                     fontSize: 15, fontWeight: 700,
                     fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
                     color: '#fff', cursor: 'pointer',
@@ -168,7 +168,7 @@ export default function BoilerThermodynamiquePage() {
                     marginTop: 4,
                   }}
                     onMouseEnter={(e) => { e.currentTarget.style.background = '#50B5A2'; e.currentTarget.style.color = '#000' }}
-                    onMouseLeave={(e) => { e.currentTarget.style.background = 'linear-gradient(135deg, #0a1e1a 0%, #0d2e28 60%, #0f3a30 100%)'; e.currentTarget.style.color = '#fff' }}
+                    onMouseLeave={(e) => { e.currentTarget.style.background = 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)'; e.currentTarget.style.color = '#fff' }}
                   >
                     Envoyer un message
                   </button>
