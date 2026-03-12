@@ -160,7 +160,7 @@ export default function PompeAChaleurPage() {
                   </div>
                   <button type="submit" style={{
                     width: '100%', padding: '14px',
-                    borderRadius: 8, background: 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)', border: 'none',
+                    borderRadius: 8, background: 'linear-gradient(135deg, #8B3A1A 0%, #C94010 100%)', border: 'none',
                     fontSize: 15, fontWeight: 700,
                     fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
                     color: '#fff', cursor: 'pointer',
@@ -168,7 +168,7 @@ export default function PompeAChaleurPage() {
                     marginTop: 4,
                   }}
                     onMouseEnter={(e) => { e.currentTarget.style.background = '#50B5A2'; e.currentTarget.style.color = '#000' }}
-                    onMouseLeave={(e) => { e.currentTarget.style.background = 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)'; e.currentTarget.style.color = '#fff' }}
+                    onMouseLeave={(e) => { e.currentTarget.style.background = 'linear-gradient(135deg, #8B3A1A 0%, #C94010 100%)'; e.currentTarget.style.color = '#fff' }}
                   >
                     Envoyer un message
                   </button>
@@ -177,17 +177,17 @@ export default function PompeAChaleurPage() {
 
               {/* CTA promo card */}
               <div style={{
-                background: '#2c6262', borderRadius: 20, padding: '28px 24px',
+                background: 'linear-gradient(135deg, #8B3A1A 0%, #C94010 100%)', borderRadius: 20, padding: '28px 24px',
                 position: 'relative', overflow: 'hidden',
               }}>
                 <div style={{
                   position: 'absolute', top: -60, right: -60, width: 180, height: 180,
                   borderRadius: '50%',
-                  background: 'radial-gradient(circle, rgba(80,181,162,0.2) 0%, transparent 70%)',
+                  background: 'radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%)',
                   pointerEvents: 'none',
                 }} />
                 <div style={{
-                  width: 40, height: 40, borderRadius: 10, background: '#E8552C',
+                  width: 40, height: 40, borderRadius: 10, background: '#fff',
                   display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 16,
                 }}>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
@@ -202,20 +202,20 @@ export default function PompeAChaleurPage() {
                 </h4>
                 <p style={{
                   fontFamily: "var(--font-jost), 'Jost', sans-serif",
-                  fontSize: 14, color: 'rgba(255,255,255,0.55)', lineHeight: '22px', marginBottom: 20,
+                  fontSize: 14, color: 'rgba(255,255,255,0.75)', lineHeight: '22px', marginBottom: 20,
                 }}>
                   Des techniciens qualifiés interviennent dans toute la Suisse romande pour l'entretien de vos installations.
                 </p>
                 <Link href="https://form.typeform.com/to/rRhOu7eb" target="_blank" style={{
                   display: 'inline-flex', alignItems: 'center', gap: 10,
-                  background: '#E8552C', color: '#000',
+                  background: '#fff', color: '#000',
                   borderRadius: 8, padding: '10px 20px',
                   fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
                   fontSize: 14, fontWeight: 600, textDecoration: 'none',
                   transition: 'background 0.18s ease',
                 }}
-                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = '#c94010' }}
-                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = '#E8552C' }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = '#e0f5f3' }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = '#fff' }}
                 >
                   Demander une offre →
                 </Link>
@@ -295,95 +295,117 @@ export default function PompeAChaleurPage() {
                       features: ['Compte client online', 'Entretien annuel', "Dépannage, main d'œuvre et déplacement"],
                       price: '600 CHF / an',
                     },
-                  ].map((plan) => (
-                    <div key={plan.num} className="ps-contract-card">
-
-                      {/* ── Orange top ── */}
-                      <div style={{ position: 'relative', padding: '16px 18px 14px', flex: 1,
-                        background: 'linear-gradient(160deg, #c94010 0%, #e8552c 55%, #f07040 100%)',
+                  ].map((plan, idx) => (
+                    <motion.div
+                      key={plan.num}
+                      className="ps-contract-card"
+                      style={{ cursor: 'pointer', height: '100%' }}
+                      whileHover={{ y: -8, transition: { duration: 0.3 } }}
+                      onMouseEnter={(e) => {
+                        const card = e.currentTarget as HTMLElement;
+                        card.style.boxShadow = '0 20px 60px rgba(232, 85, 44, 0.35)';
+                      }}
+                      onMouseLeave={(e) => {
+                        const card = e.currentTarget as HTMLElement;
+                        card.style.boxShadow = '0 8px 24px rgba(232, 85, 44, 0.15)';
+                      }}
+                    >
+                      {/* ── Card wrapper ── */}
+                      <div style={{
+                        display: 'flex', flexDirection: 'column', height: '100%',
+                        borderRadius: 24, overflow: 'hidden',
+                        boxShadow: '0 8px 24px rgba(232, 85, 44, 0.15)',
+                        transition: 'box-shadow 0.3s ease',
                       }}>
-                        {/* Radial glow */}
-                        <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none',
-                          background: 'radial-gradient(ellipse at 50% -10%, rgba(255,255,255,0.18) 0%, transparent 65%)',
-                        }} />
 
-                        {/* Number badge */}
+                        {/* ── Top section with gradient ── */}
                         <div style={{
-                          position: 'absolute', top: 10, left: 10, zIndex: 1,
-                          width: 22, height: 22, borderRadius: '50%',
-                          background: '#1a2744',
-                          border: '1.5px solid rgba(255,255,255,0.3)',
-                          display: 'flex', alignItems: 'center', justifyContent: 'center',
-                          fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
-                          fontSize: 10, fontWeight: 800, color: '#fff',
-                        }}>{plan.num}</div>
-
-                        {/* Icon bubble */}
-                        <div style={{ textAlign: 'center', marginTop: 6, marginBottom: 10, position: 'relative', zIndex: 1 }}>
+                          position: 'relative', padding: '32px 20px 28px', flex: 1,
+                          background: `linear-gradient(135deg, ${idx === 0 ? '#E8552C' : idx === 1 ? '#D44A24' : '#C94010'} 0%, ${idx === 0 ? '#F07040' : idx === 1 ? '#E8552C' : '#E8552C'} 100%)`,
+                        }}>
+                          {/* Corner accent */}
                           <div style={{
-                            width: 54, height: 54, borderRadius: '50%',
-                            background: 'rgba(255,255,255,0.15)',
-                            border: '1.5px solid rgba(255,255,255,0.3)',
-                            display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-                            boxShadow: '0 6px 20px rgba(0,0,0,0.22), inset 0 1px 0 rgba(255,255,255,0.22)',
-                          }}>
-                            <img
-                              src="/Ic%C3%B4nes/CHARTEGRAPHIQUENAOSERVICE-20.webp"
-                              alt=""
-                              style={{ width: 26, height: 26, objectFit: 'contain', filter: 'brightness(0) invert(1)' }}
-                            />
+                            position: 'absolute', top: 0, right: 0, width: 0, height: 0,
+                            borderStyle: 'solid',
+                            borderWidth: '0 120px 120px 0',
+                            borderColor: `transparent rgba(255,255,255,0.08) transparent transparent`,
+                            zIndex: 1,
+                          }} />
+
+                          {/* Number badge - larger and more prominent */}
+                          <div style={{
+                            position: 'absolute', top: 16, left: 20, zIndex: 2,
+                            width: 44, height: 44, borderRadius: '50%',
+                            background: `linear-gradient(135deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.08) 100%)`,
+                            border: '2px solid rgba(255,255,255,0.4)',
+                            display: 'flex', alignItems: 'center', justifyContent: 'center',
+                            fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
+                            fontSize: 18, fontWeight: 800, color: '#fff',
+                            backdropFilter: 'blur(10px)',
+                            boxShadow: 'inset 0 1px 2px rgba(255,255,255,0.3)',
+                          }}>{plan.num}</div>
+
+                          {/* Icon bubble - more prominent */}
+                          <div style={{ textAlign: 'center', marginTop: 14, marginBottom: 16, position: 'relative', zIndex: 2 }}>
+                            <div style={{
+                              width: 64, height: 64, borderRadius: '50%',
+                              background: 'linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.05) 100%)',
+                              border: '2px solid rgba(255,255,255,0.35)',
+                              display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                              boxShadow: '0 8px 24px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.3)',
+                              backdropFilter: 'blur(10px)',
+                            }}>
+                              <img
+                                src="/Ic%C3%B4nes/CHARTEGRAPHIQUENAOSERVICE-20.webp"
+                                alt=""
+                                style={{ width: 32, height: 32, objectFit: 'contain', filter: 'brightness(0) invert(1)' }}
+                              />
+                            </div>
                           </div>
+
+                          {/* Title */}
+                          <div style={{
+                            position: 'relative', zIndex: 2, textAlign: 'center',
+                            fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
+                            fontSize: 16, fontWeight: 800, color: '#fff',
+                            letterSpacing: 1.5, textTransform: 'uppercase', marginBottom: 6,
+                          }}>{plan.title}</div>
+
+                          {/* Subtitle */}
+                          <div style={{
+                            position: 'relative', zIndex: 2, textAlign: 'center',
+                            fontFamily: "var(--font-jost), 'Jost', sans-serif",
+                            fontSize: 13, color: 'rgba(255,255,255,0.88)', marginBottom: 18,
+                            fontWeight: 500,
+                          }}>{plan.subtitle}</div>
+
+                          {/* Divider */}
+                          <div style={{ height: 1.5, background: 'linear-gradient(to right, transparent, rgba(255,255,255,0.25), transparent)', marginBottom: 16, position: 'relative', zIndex: 2 }} />
+
+                          {/* Features */}
+                          <ul style={{ listStyle: 'none', margin: 0, padding: 0, position: 'relative', zIndex: 2, gap: 8, display: 'flex', flexDirection: 'column' }}>
+                            {plan.features.map((f, fi) => (
+                              <li key={fi} style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
+                                <span style={{
+                                  width: 18, height: 18, borderRadius: '50%', flexShrink: 0,
+                                  background: 'rgba(255,255,255,0.28)',
+                                  display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 2,
+                                  border: '1px solid rgba(255,255,255,0.15)',
+                                }}>
+                                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                                    <path d="M1.5 5.5L3.5 7.5L8.5 2.5" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                  </svg>
+                                </span>
+                                <span style={{
+                                  fontFamily: "var(--font-jost), 'Jost', sans-serif",
+                                  fontSize: 13, color: '#fff', lineHeight: '18px', fontWeight: 500,
+                                }}>{f}</span>
+                              </li>
+                            ))}
+                          </ul>
                         </div>
-
-                        {/* Title */}
-                        <div style={{
-                          position: 'relative', zIndex: 1, textAlign: 'center',
-                          fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
-                          fontSize: 14, fontWeight: 800, color: '#fff',
-                          letterSpacing: 1, textTransform: 'uppercase', marginBottom: 3,
-                        }}>{plan.title}</div>
-
-                        {/* Subtitle */}
-                        <div style={{
-                          position: 'relative', zIndex: 1, textAlign: 'center',
-                          fontFamily: "var(--font-jost), 'Jost', sans-serif",
-                          fontSize: 12, color: 'rgba(255,255,255,0.82)', marginBottom: 12,
-                        }}>{plan.subtitle}</div>
-
-                        {/* Divider */}
-                        <div style={{ height: 1, background: 'rgba(255,255,255,0.18)', marginBottom: 10, position: 'relative', zIndex: 1 }} />
-
-                        {/* Features */}
-                        <ul style={{ listStyle: 'none', margin: 0, padding: 0, position: 'relative', zIndex: 1 }}>
-                          {plan.features.map((f, fi) => (
-                            <li key={fi} style={{ display: 'flex', alignItems: 'flex-start', gap: 7, marginBottom: 5 }}>
-                              <span style={{
-                                width: 15, height: 15, borderRadius: '50%', flexShrink: 0,
-                                background: 'rgba(255,255,255,0.22)',
-                                display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 1,
-                              }}>
-                                <svg width="8" height="8" viewBox="0 0 10 10" fill="none">
-                                  <path d="M1.5 5.5L3.5 7.5L8.5 2.5" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-                                </svg>
-                              </span>
-                              <span style={{
-                                fontFamily: "var(--font-jost), 'Jost', sans-serif",
-                                fontSize: 12, color: '#fff', lineHeight: '17px',
-                              }}>{f}</span>
-                            </li>
-                          ))}
-                        </ul>
                       </div>
-
-                      {/* ── Dark pricing bottom ── */}
-                      <div style={{ background: '#1a2744', padding: '14px 18px 16px' }}>
-                        <div style={{
-                          fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
-                          fontSize: 22, fontWeight: 800, color: '#fff', lineHeight: 1.15, letterSpacing: -0.5,
-                        }}>{plan.price}</div>
-                      </div>
-
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
 
@@ -452,6 +474,64 @@ export default function PompeAChaleurPage() {
                     ))}
                   </div>
                 </div>
+
+                {/* CTA button */}
+                <motion.div
+                  variants={reveal} initial="hidden" whileInView="visible"
+                  viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.7, ease: 'easeOut' }}
+                  style={{ marginTop: 24, marginBottom: 48 }}
+                >
+                  <a
+                    href="https://form.typeform.com/to/rRhOu7eb"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: 'inline-flex', alignItems: 'center', gap: 14,
+                      background: 'linear-gradient(135deg, #E8552C 0%, #F07040 100%)', color: '#fff',
+                      borderRadius: 14, padding: '12px 12px 12px 24px',
+                      fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
+                      fontSize: 15, fontWeight: 700, textDecoration: 'none',
+                      transition: 'all 0.2s ease', whiteSpace: 'nowrap',
+                      boxShadow: '0 4px 12px rgba(232, 85, 44, 0.3)',
+                    }}
+                    onMouseEnter={(e) => {
+                      const btn = e.currentTarget as HTMLElement;
+                      btn.style.background = 'linear-gradient(135deg, #F07040 0%, #F59066 100%)';
+                      const arr = btn.querySelector('.card-arr') as HTMLElement | null;
+                      if (arr) {
+                        arr.style.background = '#fff';
+                        arr.style.transform = 'translateX(4px)';
+                        arr.style.boxShadow = '0 8px 16px rgba(255, 255, 255, 0.4)';
+                        const svg = arr.querySelector('svg') as SVGElement | null;
+                        if (svg) svg.style.stroke = '#2c6262';
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      const btn = e.currentTarget as HTMLElement;
+                      btn.style.background = 'linear-gradient(135deg, #E8552C 0%, #F07040 100%)';
+                      const arr = btn.querySelector('.card-arr') as HTMLElement | null;
+                      if (arr) {
+                        arr.style.background = 'linear-gradient(135deg, #2c6262 0%, #1f4545 100%)';
+                        arr.style.transform = 'translateX(0)';
+                        arr.style.boxShadow = '0 4px 8px rgba(44, 98, 98, 0.3)';
+                        const svg = arr.querySelector('svg') as SVGElement | null;
+                        if (svg) svg.style.stroke = '#fff';
+                      }
+                    }}
+                  >
+                    Demander cette offre
+                    <span className="card-arr" style={{
+                      width: 36, height: 36, borderRadius: 12, display: 'flex', alignItems: 'center',
+                      justifyContent: 'center', flexShrink: 0, background: 'linear-gradient(135deg, #2c6262 0%, #1f4545 100%)',
+                      transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                      boxShadow: '0 4px 8px rgba(44, 98, 98, 0.3)',
+                    }}>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ color: '#fff' }}>
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                      </svg>
+                    </span>
+                  </a>
+                </motion.div>
               </motion.div>
 
               {/* Disclaimer card */}
@@ -536,35 +616,6 @@ export default function PompeAChaleurPage() {
                   />
                 </motion.div>
               </div>
-
-              {/* CTA button */}
-              <motion.div
-                variants={reveal} initial="hidden" whileInView="visible"
-                viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.7, ease: 'easeOut' }}
-                style={{ marginBottom: 80 }}
-              >
-                <Link
-                  href="https://form.typeform.com/to/rRhOu7eb"
-                  target="_blank"
-                  style={{
-                    display: 'inline-flex', alignItems: 'center', gap: 12,
-                    background: '#E8552C', color: '#000',
-                    borderRadius: 14, padding: '14px 14px 14px 28px',
-                    fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
-                    fontSize: 16, fontWeight: 600, textDecoration: 'none',
-                    transition: 'background 0.18s ease',
-                  }}
-                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = '#c94010' }}
-                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = '#E8552C' }}
-                >
-                  Souscrire un contrat d'entretien
-                  <span style={{
-                    width: 40, height: 36, borderRadius: 10, background: '#2c6262',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    color: '#fff', fontSize: 18,
-                  }}>→</span>
-                </Link>
-              </motion.div>
 
               {/* FAQ */}
               <motion.div
