@@ -179,17 +179,17 @@ export default function PanneauxSolairesPage() {
 
               {/* CTA promo card */}
               <div style={{
-                background: '#2c6262', borderRadius: 20, padding: '28px 24px',
+                background: 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)', borderRadius: 20, padding: '28px 24px',
                 position: 'relative', overflow: 'hidden',
               }}>
                 <div style={{
                   position: 'absolute', top: -60, right: -60, width: 180, height: 180,
                   borderRadius: '50%',
-                  background: 'radial-gradient(circle, rgba(80,181,162,0.2) 0%, transparent 70%)',
+                  background: 'radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%)',
                   pointerEvents: 'none',
                 }} />
                 <div style={{
-                  width: 40, height: 40, borderRadius: 10, background: '#50B5A2',
+                  width: 40, height: 40, borderRadius: 10, background: '#fff',
                   display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 16,
                 }}>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
@@ -204,20 +204,20 @@ export default function PanneauxSolairesPage() {
                 </h4>
                 <p style={{
                   fontFamily: "var(--font-jost), 'Jost', sans-serif",
-                  fontSize: 14, color: 'rgba(255,255,255,0.55)', lineHeight: '22px', marginBottom: 20,
+                  fontSize: 14, color: 'rgba(255,255,255,0.75)', lineHeight: '22px', marginBottom: 20,
                 }}>
                   Des techniciens qualifiés interviennent dans toute la Suisse romande pour l'entretien de vos installations.
                 </p>
                 <Link href="https://form.typeform.com/to/rRhOu7eb" target="_blank" style={{
                   display: 'inline-flex', alignItems: 'center', gap: 10,
-                  background: '#50B5A2', color: '#000',
+                  background: '#fff', color: '#000',
                   borderRadius: 8, padding: '10px 20px',
                   fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
                   fontSize: 14, fontWeight: 600, textDecoration: 'none',
                   transition: 'background 0.18s ease',
                 }}
-                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = '#3da090' }}
-                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = '#50B5A2' }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = '#e0f5f3' }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = '#fff' }}
                 >
                   Demander une offre →
                 </Link>
@@ -248,7 +248,7 @@ export default function PanneauxSolairesPage() {
                 style={{ borderRadius: 20, overflow: 'hidden', marginBottom: 56 }}
               >
                 <img
-                  src="/Photos HD/Visuels Technique/Nettoyage - PV/cleaning-solar-panel-with-microfiber-mop-wet-roof-solar-panel-photovoltaic-module-maintenance.webp"
+                  src="/Photos%20HD/Photos%20produits/Panneaux%20solaires/man-worker-firld-by-solar-panels.webp"
                   alt="Entretien panneaux solaires"
                   style={{ width: '100%', height: 420, objectFit: 'cover', display: 'block' }}
                 />
@@ -310,138 +310,146 @@ export default function PanneauxSolairesPage() {
                         { label: '> 12 kWc', sub: '+ de 30 panneaux', price: '750 CHF / an' },
                       ],
                     },
-                  ].map((plan) => (
-                    <div key={plan.num} className="ps-contract-card">
-
-                      {/* ── Teal gradient top ── */}
-                      <div style={{ position: 'relative', padding: '16px 18px 14px', flex: 1,
-                        background: 'linear-gradient(160deg, #0d7570 0%, #2a9b96 55%, #3dbfaf 100%)',
+                  ].map((plan, idx) => (
+                    <motion.div
+                      key={plan.num}
+                      className="ps-contract-card"
+                      style={{ cursor: 'pointer', height: '100%' }}
+                      whileHover={{ y: -8, transition: { duration: 0.3 } }}
+                      onMouseEnter={(e) => {
+                        const card = e.currentTarget as HTMLElement;
+                        card.style.boxShadow = '0 20px 60px rgba(42, 155, 150, 0.35)';
+                      }}
+                      onMouseLeave={(e) => {
+                        const card = e.currentTarget as HTMLElement;
+                        card.style.boxShadow = '0 8px 24px rgba(42, 155, 150, 0.15)';
+                      }}
+                    >
+                      {/* ── Card wrapper ── */}
+                      <div style={{
+                        display: 'flex', flexDirection: 'column', height: '100%',
+                        borderRadius: 24, overflow: 'hidden',
+                        boxShadow: '0 8px 24px rgba(42, 155, 150, 0.15)',
+                        transition: 'box-shadow 0.3s ease',
                       }}>
-                        {/* Radial glow */}
-                        <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none',
-                          background: 'radial-gradient(ellipse at 50% -10%, rgba(255,255,255,0.18) 0%, transparent 65%)',
-                        }} />
 
-                        {/* Number badge */}
+                        {/* ── Top section with gradient ── */}
                         <div style={{
-                          position: 'absolute', top: 10, left: 10, zIndex: 1,
-                          width: 22, height: 22, borderRadius: '50%',
-                          background: 'rgba(0,0,0,0.28)',
-                          border: '1.5px solid rgba(255,255,255,0.3)',
-                          display: 'flex', alignItems: 'center', justifyContent: 'center',
-                          fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
-                          fontSize: 10, fontWeight: 800, color: '#fff',
-                        }}>{plan.num}</div>
-
-                        {/* Icon bubble */}
-                        <div style={{ textAlign: 'center', marginTop: 6, marginBottom: 10, position: 'relative', zIndex: 1 }}>
+                          position: 'relative', padding: '32px 20px 28px', flex: 1,
+                          background: `linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)`,
+                        }}>
+                          {/* Corner accent */}
                           <div style={{
-                            width: 54, height: 54, borderRadius: '50%',
-                            background: 'rgba(255,255,255,0.15)',
-                            border: '1.5px solid rgba(255,255,255,0.3)',
-                            display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-                            boxShadow: '0 6px 20px rgba(0,0,0,0.22), inset 0 1px 0 rgba(255,255,255,0.22)',
-                          }}>
-                            <svg width="54" height="54" viewBox="0 0 54 54" style={{ position: 'absolute' }} fill="none">
-                              {[0,45,90,135,180,225,270,315].map((deg, i) => (
-                                <line key={i}
-                                  x1={27 + Math.cos(deg * Math.PI / 180) * 21}
-                                  y1={27 + Math.sin(deg * Math.PI / 180) * 21}
-                                  x2={27 + Math.cos(deg * Math.PI / 180) * 26}
-                                  y2={27 + Math.sin(deg * Math.PI / 180) * 26}
-                                  stroke="rgba(255,255,255,0.2)" strokeWidth="1.5" strokeLinecap="round"
-                                />
-                              ))}
-                            </svg>
-                            <img
-                              src="/Ic%C3%B4nes/CHARTEGRAPHIQUENAOSERVICE-18.webp"
-                              alt=""
-                              style={{ width: 26, height: 26, objectFit: 'contain', filter: 'brightness(0) invert(1)', position: 'relative', zIndex: 1 }}
-                            />
-                          </div>
-                        </div>
+                            position: 'absolute', top: 0, right: 0, width: 0, height: 0,
+                            borderStyle: 'solid',
+                            borderWidth: '0 120px 120px 0',
+                            borderColor: `transparent rgba(255,255,255,0.08) transparent transparent`,
+                            zIndex: 1,
+                          }} />
 
-                        {/* Title */}
-                        <div style={{
-                          position: 'relative', zIndex: 1, textAlign: 'center',
-                          fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
-                          fontSize: 14, fontWeight: 800, color: '#fff',
-                          letterSpacing: 1, textTransform: 'uppercase', marginBottom: 3,
-                        }}>{plan.title}</div>
+                          {/* Number badge - larger and more prominent */}
+                          <div style={{
+                            position: 'absolute', top: 16, left: 20, zIndex: 2,
+                            width: 44, height: 44, borderRadius: '50%',
+                            background: `linear-gradient(135deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.08) 100%)`,
+                            border: '2px solid rgba(255,255,255,0.4)',
+                            display: 'flex', alignItems: 'center', justifyContent: 'center',
+                            fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
+                            fontSize: 18, fontWeight: 800, color: '#fff',
+                            backdropFilter: 'blur(10px)',
+                            boxShadow: 'inset 0 1px 2px rgba(255,255,255,0.3)',
+                          }}>{plan.num}</div>
 
-                        {/* Subtitle */}
-                        <div style={{
-                          position: 'relative', zIndex: 1, textAlign: 'center',
-                          fontFamily: "var(--font-jost), 'Jost', sans-serif",
-                          fontSize: 12, color: 'rgba(255,255,255,0.82)', marginBottom: 12,
-                        }}>{plan.subtitle}</div>
-
-                        {/* Divider */}
-                        <div style={{ height: 1, background: 'rgba(255,255,255,0.18)', marginBottom: 10, position: 'relative', zIndex: 1 }} />
-
-                        {/* Features */}
-                        <ul style={{ listStyle: 'none', margin: 0, padding: 0, position: 'relative', zIndex: 1 }}>
-                          {plan.features.map((f, fi) => (
-                            <li key={fi} style={{ display: 'flex', alignItems: 'flex-start', gap: 7, marginBottom: 5 }}>
-                              <span style={{
-                                width: 15, height: 15, borderRadius: '50%', flexShrink: 0,
-                                background: 'rgba(255,255,255,0.22)',
-                                display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 1,
-                              }}>
-                                <svg width="8" height="8" viewBox="0 0 10 10" fill="none">
-                                  <path d="M1.5 5.5L3.5 7.5L8.5 2.5" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-                                </svg>
-                              </span>
-                              <span style={{
-                                fontFamily: "var(--font-jost), 'Jost', sans-serif",
-                                fontSize: 12, color: '#fff', lineHeight: '17px',
-                              }}>{f}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      {/* ── Dark pricing bottom ── */}
-                      <div style={{ background: '#2c6262', padding: '14px 18px 16px' }}>
-                        {plan.prices.map((p, pi) => (
-                          <div key={pi} style={{
-                            paddingBottom: pi < plan.prices.length - 1 ? 8 : 0,
-                            marginBottom: pi < plan.prices.length - 1 ? 8 : 0,
-                            borderBottom: pi < plan.prices.length - 1 ? '1px solid rgba(255,255,255,0.07)' : 'none',
-                          }}>
+                          {/* Icon bubble - more prominent */}
+                          <div style={{ textAlign: 'center', marginTop: 14, marginBottom: 16, position: 'relative', zIndex: 2 }}>
                             <div style={{
-                              fontFamily: "var(--font-jost), 'Jost', sans-serif",
-                              fontSize: 10, color: 'rgba(255,255,255,0.45)', fontStyle: 'italic', marginBottom: 1,
+                              width: 64, height: 64, borderRadius: '50%',
+                              background: 'linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.05) 100%)',
+                              border: '2px solid rgba(255,255,255,0.35)',
+                              display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                              boxShadow: '0 8px 24px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.3)',
+                              backdropFilter: 'blur(10px)',
                             }}>
-                              {p.label} <span>({p.sub})</span>
+                              <svg width="54" height="54" viewBox="0 0 54 54" style={{ position: 'absolute' }} fill="none">
+                                {[0,45,90,135,180,225,270,315].map((deg, i) => (
+                                  <line key={i}
+                                    x1={27 + Math.cos(deg * Math.PI / 180) * 21}
+                                    y1={27 + Math.sin(deg * Math.PI / 180) * 21}
+                                    x2={27 + Math.cos(deg * Math.PI / 180) * 26}
+                                    y2={27 + Math.sin(deg * Math.PI / 180) * 26}
+                                    stroke="rgba(255,255,255,0.25)" strokeWidth="1.5" strokeLinecap="round"
+                                  />
+                                ))}
+                              </svg>
+                              <img
+                                src="/Ic%C3%B4nes/CHARTEGRAPHIQUENAOSERVICE-18.webp"
+                                alt=""
+                                style={{ width: 32, height: 32, objectFit: 'contain', filter: 'brightness(0) invert(1)', position: 'relative', zIndex: 1 }}
+                              />
                             </div>
-                            <div style={{
-                              fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
-                              fontSize: 18, fontWeight: 800, color: '#fff', lineHeight: 1.15, letterSpacing: -0.5,
-                            }}>{p.price}</div>
                           </div>
-                        ))}
-                      </div>
 
-                    </div>
+                          {/* Title */}
+                          <div style={{
+                            position: 'relative', zIndex: 2, textAlign: 'center',
+                            fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
+                            fontSize: 16, fontWeight: 800, color: '#fff',
+                            letterSpacing: 1.5, textTransform: 'uppercase', marginBottom: 6,
+                          }}>{plan.title}</div>
+
+                          {/* Subtitle */}
+                          <div style={{
+                            position: 'relative', zIndex: 2, textAlign: 'center',
+                            fontFamily: "var(--font-jost), 'Jost', sans-serif",
+                            fontSize: 13, color: 'rgba(255,255,255,0.88)', marginBottom: 18,
+                            fontWeight: 500,
+                          }}>{plan.subtitle}</div>
+
+                          {/* Divider */}
+                          <div style={{ height: 1.5, background: 'linear-gradient(to right, transparent, rgba(255,255,255,0.25), transparent)', marginBottom: 16, position: 'relative', zIndex: 2 }} />
+
+                          {/* Features */}
+                          <ul style={{ listStyle: 'none', margin: 0, padding: 0, position: 'relative', zIndex: 2, gap: 8, display: 'flex', flexDirection: 'column' }}>
+                            {plan.features.map((f, fi) => (
+                              <li key={fi} style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
+                                <span style={{
+                                  width: 18, height: 18, borderRadius: '50%', flexShrink: 0,
+                                  background: 'rgba(255,255,255,0.28)',
+                                  display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 2,
+                                  border: '1px solid rgba(255,255,255,0.15)',
+                                }}>
+                                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                                    <path d="M1.5 5.5L3.5 7.5L8.5 2.5" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                  </svg>
+                                </span>
+                                <span style={{
+                                  fontFamily: "var(--font-jost), 'Jost', sans-serif",
+                                  fontSize: 13, color: '#fff', lineHeight: '18px', fontWeight: 500,
+                                }}>{f}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    </motion.div>
                   ))}
                 </div>
 
                 {/* Discount banner */}
                 <div style={{
                   marginTop: 20, borderRadius: 16, overflow: 'hidden',
-                  background: '#2c6262', padding: '20px 28px',
+                  background: 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)', padding: '20px 28px',
                   display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap',
                 }}>
                   <div style={{
                     width: 52, height: 52, borderRadius: '50%',
-                    border: '2px solid #50B5A2',
+                    border: '2px solid #fff',
                     display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
                   }}>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                      <circle cx="8" cy="8" r="2.5" stroke="#50B5A2" strokeWidth="1.8"/>
-                      <circle cx="16" cy="16" r="2.5" stroke="#50B5A2" strokeWidth="1.8"/>
-                      <line x1="5" y1="19" x2="19" y2="5" stroke="#50B5A2" strokeWidth="1.8" strokeLinecap="round"/>
+                      <circle cx="8" cy="8" r="2.5" stroke="#fff" strokeWidth="1.8"/>
+                      <circle cx="16" cy="16" r="2.5" stroke="#fff" strokeWidth="1.8"/>
+                      <line x1="5" y1="19" x2="19" y2="5" stroke="#fff" strokeWidth="1.8" strokeLinecap="round"/>
                     </svg>
                   </div>
                   <div style={{ flex: 1 }}>
@@ -459,7 +467,7 @@ export default function PanneauxSolairesPage() {
                     </div>
                   </div>
                   <div style={{
-                    background: '#50B5A2', borderRadius: 8, padding: '8px 20px',
+                    background: '#fff', borderRadius: 8, padding: '8px 20px',
                     display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0,
                   }}>
                     <span style={{
@@ -472,6 +480,64 @@ export default function PanneauxSolairesPage() {
                     }}>10 %</span>
                   </div>
                 </div>
+
+                {/* CTA button */}
+                <motion.div
+                  variants={reveal} initial="hidden" whileInView="visible"
+                  viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.7, ease: 'easeOut' }}
+                  style={{ marginTop: 24, marginBottom: 48 }}
+                >
+                  <a
+                    href="https://form.typeform.com/to/rRhOu7eb"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: 'inline-flex', alignItems: 'center', gap: 14,
+                      background: 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)', color: '#fff',
+                      borderRadius: 14, padding: '12px 12px 12px 24px',
+                      fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
+                      fontSize: 15, fontWeight: 700, textDecoration: 'none',
+                      transition: 'all 0.2s ease', whiteSpace: 'nowrap',
+                      boxShadow: '0 4px 12px rgba(42, 155, 150, 0.3)',
+                    }}
+                    onMouseEnter={(e) => {
+                      const btn = e.currentTarget as HTMLElement;
+                      btn.style.background = 'linear-gradient(135deg, #2a9b96 0%, #50b5a2 100%)';
+                      const arr = btn.querySelector('.card-arr') as HTMLElement | null;
+                      if (arr) {
+                        arr.style.background = '#fff';
+                        arr.style.transform = 'translateX(4px)';
+                        arr.style.boxShadow = '0 8px 16px rgba(255, 255, 255, 0.4)';
+                        const svg = arr.querySelector('svg') as SVGElement | null;
+                        if (svg) svg.style.stroke = '#2c6262';
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      const btn = e.currentTarget as HTMLElement;
+                      btn.style.background = 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)';
+                      const arr = btn.querySelector('.card-arr') as HTMLElement | null;
+                      if (arr) {
+                        arr.style.background = 'linear-gradient(135deg, #2c6262 0%, #1f4545 100%)';
+                        arr.style.transform = 'translateX(0)';
+                        arr.style.boxShadow = '0 4px 8px rgba(44, 98, 98, 0.3)';
+                        const svg = arr.querySelector('svg') as SVGElement | null;
+                        if (svg) svg.style.stroke = '#fff';
+                      }
+                    }}
+                  >
+                    Demander cette offre
+                    <span className="card-arr" style={{
+                      width: 36, height: 36, borderRadius: 12, display: 'flex', alignItems: 'center',
+                      justifyContent: 'center', flexShrink: 0, background: 'linear-gradient(135deg, #2c6262 0%, #1f4545 100%)',
+                      transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                      boxShadow: '0 4px 8px rgba(44, 98, 98, 0.3)',
+                    }}>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ color: '#fff' }}>
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                      </svg>
+                    </span>
+                  </a>
+                </motion.div>
               </motion.div>
 
               {/* Disclaimer card */}
@@ -558,7 +624,7 @@ export default function PanneauxSolairesPage() {
                     <div style={{ position: 'relative', zIndex: 1 }}>
                       <div style={{
                         fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
-                        fontSize: 17, fontWeight: 800, color: '#50b5a2', letterSpacing: 0.5,
+                        fontSize: 17, fontWeight: 800, color: '#fff', letterSpacing: 0.5,
                         textTransform: 'uppercase', marginBottom: 10,
                       }}>OFFRE PV CLEAN :</div>
                       <div style={{
@@ -572,25 +638,13 @@ export default function PanneauxSolairesPage() {
 
                   {/* Right: price + features */}
                   <div style={{
-                    background: '#2c6262', borderRadius: 16, padding: '28px 24px',
+                    background: 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)', borderRadius: 16, padding: '28px 24px',
                     display: 'flex', flexDirection: 'column',
                   }}>
-                    {/* Price */}
-                    <div style={{ marginBottom: 20 }}>
-                      <div style={{
-                        fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
-                        fontSize: 34, fontWeight: 800, color: '#fff', lineHeight: 1,
-                      }}>49 CHF / panneau</div>
-                      <div style={{
-                        fontFamily: "var(--font-jost), 'Jost', sans-serif",
-                        fontSize: 13, color: 'rgba(255,255,255,0.65)', marginTop: 4,
-                      }}>(avec min. forfaitaire de 8 PV de 392 CHF)</div>
-                    </div>
-
                     {/* Included */}
                     <div style={{
                       fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
-                      fontSize: 13, fontWeight: 600, color: '#50B5A2', marginBottom: 12, letterSpacing: 0.3,
+                      fontSize: 13, fontWeight: 600, color: '#fff', marginBottom: 12, letterSpacing: 0.3,
                     }}>Ce que contient votre offre PV Clean :</div>
                     <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: 10, flex: 1 }}>
                       {[
@@ -602,7 +656,7 @@ export default function PanneauxSolairesPage() {
                         <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
                           <span style={{
                             width: 20, height: 20, borderRadius: '50%', flexShrink: 0,
-                            background: '#50B5A2', display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 1,
+                            background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 1,
                           }}>
                             <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
                               <path d="M2 6.5L4.5 9L10 3" stroke="#000" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
@@ -691,35 +745,6 @@ export default function PanneauxSolairesPage() {
                 </motion.div>
               </div>
 
-
-              {/* CTA button */}
-              <motion.div
-                variants={reveal} initial="hidden" whileInView="visible"
-                viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.7, ease: 'easeOut' }}
-                style={{ marginBottom: 80 }}
-              >
-                <Link
-                  href="https://form.typeform.com/to/rRhOu7eb"
-                  target="_blank"
-                  style={{
-                    display: 'inline-flex', alignItems: 'center', gap: 12,
-                    background: '#50B5A2', color: '#000',
-                    borderRadius: 14, padding: '14px 14px 14px 28px',
-                    fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
-                    fontSize: 16, fontWeight: 600, textDecoration: 'none',
-                    transition: 'background 0.18s ease',
-                  }}
-                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = '#3da090' }}
-                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = '#50B5A2' }}
-                >
-                  Souscrire un contrat d'entretien
-                  <span style={{
-                    width: 40, height: 36, borderRadius: 10, background: '#2c6262',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    color: '#fff', fontSize: 18,
-                  }}>→</span>
-                </Link>
-              </motion.div>
 
               {/* FAQ */}
               <motion.div

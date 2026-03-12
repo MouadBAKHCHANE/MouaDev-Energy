@@ -177,17 +177,17 @@ export default function PvCleanPage() {
 
               {/* CTA promo card */}
               <div style={{
-                background: '#2c6262', borderRadius: 20, padding: '28px 24px',
+                background: 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)', borderRadius: 20, padding: '28px 24px',
                 position: 'relative', overflow: 'hidden',
               }}>
                 <div style={{
                   position: 'absolute', top: -60, right: -60, width: 180, height: 180,
                   borderRadius: '50%',
-                  background: 'radial-gradient(circle, rgba(80,181,162,0.2) 0%, transparent 70%)',
+                  background: 'radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%)',
                   pointerEvents: 'none',
                 }} />
                 <div style={{
-                  width: 40, height: 40, borderRadius: 10, background: '#50B5A2',
+                  width: 40, height: 40, borderRadius: 10, background: '#fff',
                   display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 16,
                 }}>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
@@ -202,20 +202,20 @@ export default function PvCleanPage() {
                 </h4>
                 <p style={{
                   fontFamily: "var(--font-jost), 'Jost', sans-serif",
-                  fontSize: 14, color: 'rgba(255,255,255,0.55)', lineHeight: '22px', marginBottom: 20,
+                  fontSize: 14, color: 'rgba(255,255,255,0.75)', lineHeight: '22px', marginBottom: 20,
                 }}>
                   Des techniciens qualifiés interviennent dans toute la Suisse romande pour le nettoyage de vos panneaux.
                 </p>
                 <Link href="https://form.typeform.com/to/rRhOu7eb" target="_blank" style={{
                   display: 'inline-flex', alignItems: 'center', gap: 10,
-                  background: '#50B5A2', color: '#000',
+                  background: '#fff', color: '#000',
                   borderRadius: 8, padding: '10px 20px',
                   fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
                   fontSize: 14, fontWeight: 600, textDecoration: 'none',
                   transition: 'background 0.18s ease',
                 }}
-                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = '#3da090' }}
-                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = '#50B5A2' }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = '#e0f5f3' }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = '#fff' }}
                 >
                   Demander une offre →
                 </Link>
@@ -245,7 +245,7 @@ export default function PvCleanPage() {
                 style={{ borderRadius: 20, overflow: 'hidden', marginBottom: 56 }}
               >
                 <img
-                  src="/Photos%20HD/Visuels%20Technique/Nettoyage%20-%20PV/cleaning-solar-panel-with-microfiber-mop-wet-roof-solar-panel-photovoltaic-module-maintenance.webp"
+                  src="/Photos%20HD/Photos%20produits/Panneaux%20solaires/man-worker-firld-by-solar-panels.webp"
                   alt="Nettoyage panneaux solaires PV Clean"
                   style={{ width: '100%', height: 420, objectFit: 'cover', display: 'block' }}
                 />
@@ -301,7 +301,7 @@ export default function PvCleanPage() {
                     <div style={{ position: 'relative', zIndex: 1 }}>
                       <div style={{
                         fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
-                        fontSize: 17, fontWeight: 800, color: '#50b5a2', letterSpacing: 0.5,
+                        fontSize: 17, fontWeight: 800, color: '#fff', letterSpacing: 0.5,
                         textTransform: 'uppercase', marginBottom: 10,
                       }}>OFFRE PV CLEAN :</div>
                       <div style={{
@@ -315,23 +315,12 @@ export default function PvCleanPage() {
 
                   {/* Right: price + features */}
                   <div style={{
-                    background: '#2c6262', borderRadius: 16, padding: '28px 24px',
+                    background: 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)', borderRadius: 16, padding: '28px 24px',
                     display: 'flex', flexDirection: 'column',
                   }}>
-                    <div style={{ marginBottom: 20 }}>
-                      <div style={{
-                        fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
-                        fontSize: 34, fontWeight: 800, color: '#fff', lineHeight: 1,
-                      }}>49 CHF / panneau</div>
-                      <div style={{
-                        fontFamily: "var(--font-jost), 'Jost', sans-serif",
-                        fontSize: 13, color: 'rgba(255,255,255,0.65)', marginTop: 4,
-                      }}>(avec min. forfaitaire de 8 PV de 392 CHF)</div>
-                    </div>
-
                     <div style={{
                       fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
-                      fontSize: 13, fontWeight: 600, color: '#50B5A2', marginBottom: 12, letterSpacing: 0.3,
+                      fontSize: 13, fontWeight: 600, color: '#fff', marginBottom: 12, letterSpacing: 0.3,
                     }}>Ce que contient votre offre PV Clean :</div>
                     <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: 10, flex: 1 }}>
                       {[
@@ -343,7 +332,7 @@ export default function PvCleanPage() {
                         <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
                           <span style={{
                             width: 20, height: 20, borderRadius: '50%', flexShrink: 0,
-                            background: '#50B5A2', display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 1,
+                            background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 1,
                           }}>
                             <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
                               <path d="M2 6.5L4.5 9L10 3" stroke="#000" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
@@ -364,6 +353,63 @@ export default function PvCleanPage() {
                     </p>
                   </div>
                 </div>
+              </motion.div>
+
+              {/* CTA button */}
+              <motion.div
+                variants={reveal} initial="hidden" whileInView="visible"
+                viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.7, ease: 'easeOut' }}
+                style={{ marginBottom: 48 }}
+              >
+                <Link
+                  href="https://form.typeform.com/to/rRhOu7eb"
+                  target="_blank"
+                  style={{
+                    display: 'inline-flex', alignItems: 'center', gap: 14,
+                    background: 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)', color: '#fff',
+                    borderRadius: 14, padding: '12px 12px 12px 24px',
+                    fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
+                    fontSize: 15, fontWeight: 700, textDecoration: 'none',
+                    transition: 'all 0.2s ease', whiteSpace: 'nowrap',
+                    boxShadow: '0 4px 12px rgba(42, 155, 150, 0.3)',
+                  }}
+                  onMouseEnter={(e) => {
+                    const btn = e.currentTarget as HTMLElement;
+                    btn.style.background = 'linear-gradient(135deg, #2a9b96 0%, #50b5a2 100%)';
+                    const arr = btn.querySelector('.card-arr') as HTMLElement | null;
+                    if (arr) {
+                      arr.style.background = '#fff';
+                      arr.style.transform = 'translateX(4px)';
+                      arr.style.boxShadow = '0 8px 16px rgba(255, 255, 255, 0.4)';
+                      const svg = arr.querySelector('svg') as SVGElement | null;
+                      if (svg) svg.style.stroke = '#2c6262';
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    const btn = e.currentTarget as HTMLElement;
+                    btn.style.background = 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)';
+                    const arr = btn.querySelector('.card-arr') as HTMLElement | null;
+                    if (arr) {
+                      arr.style.background = 'linear-gradient(135deg, #2c6262 0%, #1f4545 100%)';
+                      arr.style.transform = 'translateX(0)';
+                      arr.style.boxShadow = '0 4px 8px rgba(44, 98, 98, 0.3)';
+                      const svg = arr.querySelector('svg') as SVGElement | null;
+                      if (svg) svg.style.stroke = '#fff';
+                    }
+                  }}
+                >
+                  Demander un nettoyage PV Clean
+                  <span className="card-arr" style={{
+                    width: 36, height: 36, borderRadius: 12, display: 'flex', alignItems: 'center',
+                    justifyContent: 'center', flexShrink: 0, background: 'linear-gradient(135deg, #2c6262 0%, #1f4545 100%)',
+                    transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                    boxShadow: '0 4px 8px rgba(44, 98, 98, 0.3)',
+                  }}>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ color: '#fff' }}>
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                  </span>
+                </Link>
               </motion.div>
 
               {/* Why clean section */}
@@ -431,35 +477,6 @@ export default function PvCleanPage() {
                   />
                 </motion.div>
               </div>
-
-              {/* CTA button */}
-              <motion.div
-                variants={reveal} initial="hidden" whileInView="visible"
-                viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.7, ease: 'easeOut' }}
-                style={{ marginBottom: 80 }}
-              >
-                <Link
-                  href="https://form.typeform.com/to/rRhOu7eb"
-                  target="_blank"
-                  style={{
-                    display: 'inline-flex', alignItems: 'center', gap: 12,
-                    background: '#50B5A2', color: '#000',
-                    borderRadius: 14, padding: '14px 14px 14px 28px',
-                    fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
-                    fontSize: 16, fontWeight: 600, textDecoration: 'none',
-                    transition: 'background 0.18s ease',
-                  }}
-                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = '#3da090' }}
-                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = '#50B5A2' }}
-                >
-                  Demander un nettoyage PV Clean
-                  <span style={{
-                    width: 40, height: 36, borderRadius: 10, background: '#2c6262',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    color: '#fff', fontSize: 18,
-                  }}>→</span>
-                </Link>
-              </motion.div>
 
               {/* FAQ */}
               <motion.div
