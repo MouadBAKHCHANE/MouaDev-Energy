@@ -97,6 +97,7 @@ export default function BlogsPage() {
         crumbs={[{ label: 'Accueil', href: '/' }, { label: 'Actualités' }]}
         title="Actualités"
         bgImage="/Photos%20HD/Paysages%20suisses/AdobeStock_277430203.webp"
+        compact={true}
       />
 
       {/* ── Article Grid ── */}

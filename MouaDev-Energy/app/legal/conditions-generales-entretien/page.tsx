@@ -67,8 +67,9 @@ export default function CGEPage() {
     return (
         <main>
             <PageHero
-                crumbs={[{ label: 'Accueil', href: '/' }, { label: 'CGE' }]}
+                crumbs={[{ label: 'Accueil', href: '/' }, { label: "Conditions Générales d'Entretien" }]}
                 title="CONDITIONS GÉNÉRALES D'ENTRETIEN"
+                compact={true}
             />
 
             <section style={{ background: '#fff', padding: '100px 20px' }}>

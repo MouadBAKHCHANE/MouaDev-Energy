@@ -164,6 +164,7 @@ export default function ServicesPage() {
         crumbs={[{ label: 'Accueil', href: '/' }, { label: 'Nos Services' }]}
         title="Nos solutions d'entretien"
         bgImage="/Photos%20HD/Photos%20d_ambiance/happy-family-background-house-with-solar-panels-roof-selective-focus.webp"
+        compact={true}
       />
 
       {/* ── Services Card Grid ──────────────────────────────────────────── */}
@@ -219,42 +220,67 @@ export default function ServicesPage() {
                 {/* Image area */}
                 <div className="svc-card-img-wrap">
                   <img className="svc-card-img" src={card.img} alt={card.title} loading="lazy" decoding="async" />
-                  {/* Teal hover overlay */}
                   <div className="svc-card-overlay" />
-                  {/* Brand icon - no background, white */}
-                  <div style={{ position: 'absolute', bottom: 20, left: 24, zIndex: 2 }}>
-                    <img
-                      src={card.icon} alt=""
+                  
+                  {/* Glassmorphism Title Card inside Image */}
+                  <div style={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    zIndex: 2,
+                    width: '85%',
+                  }}>
+                    <div style={{
+                      background: 'rgba(255, 255, 255, 0.45)',
+                      backdropFilter: 'blur(24px)',
+                      WebkitBackdropFilter: 'blur(24px)',
+                      padding: '24px 20px',
+                      borderRadius: '24px',
+                      textAlign: 'center',
+                      border: '1px solid rgba(255, 255, 255, 0.5)',
+                      boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
+                    }}>
+                      <h3 style={{
+                        fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
+                        fontSize: '22px',
+                        fontWeight: 600,
+                        color: '#000',
+                        margin: 0,
+                        letterSpacing: '-0.5px'
+                      }}>
+                        {card.title}
+                      </h3>
+                    </div>
+                  </div>
+
+                  {/* Icon badge - white icon */}
+                  <div className="svc-card-badge">
+                    <img 
+                      src={card.icon} 
+                      alt="" 
                       style={{ 
-                        width: 48, height: 48, objectFit: 'contain', 
-                        filter: 'brightness(0) invert(1)' 
-                      }}
+                        width: 32, height: 32, objectFit: 'contain',
+                        filter: 'brightness(0) invert(1)'
+                      }} 
                     />
                   </div>
-                  {/* Top-right arrow — appears on hover */}
                   <div className="svc-card-top-arrow">
                     <ArrowUpRight size={24} color="#fff" strokeWidth={2.5} />
                   </div>
                 </div>
 
                 {/* Text content */}
-                <div style={{ padding: '28px 28px 32px' }}>
-                  <h3 style={{
-                    fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
-                    fontSize: 22, fontWeight: 600, color: '#000',
-                    marginBottom: 12, lineHeight: 1.25,
-                  }}>
-                    {card.title}
-                  </h3>
-                  <p style={{
+                <div style={{ padding: '28px 28px 32px', flex: 1, display: 'flex', flexDirection: 'column' }}>
+                  <p className="svc-card-desc" style={{
                     fontFamily: "var(--font-inter), 'Inter', sans-serif",
                     fontSize: 15, lineHeight: '24px', color: '#666',
                     marginBottom: 20,
+                    transition: 'color 0.3s ease'
                   }}>
                     {card.desc}
                   </p>
-                  {/* "En savoir plus" slides in from left on hover, pushing → right */}
-                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', marginTop: 'auto' }}>
                     <span className="svc-card-read-more">En savoir plus</span>
                     <span className="svc-card-arrow">→</span>
                   </div>
@@ -752,6 +778,43 @@ export default function ServicesPage() {
           transition: all 0.4s cubic-bezier(0.165,0.84,0.44,1);
           z-index: 5;
         }
+          
+        /* ── Icon badge ── */
+        .svc-card-badge {
+          position: absolute;
+          bottom: 20px;
+          left: 20px;
+          width: 60px;
+          height: 60px;
+          border-radius: 16px;
+          background: #2a9b96;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 6px 20px rgba(42,155,150,0.4);
+          transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+          z-index: 5;
+        }
+
+        /* ── Top-right arrow bubble ── */
+        .svc-card-top-arrow {
+          position: absolute;
+          top: 20px;
+          right: 20px;
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          background: #50b5a2;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+          opacity: 0;
+          transform: translate(-10px, 10px) scale(0.8);
+          transition: all 0.4s cubic-bezier(0.165,0.84,0.44,1);
+          z-index: 5;
+        }
+
 
         /* ── "En savoir plus" text ── */
         .svc-card-read-more {
@@ -780,15 +843,24 @@ export default function ServicesPage() {
         .svc-card:hover {
           box-shadow: 0 20px 60px rgba(0,0,0,0.13);
           transform: translateY(-8px);
-          background: linear-gradient(145deg, #ffffff 0%, #e8f3f2 100%);
-          border-color: #50b5a2;
+          background: #2a9b96;
+          border-color: #2a9b96;
+        }
+        .svc-card:hover .svc-card-desc {
+          color: rgba(255, 255, 255, 0.9) !important;
+        }
+        .svc-card:hover .svc-card-read-more,
+        .svc-card:hover .svc-card-arrow {
+          color: #fff !important;
         }
         .svc-card:hover .svc-card-img { transform: scale(1.06); }
         .svc-card:hover .svc-card-overlay { opacity: 1; }
         .svc-card:hover .svc-card-badge {
+          background: #fff;
           transform: scale(1.08);
           box-shadow: 0 10px 30px rgba(42,155,150,0.55);
         }
+
         .svc-card:hover .svc-card-top-arrow {
           opacity: 1;
           transform: translate(0,0) scale(1);

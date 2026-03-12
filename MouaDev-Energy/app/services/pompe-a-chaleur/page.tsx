@@ -58,6 +58,7 @@ export default function PompeAChaleurPage() {
         ]}
         title="Pompe à Chaleur"
         bgImage="/Photos%20HD/Visuels%20Technique/Technique%20-%20PAC/Pompes%20a%CC%80%20chaleur%20avantages%20et%20inconve%CC%81nients.webp"
+        compact={true}
       />
 
       {/* ── Main layout: sticky left + scrolling right ── */}
@@ -225,30 +226,47 @@ export default function PompeAChaleurPage() {
             {/* ── RIGHT CONTENT (scrolls) ── */}
             <div className="ps-content">
 
-              {/* Intro headline */}
-              <motion.h2
-                variants={reveal} initial="hidden" whileInView="visible"
-                viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.7, ease: 'easeOut' }}
-                style={{
-                  fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
-                  fontSize: 'clamp(28px, 3.5vw, 42px)', fontWeight: 600, letterSpacing: -1.5,
-                  color: '#000', lineHeight: 1.2, marginBottom: 20,
-                }}
-              >
-                Profitez d'un confort thermique optimal grâce à l'entretien régulier de votre pompe à chaleur
-              </motion.h2>
-
-              {/* Main image */}
+              {/* Intro headline & Main image */}
               <motion.div
                 variants={reveal} initial="hidden" whileInView="visible"
                 viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.7, ease: 'easeOut' }}
-                style={{ borderRadius: 20, overflow: 'hidden', marginBottom: 56 }}
+                style={{ borderRadius: 20, overflow: 'hidden', marginBottom: 56, position: 'relative' }}
               >
                 <img
                   src="/Photos%20HD/Visuels%20Technique/Technique%20-%20PAC/heat-pump-airwater-technology-home.webp"
                   alt="Entretien pompe à chaleur"
                   style={{ width: '100%', height: 420, objectFit: 'cover', display: 'block' }}
                 />
+                
+                {/* Overlay Text Card */}
+                <div style={{
+                  position: 'absolute',
+                  bottom: '24px',
+                  left: '24px',
+                  right: '24px',
+                  maxWidth: '700px',
+                  background: 'rgba(255, 255, 255, 0.45)',
+                  backdropFilter: 'blur(24px)',
+                  WebkitBackdropFilter: 'blur(24px)',
+                  border: '1px solid rgba(255, 255, 255, 0.5)',
+                  borderRadius: '16px',
+                  padding: '24px 32px',
+                  boxShadow: '0 10px 40px rgba(0, 0, 0, 0.1)',
+                }}>
+                  <h2
+                    style={{
+                      fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
+                      fontSize: 'clamp(20px, 2.5vw, 28px)',
+                      fontWeight: 700,
+                      letterSpacing: -0.5,
+                      color: '#000',
+                      lineHeight: 1.3,
+                      margin: 0,
+                    }}
+                  >
+                    Profitez d'un confort thermique optimal grâce à l'entretien régulier de votre pompe à chaleur
+                  </h2>
+                </div>
               </motion.div>
 
               {/* Pricing section */}

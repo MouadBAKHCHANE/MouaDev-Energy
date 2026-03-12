@@ -60,6 +60,7 @@ export default function PanneauxSolairesPage() {
         ]}
         title="Panneaux Photovoltaïques"
         bgImage="/Photos HD/Photos produits/Panneaux solaires/roof-house-with-solar-panels-roof-natureproduced-energy-sunproduced-energy-ph.webp"
+        compact={true}
       />
 
       {/* ── Main layout: sticky left + scrolling right ── */}
@@ -227,31 +228,47 @@ export default function PanneauxSolairesPage() {
             {/* ── RIGHT CONTENT (scrolls) ── */}
             <div className="ps-content">
 
-              {/* Intro headline */}
-              <motion.h2
-                variants={reveal} initial="hidden" whileInView="visible"
-                viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.7, ease: 'easeOut' }}
-                style={{
-                  fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
-                  fontSize: 'clamp(28px, 3.5vw, 42px)', fontWeight: 600, letterSpacing: -1.5,
-                  color: '#000', lineHeight: 1.2, marginBottom: 20,
-                }}
-              >
-                Maximisez votre production solaire grâce à un entretien régulier de vos panneaux photovoltaïques
-              </motion.h2>
-
-
-              {/* Main image */}
+              {/* Intro headline & Main image */}
               <motion.div
                 variants={reveal} initial="hidden" whileInView="visible"
                 viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.7, ease: 'easeOut' }}
-                style={{ borderRadius: 20, overflow: 'hidden', marginBottom: 56 }}
+                style={{ borderRadius: 20, overflow: 'hidden', marginBottom: 56, position: 'relative' }}
               >
                 <img
                   src="/Photos%20HD/Photos%20produits/Panneaux%20solaires/man-worker-firld-by-solar-panels.webp"
                   alt="Entretien panneaux solaires"
                   style={{ width: '100%', height: 420, objectFit: 'cover', display: 'block' }}
                 />
+                
+                {/* Overlay Text Card */}
+                <div style={{
+                  position: 'absolute',
+                  bottom: '24px',
+                  left: '24px',
+                  right: '24px',
+                  maxWidth: '700px',
+                  background: 'rgba(255, 255, 255, 0.45)',
+                  backdropFilter: 'blur(24px)',
+                  WebkitBackdropFilter: 'blur(24px)',
+                  border: '1px solid rgba(255, 255, 255, 0.5)',
+                  borderRadius: '16px',
+                  padding: '24px 32px',
+                  boxShadow: '0 10px 40px rgba(0, 0, 0, 0.1)',
+                }}>
+                  <h2
+                    style={{
+                      fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
+                      fontSize: 'clamp(20px, 2.5vw, 28px)',
+                      fontWeight: 700,
+                      letterSpacing: -0.5,
+                      color: '#000',
+                      lineHeight: 1.3,
+                      margin: 0,
+                    }}
+                  >
+                    Maximisez votre production solaire grâce à un entretien régulier de vos panneaux photovoltaïques
+                  </h2>
+                </div>
               </motion.div>
 
               {/* Pricing section */}

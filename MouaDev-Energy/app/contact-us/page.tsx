@@ -27,6 +27,7 @@ export default function ContactUsPage() {
         crumbs={[{ label: 'Accueil', href: '/' }, { label: 'Contactez-nous' }]}
         title="Contactez-nous"
         bgImage="/Photos%20HD/Photos%20d_ambiance/iStock%20Image%201484x707.webp"
+        compact={true}
       />
 
       <section className="contact-section" style={{ background: '#fff', padding: '80px 20px' }}>

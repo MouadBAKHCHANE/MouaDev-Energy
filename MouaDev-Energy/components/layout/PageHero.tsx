@@ -14,9 +14,10 @@ interface PageHeroProps {
   crumbs: Crumb[]
   title: string
   bgImage?: string
+  compact?: boolean
 }
 
-export default function PageHero({ crumbs, title, bgImage }: PageHeroProps) {
+export default function PageHero({ crumbs, title, bgImage, compact = false }: PageHeroProps) {
   const sectionRef = useRef<HTMLElement>(null)
 
   const { scrollYProgress } = useScroll({
@@ -27,8 +28,8 @@ export default function PageHero({ crumbs, title, bgImage }: PageHeroProps) {
   // Smooth spring for silky motion
   const smoothProgress = useSpring(scrollYProgress, { stiffness: 60, damping: 20, restDelta: 0.001 })
 
-  const scale = useTransform(smoothProgress, [0, 1], [1, 1.18])
-  const y     = useTransform(smoothProgress, [0, 1], ['0%', '14%'])
+  const scale = useTransform(smoothProgress, [0, 1], [1, 1.06])
+  const y     = useTransform(smoothProgress, [0, 1], ['0%', '5%'])
 
   return (
     <section
@@ -36,11 +37,11 @@ export default function PageHero({ crumbs, title, bgImage }: PageHeroProps) {
       className="page-hero-section"
       style={{
         position: 'relative',
-        minHeight: 'clamp(360px, 50vh, 580px)',
+        minHeight: compact ? 'clamp(240px, 30vh, 380px)' : 'clamp(300px, 40vh, 480px)',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-end',
-        padding: 'clamp(100px, 15vw, 160px) 20px clamp(40px, 6vw, 80px)',
+        padding: compact ? 'clamp(80px, 10vw, 110px) 20px clamp(20px, 4vw, 40px)' : 'clamp(90px, 12vw, 140px) 20px clamp(30px, 5vw, 60px)',
         background: 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)',
         overflow: 'hidden',
       }}
@@ -64,7 +65,7 @@ export default function PageHero({ crumbs, title, bgImage }: PageHeroProps) {
             sizes="100vw"
             placeholder="blur"
             blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAIAAABLbSncAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAAEUlEQVR4nGPQSUrCihiGlgQAZKE8AQyy75wAAAAASUVORK5CYII="
-            style={{ objectFit: 'cover', objectPosition: 'center 35%', opacity: 0.6 }}
+            style={{ objectFit: 'cover', objectPosition: 'center 35%', opacity: 0.75 }}
           />
         </motion.div>
       )}
@@ -74,7 +75,7 @@ export default function PageHero({ crumbs, title, bgImage }: PageHeroProps) {
         style={{
           position: 'absolute',
           inset: 0,
-          background: 'linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.5) 100%)',
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.02) 0%, rgba(0,0,0,0.2) 100%)',
           zIndex: 1,
         }}
       />

@@ -47,8 +47,9 @@ export default function CGVPage() {
     return (
         <main>
             <PageHero
-                crumbs={[{ label: 'Accueil', href: '/' }, { label: 'CGV' }]}
+                crumbs={[{ label: 'Accueil', href: '/' }, { label: 'Conditions Générales de Vente' }]}
                 title="CONDITIONS GÉNÉRALES DE VENTE"
+                compact={true}
             />
 
             <section style={{ background: '#fff', padding: '100px 20px' }}>
