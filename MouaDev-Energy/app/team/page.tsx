@@ -82,6 +82,7 @@ export default function TeamPage() {
         crumbs={[{ label: 'Home', href: '/' }, { label: 'Our team' }]}
         title="Our team"
         bgImage="https://framerusercontent.com/images/XvHWqouzRd8NA25OWGOH1f8UMY.jpg"
+        compact={true}
       />
 
       {/* ── Team Grid ── */}

@@ -32,6 +32,7 @@ export default function BlogPostPage() {
         ]}
         title={blog.title}
         bgImage={blog.coverImg}
+        compact={true}
       />
 
       {/* ── Article ───────────────────────────────────────────────────────── */}

@@ -5,7 +5,8 @@ export default function MentionsLegalesPage() {
         <main>
             <PageHero
                 crumbs={[{ label: 'Accueil', href: '/' }, { label: 'Mentions Légales' }]}
-                title="MENTIONS LÉGALES"
+                title="Mentions Légales"
+                compact={true}
             />
 
             <section style={{ background: '#fff', padding: '100px 20px' }}>

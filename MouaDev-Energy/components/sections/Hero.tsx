@@ -45,7 +45,7 @@ export default function Hero() {
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.85) 100%)',
+            background: 'linear-gradient(rgba(0,0,0,0.02) 40%, rgba(0,0,0,0.65) 100%)',
           }}
         />
       </div>
@@ -191,7 +191,7 @@ export default function Hero() {
                 }}
                 onMouseLeave={(e) => {
                   const arr = e.currentTarget.querySelector('.hero-btn-arr') as HTMLElement;
-                  if (arr) { arr.style.background = '#000'; arr.style.color = '#fff'; }
+                  if (arr) { arr.style.background = '#2c6262'; arr.style.color = '#fff'; }
                   const svg = e.currentTarget.querySelector('.hero-btn-arr svg') as SVGElement;
                   if (svg) svg.querySelectorAll('polyline, path, line').forEach((s) => (s as SVGElement).setAttribute('stroke', '#fff'));
                 }}

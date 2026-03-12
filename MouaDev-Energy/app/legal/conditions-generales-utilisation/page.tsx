@@ -47,8 +47,9 @@ export default function CGUPage() {
     return (
         <main>
             <PageHero
-                crumbs={[{ label: 'Accueil', href: '/' }, { label: 'CGU' }]}
+                crumbs={[{ label: 'Accueil', href: '/' }, { label: "Conditions Générales d'Utilisation" }]}
                 title="CONDITIONS GÉNÉRALES D'UTILISATION"
+                compact={true}
             />
 
             <section style={{ background: '#fff', padding: '100px 20px' }}>

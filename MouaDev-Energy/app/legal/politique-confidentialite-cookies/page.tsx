@@ -57,6 +57,7 @@ export default function PrivacyCookiesPage() {
       <PageHero
         crumbs={[{ label: 'Accueil', href: '/' }, { label: 'Confidentialité & Cookies' }]}
         title="POLITIQUE DE CONFIDENTIALITÉ & COOKIES"
+        compact={true}
       />
 
       <section style={{ background: '#fff', padding: '100px 20px' }}>

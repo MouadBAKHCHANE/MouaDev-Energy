@@ -248,7 +248,7 @@ export default function Header() {
             }}
             onMouseLeave={(e) => {
               const arr = e.currentTarget.querySelector('.cta-arrow') as HTMLElement
-              if (arr) { arr.style.background = '#000'; arr.style.color = '#fff' }
+              if (arr) { arr.style.background = '#2c6262'; arr.style.color = '#fff' }
             }}
           >
             Demander une offre

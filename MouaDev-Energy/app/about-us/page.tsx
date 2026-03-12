@@ -124,6 +124,7 @@ export default function AboutUsPage() {
         crumbs={[{ label: 'Accueil', href: '/' }, { label: 'À propos' }]}
         title="À propos de nous"
         bgImage="/Photos HD/Photos produits/Panneaux solaires/solar-generator-field-outside-small-rural-town.webp"
+        compact={true}
       />
 
       {/* ── 2. Qui sommes-nous ── */}
