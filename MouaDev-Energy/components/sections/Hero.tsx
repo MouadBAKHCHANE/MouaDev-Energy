@@ -318,6 +318,12 @@ export default function Hero() {
           .hero-bottom {
             justify-content: flex-start !important;
           }
+          .hero-ticker-track {
+            animation-duration: 120s !important;
+          }
+        }
+        .hero-ticker-track {
+          animation: ticker 280s linear infinite;
         }
       `}</style>
 
@@ -329,7 +335,7 @@ export default function Hero() {
           opacity: 0.19,
         }}
       >
-        <div style={{ display: 'inline-flex', animation: 'ticker 380s linear infinite' }}>
+        <div className="hero-ticker-track" style={{ display: 'inline-flex' }}>
           {Array(8).fill('Ma maison, Mon confort.        ').map((text, i) => (
             <span
               key={i}
