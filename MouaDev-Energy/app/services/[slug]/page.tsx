@@ -37,60 +37,42 @@ export default function ServiceDetailPage() {
         compact={true}
       />
 
-      {/* ── Intro Section: Headline inside image ─────────────────────────── */}
+      {/* ── Intro Section: Headline below image ─────────────────────────── */}
       <section style={{ padding: '40px 20px 0' }}>
         <div style={{
           maxWidth: 1400,
           margin: '0 auto',
-          position: 'relative',
-          height: '420px',
-          borderRadius: '40px',
-          overflow: 'hidden',
-          boxShadow: '0 20px 50px rgba(0,0,0,0.1)'
         }}>
-          <img
-            src={service.heroImg}
-            alt={service.title}
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-          />
-
-          {/* Floating Glassmorphism Title Card */}
           <div style={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            zIndex: 2,
-            width: 'min(90%, 800px)',
+            height: '420px',
+            borderRadius: '40px',
+            overflow: 'hidden',
+            boxShadow: '0 20px 50px rgba(0,0,0,0.1)',
+            marginBottom: '30px'
           }}>
-            <div style={{
-              background: 'rgba(255, 255, 255, 0.45)', // Fumée blanche translucide
-              backdropFilter: 'blur(24px)',
-              WebkitBackdropFilter: 'blur(24px)',
-              padding: 'clamp(30px, 5vw, 60px) 40px',
-              borderRadius: '40px',
-              textAlign: 'center',
-              border: '1px solid rgba(255, 255, 255, 0.5)', // Bordure fine blanche
-              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
-            }}>
-              <h2 style={{
-                fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
-                fontSize: 'clamp(28px, 4vw, 48px)',
-                fontWeight: 600,
-                color: '#000', // Titre Noir
-                margin: 0,
-                lineHeight: 1.1,
-                letterSpacing: '-1px'
-              }}>
-                {service.title}
-              </h2>
-            </div>
+            <img
+              src={service.heroImg}
+              alt={service.title}
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            />
           </div>
+
+          <h2 style={{
+            fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
+            fontSize: 'clamp(28px, 4vw, 42px)',
+            fontWeight: 700,
+            color: '#000',
+            margin: '0 0 20px',
+            lineHeight: 1.1,
+            letterSpacing: '-1px'
+          }}>
+            {service.title}
+          </h2>
         </div>
       </section>
 
       {/* ── Main Content ─────────────────────────────────────────────────── */}
-      <section style={{ background: '#fff', padding: '100px 20px' }}>
+      <section style={{ background: '#fff', padding: '60px 20px' }}>
         <div
           style={{ maxWidth: 1400, margin: '0 auto' }}
           className="svc-detail-outer"
