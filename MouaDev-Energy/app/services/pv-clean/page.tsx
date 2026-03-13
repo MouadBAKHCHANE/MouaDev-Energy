@@ -226,48 +226,35 @@ export default function PvCleanPage() {
             {/* ── RIGHT CONTENT (scrolls) ── */}
             <div className="ps-content">
 
-              {/* Intro headline & Main image */}
+              {/* Main image */}
               <motion.div
                 variants={reveal} initial="hidden" whileInView="visible"
                 viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.7, ease: 'easeOut' }}
-                style={{ borderRadius: 20, overflow: 'hidden', marginBottom: 40, position: 'relative' }}
+                style={{ borderRadius: 20, overflow: 'hidden', marginBottom: 30 }}
               >
                 <img
                   src="/Photos%20HD/Visuels%20Technique/Nettoyage%20-%20PV/close-up-worker-cleaning-solar-panels-from-dust.webp"
                   alt="Nettoyage panneaux solaires PV Clean"
                   style={{ width: '100%', height: 380, objectFit: 'cover', objectPosition: 'center 40%', display: 'block' }}
                 />
-                
-                {/* Overlay Text Card */}
-                <div style={{
-                  position: 'absolute',
-                  bottom: '20px',
-                  left: '20px',
-                  right: '20px',
-                  maxWidth: '700px',
-                  background: 'rgba(255, 255, 255, 0.45)',
-                  backdropFilter: 'blur(24px)',
-                  WebkitBackdropFilter: 'blur(24px)',
-                  border: '1px solid rgba(255, 255, 255, 0.5)',
-                  borderRadius: '16px',
-                  padding: '18px 24px',
-                  boxShadow: '0 10px 40px rgba(0, 0, 0, 0.1)',
-                }}>
-                  <h2
-                    style={{
-                      fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
-                      fontSize: 'clamp(20px, 2.5vw, 28px)',
-                      fontWeight: 700,
-                      letterSpacing: -0.5,
-                      color: '#000',
-                      lineHeight: 1.3,
-                      margin: 0,
-                    }}
-                  >
-                    Retrouvez toute la puissance de vos panneaux solaires avec notre offre PV Clean
-                  </h2>
-                </div>
               </motion.div>
+
+              {/* Title below image */}
+              <motion.h2
+                variants={reveal} initial="hidden" whileInView="visible"
+                viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.7, ease: 'easeOut', delay: 0.1 }}
+                style={{
+                  fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
+                  fontSize: 'clamp(24px, 3vw, 32px)',
+                  fontWeight: 700,
+                  letterSpacing: -0.5,
+                  color: '#000',
+                  lineHeight: 1.2,
+                  marginBottom: 30,
+                }}
+              >
+                Retrouvez toute la puissance de vos panneaux solaires avec notre offre PV Clean
+              </motion.h2>
 
               {/* PV Clean pricing card */}
               <motion.div
