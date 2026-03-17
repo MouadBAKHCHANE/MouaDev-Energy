@@ -555,49 +555,73 @@ export default function PanneauxSolairesClient({
                   ))}
                 </div>
 
-                {/* Discount banner */}
-                <div className="ps-discount-banner" style={{
-                  marginTop: 20, borderRadius: 16, overflow: 'hidden',
-                  background: 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)', padding: '20px 28px',
-                  display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap',
-                }}>
-                  <div className="ps-discount-icon" style={{
-                    width: 52, height: 52, borderRadius: '50%',
-                    border: '2px solid #fff',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+                {/* Discount coupon */}
+                <div className="ps-coupon-wrap" style={{ position: 'relative', marginTop: 20 }}>
+                  {/* Notch circles */}
+                  <div style={{
+                    position: 'absolute', left: -9, top: '50%', transform: 'translateY(-50%)',
+                    width: 18, height: 18, borderRadius: '50%',
+                    background: '#fff', zIndex: 3, border: '1px solid #ddd',
+                  }} />
+                  <div style={{
+                    position: 'absolute', right: -9, top: '50%', transform: 'translateY(-50%)',
+                    width: 18, height: 18, borderRadius: '50%',
+                    background: '#fff', zIndex: 3, border: '1px solid #ddd',
+                  }} />
+                  <div className="ps-discount-banner" style={{
+                    borderRadius: 16, overflow: 'hidden', position: 'relative',
+                    background: 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)',
+                    border: '1.5px dashed rgba(255,255,255,0.45)',
+                    padding: '24px 28px 20px',
+                    display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap',
                   }}>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                      <circle cx="8" cy="8" r="2.5" stroke="#fff" strokeWidth="1.8"/>
-                      <circle cx="16" cy="16" r="2.5" stroke="#fff" strokeWidth="1.8"/>
-                      <line x1="5" y1="19" x2="19" y2="5" stroke="#fff" strokeWidth="1.8" strokeLinecap="round"/>
+                    {/* Torn top edge */}
+                    <svg style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: 10 }} preserveAspectRatio="none" viewBox="0 0 400 10">
+                      <polyline points="0,10 20,0 40,10 60,0 80,10 100,0 120,10 140,0 160,10 180,0 200,10 220,0 240,10 260,0 280,10 300,0 320,10 340,0 360,10 380,0 400,10" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.35)" strokeWidth="1"/>
                     </svg>
-                  </div>
-                  <div style={{ flex: 1 }}>
-                    <div style={{
-                      fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
-                      fontSize: 15, fontWeight: 600, color: '#fff', marginBottom: 2,
+                    <div className="ps-discount-icon" style={{
+                      width: 52, height: 52, borderRadius: '50%',
+                      border: '2px solid #fff',
+                      display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
                     }}>
-                      {discountHeadline}
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <circle cx="8" cy="8" r="2.5" stroke="#fff" strokeWidth="1.8"/>
+                        <circle cx="16" cy="16" r="2.5" stroke="#fff" strokeWidth="1.8"/>
+                        <line x1="5" y1="19" x2="19" y2="5" stroke="#fff" strokeWidth="1.8" strokeLinecap="round"/>
+                      </svg>
                     </div>
-                    <div style={{
-                      fontFamily: "var(--font-jost), 'Jost', sans-serif",
-                      fontSize: 13, color: 'rgba(255,255,255,0.6)',
+                    <div style={{ flex: 1 }}>
+                      <div style={{
+                        fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
+                        fontSize: 15, fontWeight: 600, color: '#fff', marginBottom: 2,
+                      }}>
+                        {discountHeadline}
+                      </div>
+                      <div style={{
+                        fontFamily: "var(--font-jost), 'Jost', sans-serif",
+                        fontSize: 13, color: 'rgba(255,255,255,0.6)',
+                      }}>
+                        {discountText}
+                      </div>
+                    </div>
+                    <div className="ps-coupon-sep" style={{
+                      alignSelf: 'stretch', width: 0,
+                      borderLeft: '1.5px dashed rgba(255,255,255,0.4)',
+                      flexShrink: 0,
+                    }} />
+                    <div className="ps-discount-badge" style={{
+                      background: '#fff', borderRadius: 8, padding: '8px 20px',
+                      display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0,
                     }}>
-                      {discountText}
+                      <span style={{
+                        fontFamily: "var(--font-jost), 'Jost', sans-serif",
+                        fontSize: 14, color: '#000',
+                      }}>Profitez d&apos;un rabais de</span>
+                      <span style={{
+                        fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
+                        fontSize: 28, fontWeight: 800, color: '#000', lineHeight: 1,
+                      }}>{discountBadge.replace(/profitez d'un rabais de\s*/i, '')}</span>
                     </div>
-                  </div>
-                  <div className="ps-discount-badge" style={{
-                    background: '#fff', borderRadius: 8, padding: '8px 20px',
-                    display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0,
-                  }}>
-                    <span style={{
-                      fontFamily: "var(--font-jost), 'Jost', sans-serif",
-                      fontSize: 14, color: '#000',
-                    }}>Profitez d&apos;un rabais de</span>
-                    <span style={{
-                      fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
-                      fontSize: 28, fontWeight: 800, color: '#000', lineHeight: 1,
-                    }}>{discountBadge.replace(/profitez d'un rabais de\s*/i, '')}</span>
                   </div>
                 </div>
               </motion.div>
@@ -967,7 +991,7 @@ export default function PanneauxSolairesClient({
           align-items: flex-start;
         }
         .ps-sidebar {
-          flex: 0 0 360px;
+          flex: 0 0 300px;
           position: sticky;
           top: 100px;
           align-self: flex-start;
@@ -1107,8 +1131,9 @@ export default function PanneauxSolairesClient({
             top: auto !important;
             bottom: 16px !important;
           }
-          .ps-discount-banner { flex-direction: column !important; align-items: stretch !important; gap: 10px !important; padding: 16px 14px !important; }
-          .ps-discount-badge { width: 100% !important; justify-content: center !important; box-sizing: border-box !important; }
+          .ps-discount-banner { flex-direction: column !important; align-items: center !important; text-align: center !important; gap: 10px !important; padding: 20px 14px 16px !important; }
+          .ps-discount-badge { width: auto !important; justify-content: center !important; box-sizing: border-box !important; }
+          .ps-coupon-sep { display: none !important; }
           .ps-discount-icon { display: none !important; }
           .ps-why-block { padding: 20px 16px !important; }
           .ps-detail-img { height: 180px !important; }

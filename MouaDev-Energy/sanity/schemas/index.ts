@@ -9,9 +9,11 @@ import panneauxSolairesPage from './panneauxSolairesPage'
 import pompeChaleurPage from './pompeChaleurPage'
 import boilerPage from './boilerPage'
 import pvCleanPage from './pvCleanPage'
+import legalPage from './legalPage'
 
 export const schemaTypes = [
   siteSettings, homePage, aboutPage, contactPage, servicesPage,
   panneauxSolairesPage, pompeChaleurPage, boilerPage, pvCleanPage,
   blog, faq,
+  legalPage,
 ]
