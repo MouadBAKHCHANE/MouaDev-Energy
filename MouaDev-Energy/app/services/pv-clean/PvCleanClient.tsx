@@ -312,16 +312,16 @@ export default function PvCleanClient({
               <motion.div
                 variants={reveal} initial="hidden" whileInView="visible"
                 viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.7, ease: 'easeOut' }}
-                style={{ borderRadius: 20, overflow: 'hidden', marginBottom: 40, position: 'relative' }}
+                className="ps-main-img-block" style={{ borderRadius: 20, overflow: 'hidden', marginBottom: 40, position: 'relative' }}
               >
                 <img
                   src={mainImage}
                   alt="Nettoyage panneaux solaires PV Clean"
-                  style={{ width: '100%', height: 300, objectFit: 'cover', objectPosition: 'center 40%', display: 'block' }}
+                  className="ps-main-img" style={{ width: '100%', height: 300, objectFit: 'cover', objectPosition: 'center 40%', display: 'block' }}
                 />
 
                 {/* Overlay Text Card — top right */}
-                <div style={{
+                <div className="ps-overlay-card" style={{
                   position: 'absolute',
                   top: '24px',
                   right: '24px',
@@ -500,7 +500,7 @@ export default function PvCleanClient({
               <motion.div
                 variants={reveal} initial="hidden" whileInView="visible"
                 viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.7, ease: 'easeOut' }}
-                style={{ background: '#f8f8f8', borderRadius: 20, padding: '32px 28px', marginBottom: 48 }}
+                className="ps-why-block" style={{ background: '#f8f8f8', borderRadius: 20, padding: '32px 28px', marginBottom: 48 }}
               >
                 <h3 style={{
                   fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
@@ -541,7 +541,7 @@ export default function PvCleanClient({
                     src={detailImages[0]}
                     alt="Nettoyage panneaux solaires"
                     loading="lazy"
-                    style={{ width: '100%', height: 240, objectFit: 'cover', display: 'block' }}
+                    className="ps-detail-img" style={{ width: '100%', height: 240, objectFit: 'cover', display: 'block' }}
                   />
                 </motion.div>
                 {detailImages[1] && (
@@ -554,7 +554,7 @@ export default function PvCleanClient({
                       src={detailImages[1]}
                       alt="Nettoyage gros plan panneau solaire"
                       loading="lazy"
-                      style={{ width: '100%', height: 240, objectFit: 'cover', display: 'block' }}
+                      className="ps-detail-img" style={{ width: '100%', height: 240, objectFit: 'cover', display: 'block' }}
                     />
                   </motion.div>
                 )}
@@ -571,6 +571,7 @@ export default function PvCleanClient({
               <motion.h3
                 variants={reveal} initial="hidden" whileInView="visible"
                 viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.7, ease: 'easeOut', delay: 0.08 }}
+                className="ps-faq-title"
                 style={{
                   fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
                   fontSize: 28, fontWeight: 600, letterSpacing: -1,
@@ -599,7 +600,7 @@ export default function PvCleanClient({
                         fontSize: 17, fontWeight: 500, color: '#000',
                       }}
                     >
-                      <span>{faq.q}</span>
+                      <span className="ps-faq-q-text">{faq.q}</span>
                       <span style={{
                         width: 34, height: 34, borderRadius: '50%', flexShrink: 0,
                         border: isActive ? '1px solid #50B5A2' : '1px solid #e8e8e8',
@@ -738,12 +739,6 @@ export default function PvCleanClient({
           }
           .ps-content { order: 1 !important; }
           .ps-section { padding-top: 40px !important; padding-bottom: 40px !important; }
-          .ps-service-nav {
-            display: flex !important;
-            flex-direction: column !important;
-            gap: 6px !important;
-            margin-bottom: 0 !important;
-          }
           .ps-service-nav .ps-nav-link {
             padding: 10px 14px !important;
             font-size: 13px !important;
@@ -751,10 +746,72 @@ export default function PvCleanClient({
           }
           .ps-nav-arrow { display: none !important; }
           .ps-sidebar-extra { display: none !important; }
-          .ps-mobile-cards { display: block !important; }
+          .ps-section-wrap { padding-top: 32px !important; padding-bottom: 48px !important; }
+        }
+        @media (min-width: 641px) and (max-width: 1024px) {
+          .ps-service-nav {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr !important;
+            gap: 8px !important;
+            margin-bottom: 0 !important;
+          }
+          .ps-mobile-cards {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr !important;
+            gap: 24px !important;
+            align-items: start;
+          }
         }
         @media (max-width: 640px) {
+          .ps-service-nav {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 6px !important;
+            margin-bottom: 0 !important;
+          }
+          .ps-mobile-cards { display: block !important; }
           .ps-duo-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 480px) {
+          .ps-section-wrap { padding-left: 12px !important; padding-right: 12px !important; }
+        }
+        .ps-tbl-scroll::after {
+          content: '';
+          position: absolute;
+          top: 0; right: 0; bottom: 0;
+          width: 48px;
+          background: linear-gradient(to right, transparent, rgba(255,255,255,0.9));
+          pointer-events: none;
+          border-radius: 0 20px 20px 0;
+          z-index: 1;
+        }
+        @media (min-width: 641px) and (max-width: 1024px) {
+          .ps-main-img { height: 260px !important; }
+          .ps-discount-banner { flex-direction: column !important; align-items: flex-start !important; }
+          .ps-discount-badge { width: 100% !important; justify-content: flex-start !important; box-sizing: border-box !important; }
+        }
+        @media (max-width: 640px) {
+          .ps-main-img-block { margin-bottom: 28px !important; }
+          .ps-main-img { height: 200px !important; }
+          .ps-overlay-card {
+            right: 12px !important;
+            left: 12px !important;
+            max-width: none !important;
+            top: auto !important;
+            bottom: 16px !important;
+          }
+          .ps-discount-banner { flex-direction: column !important; align-items: stretch !important; gap: 10px !important; padding: 16px 14px !important; }
+          .ps-discount-badge { width: 100% !important; justify-content: center !important; box-sizing: border-box !important; }
+          .ps-discount-icon { display: none !important; }
+          .ps-why-block { padding: 20px 16px !important; }
+          .ps-detail-img { height: 180px !important; }
+          .ps-faq-q-text { font-size: 15px !important; line-height: 22px !important; }
+          .ps-faq-title {
+            font-size: 22px !important;
+            letter-spacing: -0.5px !important;
+            line-height: 30px !important;
+            margin-bottom: 20px !important;
+          }
         }
       `}</style>
     </main>

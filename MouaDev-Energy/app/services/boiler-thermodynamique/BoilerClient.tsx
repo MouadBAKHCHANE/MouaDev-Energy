@@ -108,6 +108,12 @@ export default function BoilerClient({
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#d1d5db"/><path d="M8.5 8.5L15.5 15.5M15.5 8.5L8.5 15.5" stroke="#fff" strokeWidth="2.5" strokeLinecap="round"/></svg>
   )
 
+  const renderVal = (val: string) => {
+    if (val === 'check') return renderCheck()
+    if (val === 'cross') return renderCross()
+    return val
+  }
+
   const rowIcons = [
     // Engagement
     <svg key="eng" width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1.5" y="3" width="11" height="9.5" rx="1.5" stroke="#0c2a54" strokeWidth="1.3"/><path d="M1.5 6h11" stroke="#0c2a54" strokeWidth="1.3"/><path d="M4.5 1v3M9.5 1v3" stroke="#0c2a54" strokeWidth="1.3" strokeLinecap="round"/></svg>,
@@ -331,16 +337,16 @@ export default function BoilerClient({
               <motion.div
                 variants={reveal} initial="hidden" whileInView="visible"
                 viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.7, ease: 'easeOut' }}
-                style={{ borderRadius: 20, overflow: 'hidden', marginBottom: 56, position: 'relative' }}
+                className="ps-main-img-block" style={{ borderRadius: 20, overflow: 'hidden', marginBottom: 56, position: 'relative' }}
               >
                 <img
                   src={mainImage}
                   alt="Entretien boiler thermodynamique"
-                  style={{ width: '100%', height: 320, objectFit: 'cover', display: 'block' }}
+                  className="ps-main-img" style={{ width: '100%', height: 320, objectFit: 'cover', display: 'block' }}
                 />
 
                 {/* Overlay Text Card — top right */}
-                <div style={{
+                <div className="ps-overlay-card" style={{
                   position: 'absolute',
                   top: '24px',
                   right: '24px',
@@ -379,7 +385,8 @@ export default function BoilerClient({
                 style={{ marginBottom: 48 }}
               >
                 {/* Comparison table */}
-                <div style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
+                <div className="ps-tbl-desktop">
+                <div className="ps-tbl-scroll" style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch', position: 'relative' }}>
                   <div className="ps-comparison-table">
                     {/* Header row */}
                     <div style={{ padding: '28px 20px', display: 'flex', flexDirection: 'column', justifyContent: 'center', borderBottom: '2px solid #eee', background: '#fff' }}>
@@ -411,11 +418,6 @@ export default function BoilerClient({
                     {/* Dynamic feature rows */}
                     {contractFeatures.map((row, ri) => {
                       const bg = ri % 2 === 0 ? '#fff' : '#f8f9fa'
-                      const renderVal = (val: string) => {
-                        if (val === 'check') return renderCheck()
-                        if (val === 'cross') return renderCross()
-                        return val
-                      }
                       return (
                         <React.Fragment key={ri}>
                           <div className="ps-tbl-label" style={{ background: bg }}>
@@ -487,15 +489,61 @@ export default function BoilerClient({
                     ))}
                   </div>
                 </div>
+                </div>{/* end ps-tbl-desktop */}
+
+                {/* Mobile contract cards */}
+                <div className="ps-tbl-mobile">
+                  {[
+                    { name: 'Zen Accès', sub: 'La tranquillité essentielle', key: 'acces' as const, icons: 1 },
+                    { name: 'Zen Équilibre', sub: 'La couverture complète', key: 'equilibre' as const, icons: 2 },
+                    { name: 'Zen Plus', sub: 'La sérénité assurée', key: 'plus' as const, icons: 3 },
+                  ].map((contract) => (
+                    <div key={contract.key} className="ps-contract-card">
+                      <div className="ps-contract-header">
+                        <div className="ps-contract-name" style={{ color: '#0c2a54' }}>{contract.name}</div>
+                        <div className="ps-contract-sub">{contract.sub}</div>
+                        <div className="ps-contract-icons">
+                          {Array.from({ length: contract.icons }).map((_, ii) => (
+                            <div key={ii} style={{ width: 18, height: 18, background: '#0c2a54', WebkitMask: 'url("/Logo image/Vert medium.webp") center/contain no-repeat', mask: 'url("/Logo image/Vert medium.webp") center/contain no-repeat' }} />
+                          ))}
+                        </div>
+                      </div>
+                      {contractFeatures.map((row, ri) => (
+                        <div key={ri} className="ps-contract-row" style={{ background: ri % 2 === 0 ? '#fff' : '#f8f9fa' }}>
+                          <span className="ps-contract-label">
+                            <span className="ps-contract-row-icon" style={{ background: '#e8edf4' }}>{rowIcons[ri] || rowIcons[0]}</span>
+                            {row.label}
+                          </span>
+                          <span className="ps-contract-val">{renderVal(row[contract.key])}</span>
+                        </div>
+                      ))}
+                      <div className="ps-contract-cta">
+                        <a
+                          href="https://form.typeform.com/to/rRhOu7eb" target="_blank" rel="noopener noreferrer"
+                          style={{
+                            display: 'inline-flex', alignItems: 'center', gap: 8,
+                            background: 'linear-gradient(135deg, #0c2a54 0%, #1a3a6a 100%)', color: '#fff',
+                            borderRadius: 10, padding: '10px 18px',
+                            fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
+                            fontSize: 13, fontWeight: 700, textDecoration: 'none', width: '100%', justifyContent: 'center',
+                          }}
+                        >
+                          Demander un Devis →
+                        </a>
+                        <a href="/legal/conditions-generales-vente" style={{ fontFamily: "var(--font-jost), 'Jost', sans-serif", fontSize: 11, color: '#999', textDecoration: 'underline', textAlign: 'center' as const }}>Conditions des contrats</a>
+                      </div>
+                    </div>
+                  ))}
+                </div>
 
                 {/* Discount banner */}
-                <div style={{
+                <div className="ps-discount-banner" style={{
                   marginTop: 20, borderRadius: 16,
                   border: '2px dashed rgba(26,74,138,0.7)',
                   background: '#0c2a54', padding: '20px 28px',
                   display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap',
                 }}>
-                  <div style={{ flexShrink: 0 }}>
+                  <div className="ps-discount-icon" style={{ flexShrink: 0 }}>
                     <div style={{ width: 44, height: 44, background: '#5b9bd5', WebkitMask: 'url("/icons/CHARTEGRAPHIQUENAOSERVICE-15.webp") center/contain no-repeat', mask: 'url("/icons/CHARTEGRAPHIQUENAOSERVICE-15.webp") center/contain no-repeat' }} />
                   </div>
                   <div style={{ flex: 1 }}>
@@ -512,7 +560,7 @@ export default function BoilerClient({
                       {discountText}
                     </div>
                   </div>
-                  <div style={{ textAlign: 'center', flexShrink: 0 }}>
+                  <div className="ps-discount-badge" style={{ textAlign: 'center', flexShrink: 0 }}>
                     <div style={{
                       fontFamily: "var(--font-jost), 'Jost', sans-serif",
                       fontSize: 12, color: 'rgba(255,255,255,0.85)', marginBottom: 2,
@@ -547,7 +595,7 @@ export default function BoilerClient({
               <motion.div
                 variants={reveal} initial="hidden" whileInView="visible"
                 viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.7, ease: 'easeOut' }}
-                style={{ background: '#f8f8f8', borderRadius: 20, padding: '32px 28px', marginBottom: 48 }}
+                className="ps-why-block" style={{ background: '#f8f8f8', borderRadius: 20, padding: '32px 28px', marginBottom: 48 }}
               >
                 <h3 style={{
                   fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
@@ -590,7 +638,7 @@ export default function BoilerClient({
                       src={src}
                       alt={`Boiler thermodynamique ${i + 1}`}
                       loading="lazy"
-                      style={{ width: '100%', height: 240, objectFit: 'cover', display: 'block' }}
+                      className="ps-detail-img" style={{ width: '100%', height: 240, objectFit: 'cover', display: 'block' }}
                     />
                   </motion.div>
                 ))}
@@ -607,6 +655,7 @@ export default function BoilerClient({
               <motion.h3
                 variants={reveal} initial="hidden" whileInView="visible"
                 viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.7, ease: 'easeOut', delay: 0.08 }}
+                className="ps-faq-title"
                 style={{
                   fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
                   fontSize: 28, fontWeight: 600, letterSpacing: -1,
@@ -635,7 +684,7 @@ export default function BoilerClient({
                         fontSize: 17, fontWeight: 500, color: '#000',
                       }}
                     >
-                      <span>{faq.q}</span>
+                      <span className="ps-faq-q-text">{faq.q}</span>
                       <span style={{
                         width: 34, height: 34, borderRadius: '50%', flexShrink: 0,
                         border: isActive ? '1px solid #0c2a54' : '1px solid #e8e8e8',
@@ -807,12 +856,6 @@ export default function BoilerClient({
           }
           .ps-content { order: 1 !important; }
           .ps-section { padding-top: 40px !important; padding-bottom: 40px !important; }
-          .ps-service-nav {
-            display: flex !important;
-            flex-direction: column !important;
-            gap: 6px !important;
-            margin-bottom: 0 !important;
-          }
           .ps-service-nav .ps-nav-link {
             padding: 10px 14px !important;
             font-size: 13px !important;
@@ -820,10 +863,150 @@ export default function BoilerClient({
           }
           .ps-nav-arrow { display: none !important; }
           .ps-sidebar-extra { display: none !important; }
-          .ps-mobile-cards { display: block !important; }
+          .ps-section-wrap { padding-top: 32px !important; padding-bottom: 48px !important; }
+        }
+        @media (min-width: 641px) and (max-width: 1024px) {
+          .ps-service-nav {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr !important;
+            gap: 8px !important;
+            margin-bottom: 0 !important;
+          }
+          .ps-mobile-cards {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr !important;
+            gap: 24px !important;
+            align-items: start;
+          }
         }
         @media (max-width: 640px) {
+          .ps-service-nav {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 6px !important;
+            margin-bottom: 0 !important;
+          }
+          .ps-mobile-cards { display: block !important; }
           .ps-duo-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 480px) {
+          .ps-section-wrap { padding-left: 12px !important; padding-right: 12px !important; }
+        }
+        .ps-tbl-scroll::after {
+          content: '';
+          position: absolute;
+          top: 0; right: 0; bottom: 0;
+          width: 48px;
+          background: linear-gradient(to right, transparent, rgba(255,255,255,0.9));
+          pointer-events: none;
+          border-radius: 0 20px 20px 0;
+          z-index: 1;
+        }
+        @media (min-width: 641px) and (max-width: 1024px) {
+          .ps-main-img { height: 260px !important; }
+          .ps-discount-banner { flex-direction: column !important; align-items: flex-start !important; }
+          .ps-discount-badge { width: 100% !important; justify-content: flex-start !important; box-sizing: border-box !important; }
+        }
+        @media (max-width: 640px) {
+          .ps-main-img-block { margin-bottom: 28px !important; }
+          .ps-main-img { height: 200px !important; }
+          .ps-overlay-card {
+            right: 12px !important;
+            left: 12px !important;
+            max-width: none !important;
+            top: auto !important;
+            bottom: 16px !important;
+          }
+          .ps-discount-banner { flex-direction: column !important; align-items: stretch !important; gap: 10px !important; padding: 16px 14px !important; }
+          .ps-discount-badge { width: 100% !important; justify-content: center !important; box-sizing: border-box !important; }
+          .ps-discount-icon { display: none !important; }
+          .ps-why-block { padding: 20px 16px !important; }
+          .ps-detail-img { height: 180px !important; }
+          .ps-faq-q-text { font-size: 15px !important; line-height: 22px !important; }
+          .ps-faq-title {
+            font-size: 22px !important;
+            letter-spacing: -0.5px !important;
+            line-height: 30px !important;
+            margin-bottom: 20px !important;
+          }
+        }
+        .ps-tbl-desktop { display: block; }
+        .ps-tbl-mobile { display: none; }
+        @media (max-width: 640px) {
+          .ps-tbl-desktop { display: none; }
+          .ps-tbl-mobile {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 0;
+          }
+          .ps-contract-card {
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid #eee;
+            background: #fff;
+          }
+          .ps-contract-header {
+            padding: 16px 16px 12px;
+            background: #fff;
+            border-bottom: 2px solid #eee;
+          }
+          .ps-contract-name {
+            font-family: var(--font-space-grotesk), 'Space Grotesk', sans-serif;
+            font-size: 17px;
+            font-weight: 700;
+          }
+          .ps-contract-sub {
+            font-family: var(--font-jost), 'Jost', sans-serif;
+            font-size: 12px;
+            color: #888;
+            margin-top: 2px;
+          }
+          .ps-contract-icons {
+            display: flex;
+            gap: 4px;
+            margin-top: 8px;
+          }
+          .ps-contract-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 16px;
+            gap: 8px;
+          }
+          .ps-contract-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-jost), 'Jost', sans-serif;
+            font-size: 12px;
+            color: #333;
+            flex: 1;
+          }
+          .ps-contract-row-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+          }
+          .ps-contract-val {
+            font-family: var(--font-jost), 'Jost', sans-serif;
+            font-size: 13px;
+            color: #333;
+            flex-shrink: 0;
+          }
+          .ps-contract-cta {
+            padding: 14px 16px;
+            background: #fff;
+            border-top: 2px solid #eee;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+          }
         }
       `}</style>
     </main>
