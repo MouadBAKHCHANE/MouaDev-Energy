@@ -6,7 +6,28 @@ import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import ArrowIcon from '@/components/ui/ArrowIcon'
 
-const navItems = [
+export interface SiteData {
+  phone: string
+  email: string
+  address: string
+  typeformUrl: string
+  logoLight: string
+  logoDark: string
+  logoIcon: string
+  socialLinks: { platform: string; url: string }[]
+  footerAbout: string
+  footerNewsletter: string
+  copyright: string
+}
+
+const serviceAccents: Record<string, { icon: string; accent: string; hoverText: string }> = {
+  '/services/panneaux-solaires': { icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-18.webp', accent: '#2a9b96', hoverText: '#fff' },
+  '/services/pompe-a-chaleur': { icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-20.webp', accent: '#e8552c', hoverText: '#fff' },
+  '/services/boiler-thermodynamique': { icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-15.webp', accent: '#0c2a54', hoverText: '#fff' },
+  '/services/pv-clean': { icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-23.webp', accent: '#2a9b96', hoverText: '#fff' },
+}
+
+const defaultNavItems = [
   { label: 'Accueil', href: '/' },
   {
     label: 'Nos contrats d\'entretien',
@@ -24,7 +45,15 @@ const navItems = [
   { label: 'Contact', href: '/contact-us' }
 ]
 
-export default function Header() {
+export default function Header({ siteData }: { siteData?: SiteData }) {
+  const phone = siteData?.phone ?? '+41 21 512 05 74'
+  const email = siteData?.email ?? 'contact@zen-energieservices.ch'
+  const address = siteData?.address ?? 'Chemin du Pré-Fleuri 1-3, 1228 Plan-les-Ouates'
+  const typeformUrl = siteData?.typeformUrl ?? 'https://form.typeform.com/to/rRhOu7eb'
+  const logoLight = siteData?.logoLight ?? '/Logo complet/Blanc.webp'
+  const logoDark = siteData?.logoDark ?? '/Logo complet/Vert medium.webp'
+  const socialLinks = siteData?.socialLinks ?? []
+  const navItems = defaultNavItems
   const [scrollY, setScrollY] = useState(0)
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
@@ -105,7 +134,7 @@ export default function Header() {
         {/* Logo */}
         <a href="/" style={{ display: 'flex', alignItems: 'center', position: 'relative', height: 48, width: 160 }}>
           <img
-            src="/Logo complet/Blanc.webp"
+            src={logoLight}
             alt="Zen Energie Services"
             style={{
               position: 'absolute', height: 48, width: 'auto', objectFit: 'contain',
@@ -113,7 +142,7 @@ export default function Header() {
             }}
           />
           <img
-            src="/Logo complet/Vert medium.webp"
+            src={logoDark}
             alt=""
             aria-hidden="true"
             style={{
@@ -179,19 +208,58 @@ export default function Header() {
                         }}
                       >
                         <div style={{
-                          background: '#fff', borderRadius: 20, padding: '12px 10px',
-                          boxShadow: '0 10px 30px rgba(0,0,0,0.10)', minWidth: 260,
-                          border: '1px solid rgba(0,0,0,0.06)', display: 'flex', flexDirection: 'column', gap: 4,
+                          background: 'rgba(255,255,255,0.85)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)',
+                          borderRadius: 20, padding: '10px 8px',
+                          boxShadow: '0 10px 30px rgba(0,0,0,0.10)', minWidth: 240,
+                          border: '1px solid rgba(255,255,255,0.5)', display: 'flex', flexDirection: 'column', gap: 2,
                         }}>
-                          {item.subItems.map((sub) => (
+                          {item.subItems.map((sub) => {
+                            const sa = serviceAccents[sub.href]
+                            return (
                             <Link key={sub.label} href={sub.href} style={{
-                              fontFamily: "var(--font-inter)", fontSize: 14, color: '#333',
-                              padding: '10px 16px', borderRadius: 12, textDecoration: 'none', transition: 'all 0.2s ease',
+                              fontFamily: "var(--font-inter)", fontSize: 12.5, color: '#333',
+                              padding: '8px 14px', borderRadius: 10, textDecoration: 'none', transition: 'all 0.2s ease',
+                              display: 'flex', alignItems: 'center', gap: 9,
                             }}
-                              onMouseEnter={(e) => { e.currentTarget.style.background = '#f0faf8'; e.currentTarget.style.color = '#50B5A2' }}
-                              onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#333' }}
-                            >{sub.label}</Link>
-                          ))}
+                              onMouseEnter={(e) => {
+                                if (sa) {
+                                  e.currentTarget.style.background = sa.accent
+                                  e.currentTarget.style.color = sa.hoverText
+                                  const icon = e.currentTarget.querySelector('.dd-icon') as HTMLElement
+                                  if (icon) icon.style.background = sa.hoverText
+                                  const arrow = e.currentTarget.querySelector('.dd-arrow') as HTMLElement
+                                  if (arrow) arrow.style.color = sa.hoverText
+                                } else {
+                                  e.currentTarget.style.background = '#f0faf8'
+                                  e.currentTarget.style.color = '#50B5A2'
+                                }
+                              }}
+                              onMouseLeave={(e) => {
+                                e.currentTarget.style.background = 'transparent'
+                                e.currentTarget.style.color = '#333'
+                                if (sa) {
+                                  const icon = e.currentTarget.querySelector('.dd-icon') as HTMLElement
+                                  if (icon) icon.style.background = sa.accent
+                                  const arrow = e.currentTarget.querySelector('.dd-arrow') as HTMLElement
+                                  if (arrow) arrow.style.color = '#aaa'
+                                }
+                              }}
+                            >
+                              {sa && (
+                                <div className="dd-icon" style={{
+                                  width: 20, height: 20, flexShrink: 0,
+                                  background: sa.accent, transition: 'background 0.2s ease',
+                                  WebkitMask: `url("${sa.icon}") center/contain no-repeat`,
+                                  mask: `url("${sa.icon}") center/contain no-repeat`,
+                                }} />
+                              )}
+                              <span style={{ flex: 1 }}>{sub.label}</span>
+                              <svg className="dd-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, color: '#aaa', transition: 'color 0.2s ease' }}>
+                                <path d="M9 18l6-6-6-6" />
+                              </svg>
+                            </Link>
+                            )
+                          })}
                         </div>
                       </motion.div>
                     )}
@@ -235,7 +303,7 @@ export default function Header() {
           </button>
 
           {/* Desktop CTA — hidden on mobile */}
-          <Link href="https://form.typeform.com/to/rRhOu7eb" className="header-desktop-cta"
+          <Link href={typeformUrl} className="header-desktop-cta"
             style={{
               display: 'inline-flex', alignItems: 'center', borderRadius: 14,
               fontFamily: "var(--font-barlow), 'Barlow', sans-serif", fontSize: 16, fontWeight: 600,
@@ -251,7 +319,7 @@ export default function Header() {
               if (arr) { arr.style.background = '#2c6262'; arr.style.color = '#fff' }
             }}
           >
-            Demander une offre
+            Demander un Devis
             <span className="cta-arrow" style={{
               width: 40, height: 40, borderRadius: 14, display: 'flex', alignItems: 'center',
               justifyContent: 'center', flexShrink: 0, background: '#2c6262', color: '#fff', transition: 'background 0.18s ease',
@@ -331,7 +399,7 @@ export default function Header() {
 
               {/* Logo */}
               <div style={{ marginBottom: 20, marginTop: 4 }}>
-                <img src="/Logo complet/Vert medium.webp" alt="Zen" decoding="async" style={{ height: 38, width: 'auto' }} />
+                <img src={logoDark} alt="Zen" decoding="async" style={{ height: 38, width: 'auto' }} />
               </div>
 
               {/* Nav Links — mobile only */}
@@ -376,8 +444,10 @@ export default function Header() {
                               transition={{ duration: 0.2 }}
                               style={{ overflow: 'hidden' }}
                             >
-                              <div style={{ paddingLeft: 12, paddingBottom: 4, display: 'flex', flexDirection: 'column' }}>
-                                {item.subItems.map((sub) => (
+                              <div style={{ paddingLeft: 4, paddingBottom: 4, display: 'flex', flexDirection: 'column', gap: 2 }}>
+                                {item.subItems.map((sub) => {
+                                  const sa = serviceAccents[sub.href]
+                                  return (
                                   <Link
                                     key={sub.label}
                                     href={sub.href}
@@ -386,17 +456,46 @@ export default function Header() {
                                       fontFamily: "var(--font-inter)",
                                       fontSize: 15,
                                       color: '#555',
-                                      padding: '9px 0',
+                                      padding: '9px 12px',
+                                      borderRadius: 10,
                                       textDecoration: 'none',
-                                      borderBottom: '1px solid rgba(0,0,0,0.04)',
-                                      transition: 'color 0.2s',
+                                      transition: 'all 0.2s ease',
+                                      display: 'flex',
+                                      alignItems: 'center',
+                                      gap: 10,
                                     }}
-                                    onMouseEnter={(e) => e.currentTarget.style.color = '#50B5A2'}
-                                    onMouseLeave={(e) => e.currentTarget.style.color = '#555'}
+                                    onMouseEnter={(e) => {
+                                      if (sa) {
+                                        e.currentTarget.style.background = sa.accent
+                                        e.currentTarget.style.color = sa.hoverText
+                                        const icon = e.currentTarget.querySelector('.mob-icon') as HTMLElement
+                                        if (icon) icon.style.background = sa.hoverText
+                                      } else {
+                                        e.currentTarget.style.background = '#f0faf8'
+                                        e.currentTarget.style.color = '#50B5A2'
+                                      }
+                                    }}
+                                    onMouseLeave={(e) => {
+                                      e.currentTarget.style.background = 'transparent'
+                                      e.currentTarget.style.color = '#555'
+                                      if (sa) {
+                                        const icon = e.currentTarget.querySelector('.mob-icon') as HTMLElement
+                                        if (icon) icon.style.background = sa.accent
+                                      }
+                                    }}
                                   >
+                                    {sa && (
+                                      <div className="mob-icon" style={{
+                                        width: 20, height: 20, flexShrink: 0,
+                                        background: sa.accent, transition: 'background 0.2s ease',
+                                        WebkitMask: `url("${sa.icon}") center/contain no-repeat`,
+                                        mask: `url("${sa.icon}") center/contain no-repeat`,
+                                      }} />
+                                    )}
                                     {sub.label}
                                   </Link>
-                                ))}
+                                  )
+                                })}
                               </div>
                             </motion.div>
                           )}
@@ -433,21 +532,21 @@ export default function Header() {
                 <div>
                   <h4 style={{ fontFamily: "var(--font-space-grotesk)", fontSize: 13, fontWeight: 700, marginBottom: 3, textTransform: 'uppercase', letterSpacing: '0.04em', color: '#999' }}>Adresse</h4>
                   <p style={{ fontFamily: "var(--font-inter)", fontSize: 13, color: '#444', lineHeight: 1.4, margin: 0 }}>
-                    Chemin du Pré-Fleuri 1-3, 1228 Plan-les-Ouates
+                    {address}
                   </p>
                 </div>
 
                 {/* Contact */}
                 <div>
                   <h4 style={{ fontFamily: "var(--font-space-grotesk)", fontSize: 13, fontWeight: 700, marginBottom: 3, textTransform: 'uppercase', letterSpacing: '0.04em', color: '#999' }}>Contact</h4>
-                  <a href="mailto:contact@zen-energieservices.ch" style={{
+                  <a href={`mailto:${email}`} style={{
                     fontFamily: "var(--font-inter)", fontSize: 12, color: '#50B5A2',
                     textDecoration: 'none', fontWeight: 500, display: 'block', marginBottom: 2,
                   }}>
-                    contact@zen-energieservices.ch
+                    {email}
                   </a>
                   <div style={{ fontFamily: "var(--font-inter)", fontSize: 13, color: '#444' }}>
-                    +41 21 512 05 74
+                    {phone}
                   </div>
                 </div>
 
@@ -455,12 +554,29 @@ export default function Header() {
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                   <h4 style={{ fontFamily: "var(--font-space-grotesk)", fontSize: 13, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em', color: '#999', margin: 0 }}>Suivez-nous</h4>
                   <div style={{ display: 'flex', gap: 12 }}>
-                    <a href="https://www.facebook.com/zen.energie.services/" style={{ color: '#000' }} target="_blank">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg>
-                    </a>
-                    <a href="https://www.instagram.com/zenenergieservices_suisse/?hl=fr" style={{ color: '#000' }} target="_blank">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" /></svg>
-                    </a>
+                    {socialLinks.map((sl: any) => (
+                      <a key={sl.platform} href={sl.url} style={{ color: '#000' }} target="_blank" rel="noopener noreferrer">
+                        {sl.platform === 'facebook' && (
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg>
+                        )}
+                        {sl.platform === 'instagram' && (
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" /></svg>
+                        )}
+                        {sl.platform === 'linkedin' && (
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect width="4" height="12" x="2" y="9" /><circle cx="4" cy="4" r="2" /></svg>
+                        )}
+                      </a>
+                    ))}
+                    {socialLinks.length === 0 && (
+                      <>
+                        <a href="https://www.facebook.com/zen.energie.services/" style={{ color: '#000' }} target="_blank" rel="noopener noreferrer">
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg>
+                        </a>
+                        <a href="https://www.instagram.com/zenenergieservices_suisse/?hl=fr" style={{ color: '#000' }} target="_blank" rel="noopener noreferrer">
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" /></svg>
+                        </a>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>
@@ -468,7 +584,7 @@ export default function Header() {
               {/* CTA */}
               <div style={{ marginTop: 'auto', paddingTop: 10 }}>
                 <Link
-                  href="https://form.typeform.com/to/rRhOu7eb"
+                  href={typeformUrl}
                   onClick={() => setIsDrawerOpen(false)}
                   style={{
                     display: 'flex',
@@ -487,7 +603,7 @@ export default function Header() {
                   onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
                   onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
                 >
-                  Demander une offre
+                  Demander un Devis
                   <div style={{
                     width: 40,
                     height: 40,

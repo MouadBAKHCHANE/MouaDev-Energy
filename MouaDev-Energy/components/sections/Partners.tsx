@@ -51,7 +51,7 @@ export default function Partners() {
           ))}
         </motion.div>
       </div>
-      <style jsx global>{`
+      <style>{`
         @media (max-width: 640px) {
           .partners-head {
             text-align: center;

@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import SectionLabel from '@/components/ui/SectionLabel'
 import Button from '@/components/ui/Button'
+import { urlFor } from '@/lib/sanity'
 
 const reveal = {
   hidden: { opacity: 0, y: 30 },
@@ -15,7 +16,7 @@ const cardReveal = {
   visible: { opacity: 1, y: 0 },
 }
 
-const articles = [
+const defaultArticles = [
   {
     img: '/Photos%20HD/Visuels%20Technique/Technique%20-%20PV/Entretien%20panneaux%20solaires.webp',
     title: 'Pourquoi entretenir régulièrement ses panneaux photovoltaïques ?',
@@ -39,22 +40,44 @@ const articles = [
   },
 ]
 
-export default function News() {
+interface NewsProps {
+  label?: string
+  title?: string
+  cta?: string
+  articles?: Array<{ title: string; image?: any; author: string; readTime: string; link: string }>
+}
+
+export default function News({
+  label = 'DERNIÈRES ACTUALITÉS',
+  title = 'Actualités et innovations dans les énergies propres',
+  cta = "Plus d'articles",
+  articles,
+}: NewsProps) {
+  const items = articles?.length
+    ? articles.map((a) => ({
+        img: a.image ? urlFor(a.image).width(800).quality(80).url() : '',
+        title: a.title,
+        author: a.author,
+        read: a.readTime,
+        slug: a.link.replace(/^\/blogs\//, ''),
+      }))
+    : defaultArticles
+
   return (
     <section id="news" className="news-section" style={{ padding: '80px 20px', background: '#fff' }}>
       <div style={{ maxWidth: 1400, margin: '0 auto', textAlign: 'center' }}>
         <motion.div variants={reveal} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '0px 0px -50px 0px', amount: 0.1 }} transition={{ duration: 0.8, ease: 'easeOut' }} style={{ marginBottom: 15, display: 'flex', justifyContent: 'center' }}>
-          <SectionLabel text="DERNIÈRES ACTUALITÉS" />
+          <SectionLabel text={label} />
         </motion.div>
         <motion.h2 variants={reveal} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '0px 0px -50px 0px', amount: 0.1 }} transition={{ duration: 0.8, ease: 'easeOut', delay: 0.1 }} className="news-h2" style={{
           fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
           fontSize: 48, fontWeight: 500, lineHeight: '58px', letterSpacing: -2, color: '#000', marginBottom: 40,
         }}>
-          Actualités et innovations<br />dans les énergies propres
+          {title}
         </motion.h2>
 
         <div className="news-grid">
-          {articles.map((article, i) => (
+          {items.map((article, i) => (
             <Link key={i} href={`/blogs/${article.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}>
               <motion.div className="news-card" variants={cardReveal} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '0px 0px -50px 0px', amount: 0.1 }} transition={{ duration: 0.75, ease: 'easeOut', delay: i * 0.18 }}>
                 <div style={{ position: 'relative', borderRadius: 50, overflow: 'hidden', aspectRatio: '16/10' }}>
@@ -92,11 +115,11 @@ export default function News() {
         </div>
 
         <motion.div variants={reveal} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '0px 0px -50px 0px', amount: 0.1 }} transition={{ duration: 0.8, ease: 'easeOut' }} style={{ marginTop: 40, display: 'inline-flex' }}>
-          <Button variant="lime" label="Plus d'articles" href="/blogs" />
+          <Button variant="lime" label={cta} href="/blogs" />
         </motion.div>
       </div>
 
-      <style jsx global>{`
+      <style>{`
         .news-read-more {
           display: inline-flex;
           align-items: center;

@@ -1,5 +1,15 @@
-export default function Marquee() {
-  const lightItems = [
+interface MarqueeProps {
+  lightItems?: string[]
+  darkItems?: string[]
+}
+
+export default function Marquee({
+  lightItems,
+  darkItems,
+}: MarqueeProps) {
+  const light = lightItems?.length ? [
+    ...lightItems, ...lightItems, ...lightItems,
+  ] : [
     'L\'Avenir avec le Soleil',
     'Innovation Solaire',
     'Énergie Renouvelable',
@@ -10,7 +20,9 @@ export default function Marquee() {
     'Innovation Solaire',
   ]
 
-  const darkItems = [
+  const dark = darkItems?.length ? [
+    ...darkItems, ...darkItems,
+  ] : [
     'Révolution Renouvelable',
     'Énergie Propre',
     'Solutions Solaires',
@@ -23,14 +35,12 @@ export default function Marquee() {
     'Un Futur Radieux',
   ]
 
-  /* Extracted: light row icons 22x26, rotate(-1deg), 4-pointed star shape */
   const LightIcon = () => (
     <svg width="22" height="26" viewBox="0 0 22 26" fill="currentColor" style={{ flexShrink: 0, transform: 'rotate(-1deg)' }}>
       <path d="M11 0L13.5 9.5L22 13L13.5 16.5L11 26L8.5 16.5L0 13L8.5 9.5L11 0Z" />
     </svg>
   )
 
-  /* Extracted: dark row icons 17x32, rotate(2deg), diamond/star shape */
   const DarkIcon = () => (
     <svg width="15" height="17" viewBox="0 0 15 17" fill="currentColor" style={{ flexShrink: 0, transform: 'rotate(2deg)' }}>
       <path d="M7.5 0L9.5 6L15 8.5L9.5 11L7.5 17L5.5 11L0 8.5L5.5 6L7.5 0Z" />
@@ -48,7 +58,7 @@ export default function Marquee() {
 
   return (
     <section style={{ overflow: 'clip', padding: '20px 0' }}>
-      {/* Light Row — extracted: rotate(2deg), bg #f8f8f8, items scroll RIGHT, gap 32px */}
+      {/* Light Row */}
       <section
         style={{
           display: 'flex',
@@ -76,7 +86,7 @@ export default function Marquee() {
             whiteSpace: 'nowrap',
           }}
         >
-          {[...lightItems, ...lightItems].map((text, i) => (
+          {[...light, ...light].map((text, i) => (
             <div
               key={i}
               style={{
@@ -94,7 +104,7 @@ export default function Marquee() {
         </div>
       </section>
 
-      {/* Dark Row — extracted: rotate(-2deg), bg teal, borderRadius 50px, mask-image gradient, items scroll LEFT */}
+      {/* Dark Row */}
       <section
         style={{
           display: 'flex',
@@ -138,7 +148,7 @@ export default function Marquee() {
               whiteSpace: 'nowrap',
             }}
           >
-            {[...darkItems, ...darkItems].map((text, i) => (
+            {[...dark, ...dark].map((text, i) => (
               <div
                 key={i}
                 style={{

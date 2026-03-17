@@ -1,16 +1,27 @@
 'use client'
 
+import React from 'react'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 
-export default function Footer() {
+import type { SiteData } from './Header'
+
+export default function Footer({ siteData }: { siteData?: SiteData }) {
   const brandGreen = '#50B5A2'
+  const phone = siteData?.phone ?? '+41 21 512 05 74'
+  const email = siteData?.email ?? 'contact@zen-energieservices.ch'
+  const address = siteData?.address ?? 'Chemin du Pré-Fleuri 1-3, 1228 Plan-les-Ouates, Genève'
+  const logoLight = siteData?.logoLight ?? '/Logo complet/Blanc.webp'
+  const logoIcon = siteData?.logoIcon ?? '/Logo image/Blanc.webp'
+  const socialLinks = siteData?.socialLinks ?? []
+  const footerAbout = siteData?.footerAbout ?? "Votre partenaire de confiance pour la maintenance et l'entretien de vos installations énergétiques en Suisse Romande."
+  const footerNewsletter = siteData?.footerNewsletter ?? 'Inscrivez-vous pour recevoir nos dernières actualités et offres.'
+  const copyright = siteData?.copyright ?? '© 2026 Zen Énergie Services Suisse. Tous droits réservés.'
 
   const usefulLinks = [
     { text: 'Accueil', href: '/' },
     { text: 'À propos', href: '/about-us' },
     { text: 'Nos contrats d\'entretien', href: '/services' },
-    { text: 'Notre équipe', href: '/team' },
+    { text: 'FAQ', href: '/#faq' },
     { text: 'Actualités', href: '/#news' },
     { text: 'Contactez-nous', href: '/contact-us' },
   ]
@@ -18,8 +29,8 @@ export default function Footer() {
   const topContactItems = [
     {
       label: 'Téléphone',
-      value: '+41 21 512 05 74',
-      href: 'tel:+41215120574',
+      value: phone,
+      href: `tel:${phone.replace(/\s/g, '')}`,
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
@@ -28,8 +39,8 @@ export default function Footer() {
     },
     {
       label: 'Email',
-      value: 'contact@zen-energieservices.ch',
-      href: 'mailto:contact@zen-energieservices.ch',
+      value: email,
+      href: `mailto:${email}`,
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
@@ -51,28 +62,18 @@ export default function Footer() {
     },
   ]
 
-  const socialLinks = [
-    {
-      name: 'facebook',
-      href: 'https://www.facebook.com/zen.energie.services/',
-      icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-        </svg>
-      )
-    },
-    {
-      name: 'instagram',
-      href: 'https://www.instagram.com/zenenergieservices_suisse/?hl=fr',
-      icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-        </svg>
-      )
-    },
-  ]
+  const socialIcons: Record<string, React.ReactNode> = {
+    facebook: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg>,
+    instagram: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" /></svg>,
+    linkedin: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect width="4" height="12" x="2" y="9" /><circle cx="4" cy="4" r="2" /></svg>,
+  }
+
+  const resolvedSocials = socialLinks.length > 0
+    ? socialLinks.map((sl: any) => ({ name: sl.platform, href: sl.url, icon: socialIcons[sl.platform] }))
+    : [
+        { name: 'facebook', href: 'https://www.facebook.com/zen.energie.services/', icon: socialIcons.facebook },
+        { name: 'instagram', href: 'https://www.instagram.com/zenenergieservices_suisse/?hl=fr', icon: socialIcons.instagram },
+      ]
 
   return (
     <footer style={{ background: '#2c6262', color: '#fff', padding: '40px 20px 20px' }}>
@@ -91,7 +92,7 @@ export default function Footer() {
         }}>
           {/* Logo */}
           <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
-            <img src="/Logo complet/Blanc.webp" alt="Zen Energie Services" style={{ height: 40, width: 'auto' }} />
+            <img src={logoLight} alt="Zen Energie Services" style={{ height: 40, width: 'auto' }} />
           </Link>
 
           {/* Contact Blocks */}
@@ -142,17 +143,17 @@ export default function Footer() {
           {/* Col 1: About */}
           <div>
             <img
-              src="/Logo image/Blanc.webp"
+              src={logoIcon}
               alt=""
               style={{ height: 36, width: 'auto', marginBottom: 14, opacity: 0.9 }}
             />
             <h4 style={{ fontFamily: "var(--font-barlow)", fontSize: 18, fontWeight: 600, marginBottom: 15 }}>À propos de Zen</h4>
             <p style={{ fontFamily: "var(--font-inter)", fontSize: 15, lineHeight: 1.5, color: 'rgba(255, 255, 255, 0.88)', maxWidth: 260 }}>
-              Votre partenaire de confiance pour la maintenance et l’entretien de vos installations énergétiques en Suisse Romande.
+              {footerAbout}
             </p>
             {/* Social Icons moved here */}
             <div style={{ display: 'flex', gap: 12, marginTop: 15 }}>
-              {socialLinks.map((social) => (
+              {resolvedSocials.map((social: any) => (
                 <a
                   key={social.name}
                   href={social.href}
@@ -194,9 +195,9 @@ export default function Footer() {
             <h4 style={{ fontFamily: "var(--font-barlow)", fontSize: 18, fontWeight: 600, marginBottom: 15 }}>Contact</h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
               {[
-                { icon: <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0zm-9 3a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />, text: 'Chemin du Pré-Fleuri 1-3, 1228 Plan-les-Ouates, Genève' },
-                { icon: <path d="M4 19a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4z M22 7l-10 7L2 7" />, text: 'contact@zen-energieservices.ch' },
-                { icon: <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />, text: '+41 21 512 05 74' },
+                { icon: <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0zm-9 3a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />, text: address },
+                { icon: <path d="M4 19a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4z M22 7l-10 7L2 7" />, text: email },
+                { icon: <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />, text: phone },
               ].map((item, i) => (
                 <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={brandGreen} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginTop: 4 }}>
@@ -212,7 +213,7 @@ export default function Footer() {
           <div>
             <h4 style={{ fontFamily: "var(--font-barlow)", fontSize: 18, fontWeight: 600, marginBottom: 15 }}>Newsletter</h4>
             <p style={{ fontFamily: "var(--font-inter)", fontSize: 15, color: 'rgba(255, 255, 255, 0.88)', marginBottom: 15 }}>
-              Inscrivez-vous pour recevoir nos dernières actualités et offres.
+              {footerNewsletter}
             </p>
             <div style={{
               display: 'flex',
@@ -282,7 +283,7 @@ export default function Footer() {
 
           {/* Copyright */}
           <div style={{ fontFamily: "var(--font-inter)", fontSize: 12, color: 'rgba(255, 255, 255, 0.65)' }}>
-            &copy; 2026 Zen Énergie Services Suisse. Tous droits réservés.
+            {copyright}
           </div>
 
 

@@ -4,6 +4,8 @@ import './globals.css'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import ScrollTopButton from '@/components/ui/ScrollTopButton'
+import { getSiteSettings } from '@/lib/queries'
+import { urlFor } from '@/lib/sanity'
 
 const barlow = Barlow({
   subsets: ['latin'],
@@ -44,17 +46,37 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({
+export const revalidate = 60
+
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const settings = await getSiteSettings()
+
+  const img = (src: any) => src ? urlFor(src).width(400).quality(80).url() : undefined
+
+  const siteData = {
+    phone: settings?.phone ?? '+41 21 512 05 74',
+    email: settings?.email ?? 'contact@zen-energieservices.ch',
+    address: settings?.address ?? 'Chemin du Pré-Fleuri 1-3, 1228 Plan-les-Ouates, Genève',
+    typeformUrl: settings?.typeformUrl ?? 'https://form.typeform.com/to/rRhOu7eb',
+    logoLight: img(settings?.logoLight) ?? '/Logo complet/Blanc.webp',
+    logoDark: img(settings?.logoDark) ?? '/Logo complet/Vert medium.webp',
+    logoIcon: img(settings?.logoIcon) ?? '/Logo image/Blanc.webp',
+    socialLinks: settings?.socialLinks ?? [],
+    footerAbout: settings?.footerAbout ?? "Votre partenaire de confiance pour la maintenance et l'entretien de vos installations énergétiques en Suisse Romande.",
+    footerNewsletter: settings?.footerNewsletter ?? 'Inscrivez-vous pour recevoir nos dernières actualités et offres.',
+    copyright: settings?.copyright ?? '© 2026 Zen Énergie Services Suisse. Tous droits réservés.',
+  }
+
   return (
-    <html lang="fr" className={`${barlow.variable} ${inter.variable}`}>
-      <body>
-        <Header />
+    <html lang="fr" className={`${barlow.variable} ${inter.variable}`} suppressHydrationWarning>
+      <body suppressHydrationWarning>
+        <Header siteData={siteData} />
         {children}
-        <Footer />
+        <Footer siteData={siteData} />
         <ScrollTopButton />
       </body>
     </html>

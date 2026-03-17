@@ -13,6 +13,11 @@ const nextConfig = {
         hostname: 'framerusercontent.com',
         pathname: '/images/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
+        pathname: '/images/**',
+      },
     ],
   },
   eslint: {
