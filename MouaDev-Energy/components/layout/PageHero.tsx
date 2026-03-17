@@ -101,7 +101,7 @@ export default function PageHero({ crumbs, title, bgImage, compact = false }: Pa
                   {crumb.label}
                 </Link>
               ) : (
-                <span style={{ fontFamily: "var(--font-jost), 'Jost', sans-serif", fontSize: 14, color: '#50B5A2' }}>
+                <span style={{ fontFamily: "var(--font-jost), 'Jost', sans-serif", fontSize: 14, color: '#fff' }}>
                   {crumb.label}
                 </span>
               )}

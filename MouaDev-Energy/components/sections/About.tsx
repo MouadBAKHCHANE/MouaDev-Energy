@@ -1,33 +1,53 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
-import { motion, useInView } from 'framer-motion'
+import { motion } from 'framer-motion'
 import Image from 'next/image'
 import SectionLabel from '@/components/ui/SectionLabel'
 import CheckIcon from '@/components/ui/CheckIcon'
 import Button from '@/components/ui/Button'
+import { urlFor } from '@/lib/sanity'
 
-// Extracted: heading uses y:44
 const revealHeading = {
   hidden: { opacity: 0, y: 44 },
   visible: { opacity: 1, y: 0 },
 }
 
-const checkItems = [
+const defaultFeatures = [
   { title: "Performance garantie", desc: "assurez la performance optimale de vos installations" },
-  { title: "Expertise locale", desc: "une équipe d’experts proche de chez vous formée aux dernières avancées technologiques" },
+  { title: "Expertise locale", desc: "une équipe d'experts proche de chez vous formée aux dernières avancées technologiques" },
   { title: "Engagement durable", desc: "prolongez la durée de vie de vos équipements tout en contribuant à un avenir plus vert" },
-  { title: "Fiabilité & confiance", desc: "une qualité irréprochable, lors de toute intervention afin de répondre à l’ensemble des normes et prérogatives du domaine." },
+  { title: "Fiabilité & confiance", desc: "une qualité irréprochable, lors de toute intervention afin de répondre à l'ensemble des normes et prérogatives du domaine." },
 ]
 
-export default function About() {
+interface AboutProps {
+  label?: string
+  title?: string
+  body?: string
+  ctaText?: string
+  image?: any
+  features?: Array<{ title: string; desc: string }>
+}
+
+export default function About({
+  label = 'À PROPOS DE NOUS',
+  title = 'Pourquoi choisir Zen Énergie Services ?',
+  body = "Fort d'une expertise reconnue depuis de nombreuses années en Suisse, Zen Énergie Services s'assure de la longévité et de l'optimisation du rendement de vos installations sur le long terme. Des experts locaux au service des particuliers tout au long de l'année.",
+  ctaText = 'En savoir plus',
+  image,
+  features,
+}: AboutProps) {
+  const imgSrc = image
+    ? urlFor(image).width(800).quality(80).url()
+    : '/Photos%20HD/Visuels%20Technique/Technique%20-%20PV/Re%CC%81paration%20panneau%20solaire.webp'
+
+  const checkItems = features?.length ? features : defaultFeatures
+
   return (
     <section id="about" className="about-section" style={{ padding: '80px 20px', background: '#f8f8f8' }}>
       <div style={{ maxWidth: 1400, margin: '0 auto' }}>
-        {/* 3-column row: alignItems flex-start to allow manual title positioning */}
         <div className="about-row" style={{ display: 'flex', alignItems: 'flex-start', gap: '40px', flexWrap: 'wrap' }}>
 
-          {/* Column 1: Now contains the Heading and Description */}
+          {/* Column 1: Heading and Description */}
           <motion.div
             className="about-col-1"
             variants={revealHeading} initial="hidden" whileInView="visible"
@@ -38,12 +58,11 @@ export default function About() {
               display: 'flex',
               flexDirection: 'column',
               gap: 30,
-              paddingTop: 60 // This moves the titles "lower" and centers them better with the image height
+              paddingTop: 60
             }}
           >
-            {/* Header block moved inside the column */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 15 }}>
-              <SectionLabel text="À PROPOS DE NOUS" />
+              <SectionLabel text={label} />
               <h2
                 className="about-h2"
                 style={{
@@ -52,8 +71,7 @@ export default function About() {
                   margin: 0,
                 }}
               >
-                Pourquoi choisir <br />
-                Zen Énergie Services ?
+                {title}
               </h2>
             </div>
 
@@ -61,11 +79,11 @@ export default function About() {
               fontFamily: "var(--font-jost), 'Jost', sans-serif",
               fontSize: 17, fontWeight: 400, lineHeight: '26px', color: '#000', margin: 0,
             }}>
-              Fort d’une expertise reconnue depuis de nombreuses années en Suisse, Zen Énergie Services s’assure de la longévité et de l’optimisation du rendement de vos installations sur le long terme. Des experts locaux au service des particuliers tout au long de l’année.
+              {body}
             </p>
 
             <div>
-              <Button variant="lime" label="En savoir plus" href="/about-us" />
+              <Button variant="lime" label={ctaText} href="/about-us" />
             </div>
           </motion.div>
 
@@ -78,8 +96,8 @@ export default function About() {
             style={{ flex: '0 0 393px', position: 'relative', height: 530 }}
           >
             <Image
-              src="/Photos%20HD/Visuels%20Technique/Technique%20-%20PV/Re%CC%81paration%20panneau%20solaire.webp"
-              alt="Two men fix solar panel"
+              src={imgSrc}
+              alt="About image"
               fill
               sizes="(max-width: 1024px) 100vw, 393px"
               style={{ borderRadius: 50, objectFit: 'cover', objectPosition: '60% 50%' }}
@@ -111,7 +129,7 @@ export default function About() {
             </div>
           </motion.div>
 
-          {/* Column 3: h3 + checklist */}
+          {/* Column 3: checklist */}
           <motion.div
             className="about-col-3"
             variants={revealHeading} initial="hidden" whileInView="visible"
@@ -123,7 +141,7 @@ export default function About() {
               flexDirection: 'column',
               alignItems: 'flex-start',
               gap: 30,
-              paddingTop: 80 // Align with titles on the left
+              paddingTop: 80
             }}
           >
             <h3 style={{
@@ -152,7 +170,7 @@ export default function About() {
           </motion.div>
         </div>
       </div>
-      <style jsx global>{`
+      <style>{`
         @media (max-width: 1024px) {
           .about-row {
             flex-direction: column !important;

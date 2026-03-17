@@ -4,21 +4,61 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 import ArrowIcon from '@/components/ui/ArrowIcon'
+import { urlFor } from '@/lib/sanity'
 
 const reveal = {
   hidden: { opacity: 0, y: 150 },
   visible: { opacity: 1, y: 0 },
 }
 
-export default function Hero() {
+interface HeroProps {
+  badge?: string
+  title?: string
+  accentWord?: string
+  subtitle?: string
+  bgImage?: any
+  cta?: string
+  ctaLink?: string
+  reviewCount?: string
+  rating?: string
+  tickerText?: string
+}
+
+export default function Hero({
+  badge = 'Suisse Romande',
+  title = 'Zen Énergie Services, votre partenaire de confiance',
+  accentWord = 'confiance',
+  subtitle = 'Augmentez la longévité et la performance de vos équipements de chauffage et installations photovoltaïques.',
+  bgImage,
+  cta = 'Explorer maintenant',
+  ctaLink = '/services',
+  reviewCount = '100+ avis',
+  rating = '4.96 sur 5',
+  tickerText = 'Ma maison, Mon confort.',
+}: HeroProps) {
+  const bgSrc = bgImage ? urlFor(bgImage).width(1920).quality(85).url() : '/Photos HD/Photos d_ambiance/happy-family-background-house-with-solar-panels-roof-selective-focus.webp'
+
+  // Build title with accent word highlighted
+  function renderTitle() {
+    if (!accentWord || !title.includes(accentWord)) {
+      return title
+    }
+    const parts = title.split(accentWord)
+    return (
+      <>
+        {parts[0]}<span style={{ color: '#50B5A2' }}>{accentWord}</span>{parts[1] || ''}
+      </>
+    )
+  }
+
   return (
     <section
       id="home"
       className="hero-section"
       style={{
         position: 'relative',
-        height: '100vh',
-        minHeight: 600,
+        height: '75vh',
+        minHeight: 480,
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-end',
@@ -29,7 +69,7 @@ export default function Hero() {
       {/* Background */}
       <div style={{ position: 'absolute', inset: 0, zIndex: 0, background: '#000', overflow: 'hidden' }}>
         <Image
-          src="/Photos HD/Photos d_ambiance/Famille AdobeStock.webp"
+          src={bgSrc}
           alt=""
           fill
           priority
@@ -45,7 +85,7 @@ export default function Hero() {
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(rgba(0,0,0,0.02) 40%, rgba(0,0,0,0.65) 100%)',
+            background: 'linear-gradient(to right, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.2) 40%, rgba(0,0,0,0.0) 70%), linear-gradient(rgba(0,0,0,0.02) 40%, rgba(0,0,0,0.65) 100%)',
           }}
         />
       </div>
@@ -83,7 +123,7 @@ export default function Hero() {
                     <path d="M384 213.33H298.67V128H213.33V213.33H128V298.67H213.33V384H298.67V298.67H384V213.33Z" fill="white" />
                   </svg>
                   <span style={{ color: '#fff', fontFamily: "var(--font-inter), 'Inter', sans-serif", fontSize: 14, fontWeight: 500 }}>
-                    Suisse Romande
+                    {badge}
                   </span>
                 </div>
                 <h1
@@ -99,11 +139,11 @@ export default function Hero() {
                     margin: 0,
                   }}
                 >
-                  Zen Énergie Services,<br />votre partenaire<br />de <span style={{ color: '#50B5A2' }}>confiance</span>
+                  {renderTitle()}
                 </h1>
               </div>
 
-              {/* Social proof — right of title */}
+              {/* Social proof — right of title (mobile/tablet only) */}
               <div className="hero-social-proof" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, flexShrink: 0 }}>
                 <div className="hero-avatars-row" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                   {[
@@ -129,8 +169,8 @@ export default function Hero() {
                   fontFamily: "var(--font-inter), 'Inter', sans-serif",
                   fontSize: 12, fontWeight: 500, color: '#fff', lineHeight: 1.3, textAlign: 'center',
                 }}>
-                  <strong style={{ display: 'block', fontSize: 13, fontWeight: 600 }}>100+ avis</strong>
-                  <span style={{ color: '#50B5A2', fontSize: 12 }}>4.96 sur 5</span>
+                  <strong style={{ display: 'block', fontSize: 13, fontWeight: 600 }}>{reviewCount}</strong>
+                  <span style={{ color: '#50B5A2', fontSize: 12 }}>{rating}</span>
                 </div>
               </div>
             </motion.div>
@@ -151,7 +191,7 @@ export default function Hero() {
                 marginBottom: 0,
               }}
             >
-              Augmentez la longévité et la performance de vos équipements de chauffage et installations photovoltaïques.
+              {subtitle}
             </motion.p>
           </div>
 
@@ -164,7 +204,7 @@ export default function Hero() {
               transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
             >
               <Link
-                href="/services"
+                href={ctaLink}
                 className="hero-cta-link"
                 style={{
                   display: 'inline-flex',
@@ -196,7 +236,7 @@ export default function Hero() {
                   if (svg) svg.querySelectorAll('polyline, path, line').forEach((s) => (s as SVGElement).setAttribute('stroke', '#fff'));
                 }}
               >
-                <span>Explorer maintenant</span>
+                <span>{cta}</span>
                 <span
                   className="hero-btn-arr"
                   style={{
@@ -243,20 +283,22 @@ export default function Hero() {
                 fontFamily: "var(--font-inter), 'Inter', sans-serif",
                 fontSize: 13, fontWeight: 500, color: '#fff', lineHeight: 1.4,
               }}>
-                <strong style={{ display: 'block', fontSize: 14, fontWeight: 700 }}>100+ avis</strong>
-                <span style={{ color: '#50B5A2' }}>4.96 sur 5 ★</span>
+                <strong style={{ display: 'block', fontSize: 14, fontWeight: 700 }}>{reviewCount}</strong>
+                <span style={{ color: '#50B5A2' }}>{rating} ★</span>
               </div>
             </motion.div>
           </div>
         </div>
       </div>
 
-      <style jsx global>{`
+      <style>{`
         /* Desktop: hide title-row social proof, show bottom one */
         .hero-social-proof {
           display: none !important;
         }
-        @media (max-width: 640px) {
+
+        /* ── Tablet (≤1024px) — same layout as mobile ── */
+        @media (max-width: 1024px) {
           .hero-container {
             flex-direction: column !important;
             align-items: flex-start !important;
@@ -282,19 +324,41 @@ export default function Hero() {
           }
           .hero-bottom {
             margin-top: 8px !important;
+            justify-content: flex-start !important;
           }
           .hero-bg-img {
             transform: none !important;
           }
           .hero-h1 {
-            font-size: 32px !important;
+            font-size: 40px !important;
             letter-spacing: -0.5px !important;
+            line-height: 0.95 !important;
+          }
+          .hero-badge {
+            margin-bottom: 14px !important;
+          }
+          /* Show title-row social proof, hide bottom one */
+          .hero-social-proof {
+            display: flex !important;
+            transform: translateY(12px) !important;
+          }
+          .hero-bottom-social {
+            display: none !important;
+          }
+          .hero-ticker-track {
+            animation-duration: 120s !important;
+          }
+        }
+
+        /* ── Mobile (≤640px) — smaller sizes ── */
+        @media (max-width: 640px) {
+          .hero-h1 {
+            font-size: 32px !important;
             line-height: 0.95 !important;
           }
           .hero-badge {
             font-size: 12px !important;
             padding: 4px 10px !important;
-            margin-bottom: 14px !important;
           }
           .hero-cta-link {
             font-size: 14px !important;
@@ -307,27 +371,14 @@ export default function Hero() {
             height: 34px !important;
             border-radius: 8px !important;
           }
-          /* On mobile: show title-row social proof, hide bottom one */
-          .hero-social-proof {
-            display: flex !important;
-            transform: translateY(12px) !important;
-          }
-          .hero-bottom-social {
-            display: none !important;
-          }
-          .hero-bottom {
-            justify-content: flex-start !important;
-          }
-          .hero-ticker-track {
-            animation-duration: 120s !important;
-          }
         }
+
         .hero-ticker-track {
           animation: ticker 280s linear infinite;
         }
       `}</style>
 
-      {/* Ticker — extracted: stroke 1px white, fill transparent, 700 weight, ~30px/s, container opacity 0.19 */}
+      {/* Ticker */}
       <div
         style={{
           position: 'absolute', bottom: -20, left: 0, right: 0,
@@ -336,7 +387,7 @@ export default function Hero() {
         }}
       >
         <div className="hero-ticker-track" style={{ display: 'inline-flex' }}>
-          {Array(8).fill('Ma maison, Mon confort.        ').map((text, i) => (
+          {Array(8).fill(`${tickerText}        `).map((text, i) => (
             <span
               key={i}
               style={{

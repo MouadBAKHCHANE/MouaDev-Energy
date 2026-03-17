@@ -1,52 +1,70 @@
 'use client'
 
-import { useState, useEffect, useLayoutEffect, useRef } from 'react'
+import { useState, useLayoutEffect, useRef } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import SectionLabel from '@/components/ui/SectionLabel'
 import Button from '@/components/ui/Button'
+import { urlFor } from '@/lib/sanity'
 
 const reveal = {
   hidden: { opacity: 0, y: 40 },
   visible: { opacity: 1, y: 0 },
 }
 
-const slides = [
+const defaultSlides = [
   {
     img: '/Photos%20HD/Photos%20produits/Panneaux%20solaires/man-worker-firld-by-solar-panels.webp',
     name: 'Panneaux solaires',
-    icon: '/Ic%C3%B4nes/CHARTEGRAPHIQUENAOSERVICE-18.webp',
+    icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-18.webp',
     href: '/services/panneaux-solaires',
+    accent: '#50b5a2',
   },
   {
     img: '/Photos%20HD/Visuels%20Technique/Technique%20-%20PAC/Pompes%20a%CC%80%20chaleur%20avantages%20et%20inconve%CC%81nients.webp',
     name: 'Pompes à chaleur',
-    icon: '/Ic%C3%B4nes/CHARTEGRAPHIQUENAOSERVICE-20.webp',
+    icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-20.webp',
     href: '/services/pompe-a-chaleur',
+    accent: '#e8552c',
   },
   {
     img: '/Photos%20HD/Visuels%20Technique/Technique%20-%20Boiler/Ajustement%20de%20re%CC%81troe%CC%81clairage.webp',
     name: 'Boiler thermodynamique',
-    icon: '/Ic%C3%B4nes/CHARTEGRAPHIQUENAOSERVICE-15.webp',
+    icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-15.webp',
     href: '/services/boiler-thermodynamique',
-    imgPosition: '20% center',
-    imgPositionMobile: '10% center',
+    accent: '#0c2a54',
   },
   {
     img: '/Photos%20HD/Visuels%20Technique/Nettoyage%20-%20PV/1789536761.webp',
     name: 'Nettoyage panneaux solaires',
-    icon: '/Ic%C3%B4nes/CHARTEGRAPHIQUENAOSERVICE-23.webp',
+    icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-23.webp',
     href: '/services/pv-clean',
+    accent: '#50b5a2',
   },
 ]
 
-// Infinite carousel: [clone_last, s0, s1, s2, s3, clone_first]
-const extendedSlides = [slides[slides.length - 1], ...slides, slides[0]]
+interface OurServicesProps {
+  label?: string
+  title?: string
+  desc?: string
+  cta?: string
+  cards?: Array<{ title: string; image?: any; icon?: any; link: string }>
+}
 
-export default function OurServices() {
-  // active starts at 1 = first real slide
+export default function OurServices({
+  label = 'NOS SERVICES',
+  title = 'Des solutions énergétiques sur mesure adaptées à vos besoins',
+  desc = "Notre équipe conçoit et installe des systèmes d'énergie solaire personnalisés basés sur votre consommation, la configuration de votre propriété et votre budget.",
+  cta = "Découvrir nos offres d'entretien",
+  cards,
+}: OurServicesProps) {
+  const slides = defaultSlides
+
+  // Infinite carousel: [clone_last, s0, s1, s2, s3, clone_first]
+  const extendedSlides = [slides[slides.length - 1], ...slides, slides[0]]
+
   const [active, setActive] = useState(1)
   const [animated, setAnimated] = useState(true)
   const lockRef = useRef(false)
@@ -64,8 +82,6 @@ export default function OurServices() {
     setActive(i => i + 1)
   }
 
-  // After transition ends, silently reset position if at a clone
-  // Guard on propertyName so it only fires once per slide (transform only)
   const handleTransitionEnd = (e: React.TransitionEvent) => {
     if (e.propertyName !== 'transform') return
     if (active === 0) {
@@ -79,9 +95,6 @@ export default function OurServices() {
     }
   }
 
-  // Re-enable animation after silent jump (useLayoutEffect fires after DOM
-  // paint so the browser sees translateX at the real position before transition
-  // is re-enabled — preventing any visible snap)
   useLayoutEffect(() => {
     if (!animated) {
       const id = requestAnimationFrame(() => {
@@ -92,7 +105,6 @@ export default function OurServices() {
     }
   }, [animated])
 
-  // Real slide index for dots (0-based)
   const realIndex = active === 0
     ? slides.length - 1
     : active === extendedSlides.length - 1
@@ -100,52 +112,10 @@ export default function OurServices() {
       : active - 1
 
   return (
-    <section className="our-svc-section" style={{ padding: '100px 20px', background: '#fff' }}>
+    <section className="our-svc-section" style={{ padding: '40px 20px 100px', background: '#fff' }}>
       <div style={{ maxWidth: 1400, margin: '0 auto' }}>
-        <motion.div
-          variants={reveal} initial="hidden" whileInView="visible"
-          viewport={{ once: true, margin: '0px 0px -50px 0px', amount: 0.1 }}
-          transition={{ duration: 0.5, ease: 'easeOut' }}
-          style={{ marginBottom: 15, display: 'flex', justifyContent: 'center' }}
-        >
-          <SectionLabel text="NOS SERVICES" />
-        </motion.div>
-        <motion.h2
-          variants={reveal} initial="hidden" whileInView="visible"
-          viewport={{ once: true, margin: '0px 0px -50px 0px', amount: 0.1 }}
-          transition={{ duration: 0.5, ease: 'easeOut', delay: 0.07 }}
-          className="our-svc-h2"
-          style={{
-            fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
-            fontSize: 'clamp(32px, 5vw, 48px)', fontWeight: 500, lineHeight: 1.1, letterSpacing: -2,
-            color: '#000', marginBottom: 16, maxWidth: 800, margin: '0 auto 16px', textAlign: 'center'
-          }}
-        >
-          Des solutions énergétiques sur mesure adaptées à vos besoins
-        </motion.h2>
-        <motion.p
-          variants={reveal} initial="hidden" whileInView="visible"
-          viewport={{ once: true, margin: '0px 0px -50px 0px', amount: 0.1 }}
-          transition={{ duration: 0.5, ease: 'easeOut', delay: 0.12 }}
-          className="our-svc-body"
-          style={{
-            fontFamily: "var(--font-jost), 'Jost', sans-serif",
-            fontSize: 18, fontWeight: 400, lineHeight: '28px', color: '#555',
-            maxWidth: 850, margin: '0 auto 30px', textAlign: 'center'
-          }}
-        >
-          Notre équipe conçoit et installe des systèmes d'énergie solaire personnalisés basés sur votre consommation, la configuration de votre propriété et votre budget.
-        </motion.p>
-        <motion.div
-          variants={reveal} initial="hidden" whileInView="visible"
-          viewport={{ once: true, margin: '0px 0px -50px 0px', amount: 0.1 }}
-          transition={{ duration: 0.5, ease: 'easeOut', delay: 0.18 }}
-          style={{ display: 'flex', justifyContent: 'center', marginBottom: 60 }}
-        >
-          <Button variant="lime" label="Découvrir nos offres d’entretien" href="/services" />
-        </motion.div>
 
-        {/* Desktop grid */}
+        {/* Desktop grid — cards first */}
         <div className="svc-grid-container">
           {slides.map((slide, i) => (
             <motion.div
@@ -165,8 +135,9 @@ export default function OurServices() {
                   >
                     <Image src={slide.img} alt={slide.name}
                       fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                      style={{ objectFit: 'cover', objectPosition: (slide as any).imgPosition || 'center center', opacity: 0.9 }}
+                      quality={95}
+                      sizes="(max-width: 640px) 100vw, (max-width: 1200px) 50vw, 450px"
+                      style={{ objectFit: 'cover', objectPosition: 'center center', opacity: 0.9 }}
                     />
                   </motion.div>
                   <div style={{ position: 'absolute', inset: 0, padding: '28px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', background: 'linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.6) 70%, #000 100%)', zIndex: 2 }}>
@@ -174,14 +145,14 @@ export default function OurServices() {
                       <motion.div
                         variants={{ rest: { opacity: 0, scale: 0.7, y: -8 }, hover: { opacity: 1, scale: 1, y: 0 } }}
                         transition={{ duration: 0.3, ease: [0.165, 0.84, 0.44, 1] }}
-                        style={{ width: 50, height: 50, borderRadius: '50%', background: '#50b5a2', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 8px 24px rgba(0,0,0,0.35)', flexShrink: 0 }}
+                        style={{ width: 50, height: 50, borderRadius: '50%', background: slide.accent, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 8px 24px rgba(0,0,0,0.35)', flexShrink: 0 }}
                       >
                         <ArrowUpRight size={24} color="#fff" strokeWidth={2.5} />
                       </motion.div>
                     </div>
                     <div>
                       <div style={{ marginBottom: 16 }}>
-                        <div style={{ width: 44, height: 44, background: '#50b5a2', WebkitMask: `url("${slide.icon}") center/contain no-repeat`, mask: `url("${slide.icon}") center/contain no-repeat` }} />
+                        <div style={{ width: 44, height: 44, background: slide.accent, WebkitMask: `url("${slide.icon}") center/contain no-repeat`, mask: `url("${slide.icon}") center/contain no-repeat` }} />
                       </div>
                       <h3 style={{ fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif", fontSize: 'clamp(22px, 2.2vw, 30px)', fontWeight: 600, lineHeight: 1.1, color: '#fff', margin: 0, textAlign: 'left', letterSpacing: -1 }}>
                         {slide.name}
@@ -196,7 +167,6 @@ export default function OurServices() {
 
         {/* Mobile carousel */}
         <div className="svc-carousel">
-          {/* Card + side arrows overlay */}
           <div style={{ position: 'relative', overflow: 'hidden', borderRadius: 24 }}>
             <div
               className="svc-carousel-track"
@@ -206,17 +176,16 @@ export default function OurServices() {
               {extendedSlides.map((slide, i) => (
                 <div key={i} className="svc-carousel-slide">
                   <Link href={slide.href} className="svc-card-link" style={{ display: 'block', textDecoration: 'none', borderRadius: 20, overflow: 'hidden', position: 'relative', aspectRatio: '1.1', background: '#000' }}>
-                    <Image src={slide.img} alt={slide.name} fill sizes="100vw" style={{ objectFit: 'cover', objectPosition: (slide as any).imgPositionMobile || (slide as any).imgPosition || 'center center', opacity: 0.9 }} />
+                    <Image src={slide.img} alt={slide.name} fill quality={95} sizes="100vw" style={{ objectFit: 'cover', objectPosition: 'center center', opacity: 0.9 }} />
                     <div style={{ position: 'absolute', inset: 0, padding: '16px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', background: 'linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.6) 70%, #000 100%)', zIndex: 2 }}>
-                      {/* Arrow — hidden by default, shown on hover via CSS */}
                       <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                        <div className="svc-card-arrow" style={{ width: 38, height: 38, borderRadius: '50%', background: '#50b5a2', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <div className="svc-card-arrow" style={{ width: 38, height: 38, borderRadius: '50%', background: slide.accent, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                           <ArrowUpRight size={20} color="#fff" strokeWidth={2.5} />
                         </div>
                       </div>
                       <div>
                         <div style={{ marginBottom: 8 }}>
-                          <div style={{ width: 32, height: 32, background: '#50b5a2', WebkitMask: `url("${slide.icon}") center/contain no-repeat`, mask: `url("${slide.icon}") center/contain no-repeat` }} />
+                          <div style={{ width: 32, height: 32, background: slide.accent, WebkitMask: `url("${slide.icon}") center/contain no-repeat`, mask: `url("${slide.icon}") center/contain no-repeat` }} />
                         </div>
                         <h3 style={{ fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif", fontSize: 20, fontWeight: 600, lineHeight: 1.1, color: '#fff', margin: 0, letterSpacing: -0.5 }}>
                           {slide.name}
@@ -228,7 +197,6 @@ export default function OurServices() {
               ))}
             </div>
 
-            {/* Left arrow — centered vertically on card */}
             <button onClick={prev} className="svc-arrow svc-arrow-left" aria-label="Précédent">
               <ChevronLeft size={22} strokeWidth={2} />
             </button>
@@ -237,7 +205,6 @@ export default function OurServices() {
             </button>
           </div>
 
-          {/* Dots */}
           <div style={{ display: 'flex', justifyContent: 'center', gap: 8, marginTop: 20 }}>
             {slides.map((_, i) => (
               <button key={i} onClick={() => { setAnimated(true); setActive(i + 1) }}
@@ -248,8 +215,52 @@ export default function OurServices() {
           </div>
         </div>
 
+        {/* Text + CTA below cards */}
+        <motion.div
+          variants={reveal} initial="hidden" whileInView="visible"
+          viewport={{ once: true, margin: '0px 0px -50px 0px', amount: 0.1 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+          style={{ marginTop: 60, display: 'flex', justifyContent: 'center' }}
+        >
+          <SectionLabel text={label} />
+        </motion.div>
+        <motion.h2
+          variants={reveal} initial="hidden" whileInView="visible"
+          viewport={{ once: true, margin: '0px 0px -50px 0px', amount: 0.1 }}
+          transition={{ duration: 0.5, ease: 'easeOut', delay: 0.07 }}
+          className="our-svc-h2"
+          style={{
+            fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
+            fontSize: 'clamp(32px, 5vw, 48px)', fontWeight: 500, lineHeight: 1.1, letterSpacing: -2,
+            color: '#000', maxWidth: 800, margin: '16px auto 16px', textAlign: 'center'
+          }}
+        >
+          {title}
+        </motion.h2>
+        <motion.p
+          variants={reveal} initial="hidden" whileInView="visible"
+          viewport={{ once: true, margin: '0px 0px -50px 0px', amount: 0.1 }}
+          transition={{ duration: 0.5, ease: 'easeOut', delay: 0.12 }}
+          className="our-svc-body"
+          style={{
+            fontFamily: "var(--font-jost), 'Jost', sans-serif",
+            fontSize: 18, fontWeight: 400, lineHeight: '28px', color: '#555',
+            maxWidth: 850, margin: '0 auto 30px', textAlign: 'center'
+          }}
+        >
+          {desc}
+        </motion.p>
+        <motion.div
+          variants={reveal} initial="hidden" whileInView="visible"
+          viewport={{ once: true, margin: '0px 0px -50px 0px', amount: 0.1 }}
+          transition={{ duration: 0.5, ease: 'easeOut', delay: 0.18 }}
+          style={{ display: 'flex', justifyContent: 'center' }}
+        >
+          <Button variant="lime" label={cta} href="/services" />
+        </motion.div>
+
       </div>
-      <style jsx global>{`
+      <style>{`
         .svc-grid-container {
           display: grid;
           grid-template-columns: repeat(4, 1fr);

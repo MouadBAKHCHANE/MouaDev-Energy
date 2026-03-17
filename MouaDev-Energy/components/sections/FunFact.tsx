@@ -4,15 +4,14 @@ import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import Image from 'next/image'
 import SectionLabel from '@/components/ui/SectionLabel'
-import Button from '@/components/ui/Button'
+import { urlFor } from '@/lib/sanity'
 
-// Extracted from original: heading uses y:44
 const revealHeading = {
   hidden: { opacity: 0, y: 44 },
   visible: { opacity: 1, y: 0 },
 }
 
-const cards = [
+const defaultCards = [
   {
     img: "/Photos%20HD/Visuels%20Technique/Technique%20-%20Boiler/Femme%20ve%CC%81rifiant%20Boiler.webp",
     imgAlt: "Prise de rendez-vous",
@@ -29,30 +28,35 @@ const cards = [
   },
   {
     img: "/Photos%20HD/Visuels%20Technique/Technique%20-%20PAC/Technicien%20Inspection%20Pompe%20Chaleur.webp",
-    imgAlt: "Envoi du rapport d’intervention",
+    imgAlt: "Envoi du rapport d'intervention",
     icon: "https://framerusercontent.com/images/jpxArhZs8VwgsAK7U5D5B5MqU.png",
-    title: "3. Envoi du rapport d’intervention",
-    desc: "Un rapport d’intervention vous sera transmis à la suite de la visite de nos experts.",
+    title: "3. Envoi du rapport d'intervention",
+    desc: "Un rapport d'intervention vous sera transmis à la suite de la visite de nos experts.",
   },
   {
     img: "/Photos%20HD/Photos%20d_ambiance/iStock%20Image%201484x707.webp",
     imgAlt: "Suivi en ligne",
     icon: "/icons/CHARTEGRAPHIQUENAOSERVICE-35.webp",
     title: "4. Suivi en ligne",
-    desc: "Gérez votre contrat, vos rapports d’interventions et vos demandes directement depuis votre espace client Zen.",
+    desc: "Gérez votre contrat, vos rapports d'interventions et vos demandes directement depuis votre espace client Zen.",
   },
 ]
 
-// Extracted: cards scale to 0.972 when behind, transformOrigin center
-function StackCard({ card, index, totalCards }: { card: typeof cards[0]; index: number; totalCards: number }) {
+interface FunFactProps {
+  label?: string
+  title?: string
+  subtitle?: string
+  desc?: string
+  steps?: Array<{ title: string; desc: string; image?: any; icon?: any }>
+}
+
+function StackCard({ card, index, totalCards }: { card: typeof defaultCards[0]; index: number; totalCards: number }) {
   const ref = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['start start', 'end start'],
   })
 
-  // When this card scrolls up (next card pushes it), scale down from 1 → 0.972
-  // Only cards that aren't the last one should scale down
   const isLast = index === totalCards - 1
   const scale = useTransform(scrollYProgress, [0, 1], isLast ? [1, 1] : [1, 0.972])
 
@@ -85,7 +89,25 @@ function StackCard({ card, index, totalCards }: { card: typeof cards[0]; index: 
           background: '#2c6262', borderRadius: 40, padding: 35,
           display: 'flex', flexDirection: 'column', alignItems: 'flex-start',
           justifyContent: 'flex-start', gap: 30,
+          position: 'relative', overflow: 'hidden',
         }}>
+          {/* Big "e" watermark */}
+          <img
+            src="/Logo image/Blanc.webp"
+            alt=""
+            aria-hidden="true"
+            style={{
+              position: 'absolute',
+              right: '-40px',
+              bottom: '-40px',
+              width: 260,
+              height: 260,
+              objectFit: 'contain',
+              opacity: 0.04,
+              pointerEvents: 'none',
+              userSelect: 'none',
+            }}
+          />
           {/* Icon */}
           <div style={{ width: 85, height: 85 }}>
             <img
@@ -100,7 +122,7 @@ function StackCard({ card, index, totalCards }: { card: typeof cards[0]; index: 
             />
           </div>
 
-          {/* Text + button block */}
+          {/* Text */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 25 }}>
             <h3 style={{
               fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
@@ -118,10 +140,33 @@ function StackCard({ card, index, totalCards }: { card: typeof cards[0]; index: 
   )
 }
 
-export default function FunFact() {
+// Fallback icon URLs for steps without icons in Sanity
+const fallbackIcons = [
+  '/icons/CHARTEGRAPHIQUENAOSERVICE-33.webp',
+  'https://framerusercontent.com/images/2jvk0kJxyokxITdWGVCBwINpl6w.png',
+  'https://framerusercontent.com/images/jpxArhZs8VwgsAK7U5D5B5MqU.png',
+  '/icons/CHARTEGRAPHIQUENAOSERVICE-35.webp',
+]
+
+export default function FunFact({
+  label = "Process de l'intervention",
+  title = 'Comment se déroule une intervention avec Zen Énergie Services ?',
+  subtitle = 'Un entretien Zen, en toute simplicité !',
+  desc = "Nos experts interviennent en toute sécurité et confiance à votre domicile et répondent à toutes vos questions sur l'entretien et la maintenance de vos installations.",
+  steps,
+}: FunFactProps) {
+  const cards = steps?.length
+    ? steps.map((s, i) => ({
+        img: s.image ? urlFor(s.image).width(1000).quality(80).url() : defaultCards[i]?.img || '',
+        imgAlt: s.title,
+        icon: s.icon ? urlFor(s.icon).width(170).url() : fallbackIcons[i] || '',
+        title: `${i + 1}. ${s.title}`,
+        desc: s.desc,
+      }))
+    : defaultCards
+
   return (
     <section className="funfact-section" style={{ padding: '80px 20px', background: '#fff' }}>
-      {/* Container: flex column, gap 50px, centered, maxWidth 1440 */}
       <div style={{ maxWidth: 1440, margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 50 }}>
 
         {/* Header block */}
@@ -131,29 +176,29 @@ export default function FunFact() {
           transition={{ duration: 0.8, ease: 'easeOut' }}
           style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10, textAlign: 'center' }}
         >
-          <SectionLabel text="Process de l’intervention" />
+          <SectionLabel text={label} />
           <h2 className="ff-h2" style={{
             fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
             fontSize: 48, fontWeight: 500, lineHeight: '58px', letterSpacing: -2,
             color: '#000', textAlign: 'center', maxWidth: 850, margin: 0,
           }}>
-            Comment se déroule une intervention <br /> avec Zen Énergie Services ?
+            {title}
           </h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 5, marginTop: 10 }}>
             <h3 style={{
               fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
               fontSize: 24, fontWeight: 600, color: '#50B5A2', margin: 0
-            }}>Un entretien Zen, en toute simplicité !</h3>
+            }}>{subtitle}</h3>
             <p style={{
               fontFamily: "var(--font-jost), 'Jost', sans-serif",
               fontSize: 18, lineHeight: '28px', color: '#444', maxWidth: 800, margin: '0 auto'
             }}>
-              Nos experts interviennent en toute sécurité et confiance à votre domicile et répondent à toutes vos questions sur l’entretien et la maintenance de vos installations.
+              {desc}
             </p>
           </div>
         </motion.div>
 
-        {/* Cards stack: full-width, vertical, gap 50px */}
+        {/* Cards stack */}
         <div className="ff-cards-container" style={{ width: '100%', maxWidth: 1200, display: 'flex', flexDirection: 'column', gap: 50 }}>
           {cards.map((card, i) => (
             <StackCard key={i} card={card} index={i} totalCards={cards.length} />
@@ -207,7 +252,7 @@ export default function FunFact() {
 
       </div>
 
-      <style jsx global>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         @media (max-width: 640px) {
           .ff-cards-container {
             gap: 24px !important;
@@ -243,8 +288,7 @@ export default function FunFact() {
             height: 52px !important;
           }
         }
-      `}</style>
+      ` }} />
     </section>
   )
 }
-

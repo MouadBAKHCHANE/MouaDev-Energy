@@ -1,0 +1,202 @@
+import { client } from './sanity'
+
+// ── Site Settings ─────────────────────────────────────────────────────────────
+
+export async function getSiteSettings() {
+  return client.fetch(
+    `*[_type == "siteSettings"][0] {
+      siteName,
+      siteDescription,
+      typeformUrl,
+      logoLight,
+      logoDark,
+      logoIcon,
+      phone,
+      email,
+      address,
+      mapLat,
+      mapLng,
+      socialLinks[]{ platform, url },
+      footerAbout,
+      footerNewsletter,
+      copyright
+    }`
+  )
+}
+
+// ── Home Page ─────────────────────────────────────────────────────────────────
+
+export async function getHomePage() {
+  return client.fetch(
+    `*[_type == "homePage"][0] {
+      heroBadge, heroTitle, heroAccentWord, heroSubtitle,
+      heroBgImage, heroCta, heroCtaLink,
+      heroReviewCount, heroRating, heroTickerText,
+
+      ourServicesLabel, ourServicesTitle, ourServicesDesc, ourServicesCta,
+      ourServicesCards[]{ title, image, icon, link },
+
+      slimeTitle, slimeAccent, slimeDesc, slimeCta,
+      slimeStats[]{ value, label },
+      slimeCards[]{ title, desc, icon },
+
+      aboutLabel, aboutTitle, aboutBody, aboutCta, aboutImage,
+      aboutFeatures[]{ title, desc },
+
+      pricingLabel, pricingTitle, pricingDesc,
+      pricingCards[]{ title, price, image, ctaText, ctaLink },
+
+      processLabel, processTitle, processSubtitle, processDesc,
+      processSteps[]{ title, desc, image, icon },
+
+      marqueeLight, marqueeDark,
+
+      newsLabel, newsTitle, newsCta,
+      newsArticles[]{ title, image, author, readTime, link }
+    }`
+  )
+}
+
+// ── About Page ───────────────────────────────────────────────────────────────
+
+export async function getAboutPage() {
+  return client.fetch(
+    `*[_type == "aboutPage"][0] {
+      heroTitle, heroBgImage,
+      introLabel, introTitle, introParagraphs, introImage, introCta,
+      whyLabel, whyTitle, whyBgImage,
+      whyFeatures[]{ title, desc },
+      whyTickerText
+    }`
+  )
+}
+
+// ── Contact Page ─────────────────────────────────────────────────────────────
+
+export async function getContactPage() {
+  return client.fetch(
+    `*[_type == "contactPage"][0] {
+      heroTitle, heroBgImage,
+      sectionLabel, sectionTitle,
+      formTitle, submitText
+    }`
+  )
+}
+
+// ── Services Page ─────────────────────────────────────────────────────────────
+
+export async function getServicesPage() {
+  return client.fetch(
+    `*[_type == "servicesPage"][0] {
+      heroTitle, heroBgImage,
+      cardsLabel, cardsTitle, cardsDesc,
+      serviceCards[]{ title, desc, img, icon, href },
+      statsLabel, statsTitle, statsDesc,
+      stats[]{ tag, prefix, num, suffix, desc },
+      quoteTitle, quoteBody,
+      expLabel, expTitle, expImage,
+      expItems[]{ title, text, icon },
+      serviceDetails[]{ label, title, desc, img, features, href, imgLeft },
+      ctaTitle, ctaAccent, ctaButtonText, ctaButtonLink,
+      ctaQuestionLabel, ctaQuestionDesc
+    }`
+  )
+}
+
+// ── Service Pages (singletons) ───────────────────────────────────────────────
+
+const servicePageFields = `
+  heroTitle, heroBgImage, breadcrumbLabel,
+  mainImage, overlayHeadline,
+  contractsTitle,
+  contractFeatures[]{ label, acces, equilibre, plus },
+  discountHeadline, discountText, discountBadge, disclaimer,
+  whyTitle, whyIntro, whyBullets, detailImages,
+  faqTitle, faqs[]{ question, answer }
+`
+
+export async function getPanneauxSolairesPage() {
+  return client.fetch(
+    `*[_type == "panneauxSolairesPage"][0] {
+      ${servicePageFields},
+      pvCleanTitle, pvCleanIntro, pvCleanImage,
+      pvCleanFeatures, pvCleanDisclaimer
+    }`
+  )
+}
+
+export async function getPompeChaleurPage() {
+  return client.fetch(
+    `*[_type == "pompeChaleurPage"][0] {
+      ${servicePageFields},
+      discountBoxes[]{ pct, desc, iconCount }
+    }`
+  )
+}
+
+export async function getBoilerPage() {
+  return client.fetch(
+    `*[_type == "boilerPage"][0] { ${servicePageFields} }`
+  )
+}
+
+export async function getPvCleanPage() {
+  return client.fetch(
+    `*[_type == "pvCleanPage"][0] {
+      heroTitle, heroBgImage, breadcrumbLabel,
+      mainImage, overlayHeadline,
+      offerImage, offerTitle, offerSubtitle, offerLabel,
+      offerFeatures, offerDisclaimer,
+      whyTitle, whyIntro, whyBullets, detailImages,
+      faqTitle, faqs[]{ question, answer }
+    }`
+  )
+}
+
+// ── Blogs ─────────────────────────────────────────────────────────────────────
+
+const blogFields = `
+  "slug": slug.current,
+  title,
+  excerpt,
+  coverImage,
+  coverImg,
+  date,
+  category,
+  readTime,
+  sections[]{ heading, body, list }
+`
+
+export async function getAllBlogs() {
+  return client.fetch(
+    `*[_type == "blog"] | order(date desc) { ${blogFields} }`
+  )
+}
+
+export async function getBlogBySlug(slug: string) {
+  return client.fetch(
+    `*[_type == "blog" && slug.current == $slug][0] { ${blogFields} }`,
+    { slug }
+  )
+}
+
+export async function getAllBlogSlugs() {
+  return client.fetch<string[]>(
+    `*[_type == "blog"].slug.current`
+  )
+}
+
+// ── FAQs ──────────────────────────────────────────────────────────────────────
+
+export async function getAllFAQs() {
+  return client.fetch(
+    `*[_type == "faq"] | order(order asc) {
+      question,
+      answerIntro,
+      answerBullets[]{ bold, text },
+      answerOutro,
+      answerLink{ text, href },
+      order
+    }`
+  )
+}

@@ -1,42 +1,160 @@
 'use client'
 
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import ArrowIcon from '@/components/ui/ArrowIcon'
+import { urlFor } from '@/lib/sanity'
 
 const reveal = {
   hidden: { opacity: 0, y: 24 },
   visible: { opacity: 1, y: 0 },
 }
 
-const services = [
+/* Cards slide in from the right one by one */
+const cardSlide = {
+  hidden: { opacity: 0, x: 120 },
+  visible: { opacity: 1, x: 0 },
+}
+
+const defaultServices = [
   {
     icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-18.webp',
     title: 'Panneaux solaires',
     desc: 'Entretien et optimisation de votre installation photovoltaïque pour un rendement maximal.',
-    number: '01',
   },
   {
     icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-20.webp',
     title: 'Pompes à chaleur',
     desc: 'Contrôle technique et maintenance préventive pour assurer le confort thermique de votre foyer.',
-    number: '02',
   },
   {
     icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-15.webp',
     title: 'Boiler thermodynamique',
     desc: 'Nettoyage et vérification des composants pour une production d\'eau chaude efficace.',
-    number: '03',
   },
   {
     icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-23.webp',
     title: 'Nettoyage panneaux solaires',
     desc: 'Élimination des impuretés pour redonner toute sa puissance à votre installation solaire.',
-    number: '04',
   },
 ]
 
-export default function ServicesLime() {
+const defaultStats = [
+  { value: '4+', label: 'Types d\'équipements' },
+  { value: '100+', label: 'Clients satisfaits' },
+  { value: '4.96★', label: 'Note moyenne' },
+]
+
+interface ServicesLimeProps {
+  title?: string
+  accent?: string
+  desc?: string
+  cta?: string
+  stats?: Array<{ value: string; label: string }>
+  cards?: Array<{ title: string; desc: string; icon?: any }>
+}
+
+function ServiceCard({ svc, index }: { svc: { icon: string; title: string; desc: string }; index: number }) {
+  const [hovered, setHovered] = useState(false)
+
+  return (
+    <motion.div
+      variants={cardSlide}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94], delay: index * 0.15 }}
+      className="svc2-card"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 20,
+      }}
+    >
+      {/* Icon with hover animation */}
+      <motion.img
+        src={svc.icon}
+        alt={svc.title}
+        loading="lazy"
+        decoding="async"
+        style={{
+          width: 80,
+          height: 80,
+          objectFit: 'contain',
+          filter: 'brightness(0) invert(1) sepia(1) saturate(2) hue-rotate(130deg)',
+          flexShrink: 0,
+          cursor: 'pointer',
+        }}
+        animate={hovered ? {
+          scale: 1.2,
+          rotate: [0, -8, 8, -5, 5, 0],
+          filter: 'brightness(0) invert(1) sepia(1) saturate(4) hue-rotate(130deg)',
+        } : {
+          scale: 1,
+          rotate: 0,
+          filter: 'brightness(0) invert(1) sepia(1) saturate(2) hue-rotate(130deg)',
+        }}
+        transition={hovered ? {
+          scale: { type: 'spring', stiffness: 400, damping: 12 },
+          rotate: { duration: 0.5, ease: 'easeInOut' },
+          filter: { duration: 0.2 },
+        } : {
+          duration: 0.3,
+        }}
+      />
+
+      {/* Text */}
+      <div style={{ flex: 1 }}>
+        <h3 style={{
+          fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
+          fontSize: 23, fontWeight: 600, color: '#fff',
+          marginBottom: 7, lineHeight: 1.2,
+        }}>{svc.title}</h3>
+        <p style={{
+          fontFamily: "var(--font-inter), 'Inter', sans-serif",
+          fontSize: 17, lineHeight: '26px', color: 'rgba(255,255,255,0.5)',
+          margin: 0,
+        }}>{svc.desc}</p>
+      </div>
+    </motion.div>
+  )
+}
+
+export default function ServicesLime({
+  title = "Prolongez la durée de vie de vos équipements grâce à nos contrats d'entretien.",
+  accent = 'grâce à nos contrats',
+  desc = 'Des solutions adaptées à chaque foyer pour assurer longévité, performance et sérénité au quotidien.',
+  cta = 'Découvrir nos offres',
+  stats,
+  cards,
+}: ServicesLimeProps) {
+  const services = cards?.length
+    ? cards.map((c) => ({
+        icon: c.icon ? urlFor(c.icon).width(160).url() : '',
+        title: c.title,
+        desc: c.desc,
+      }))
+    : defaultServices
+
+  const statsData = stats?.length ? stats : defaultStats
+
+  // Build title with accent highlighted
+  function renderTitle() {
+    if (!accent || !title.includes(accent)) {
+      return title
+    }
+    const parts = title.split(accent)
+    return (
+      <>
+        {parts[0]}<span style={{ color: '#50B5A2' }}>{accent}</span>{parts[1] || ''}
+      </>
+    )
+  }
+
   return (
     <section id="services" style={{ padding: '100px 20px', background: '#2c6262', position: 'relative', overflow: 'hidden' }}>
 
@@ -54,6 +172,24 @@ export default function ServicesLime() {
         pointerEvents: 'none',
       }} />
 
+      {/* Big "e" watermark */}
+      <img
+        src="/Logo image/Blanc.webp"
+        alt=""
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          left: '-60px',
+          bottom: '-40px',
+          width: 500,
+          height: 500,
+          objectFit: 'contain',
+          opacity: 0.04,
+          pointerEvents: 'none',
+          userSelect: 'none',
+        }}
+      />
+
       <div className="svc2-inner">
         {/* LEFT */}
         <div className="svc2-left">
@@ -69,10 +205,7 @@ export default function ServicesLime() {
               color: '#fff', marginBottom: 20,
             }}
           >
-            Prolongez la durée de vie<br />
-            de vos équipements<br />
-            <span style={{ color: '#50B5A2' }}>grâce à nos contrats</span><br />
-            d'entretien.
+            {renderTitle()}
           </motion.h2>
 
           {/* Subtitle */}
@@ -87,7 +220,7 @@ export default function ServicesLime() {
               maxWidth: 380, marginBottom: 36,
             }}
           >
-            Des solutions adaptées à chaque foyer pour assurer longévité, performance et sérénité au quotidien.
+            {desc}
           </motion.p>
 
           {/* CTA */}
@@ -117,7 +250,7 @@ export default function ServicesLime() {
                 if (arr) { arr.style.background = '#000'; arr.style.color = '#fff' }
               }}
             >
-              Découvrir nos offres
+              {cta}
               <span className="svc2-arr" style={{
                 width: 44, height: 40, borderRadius: 12,
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -135,11 +268,7 @@ export default function ServicesLime() {
             transition={{ duration: 0.7, ease: 'easeOut', delay: 0.28 }}
             style={{ display: 'flex', gap: 32, marginTop: 48 }}
           >
-            {[
-              { value: '4+', label: 'Types d\'équipements' },
-              { value: '100+', label: 'Clients satisfaits' },
-              { value: '4.96★', label: 'Note moyenne' },
-            ].map((stat, i) => (
+            {statsData.map((stat, i) => (
               <div key={i}>
                 <div style={{
                   fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
@@ -154,46 +283,10 @@ export default function ServicesLime() {
           </motion.div>
         </div>
 
-        {/* RIGHT — 2×2 grid */}
+        {/* RIGHT — cards sliding from right */}
         <div className="svc2-right">
           {services.map((svc, i) => (
-            <motion.div
-              key={i}
-              variants={reveal} initial="hidden" whileInView="visible"
-              viewport={{ once: true, amount: 0.1 }}
-              transition={{ duration: 0.7, ease: 'easeOut', delay: i * 0.08 }}
-              className="svc2-card"
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                alignItems: 'center',
-                gap: 20,
-              }}
-            >
-              {/* Icon */}
-              <motion.img
-                src={svc.icon} alt={svc.title}
-                loading="lazy" decoding="async"
-                style={{ width: 80, height: 80, objectFit: 'contain', filter: 'brightness(0) invert(1) sepia(1) saturate(2) hue-rotate(130deg)', flexShrink: 0, cursor: 'pointer' }}
-                whileHover={{ scale: 1.18, rotate: 6, filter: 'brightness(0) invert(1) sepia(1) saturate(4) hue-rotate(130deg)' }}
-                transition={{ type: 'spring', stiffness: 400, damping: 12 }}
-              />
-
-              {/* Text */}
-              <div style={{ flex: 1 }}>
-                <h3 style={{
-                  fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
-                  fontSize: 23, fontWeight: 600, color: '#fff',
-                  marginBottom: 7, lineHeight: 1.2,
-                }}>{svc.title}</h3>
-                <p style={{
-                  fontFamily: "var(--font-inter), 'Inter', sans-serif",
-                  fontSize: 17, lineHeight: '26px', color: 'rgba(255,255,255,0.5)',
-                  margin: 0,
-                }}>{svc.desc}</p>
-              </div>
-
-            </motion.div>
+            <ServiceCard key={i} svc={svc} index={i} />
           ))}
         </div>
       </div>
