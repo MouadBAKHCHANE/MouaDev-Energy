@@ -60,7 +60,15 @@ export default function OurServices({
   cta = "Découvrir nos offres d'entretien",
   cards,
 }: OurServicesProps) {
-  const slides = defaultSlides
+  const slides = (cards && cards.length > 0)
+    ? cards.map((card, i) => ({
+        img: card.image?.asset ? urlFor(card.image).width(900).url() : defaultSlides[i]?.img ?? '',
+        name: card.title ?? defaultSlides[i]?.name ?? '',
+        icon: card.icon?.asset ? urlFor(card.icon).url() : defaultSlides[i]?.icon ?? '',
+        href: card.link ?? defaultSlides[i]?.href ?? '/',
+        accent: defaultSlides[i]?.accent ?? '#50b5a2',
+      }))
+    : defaultSlides
 
   // Infinite carousel: [clone_last, s0, s1, s2, s3, clone_first]
   const extendedSlides = [slides[slides.length - 1], ...slides, slides[0]]
