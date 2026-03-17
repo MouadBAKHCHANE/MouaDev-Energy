@@ -536,39 +536,61 @@ export default function BoilerClient({
                   ))}
                 </div>
 
-                {/* Discount banner */}
-                <div className="ps-discount-banner" style={{
-                  marginTop: 20, borderRadius: 16,
-                  border: '2px dashed rgba(26,74,138,0.7)',
-                  background: '#0c2a54', padding: '20px 28px',
-                  display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap',
-                }}>
-                  <div className="ps-discount-icon" style={{ flexShrink: 0 }}>
-                    <div style={{ width: 44, height: 44, background: '#5b9bd5', WebkitMask: 'url("/icons/CHARTEGRAPHIQUENAOSERVICE-15.webp") center/contain no-repeat', mask: 'url("/icons/CHARTEGRAPHIQUENAOSERVICE-15.webp") center/contain no-repeat' }} />
-                  </div>
-                  <div style={{ flex: 1 }}>
-                    <div style={{
-                      fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
-                      fontSize: 14, fontWeight: 600, color: 'rgba(255,255,255,0.92)', marginBottom: 2,
-                    }}>
-                      {discountHeadline}
+                {/* Discount coupon */}
+                <div className="ps-coupon-wrap" style={{ position: 'relative', marginTop: 20 }}>
+                  {/* Notch circles */}
+                  <div style={{
+                    position: 'absolute', left: -9, top: '50%', transform: 'translateY(-50%)',
+                    width: 18, height: 18, borderRadius: '50%',
+                    background: '#fff', zIndex: 3, border: '1px solid #ddd',
+                  }} />
+                  <div style={{
+                    position: 'absolute', right: -9, top: '50%', transform: 'translateY(-50%)',
+                    width: 18, height: 18, borderRadius: '50%',
+                    background: '#fff', zIndex: 3, border: '1px solid #ddd',
+                  }} />
+                  <div className="ps-discount-banner" style={{
+                    borderRadius: 16, position: 'relative', overflow: 'hidden',
+                    border: '1.5px dashed rgba(91,155,213,0.5)',
+                    background: '#0c2a54', padding: '24px 28px 20px',
+                    display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap',
+                  }}>
+                    {/* Torn top edge */}
+                    <svg style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: 10 }} preserveAspectRatio="none" viewBox="0 0 400 10">
+                      <polyline points="0,10 20,0 40,10 60,0 80,10 100,0 120,10 140,0 160,10 180,0 200,10 220,0 240,10 260,0 280,10 300,0 320,10 340,0 360,10 380,0 400,10" fill="rgba(91,155,213,0.1)" stroke="rgba(91,155,213,0.4)" strokeWidth="1"/>
+                    </svg>
+                    <div className="ps-discount-icon" style={{ flexShrink: 0 }}>
+                      <div style={{ width: 44, height: 44, background: '#5b9bd5', WebkitMask: 'url("/icons/CHARTEGRAPHIQUENAOSERVICE-15.webp") center/contain no-repeat', mask: 'url("/icons/CHARTEGRAPHIQUENAOSERVICE-15.webp") center/contain no-repeat' }} />
                     </div>
-                    <div style={{
-                      fontFamily: "var(--font-jost), 'Jost', sans-serif",
-                      fontSize: 13, color: 'rgba(255,255,255,0.8)',
-                    }}>
-                      {discountText}
+                    <div style={{ flex: 1 }}>
+                      <div style={{
+                        fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
+                        fontSize: 14, fontWeight: 600, color: 'rgba(255,255,255,0.92)', marginBottom: 2,
+                      }}>
+                        {discountHeadline}
+                      </div>
+                      <div style={{
+                        fontFamily: "var(--font-jost), 'Jost', sans-serif",
+                        fontSize: 13, color: 'rgba(255,255,255,0.8)',
+                      }}>
+                        {discountText}
+                      </div>
                     </div>
-                  </div>
-                  <div className="ps-discount-badge" style={{ textAlign: 'center', flexShrink: 0 }}>
-                    <div style={{
-                      fontFamily: "var(--font-jost), 'Jost', sans-serif",
-                      fontSize: 12, color: 'rgba(255,255,255,0.85)', marginBottom: 2,
-                    }}>Profitez d&apos;un rabais de</div>
-                    <div style={{
-                      fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
-                      fontSize: 38, fontWeight: 800, color: '#5b9bd5', lineHeight: 1, letterSpacing: -1,
-                    }}>{discountBadge.replace(/profitez d'un rabais de\s*/i, '')}</div>
+                    <div className="ps-coupon-sep" style={{
+                      alignSelf: 'stretch', width: 0,
+                      borderLeft: '1.5px dashed rgba(91,155,213,0.5)',
+                      flexShrink: 0,
+                    }} />
+                    <div className="ps-discount-badge" style={{ textAlign: 'center', flexShrink: 0 }}>
+                      <div style={{
+                        fontFamily: "var(--font-jost), 'Jost', sans-serif",
+                        fontSize: 12, color: 'rgba(255,255,255,0.85)', marginBottom: 2,
+                      }}>Profitez d&apos;un rabais de</div>
+                      <div style={{
+                        fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
+                        fontSize: 38, fontWeight: 800, color: '#5b9bd5', lineHeight: 1, letterSpacing: -1,
+                      }}>{discountBadge.replace(/profitez d'un rabais de\s*/i, '')}</div>
+                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -917,8 +939,9 @@ export default function BoilerClient({
             top: auto !important;
             bottom: 16px !important;
           }
-          .ps-discount-banner { flex-direction: column !important; align-items: stretch !important; gap: 10px !important; padding: 16px 14px !important; }
-          .ps-discount-badge { width: 100% !important; justify-content: center !important; box-sizing: border-box !important; }
+          .ps-discount-banner { flex-direction: column !important; align-items: center !important; text-align: center !important; gap: 10px !important; padding: 20px 14px 16px !important; }
+          .ps-discount-badge { width: auto !important; justify-content: center !important; box-sizing: border-box !important; }
+          .ps-coupon-sep { display: none !important; }
           .ps-discount-icon { display: none !important; }
           .ps-why-block { padding: 20px 16px !important; }
           .ps-detail-img { height: 180px !important; }

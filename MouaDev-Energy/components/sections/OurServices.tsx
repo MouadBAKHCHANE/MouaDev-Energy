@@ -128,9 +128,8 @@ export default function OurServices({
           {slides.map((slide, i) => (
             <motion.div
               key={i}
-              variants={reveal} initial="hidden" whileInView="visible"
-              viewport={{ once: true, margin: '0px 0px -50px 0px', amount: 0.1 }}
-              transition={{ duration: 0.8, ease: 'easeOut', delay: i * 0.1 }}
+              variants={reveal} initial="hidden" animate="visible"
+              transition={{ duration: 0.8, ease: 'easeOut', delay: 0.5 + i * 0.1 }}
             >
               <motion.div initial="rest" whileHover="hover" animate="rest"
                 style={{ display: 'block', borderRadius: 32, overflow: 'hidden', position: 'relative', aspectRatio: '0.73', background: '#000', cursor: 'pointer' }}
@@ -225,17 +224,15 @@ export default function OurServices({
 
         {/* Text + CTA below cards */}
         <motion.div
-          variants={reveal} initial="hidden" whileInView="visible"
-          viewport={{ once: true, margin: '0px 0px -50px 0px', amount: 0.1 }}
-          transition={{ duration: 0.5, ease: 'easeOut' }}
+          variants={reveal} initial="hidden" animate="visible"
+          transition={{ duration: 0.5, ease: 'easeOut', delay: 0.9 }}
           style={{ marginTop: 60, display: 'flex', justifyContent: 'center' }}
         >
           <SectionLabel text={label} />
         </motion.div>
         <motion.h2
-          variants={reveal} initial="hidden" whileInView="visible"
-          viewport={{ once: true, margin: '0px 0px -50px 0px', amount: 0.1 }}
-          transition={{ duration: 0.5, ease: 'easeOut', delay: 0.07 }}
+          variants={reveal} initial="hidden" animate="visible"
+          transition={{ duration: 0.5, ease: 'easeOut', delay: 0.97 }}
           className="our-svc-h2"
           style={{
             fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
@@ -246,9 +243,8 @@ export default function OurServices({
           {title}
         </motion.h2>
         <motion.p
-          variants={reveal} initial="hidden" whileInView="visible"
-          viewport={{ once: true, margin: '0px 0px -50px 0px', amount: 0.1 }}
-          transition={{ duration: 0.5, ease: 'easeOut', delay: 0.12 }}
+          variants={reveal} initial="hidden" animate="visible"
+          transition={{ duration: 0.5, ease: 'easeOut', delay: 1.02 }}
           className="our-svc-body"
           style={{
             fontFamily: "var(--font-jost), 'Jost', sans-serif",
@@ -259,9 +255,8 @@ export default function OurServices({
           {desc}
         </motion.p>
         <motion.div
-          variants={reveal} initial="hidden" whileInView="visible"
-          viewport={{ once: true, margin: '0px 0px -50px 0px', amount: 0.1 }}
-          transition={{ duration: 0.5, ease: 'easeOut', delay: 0.18 }}
+          variants={reveal} initial="hidden" animate="visible"
+          transition={{ duration: 0.5, ease: 'easeOut', delay: 1.08 }}
           style={{ display: 'flex', justifyContent: 'center' }}
         >
           <Button variant="lime" label={cta} href="/services" />

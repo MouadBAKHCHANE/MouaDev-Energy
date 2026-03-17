@@ -537,12 +537,29 @@ export default function PompeChaleurClient({
                   ))}
                 </div>
 
-                {/* Discount banner — 2 dashed boxes */}
+                {/* Discount coupon — 2 dashed boxes */}
+                <div className="ps-coupon-wrap" style={{ position: 'relative', marginTop: 20 }}>
+                  {/* Notch circles */}
+                  <div style={{
+                    position: 'absolute', left: -9, top: '50%', transform: 'translateY(-50%)',
+                    width: 18, height: 18, borderRadius: '50%',
+                    background: '#fff', zIndex: 3, border: '1px solid #ddd',
+                  }} />
+                  <div style={{
+                    position: 'absolute', right: -9, top: '50%', transform: 'translateY(-50%)',
+                    width: 18, height: 18, borderRadius: '50%',
+                    background: '#fff', zIndex: 3, border: '1px solid #ddd',
+                  }} />
                 <div className="ps-discount-banner" style={{
-                  marginTop: 20, borderRadius: 16, overflow: 'hidden',
-                  background: '#1a2744', padding: '20px 24px',
+                  borderRadius: 16, overflow: 'hidden', position: 'relative',
+                  background: '#1a2744', padding: '24px 24px 20px',
+                  border: '1.5px dashed rgba(232,85,44,0.45)',
                   display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap',
                 }}>
+                  {/* Torn top edge */}
+                  <svg style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: 10 }} preserveAspectRatio="none" viewBox="0 0 400 10">
+                    <polyline points="0,10 20,0 40,10 60,0 80,10 100,0 120,10 140,0 160,10 180,0 200,10 220,0 240,10 260,0 280,10 300,0 320,10 340,0 360,10 380,0 400,10" fill="rgba(232,85,44,0.08)" stroke="rgba(232,85,44,0.4)" strokeWidth="1"/>
+                  </svg>
                   {/* Left: icon + text */}
                   <div className="ps-discount-left" style={{ display: 'flex', alignItems: 'center', gap: 12, flex: '0 0 auto' }}>
                     <div style={{
@@ -598,6 +615,7 @@ export default function PompeChaleurClient({
                       </div>
                     ))}
                   </div>
+                </div>
                 </div>
 
               </motion.div>
@@ -947,8 +965,9 @@ export default function PompeChaleurClient({
             top: auto !important;
             bottom: 16px !important;
           }
-          .ps-discount-banner { flex-direction: column !important; align-items: stretch !important; gap: 10px !important; padding: 16px 14px !important; }
-          .ps-discount-badge { width: 100% !important; justify-content: center !important; box-sizing: border-box !important; }
+          .ps-discount-banner { flex-direction: column !important; align-items: center !important; text-align: center !important; gap: 10px !important; padding: 20px 14px 16px !important; }
+          .ps-discount-badge { width: auto !important; justify-content: center !important; box-sizing: border-box !important; }
+          .ps-coupon-sep { display: none !important; }
           .ps-discount-icon { display: none !important; }
           .ps-why-block { padding: 20px 16px !important; }
           .ps-detail-img { height: 180px !important; }
@@ -959,8 +978,9 @@ export default function PompeChaleurClient({
             line-height: 30px !important;
             margin-bottom: 20px !important;
           }
-          .ps-discount-left { flex: none !important; width: 100% !important; }
+          .ps-discount-left { flex: none !important; width: 100% !important; justify-content: center !important; }
           .ps-discount-right { flex: none !important; width: 100% !important; }
+          .ps-discount-right > div { align-items: center !important; }
         }
         .ps-tbl-desktop { display: block; }
         .ps-tbl-mobile { display: none; }

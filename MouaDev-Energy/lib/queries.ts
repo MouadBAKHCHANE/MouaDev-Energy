@@ -186,6 +186,19 @@ export async function getAllBlogSlugs() {
   )
 }
 
+// ── Legal Pages ───────────────────────────────────────────────────────────────
+
+export async function getLegalPage(pageId: string) {
+  return client.fetch(
+    `*[_type == "legalPage" && pageId == $pageId][0] {
+      pageId, heroTitle, lastUpdated,
+      companyInfoItems[]{ label, value },
+      sections[]{ title, content }
+    }`,
+    { pageId }
+  )
+}
+
 // ── FAQs ──────────────────────────────────────────────────────────────────────
 
 export async function getAllFAQs() {
