@@ -63,6 +63,7 @@ export async function getHomePage() {
 export async function getAboutPage() {
   return client.fetch(
     `*[_type == "aboutPage"][0] {
+      sectionOrder[]{ sectionId, enabled },
       seoTitle, seoDescription,
       heroTitle, heroBgImage,
       introLabel, introTitle, introParagraphs, introImage, introCta,
@@ -78,6 +79,7 @@ export async function getAboutPage() {
 export async function getContactPage() {
   return client.fetch(
     `*[_type == "contactPage"][0] {
+      sectionOrder[]{ sectionId, enabled },
       seoTitle, seoDescription,
       heroTitle, heroBgImage,
       sectionLabel, sectionTitle,
@@ -91,6 +93,7 @@ export async function getContactPage() {
 export async function getServicesPage() {
   return client.fetch(
     `*[_type == "servicesPage"][0] {
+      sectionOrder[]{ sectionId, enabled },
       seoTitle, seoDescription,
       heroTitle, heroBgImage,
       cardsLabel, cardsTitle, cardsDesc,
@@ -110,6 +113,7 @@ export async function getServicesPage() {
 // ── Service Pages (singletons) ───────────────────────────────────────────────
 
 const servicePageFields = `
+  sectionOrder[]{ sectionId, enabled },
   seoTitle, seoDescription,
   heroTitle, heroBgImage, breadcrumbLabel,
   mainImage, overlayHeadline,
@@ -148,6 +152,7 @@ export async function getBoilerPage() {
 export async function getPvCleanPage() {
   return client.fetch(
     `*[_type == "pvCleanPage"][0] {
+      sectionOrder[]{ sectionId, enabled },
       seoTitle, seoDescription,
       heroTitle, heroBgImage, breadcrumbLabel,
       mainImage, overlayHeadline,
