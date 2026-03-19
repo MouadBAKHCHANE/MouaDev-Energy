@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useLayoutEffect, useRef } from 'react'
+import { useState, useLayoutEffect, useRef, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
@@ -114,6 +114,50 @@ export default function OurServices({
       return () => cancelAnimationFrame(id)
     }
   }, [animated])
+
+  // Auto-scroll on mobile (4s interval, pauses on user interaction)
+  const autoPlayRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const pausedRef = useRef(false)
+
+  const startAutoPlay = useCallback(() => {
+    if (autoPlayRef.current) clearInterval(autoPlayRef.current)
+    autoPlayRef.current = setInterval(() => {
+      if (!pausedRef.current && !lockRef.current) {
+        setAnimated(true)
+        lockRef.current = true
+        setActive(i => i + 1)
+      }
+    }, 4000)
+  }, [])
+
+  const pauseAutoPlay = useCallback(() => {
+    pausedRef.current = true
+    if (autoPlayRef.current) clearInterval(autoPlayRef.current)
+    // Resume after 8s of inactivity
+    const resume = setTimeout(() => {
+      pausedRef.current = false
+      startAutoPlay()
+    }, 8000)
+    return () => clearTimeout(resume)
+  }, [startAutoPlay])
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 640px)')
+    if (mq.matches) startAutoPlay()
+    const handler = (e: MediaQueryListEvent) => {
+      if (e.matches) startAutoPlay()
+      else if (autoPlayRef.current) clearInterval(autoPlayRef.current)
+    }
+    mq.addEventListener('change', handler)
+    return () => {
+      mq.removeEventListener('change', handler)
+      if (autoPlayRef.current) clearInterval(autoPlayRef.current)
+    }
+  }, [startAutoPlay])
+
+  const handlePrev = () => { pauseAutoPlay(); prev() }
+  const handleNext = () => { pauseAutoPlay(); next() }
+  const handleDot = (i: number) => { pauseAutoPlay(); setAnimated(true); setActive(i + 1) }
 
   const realIndex = active === 0
     ? slides.length - 1
@@ -246,17 +290,17 @@ export default function OurServices({
               ))}
             </div>
 
-            <button onClick={prev} className="svc-arrow svc-arrow-left" aria-label="Précédent">
+            <button onClick={handlePrev} className="svc-arrow svc-arrow-left" aria-label="Précédent">
               <ChevronLeft size={22} strokeWidth={2} />
             </button>
-            <button onClick={next} className="svc-arrow svc-arrow-right" aria-label="Suivant">
+            <button onClick={handleNext} className="svc-arrow svc-arrow-right" aria-label="Suivant">
               <ChevronRight size={22} strokeWidth={2} />
             </button>
           </div>
 
           <div style={{ display: 'flex', justifyContent: 'center', gap: 8, marginTop: 20 }}>
             {slides.map((_, i) => (
-              <button key={i} onClick={() => { setAnimated(true); setActive(i + 1) }}
+              <button key={i} onClick={() => handleDot(i)}
                 style={{ width: i === realIndex ? 24 : 8, height: 8, borderRadius: 4, background: i === realIndex ? '#50b5a2' : '#ddd', border: 'none', padding: 0, cursor: 'pointer', transition: 'all 0.3s ease' }}
                 aria-label={`Slide ${i + 1}`}
               />
