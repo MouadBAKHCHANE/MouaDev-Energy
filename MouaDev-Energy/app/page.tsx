@@ -1,4 +1,16 @@
+import type { Metadata } from 'next'
 import { getHomePage } from '@/lib/queries'
+import { localBusinessJsonLd } from '@/lib/jsonld'
+import JsonLd from '@/components/seo/JsonLd'
+
+export async function generateMetadata(): Promise<Metadata> {
+  const data = await getHomePage()
+  return {
+    title: data?.seoTitle || 'Accueil — Maintenance Énergétique en Suisse Romande',
+    description: data?.seoDescription || "Zen Énergie Services : entretien et maintenance de pompes à chaleur, panneaux solaires et boilers thermodynamiques à Genève et en Suisse romande.",
+    alternates: { canonical: '/' },
+  }
+}
 import Hero from '@/components/sections/Hero'
 import ServicesLime from '@/components/sections/ServicesLime'
 import OurServices from '@/components/sections/OurServices'
@@ -16,6 +28,7 @@ export default async function Home() {
 
   return (
     <main>
+      <JsonLd data={localBusinessJsonLd()} />
       <Hero
         badge={hp?.heroBadge}
         title={hp?.heroTitle}

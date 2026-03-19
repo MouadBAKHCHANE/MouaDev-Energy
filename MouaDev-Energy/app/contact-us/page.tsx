@@ -1,4 +1,14 @@
+import type { Metadata } from 'next'
 import { getContactPage, getSiteSettings } from '@/lib/queries'
+
+export async function generateMetadata(): Promise<Metadata> {
+  const data = await getContactPage()
+  return {
+    title: data?.seoTitle || 'Contact',
+    description: data?.seoDescription || "Contactez Zen Énergie Services à Genève. Devis gratuit pour l'entretien de vos installations énergétiques.",
+    alternates: { canonical: '/contact-us' },
+  }
+}
 import { urlFor } from '@/lib/sanity'
 import ContactUsClient from './ContactUsClient'
 
@@ -18,8 +28,7 @@ export default async function ContactUsPage() {
       address={settings?.address}
       email={settings?.email}
       phone={settings?.phone}
-      mapLat={settings?.mapLat}
-      mapLng={settings?.mapLng}
+      googleMapUrl={settings?.googleMapUrl}
     />
   )
 }

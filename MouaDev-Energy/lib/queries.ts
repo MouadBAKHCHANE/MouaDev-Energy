@@ -14,8 +14,7 @@ export async function getSiteSettings() {
       phone,
       email,
       address,
-      mapLat,
-      mapLng,
+      googleMapUrl,
       socialLinks[]{ platform, url },
       footerAbout,
       footerNewsletter,
@@ -29,6 +28,7 @@ export async function getSiteSettings() {
 export async function getHomePage() {
   return client.fetch(
     `*[_type == "homePage"][0] {
+      seoTitle, seoDescription,
       heroBadge, heroTitle, heroAccentWord, heroSubtitle,
       heroBgImage, heroCta, heroCtaLink,
       heroReviewCount, heroRating, heroTickerText,
@@ -62,6 +62,7 @@ export async function getHomePage() {
 export async function getAboutPage() {
   return client.fetch(
     `*[_type == "aboutPage"][0] {
+      seoTitle, seoDescription,
       heroTitle, heroBgImage,
       introLabel, introTitle, introParagraphs, introImage, introCta,
       whyLabel, whyTitle, whyBgImage,
@@ -76,6 +77,7 @@ export async function getAboutPage() {
 export async function getContactPage() {
   return client.fetch(
     `*[_type == "contactPage"][0] {
+      seoTitle, seoDescription,
       heroTitle, heroBgImage,
       sectionLabel, sectionTitle,
       formTitle, submitText
@@ -88,6 +90,7 @@ export async function getContactPage() {
 export async function getServicesPage() {
   return client.fetch(
     `*[_type == "servicesPage"][0] {
+      seoTitle, seoDescription,
       heroTitle, heroBgImage,
       cardsLabel, cardsTitle, cardsDesc,
       serviceCards[]{ title, desc, img, icon, href },
@@ -106,6 +109,7 @@ export async function getServicesPage() {
 // ── Service Pages (singletons) ───────────────────────────────────────────────
 
 const servicePageFields = `
+  seoTitle, seoDescription,
   heroTitle, heroBgImage, breadcrumbLabel,
   mainImage, overlayHeadline,
   contractsTitle,
@@ -143,6 +147,7 @@ export async function getBoilerPage() {
 export async function getPvCleanPage() {
   return client.fetch(
     `*[_type == "pvCleanPage"][0] {
+      seoTitle, seoDescription,
       heroTitle, heroBgImage, breadcrumbLabel,
       mainImage, overlayHeadline,
       offerImage, offerTitle, offerSubtitle, offerLabel,
@@ -156,6 +161,7 @@ export async function getPvCleanPage() {
 // ── Blogs ─────────────────────────────────────────────────────────────────────
 
 const blogFields = `
+  seoTitle, seoDescription,
   "slug": slug.current,
   title,
   excerpt,
@@ -191,6 +197,7 @@ export async function getAllBlogSlugs() {
 export async function getLegalPage(pageId: string) {
   return client.fetch(
     `*[_type == "legalPage" && pageId == $pageId][0] {
+      seoTitle, seoDescription,
       pageId, heroTitle, lastUpdated,
       companyInfoItems[]{ label, value },
       sections[]{ title, content }

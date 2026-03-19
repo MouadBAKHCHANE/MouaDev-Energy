@@ -1,5 +1,15 @@
+import type { Metadata } from 'next'
 import LegalPageLayout from '../LegalPageLayout'
 import { getLegalPage } from '@/lib/queries'
+
+export async function generateMetadata(): Promise<Metadata> {
+  const data = await getLegalPage('confidentialite')
+  return {
+    title: data?.seoTitle || 'Politique de Confidentialité et Cookies',
+    description: data?.seoDescription || "Politique de confidentialité et gestion des cookies de Zen Énergie Services. Protection de vos données personnelles.",
+    alternates: { canonical: '/legal/politique-confidentialite-cookies' },
+  }
+}
 
 const defaultSections = [
   { title: "Introduction", content: `Zen Énergie Services Suisse attache une grande importance à la confidentialité et à la protection des données personnelles des utilisateurs de son site et de ses clients. Cette politique décrit comment nous collectons, utilisons et protégeons vos données personnelles.` },

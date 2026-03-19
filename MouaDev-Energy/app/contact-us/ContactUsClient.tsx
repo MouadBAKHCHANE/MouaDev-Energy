@@ -20,8 +20,7 @@ interface ContactUsClientProps {
   address?: string
   email?: string
   phone?: string
-  mapLat?: number
-  mapLng?: number
+  googleMapUrl?: string
 }
 
 export default function ContactUsClient({
@@ -34,8 +33,7 @@ export default function ContactUsClient({
   address = 'Chemin du Pré-Fleuri 1-3, 1228 Plan-les-Ouates, Genève',
   email = 'contact@zen-energieservices.ch',
   phone = '+41 21 512 05 74',
-  mapLat = 46.167925,
-  mapLng = 6.106813,
+  googleMapUrl = 'https://maps.google.com/maps?q=46.167925,6.106813&output=embed&z=17',
 }: ContactUsClientProps) {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' })
 
@@ -225,7 +223,7 @@ export default function ContactUsClient({
       {/* ── Map ── */}
       <section style={{ background: '#fff', paddingBottom: 80 }}>
         <iframe
-          src={`https://maps.google.com/maps?q=${mapLat},${mapLng}&output=embed&z=17`}
+          src={googleMapUrl.includes('output=embed') ? googleMapUrl : `${googleMapUrl}${googleMapUrl.includes('?') ? '&' : '?'}output=embed`}
           width="100%"
           height="480"
           className="contact-map"

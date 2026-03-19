@@ -1,5 +1,15 @@
+import type { Metadata } from 'next'
 import LegalPageLayout from '../LegalPageLayout'
 import { getLegalPage } from '@/lib/queries'
+
+export async function generateMetadata(): Promise<Metadata> {
+  const data = await getLegalPage('mentions-legales')
+  return {
+    title: data?.seoTitle || 'Mentions Légales',
+    description: data?.seoDescription || "Mentions légales de Zen Énergie Services Sàrl. Informations sur l'éditeur, l'hébergeur et la propriété intellectuelle.",
+    alternates: { canonical: '/legal/mentions-legales' },
+  }
+}
 
 const defaultCompanyInfo = [
   { label: "Nom de l'entreprise :",                                   value: "Zen Énergie Services Sàrl" },

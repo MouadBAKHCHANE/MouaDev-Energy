@@ -76,7 +76,7 @@ export default function Footer({ siteData }: { siteData?: SiteData }) {
       ]
 
   return (
-    <footer style={{ background: '#2c6262', color: '#fff', padding: '40px 20px 20px' }}>
+    <footer aria-label="Pied de page" style={{ background: '#2c6262', color: '#fff', padding: '40px 20px 20px' }}>
       <div style={{ maxWidth: 1400, margin: '0 auto' }}>
 
         {/* TOP BAR: Logo and Contact Blocks */}
@@ -157,6 +157,9 @@ export default function Footer({ siteData }: { siteData?: SiteData }) {
                 <a
                   key={social.name}
                   href={social.href}
+                  aria-label={social.name.charAt(0).toUpperCase() + social.name.slice(1)}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   style={{ color: 'rgba(255, 255, 255, 0.8)', transition: 'color 0.2s' }}
                   onMouseEnter={(e) => e.currentTarget.style.color = '#000'}
                   onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255, 255, 255, 0.8)'}

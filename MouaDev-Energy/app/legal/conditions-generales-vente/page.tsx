@@ -1,5 +1,15 @@
+import type { Metadata } from 'next'
 import LegalPageLayout from '../LegalPageLayout'
 import { getLegalPage } from '@/lib/queries'
+
+export async function generateMetadata(): Promise<Metadata> {
+  const data = await getLegalPage('cgv')
+  return {
+    title: data?.seoTitle || 'Conditions Générales de Vente',
+    description: data?.seoDescription || "Conditions générales de vente (CGV) de Zen Énergie Services. Modalités de souscription et paiement.",
+    alternates: { canonical: '/legal/conditions-generales-vente' },
+  }
+}
 
 const defaultSections = [
   { title: "ARTICLE 1 – OBJET", content: `Les présentes Conditions Générales de Vente (CGV) régissent les relations contractuelles entre Zen Énergie Services Suisse Sàrl et ses clients dans le cadre de la souscription et de l'exécution des contrats d'entretien des pompes à chaleur, panneaux photovoltaïques et boilers thermodynamiques.\n\nZen Énergie Services Suisse propose ses prestations dans le but d'améliorer la performance, la durabilité et la sécurité des équipements énergétiques verts des particuliers.` },

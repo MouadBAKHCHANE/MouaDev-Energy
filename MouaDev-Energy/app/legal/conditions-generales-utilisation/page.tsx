@@ -1,5 +1,15 @@
+import type { Metadata } from 'next'
 import LegalPageLayout from '../LegalPageLayout'
 import { getLegalPage } from '@/lib/queries'
+
+export async function generateMetadata(): Promise<Metadata> {
+  const data = await getLegalPage('cgu')
+  return {
+    title: data?.seoTitle || "Conditions Générales d'Utilisation",
+    description: data?.seoDescription || "Conditions générales d'utilisation (CGU) du site zen-energieservices.ch. Règles d'accès et d'utilisation.",
+    alternates: { canonical: '/legal/conditions-generales-utilisation' },
+  }
+}
 
 const defaultSections = [
   { title: '', content: `Le site Internet www.zen-energie-services.com/ch est édité par Zen Énergie Services Suisse Sàrl, dont le siège est situé à Chemin du Pré-Fleuri 1-3, 1228 Plan-les-Ouates, inscrite au Registre du Commerce suisse sous le numéro CH-660.5.256.023-9.\n\nEn accédant et en naviguant sur le Site, vous acceptez sans réserve les présentes Conditions Générales d'Utilisation (CGU). Si vous n'acceptez pas ces termes, veuillez ne pas utiliser le Site.` },

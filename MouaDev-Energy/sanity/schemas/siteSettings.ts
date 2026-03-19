@@ -74,16 +74,11 @@ export default defineType({
       group: 'contact',
     }),
     defineField({
-      name: 'mapLat',
-      title: 'Latitude (Google Maps)',
-      type: 'number',
+      name: 'googleMapUrl',
+      title: 'Lien Google Maps',
+      type: 'url',
       group: 'contact',
-    }),
-    defineField({
-      name: 'mapLng',
-      title: 'Longitude (Google Maps)',
-      type: 'number',
-      group: 'contact',
+      description: 'URL Google Maps de l\'adresse (ex: https://maps.google.com/maps?q=...)',
     }),
 
     // ── Social ──

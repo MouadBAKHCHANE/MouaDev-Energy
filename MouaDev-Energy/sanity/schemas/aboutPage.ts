@@ -5,11 +5,18 @@ export default defineType({
   title: 'Page À propos',
   type: 'document',
   groups: [
+    { name: 'seo', title: 'SEO' },
     { name: 'hero', title: 'Hero' },
     { name: 'intro', title: 'Qui sommes-nous' },
     { name: 'whyChoose', title: 'Pourquoi nous choisir' },
   ],
   fields: [
+    // ═══════════════════════════════════════════════════════════════════════════
+    // SEO
+    // ═══════════════════════════════════════════════════════════════════════════
+    defineField({ name: 'seoTitle', title: 'Titre SEO (balise <title>)', type: 'string', group: 'seo', description: 'Apparaît dans l\'onglet du navigateur et les résultats Google. ~60 caractères max.' }),
+    defineField({ name: 'seoDescription', title: 'Description SEO (meta description)', type: 'text', rows: 3, group: 'seo', description: 'Résumé affiché sous le titre dans les résultats Google. ~155 caractères max.' }),
+
     // ═══════════════════════════════════════════════════════════════════════════
     // HERO
     // ═══════════════════════════════════════════════════════════════════════════
