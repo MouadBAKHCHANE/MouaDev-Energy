@@ -17,20 +17,20 @@ const vp = { once: true as const, amount: 0.15 }
 
 const defaultServiceCards = [
   {
-    title: 'Pompe à chaleur',
-    desc: 'Contrôle technique et maintenance préventive pour assurer le confort thermique de votre foyer.',
-    img: '/Photos%20HD/Visuels%20Technique/Technique%20-%20PAC/Pompes%20a%CC%80%20chaleur%20avantages%20et%20inconve%CC%81nients.webp',
-    href: '/services/pompe-a-chaleur',
-    icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-20.webp',
-    accent: '#e8552c',
-  },
-  {
     title: 'Panneaux photovoltaïques',
     desc: 'Entretien et optimisation de votre installation photovoltaïque pour un rendement maximal.',
     img: '/Photos%20HD/Photos%20produits/Panneaux%20solaires/man-worker-firld-by-solar-panels.webp',
     href: '/services/panneaux-solaires',
     icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-18.webp',
     accent: '#2a9b96',
+  },
+  {
+    title: 'Pompe à chaleur',
+    desc: 'Contrôle technique et maintenance préventive pour assurer le confort thermique de votre foyer.',
+    img: '/Photos%20HD/Visuels%20Technique/Technique%20-%20PAC/Pompes%20a%CC%80%20chaleur%20avantages%20et%20inconve%CC%81nients.webp',
+    href: '/services/pompe-a-chaleur',
+    icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-20.webp',
+    accent: '#e8552c',
   },
   {
     title: 'Boiler thermodynamique',
@@ -52,21 +52,21 @@ const defaultServiceCards = [
 
 const defaultServiceDetails = [
   {
-    label: 'Pompe à chaleur',
-    title: "Profitez d'un confort thermique optimal toute l'année",
-    desc: "Prolongez la durée de vie de votre pompe à chaleur et assurez ses performances avec nos contrats d'entretien adaptés.",
-    img: '/Photos%20HD/Visuels%20Technique/Technique%20-%20PAC/heat-pump-airwater-technology-home.webp',
-    features: ['Nettoyage des filtres et unités intérieure / extérieure', "Contrôle d'étanchéité du circuit frigorigène", 'Vérification des connexions électriques', 'Relevé des températures, pressions et tensions', "Rapport d'intervention complet"],
-    href: '/services/pompe-a-chaleur',
-    imgLeft: true,
-  },
-  {
     label: 'Panneaux photovoltaïques',
     title: 'Maximisez la production de votre installation solaire',
     desc: "Un entretien régulier de vos panneaux photovoltaïques garantit une production optimale d'énergie.",
     img: '/Photos%20HD/Photos%20produits/Panneaux%20solaires/roof-house-with-solar-panels-roof-natureproduced-energy-sunproduced-energy-ph.webp',
     features: ["Contrôle d'étanchéité de la toiture", 'Vérification du système de montage des panneaux', 'Diagnostic électrique et paramètres onduleur', 'Monitoring à distance et mise à jour logiciel', "Rapport d'intervention détaillé"],
     href: '/services/panneaux-solaires',
+    imgLeft: true,
+  },
+  {
+    label: 'Pompe à chaleur',
+    title: "Profitez d'un confort thermique optimal toute l'année",
+    desc: "Prolongez la durée de vie de votre pompe à chaleur et assurez ses performances avec nos contrats d'entretien adaptés.",
+    img: '/Photos%20HD/Visuels%20Technique/Technique%20-%20PAC/heat-pump-airwater-technology-home.webp',
+    features: ['Nettoyage des filtres et unités intérieure / extérieure', "Contrôle d'étanchéité du circuit frigorigène", 'Vérification des connexions électriques', 'Relevé des températures, pressions et tensions', "Rapport d'intervention complet"],
+    href: '/services/pompe-a-chaleur',
     imgLeft: false,
   },
   {
