@@ -206,6 +206,7 @@ export default function ServicesClient(props: ServicesClientProps) {
                 <SectionLabel text={cardsLabel} />
               </motion.div>
               <motion.h2
+                className="svc-cards-title"
                 initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
                 viewport={vp} transition={{ duration: 0.5, delay: 0.1 }}
                 style={{
@@ -646,6 +647,26 @@ export default function ServicesClient(props: ServicesClientProps) {
           grid-template-columns: repeat(2, 1fr);
           gap: 28px;
         }
+        @media (max-width: 1024px) and (min-width: 641px) {
+          .svc-card-grid {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 16px;
+            margin: 0 -20px;
+            padding-left: 20px;
+            padding-right: 20px;
+            scrollbar-width: none;
+          }
+          .svc-card-grid::-webkit-scrollbar { display: none; }
+          .svc-card-grid > * {
+            flex: 0 0 calc(50% - 10px);
+            min-width: calc(50% - 10px);
+            scroll-snap-align: start;
+          }
+        }
         .svc-card {
           border-radius: 24px;
           overflow: hidden;
@@ -843,7 +864,25 @@ export default function ServicesClient(props: ServicesClientProps) {
           .svc-stats-grid h3 { font-size: 60px !important; }
         }
         @media (max-width: 640px) {
-          .svc-card-grid { grid-template-columns: 1fr; }
+          .svc-card-grid {
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 12px;
+            margin: 0 -20px;
+            padding-left: 20px;
+            padding-right: 20px;
+            scrollbar-width: none;
+          }
+          .svc-card-grid::-webkit-scrollbar { display: none; }
+          .svc-card-grid > * {
+            flex: 0 0 85%;
+            min-width: 85%;
+            scroll-snap-align: start;
+          }
+          .svc-cards-title { font-size: clamp(24px, 7vw, 32px) !important; }
           .svc-stats-grid { grid-template-columns: 1fr !important; }
           .svc-card:hover { transform: none; }
           .svc-card-img { aspect-ratio: 4 / 3; }
