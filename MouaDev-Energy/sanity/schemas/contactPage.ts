@@ -5,6 +5,8 @@ export default defineType({
   title: 'Page Contact',
   type: 'document',
   fields: [
+    defineField({ name: 'seoTitle', title: 'Titre SEO (balise <title>)', type: 'string', description: 'Apparaît dans l\'onglet du navigateur et les résultats Google. ~60 caractères max.' }),
+    defineField({ name: 'seoDescription', title: 'Description SEO (meta description)', type: 'text', rows: 3, description: 'Résumé affiché sous le titre dans les résultats Google. ~155 caractères max.' }),
     defineField({
       name: 'heroTitle',
       title: 'Titre du hero',

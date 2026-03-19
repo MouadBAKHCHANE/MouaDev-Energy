@@ -1,5 +1,15 @@
+import type { Metadata } from 'next'
 import LegalPageLayout from '../LegalPageLayout'
 import { getLegalPage } from '@/lib/queries'
+
+export async function generateMetadata(): Promise<Metadata> {
+  const data = await getLegalPage('cge')
+  return {
+    title: data?.seoTitle || "Conditions Générales d'Entretien",
+    description: data?.seoDescription || "Conditions générales d'entretien (CGE) de Zen Énergie Services. Modalités des contrats de maintenance énergétique.",
+    alternates: { canonical: '/legal/conditions-generales-entretien' },
+  }
+}
 
 const defaultSections = [
   { title: "ARTICLE 1 – PRÉAMBULE & DÉFINITIONS", content: `1. Préambule\nLes présentes Conditions Générales d'Entretien (CGE) régissent l'ensemble des prestations d'entretien et de maintenance fournies par Zen Énergie Services Suisse aux particuliers et aux professionnels. Elles visent à assurer transparence, qualité et sécurité dans la maintenance des installations énergétiques (pompes à chaleur, panneaux photovoltaïques, boilers thermodynamiques, etc.).\n\n2. Définitions\n• Contrat : accord conclu entre Zen Énergie Services Suisse et le Client pour la fourniture des prestations décrites ci-après.\n• Client : toute personne physique ou morale ayant souscrit à l'une des offres d'entretien.\n• Prestations : l'ensemble des services d'entretien, de maintenance, de dépannage et de suivi technique.\n• Espace Client : portail en ligne dédié à la gestion du contrat, à la consultation des rapports d'intervention et aux demandes de suivi.` },

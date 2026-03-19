@@ -5,6 +5,7 @@ export default defineType({
   title: 'Page Services',
   type: 'document',
   groups: [
+    { name: 'seo', title: 'SEO' },
     { name: 'hero', title: 'Hero' },
     { name: 'cards', title: 'Grille de services' },
     { name: 'stats', title: 'Statistiques' },
@@ -13,6 +14,10 @@ export default defineType({
     { name: 'cta', title: 'Bannière CTA' },
   ],
   fields: [
+    // ── SEO ──
+    defineField({ name: 'seoTitle', title: 'Titre SEO (balise <title>)', type: 'string', group: 'seo', description: 'Apparaît dans l\'onglet du navigateur et les résultats Google. ~60 caractères max.' }),
+    defineField({ name: 'seoDescription', title: 'Description SEO (meta description)', type: 'text', rows: 3, group: 'seo', description: 'Résumé affiché sous le titre dans les résultats Google. ~155 caractères max.' }),
+
     // ── Hero ──
     defineField({ name: 'heroTitle', title: 'Titre du hero', type: 'string', group: 'hero' }),
     defineField({ name: 'heroBgImage', title: 'Image de fond du hero', type: 'image', options: { hotspot: true }, group: 'hero' }),

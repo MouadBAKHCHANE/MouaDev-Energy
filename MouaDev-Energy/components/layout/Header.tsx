@@ -123,6 +123,7 @@ export default function Header({ siteData }: { siteData?: SiteData }) {
       }}
     >
       <nav
+        aria-label="Navigation principale"
         style={{
           display: 'flex',
           alignItems: 'center',
@@ -289,6 +290,8 @@ export default function Header({ siteData }: { siteData?: SiteData }) {
 
           {/* Hamburger — always visible, left of CTA */}
           <button onClick={() => setIsDrawerOpen(true)} className="header-hamburger"
+            aria-label="Ouvrir le menu"
+            aria-expanded={isDrawerOpen}
             style={{
               width: 44, height: 44, display: 'flex', flexDirection: 'column',
               alignItems: 'center', justifyContent: 'center', gap: 6,
@@ -375,6 +378,7 @@ export default function Header({ siteData }: { siteData?: SiteData }) {
               {/* Close Button */}
               <button
                 onClick={() => setIsDrawerOpen(false)}
+                aria-label="Fermer le menu"
                 style={{
                   position: 'absolute',
                   top: 30,

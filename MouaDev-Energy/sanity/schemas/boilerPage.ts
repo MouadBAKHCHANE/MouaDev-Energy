@@ -5,6 +5,7 @@ export default defineType({
   title: 'Page Boiler Thermodynamique',
   type: 'document',
   groups: [
+    { name: 'seo', title: 'SEO' },
     { name: 'hero', title: 'Hero', default: true },
     { name: 'content', title: 'Contenu principal' },
     { name: 'contracts', title: 'Contrats & Tarifs' },
@@ -12,6 +13,10 @@ export default defineType({
     { name: 'faq', title: 'FAQ' },
   ],
   fields: [
+    // ── SEO ──
+    defineField({ name: 'seoTitle', title: 'Titre SEO (balise <title>)', type: 'string', group: 'seo', description: 'Apparaît dans l\'onglet du navigateur et les résultats Google. ~60 caractères max.' }),
+    defineField({ name: 'seoDescription', title: 'Description SEO (meta description)', type: 'text', rows: 3, group: 'seo', description: 'Résumé affiché sous le titre dans les résultats Google. ~155 caractères max.' }),
+
     // ── Hero ──
     defineField({ name: 'heroTitle', title: 'Titre hero', type: 'string', group: 'hero' }),
     defineField({ name: 'heroBgImage', title: 'Image de fond hero', type: 'image', options: { hotspot: true }, group: 'hero' }),

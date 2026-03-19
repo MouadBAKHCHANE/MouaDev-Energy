@@ -1,4 +1,14 @@
+import type { Metadata } from 'next'
 import { getServicesPage } from '@/lib/queries'
+
+export async function generateMetadata(): Promise<Metadata> {
+  const data = await getServicesPage()
+  return {
+    title: data?.seoTitle || 'Nos Services',
+    description: data?.seoDescription || "Découvrez nos services de maintenance : pompes à chaleur, panneaux solaires, boilers thermodynamiques et nettoyage PV à Genève.",
+    alternates: { canonical: '/services' },
+  }
+}
 import { urlFor } from '@/lib/sanity'
 import ServicesClient from './ServicesClient'
 

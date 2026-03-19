@@ -6,6 +6,10 @@ import Footer from '@/components/layout/Footer'
 import ScrollTopButton from '@/components/ui/ScrollTopButton'
 import { getSiteSettings } from '@/lib/queries'
 import { urlFor } from '@/lib/sanity'
+import { SITE_URL, SITE_NAME } from '@/lib/seo'
+import { organizationJsonLd } from '@/lib/jsonld'
+import JsonLd from '@/components/seo/JsonLd'
+import SkipNav from '@/components/seo/SkipNav'
 
 const barlow = Barlow({
   subsets: ['latin'],
@@ -24,17 +28,37 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'Zen Énergie Services — Maintenance et Entretien Suisse',
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: 'Zen Énergie Services — Maintenance et Entretien Suisse',
+    template: `%s | ${SITE_NAME}`,
+  },
   description: "Votre partenaire de confiance pour la maintenance et l'entretien de vos installations énergétiques en Suisse romande. Pompes à chaleur, panneaux solaires, boilers thermodynamiques.",
   keywords: ['maintenance énergétique', 'pompe à chaleur', 'panneaux solaires', 'boiler thermodynamique', 'Genève', 'Suisse romande', 'entretien'],
-  authors: [{ name: 'Zen Énergie Services' }],
+  authors: [{ name: SITE_NAME }],
   openGraph: {
     title: 'Zen Énergie Services — Maintenance et Entretien Suisse',
     description: "Partenaire de référence pour la maintenance de vos installations énergétiques en Suisse romande.",
     locale: 'fr_CH',
     type: 'website',
+    siteName: SITE_NAME,
+    url: SITE_URL,
+    images: [
+      {
+        url: '/og-default.png',
+        width: 1200,
+        height: 630,
+        alt: 'Zen Énergie Services — Maintenance Énergétique Suisse',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
   },
   robots: { index: true, follow: true },
+  alternates: {
+    canonical: '/',
+  },
   icons: {
     icon: [
       { url: '/favicon-16.png', sizes: '16x16', type: 'image/png' },
@@ -74,8 +98,10 @@ export default async function RootLayout({
   return (
     <html lang="fr" className={`${barlow.variable} ${inter.variable}`} suppressHydrationWarning>
       <body suppressHydrationWarning>
+        <SkipNav />
+        <JsonLd data={organizationJsonLd()} />
         <Header siteData={siteData} />
-        {children}
+        <div id="main-content">{children}</div>
         <Footer siteData={siteData} />
         <ScrollTopButton />
       </body>

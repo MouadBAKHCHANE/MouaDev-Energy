@@ -5,6 +5,8 @@ export default defineType({
   title: 'Article',
   type: 'document',
   fields: [
+    defineField({ name: 'seoTitle', title: 'Titre SEO (balise <title>)', type: 'string', description: 'Si vide, le titre de l\'article sera utilisé. ~60 caractères max.' }),
+    defineField({ name: 'seoDescription', title: 'Description SEO (meta description)', type: 'text', rows: 3, description: 'Si vide, l\'extrait sera utilisé. ~155 caractères max.' }),
     defineField({
       name: 'title',
       title: 'Titre',
