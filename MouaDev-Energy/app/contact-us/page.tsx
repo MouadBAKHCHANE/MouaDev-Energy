@@ -28,7 +28,7 @@ export default async function ContactUsPage() {
       address={settings?.address}
       email={settings?.email}
       phone={settings?.phone}
-      googleMapUrl={settings?.googleMapUrl}
+      googleMapUrl={settings?.googleMapUrl || undefined}
     />
   )
 }
