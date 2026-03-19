@@ -50,6 +50,7 @@ interface OurServicesProps {
   title?: string
   desc?: string
   cta?: string
+  ctaLink?: string
   cards?: Array<{ title: string; image?: any; icon?: any; link: string }>
 }
 
@@ -58,6 +59,7 @@ export default function OurServices({
   title = 'Des solutions énergétiques sur mesure adaptées à vos besoins',
   desc = "Notre équipe conçoit et installe des systèmes d'énergie solaire personnalisés basés sur votre consommation, la configuration de votre propriété et votre budget.",
   cta = "Découvrir nos offres d'entretien",
+  ctaLink = '/services',
   cards,
 }: OurServicesProps) {
   const slides = (cards && cards.length > 0)
@@ -123,7 +125,47 @@ export default function OurServices({
     <section className="our-svc-section" style={{ padding: '40px 20px 100px', background: '#fff' }}>
       <div style={{ maxWidth: 1400, margin: '0 auto' }}>
 
-        {/* Desktop grid — cards first */}
+        {/* Text + CTA above cards */}
+        <motion.div
+          variants={reveal} initial="hidden" animate="visible"
+          transition={{ duration: 0.5, ease: 'easeOut', delay: 0.3 }}
+          style={{ display: 'flex', justifyContent: 'center' }}
+        >
+          <SectionLabel text={label} />
+        </motion.div>
+        <motion.h2
+          variants={reveal} initial="hidden" animate="visible"
+          transition={{ duration: 0.5, ease: 'easeOut', delay: 0.37 }}
+          className="our-svc-h2"
+          style={{
+            fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
+            fontSize: 'clamp(32px, 5vw, 48px)', fontWeight: 500, lineHeight: 1.1, letterSpacing: -2,
+            color: '#000', maxWidth: 800, margin: '16px auto 16px', textAlign: 'center'
+          }}
+        >
+          {title}
+        </motion.h2>
+        <motion.p
+          variants={reveal} initial="hidden" animate="visible"
+          transition={{ duration: 0.5, ease: 'easeOut', delay: 0.42 }}
+          className="our-svc-body"
+          style={{
+            fontFamily: "var(--font-jost), 'Jost', sans-serif",
+            fontSize: 18, fontWeight: 400, lineHeight: '28px', color: '#555',
+            maxWidth: 850, margin: '0 auto 30px', textAlign: 'center'
+          }}
+        >
+          {desc}
+        </motion.p>
+        <motion.div
+          variants={reveal} initial="hidden" animate="visible"
+          transition={{ duration: 0.5, ease: 'easeOut', delay: 0.48 }}
+          style={{ display: 'flex', justifyContent: 'center', marginBottom: 50 }}
+        >
+          <Button variant="lime" label={cta} href={ctaLink} />
+        </motion.div>
+
+        {/* Desktop grid */}
         <div className="svc-grid-container">
           {slides.map((slide, i) => (
             <motion.div
@@ -221,46 +263,6 @@ export default function OurServices({
             ))}
           </div>
         </div>
-
-        {/* Text + CTA below cards */}
-        <motion.div
-          variants={reveal} initial="hidden" animate="visible"
-          transition={{ duration: 0.5, ease: 'easeOut', delay: 0.9 }}
-          style={{ marginTop: 60, display: 'flex', justifyContent: 'center' }}
-        >
-          <SectionLabel text={label} />
-        </motion.div>
-        <motion.h2
-          variants={reveal} initial="hidden" animate="visible"
-          transition={{ duration: 0.5, ease: 'easeOut', delay: 0.97 }}
-          className="our-svc-h2"
-          style={{
-            fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
-            fontSize: 'clamp(32px, 5vw, 48px)', fontWeight: 500, lineHeight: 1.1, letterSpacing: -2,
-            color: '#000', maxWidth: 800, margin: '16px auto 16px', textAlign: 'center'
-          }}
-        >
-          {title}
-        </motion.h2>
-        <motion.p
-          variants={reveal} initial="hidden" animate="visible"
-          transition={{ duration: 0.5, ease: 'easeOut', delay: 1.02 }}
-          className="our-svc-body"
-          style={{
-            fontFamily: "var(--font-jost), 'Jost', sans-serif",
-            fontSize: 18, fontWeight: 400, lineHeight: '28px', color: '#555',
-            maxWidth: 850, margin: '0 auto 30px', textAlign: 'center'
-          }}
-        >
-          {desc}
-        </motion.p>
-        <motion.div
-          variants={reveal} initial="hidden" animate="visible"
-          transition={{ duration: 0.5, ease: 'easeOut', delay: 1.08 }}
-          style={{ display: 'flex', justifyContent: 'center' }}
-        >
-          <Button variant="lime" label={cta} href="/services" />
-        </motion.div>
 
       </div>
       <style>{`

@@ -24,6 +24,7 @@ interface AboutProps {
   title?: string
   body?: string
   ctaText?: string
+  ctaLink?: string
   image?: any
   features?: Array<{ title: string; desc: string }>
 }
@@ -33,6 +34,7 @@ export default function About({
   title = 'Pourquoi choisir Zen Énergie Services ?',
   body = "Fort d'une expertise reconnue depuis de nombreuses années en Suisse, Zen Énergie Services s'assure de la longévité et de l'optimisation du rendement de vos installations sur le long terme. Des experts locaux au service des particuliers tout au long de l'année.",
   ctaText = 'En savoir plus',
+  ctaLink = '/about-us',
   image,
   features,
 }: AboutProps) {
@@ -83,7 +85,7 @@ export default function About({
             </p>
 
             <div>
-              <Button variant="lime" label={ctaText} href="/about-us" />
+              <Button variant="lime" label={ctaText} href={ctaLink} />
             </div>
           </motion.div>
 

@@ -51,6 +51,7 @@ interface ServicesLimeProps {
   accent?: string
   desc?: string
   cta?: string
+  ctaLink?: string
   stats?: Array<{ value: string; label: string }>
   cards?: Array<{ title: string; desc: string; icon?: any }>
 }
@@ -129,6 +130,7 @@ export default function ServicesLime({
   accent = 'grâce à nos contrats',
   desc = 'Des solutions adaptées à chaque foyer pour assurer longévité, performance et sérénité au quotidien.',
   cta = 'Découvrir nos offres',
+  ctaLink = '/services',
   stats,
   cards,
 }: ServicesLimeProps) {
@@ -230,7 +232,7 @@ export default function ServicesLime({
             transition={{ duration: 0.7, ease: 'easeOut', delay: 0.2 }}
           >
             <Link
-              href="/services"
+              href={ctaLink}
               style={{
                 display: 'inline-flex', alignItems: 'center',
                 background: '#50B5A2', color: '#000',
