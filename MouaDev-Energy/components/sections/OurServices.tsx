@@ -183,7 +183,7 @@ export default function OurServices({
           className="our-svc-h2"
           style={{
             fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
-            fontSize: 'clamp(32px, 5vw, 48px)', fontWeight: 500, lineHeight: 1.1, letterSpacing: -2,
+            fontWeight: 500,
             color: '#000', maxWidth: 800, margin: '16px auto 16px', textAlign: 'center'
           }}
         >
@@ -310,6 +310,11 @@ export default function OurServices({
 
       </div>
       <style>{`
+        .our-svc-h2 {
+          font-size: clamp(32px, 5vw, 48px);
+          line-height: 1.1;
+          letter-spacing: -2px;
+        }
         .svc-grid-container {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
@@ -326,6 +331,11 @@ export default function OurServices({
         @media (max-width: 640px) {
           .our-svc-section {
             padding: 60px 16px !important;
+          }
+          .our-svc-h2 {
+            font-size: 24px !important;
+            line-height: 1.15 !important;
+            letter-spacing: -0.8px !important;
           }
           .svc-grid-container {
             display: none;
