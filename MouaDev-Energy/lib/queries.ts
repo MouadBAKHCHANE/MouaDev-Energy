@@ -212,6 +212,28 @@ export async function getLegalPage(pageId: string) {
   )
 }
 
+// ── Marketing & Analytics ─────────────────────────────────────────────────────
+
+export async function getMarketingSettings() {
+  return client.fetch(
+    `*[_type == "marketingSettings"][0] {
+      googleAnalyticsId,
+      googleTagManagerId,
+      googleSearchConsoleVerification,
+      facebookPixelId,
+      tiktokPixelId,
+      linkedinPartnerId,
+      googleAdsId,
+      headScripts,
+      bodyStartScripts,
+      bodyEndScripts,
+      cookieConsentEnabled,
+      cookieConsentMessage,
+      cookieConsentPrivacyLink
+    }`
+  )
+}
+
 // ── FAQs ──────────────────────────────────────────────────────────────────────
 
 export async function getAllFAQs() {

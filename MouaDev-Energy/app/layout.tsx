@@ -4,12 +4,13 @@ import './globals.css'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import ScrollTopButton from '@/components/ui/ScrollTopButton'
-import { getSiteSettings } from '@/lib/queries'
+import { getSiteSettings, getMarketingSettings } from '@/lib/queries'
 import { urlFor } from '@/lib/sanity'
 import { SITE_URL, SITE_NAME } from '@/lib/seo'
 import { organizationJsonLd } from '@/lib/jsonld'
 import JsonLd from '@/components/seo/JsonLd'
 import SkipNav from '@/components/seo/SkipNav'
+import { TrackingHead, TrackingBodyStart, TrackingBodyEnd } from '@/components/seo/TrackingScripts'
 
 const barlow = Barlow({
   subsets: ['latin'],
@@ -77,7 +78,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const settings = await getSiteSettings()
+  const [settings, marketing] = await Promise.all([getSiteSettings(), getMarketingSettings()])
 
   const img = (src: any) => src ? urlFor(src).width(400).quality(80).url() : undefined
 
@@ -97,13 +98,30 @@ export default async function RootLayout({
 
   return (
     <html lang="fr" className={`${barlow.variable} ${inter.variable}`} suppressHydrationWarning>
+      <head>
+        <TrackingHead
+          googleAnalyticsId={marketing?.googleAnalyticsId}
+          googleTagManagerId={marketing?.googleTagManagerId}
+          googleSearchConsoleVerification={marketing?.googleSearchConsoleVerification}
+          facebookPixelId={marketing?.facebookPixelId}
+          tiktokPixelId={marketing?.tiktokPixelId}
+          linkedinPartnerId={marketing?.linkedinPartnerId}
+          googleAdsId={marketing?.googleAdsId}
+          headScripts={marketing?.headScripts}
+        />
+      </head>
       <body suppressHydrationWarning>
+        <TrackingBodyStart
+          googleTagManagerId={marketing?.googleTagManagerId}
+          bodyStartScripts={marketing?.bodyStartScripts}
+        />
         <SkipNav />
         <JsonLd data={organizationJsonLd()} />
         <Header siteData={siteData} />
         <div id="main-content">{children}</div>
         <Footer siteData={siteData} />
         <ScrollTopButton />
+        <TrackingBodyEnd bodyEndScripts={marketing?.bodyEndScripts} />
       </body>
     </html>
   )
