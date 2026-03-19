@@ -5,6 +5,7 @@ export default defineType({
   title: 'Page d\'accueil',
   type: 'document',
   groups: [
+    { name: 'layout', title: 'Mise en page', default: true },
     { name: 'seo', title: 'SEO' },
     { name: 'hero', title: 'Hero' },
     { name: 'ourServices', title: 'Nos Services (carousel)' },
@@ -16,6 +17,79 @@ export default defineType({
     { name: 'news', title: 'Actualités' },
   ],
   fields: [
+    // ═══════════════════════════════════════════════════════════════════════════
+    // MISE EN PAGE (ordre + visibilité des sections)
+    // ═══════════════════════════════════════════════════════════════════════════
+    defineField({
+      name: 'sectionOrder',
+      title: 'Ordre et visibilité des sections',
+      description: 'Glissez pour réordonner. Désactivez pour masquer une section.',
+      type: 'array',
+      group: 'layout',
+      validation: (Rule) =>
+        Rule.custom((entries: any[] | undefined) => {
+          if (!entries) return true
+          const ids = entries.map((e) => e.sectionId)
+          const unique = new Set(ids)
+          return ids.length === unique.size
+            ? true
+            : 'Chaque section ne peut apparaître qu\'une seule fois.'
+        }),
+      of: [
+        {
+          type: 'object',
+          name: 'sectionEntry',
+          fields: [
+            defineField({
+              name: 'sectionId',
+              title: 'Section',
+              type: 'string',
+              options: {
+                list: [
+                  { title: 'Hero (bannière principale)', value: 'hero' },
+                  { title: 'Nos Services (carousel)', value: 'ourServices' },
+                  { title: 'Services (fond vert)', value: 'servicesLime' },
+                  { title: 'À propos', value: 'about' },
+                  { title: 'Tarifs', value: 'pricing' },
+                  { title: 'Process d\'intervention', value: 'process' },
+                  { title: 'Bandeau défilant', value: 'marquee' },
+                  { title: 'FAQ', value: 'faq' },
+                  { title: 'Actualités', value: 'news' },
+                ],
+              },
+              readOnly: true,
+            }),
+            defineField({
+              name: 'enabled',
+              title: 'Afficher cette section',
+              type: 'boolean',
+              initialValue: true,
+            }),
+          ],
+          preview: {
+            select: { sectionId: 'sectionId', enabled: 'enabled' },
+            prepare(selection) {
+              const { sectionId, enabled } = selection as { sectionId: string; enabled: boolean }
+              const labels: Record<string, string> = {
+                hero: 'Hero (bannière principale)',
+                ourServices: 'Nos Services (carousel)',
+                servicesLime: 'Services (fond vert)',
+                about: 'À propos',
+                pricing: 'Tarifs',
+                process: 'Process d\'intervention',
+                marquee: 'Bandeau défilant',
+                faq: 'FAQ',
+                news: 'Actualités',
+              }
+              return {
+                title: `${enabled === false ? '🚫 ' : '✅ '}${labels[sectionId] || sectionId}`,
+              }
+            },
+          },
+        },
+      ],
+    }),
+
     // ═══════════════════════════════════════════════════════════════════════════
     // SEO
     // ═══════════════════════════════════════════════════════════════════════════
@@ -117,6 +191,13 @@ export default defineType({
       group: 'ourServices',
     }),
     defineField({
+      name: 'ourServicesCtaLink',
+      title: 'Lien du bouton',
+      type: 'string',
+      group: 'ourServices',
+      initialValue: '/services',
+    }),
+    defineField({
       name: 'ourServicesCards',
       title: 'Cartes de services',
       type: 'array',
@@ -163,6 +244,13 @@ export default defineType({
       title: 'Texte du bouton',
       type: 'string',
       group: 'servicesLime',
+    }),
+    defineField({
+      name: 'slimeCtaLink',
+      title: 'Lien du bouton',
+      type: 'string',
+      group: 'servicesLime',
+      initialValue: '/services',
     }),
     defineField({
       name: 'slimeStats',
@@ -225,6 +313,13 @@ export default defineType({
       title: 'Texte du bouton',
       type: 'string',
       group: 'about',
+    }),
+    defineField({
+      name: 'aboutCtaLink',
+      title: 'Lien du bouton',
+      type: 'string',
+      group: 'about',
+      initialValue: '/about-us',
     }),
     defineField({
       name: 'aboutImage',
@@ -377,6 +472,13 @@ export default defineType({
       title: 'Texte du bouton',
       type: 'string',
       group: 'news',
+    }),
+    defineField({
+      name: 'newsCtaLink',
+      title: 'Lien du bouton',
+      type: 'string',
+      group: 'news',
+      initialValue: '/blogs',
     }),
     defineField({
       name: 'newsArticles',

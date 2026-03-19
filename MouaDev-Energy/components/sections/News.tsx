@@ -44,6 +44,7 @@ interface NewsProps {
   label?: string
   title?: string
   cta?: string
+  ctaLink?: string
   articles?: Array<{ title: string; image?: any; author: string; readTime: string; link: string }>
 }
 
@@ -51,6 +52,7 @@ export default function News({
   label = 'DERNIÈRES ACTUALITÉS',
   title = 'Actualités et innovations dans les énergies propres',
   cta = "Plus d'articles",
+  ctaLink = '/blogs',
   articles,
 }: NewsProps) {
   const items = articles?.length
@@ -115,7 +117,7 @@ export default function News({
         </div>
 
         <motion.div variants={reveal} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '0px 0px -50px 0px', amount: 0.1 }} transition={{ duration: 0.8, ease: 'easeOut' }} style={{ marginTop: 40, display: 'inline-flex' }}>
-          <Button variant="lime" label={cta} href="/blogs" />
+          <Button variant="lime" label={cta} href={ctaLink} />
         </motion.div>
       </div>
 

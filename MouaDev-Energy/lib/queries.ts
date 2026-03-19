@@ -28,19 +28,20 @@ export async function getSiteSettings() {
 export async function getHomePage() {
   return client.fetch(
     `*[_type == "homePage"][0] {
+      sectionOrder[]{ sectionId, enabled },
       seoTitle, seoDescription,
       heroBadge, heroTitle, heroAccentWord, heroSubtitle,
       heroBgImage, heroCta, heroCtaLink,
       heroReviewCount, heroRating, heroTickerText,
 
-      ourServicesLabel, ourServicesTitle, ourServicesDesc, ourServicesCta,
+      ourServicesLabel, ourServicesTitle, ourServicesDesc, ourServicesCta, ourServicesCtaLink,
       ourServicesCards[]{ title, image, icon, link },
 
-      slimeTitle, slimeAccent, slimeDesc, slimeCta,
+      slimeTitle, slimeAccent, slimeDesc, slimeCta, slimeCtaLink,
       slimeStats[]{ value, label },
       slimeCards[]{ title, desc, icon },
 
-      aboutLabel, aboutTitle, aboutBody, aboutCta, aboutImage,
+      aboutLabel, aboutTitle, aboutBody, aboutCta, aboutCtaLink, aboutImage,
       aboutFeatures[]{ title, desc },
 
       pricingLabel, pricingTitle, pricingDesc,
@@ -51,7 +52,7 @@ export async function getHomePage() {
 
       marqueeLight, marqueeDark,
 
-      newsLabel, newsTitle, newsCta,
+      newsLabel, newsTitle, newsCta, newsCtaLink,
       newsArticles[]{ title, image, author, readTime, link }
     }`
   )
