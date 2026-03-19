@@ -1,11 +1,12 @@
 import { defineType, defineField } from 'sanity'
+import { makeSectionOrderField, LAYOUT_GROUP } from './helpers/sectionOrder'
 
 export default defineType({
   name: 'homePage',
   title: 'Page d\'accueil',
   type: 'document',
   groups: [
-    { name: 'layout', title: 'Mise en page', default: true },
+    LAYOUT_GROUP,
     { name: 'seo', title: 'SEO' },
     { name: 'hero', title: 'Hero' },
     { name: 'ourServices', title: 'Nos Services (carousel)' },
@@ -20,75 +21,17 @@ export default defineType({
     // ═══════════════════════════════════════════════════════════════════════════
     // MISE EN PAGE (ordre + visibilité des sections)
     // ═══════════════════════════════════════════════════════════════════════════
-    defineField({
-      name: 'sectionOrder',
-      title: 'Ordre et visibilité des sections',
-      description: 'Glissez pour réordonner. Désactivez pour masquer une section.',
-      type: 'array',
-      group: 'layout',
-      validation: (Rule) =>
-        Rule.custom((entries: any[] | undefined) => {
-          if (!entries) return true
-          const ids = entries.map((e) => e.sectionId)
-          const unique = new Set(ids)
-          return ids.length === unique.size
-            ? true
-            : 'Chaque section ne peut apparaître qu\'une seule fois.'
-        }),
-      of: [
-        {
-          type: 'object',
-          name: 'sectionEntry',
-          fields: [
-            defineField({
-              name: 'sectionId',
-              title: 'Section',
-              type: 'string',
-              options: {
-                list: [
-                  { title: 'Hero (bannière principale)', value: 'hero' },
-                  { title: 'Nos Services (carousel)', value: 'ourServices' },
-                  { title: 'Services (fond vert)', value: 'servicesLime' },
-                  { title: 'À propos', value: 'about' },
-                  { title: 'Tarifs', value: 'pricing' },
-                  { title: 'Process d\'intervention', value: 'process' },
-                  { title: 'Bandeau défilant', value: 'marquee' },
-                  { title: 'FAQ', value: 'faq' },
-                  { title: 'Actualités', value: 'news' },
-                ],
-              },
-              readOnly: true,
-            }),
-            defineField({
-              name: 'enabled',
-              title: 'Afficher cette section',
-              type: 'boolean',
-              initialValue: true,
-            }),
-          ],
-          preview: {
-            select: { sectionId: 'sectionId', enabled: 'enabled' },
-            prepare(selection) {
-              const { sectionId, enabled } = selection as { sectionId: string; enabled: boolean }
-              const labels: Record<string, string> = {
-                hero: 'Hero (bannière principale)',
-                ourServices: 'Nos Services (carousel)',
-                servicesLime: 'Services (fond vert)',
-                about: 'À propos',
-                pricing: 'Tarifs',
-                process: 'Process d\'intervention',
-                marquee: 'Bandeau défilant',
-                faq: 'FAQ',
-                news: 'Actualités',
-              }
-              return {
-                title: `${enabled === false ? '🚫 ' : '✅ '}${labels[sectionId] || sectionId}`,
-              }
-            },
-          },
-        },
-      ],
-    }),
+    makeSectionOrderField([
+      { title: 'Hero (bannière principale)', value: 'hero' },
+      { title: 'Nos Services (carousel)', value: 'ourServices' },
+      { title: 'Services (fond vert)', value: 'servicesLime' },
+      { title: 'À propos', value: 'about' },
+      { title: 'Tarifs', value: 'pricing' },
+      { title: 'Process d\'intervention', value: 'process' },
+      { title: 'Bandeau défilant', value: 'marquee' },
+      { title: 'FAQ', value: 'faq' },
+      { title: 'Actualités', value: 'news' },
+    ]),
 
     // ═══════════════════════════════════════════════════════════════════════════
     // SEO

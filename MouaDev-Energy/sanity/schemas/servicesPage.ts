@@ -1,10 +1,12 @@
 import { defineType, defineField } from 'sanity'
+import { makeSectionOrderField, LAYOUT_GROUP } from './helpers/sectionOrder'
 
 export default defineType({
   name: 'servicesPage',
   title: 'Page Services',
   type: 'document',
   groups: [
+    LAYOUT_GROUP,
     { name: 'seo', title: 'SEO' },
     { name: 'hero', title: 'Hero' },
     { name: 'cards', title: 'Grille de services' },
@@ -14,6 +16,15 @@ export default defineType({
     { name: 'cta', title: 'Bannière CTA' },
   ],
   fields: [
+    makeSectionOrderField([
+      { title: 'Hero', value: 'hero' },
+      { title: 'Grille de services', value: 'cards' },
+      { title: 'Statistiques', value: 'stats' },
+      { title: 'L\'expérience Zen', value: 'experience' },
+      { title: 'Détails des services', value: 'details' },
+      { title: 'Bannière CTA', value: 'cta' },
+    ]),
+
     // ── SEO ──
     defineField({ name: 'seoTitle', title: 'Titre SEO (balise <title>)', type: 'string', group: 'seo', description: 'Apparaît dans l\'onglet du navigateur et les résultats Google. ~60 caractères max.' }),
     defineField({ name: 'seoDescription', title: 'Description SEO (meta description)', type: 'text', rows: 3, group: 'seo', description: 'Résumé affiché sous le titre dans les résultats Google. ~155 caractères max.' }),

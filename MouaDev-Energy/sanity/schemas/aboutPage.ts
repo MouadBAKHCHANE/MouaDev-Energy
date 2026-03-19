@@ -1,16 +1,24 @@
 import { defineType, defineField } from 'sanity'
+import { makeSectionOrderField, LAYOUT_GROUP } from './helpers/sectionOrder'
 
 export default defineType({
   name: 'aboutPage',
   title: 'Page À propos',
   type: 'document',
   groups: [
+    LAYOUT_GROUP,
     { name: 'seo', title: 'SEO' },
     { name: 'hero', title: 'Hero' },
     { name: 'intro', title: 'Qui sommes-nous' },
     { name: 'whyChoose', title: 'Pourquoi nous choisir' },
   ],
   fields: [
+    makeSectionOrderField([
+      { title: 'Hero', value: 'hero' },
+      { title: 'Qui sommes-nous', value: 'intro' },
+      { title: 'Pourquoi nous choisir', value: 'whyChoose' },
+    ]),
+
     // ═══════════════════════════════════════════════════════════════════════════
     // SEO
     // ═══════════════════════════════════════════════════════════════════════════
