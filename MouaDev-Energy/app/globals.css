@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Theme defaults — overridden by Sanity ThemeStyles component */
+:root {
+  --color-primary: #2a9b96;
+  --color-primary-light: #50b5a2;
+  --color-primary-dark: #2c6262;
+  --color-accent: #50b5a2;
+  --h1-size: clamp(40px, 7vw, 72px);
+  --h2-size: clamp(32px, 5vw, 54px);
+  --body-size: 18px;
+  --body-line: 28px;
+  --btn-radius: 14px;
+  --btn-radius-sm: 10px;
+  --card-radius: 24px;
+  --card-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+
 *,
 *::before,
 *::after {
@@ -16,9 +32,9 @@ html {
 
 body {
   font-family: var(--font-inter), 'Inter', sans-serif;
-  font-size: 18px;
+  font-size: var(--body-size);
   font-weight: 400;
-  line-height: 28px;
+  line-height: var(--body-line);
   color: #000;
   background: #fff;
   -webkit-font-smoothing: antialiased;
@@ -250,7 +266,7 @@ button {
   flex: 0 0 auto;
   width: clamp(280px, 35vw, 527px);
   height: 100%;
-  background: #50B5A2;
+  background: var(--color-primary-light, #50B5A2);
   border-radius: 50px;
 }
 

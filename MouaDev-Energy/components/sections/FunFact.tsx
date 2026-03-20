@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import Image from 'next/image'
 import SectionLabel from '@/components/ui/SectionLabel'
 import { urlFor } from '@/lib/sanity'
+import { toCSS, TextStyle } from '@/lib/textStyle'
 
 const revealHeading = {
   hidden: { opacity: 0, y: 44 },
@@ -48,6 +49,8 @@ interface FunFactProps {
   subtitle?: string
   desc?: string
   steps?: Array<{ title: string; desc: string; image?: any; icon?: any }>
+  titleStyle?: TextStyle
+  descStyle?: TextStyle
 }
 
 function StackCard({ card, index, totalCards }: { card: typeof defaultCards[0]; index: number; totalCards: number }) {
@@ -86,7 +89,7 @@ function StackCard({ card, index, totalCards }: { card: typeof defaultCards[0]; 
         {/* Lime content half — right */}
         <div className="ff-lime-panel" style={{
           flex: '0 0 auto', width: 400, height: 400,
-          background: '#2c6262', borderRadius: 40, padding: 35,
+          background: 'var(--color-primary-dark, #2c6262)', borderRadius: 40, padding: 35,
           display: 'flex', flexDirection: 'column', alignItems: 'flex-start',
           justifyContent: 'flex-start', gap: 30,
           position: 'relative', overflow: 'hidden',
@@ -154,6 +157,8 @@ export default function FunFact({
   subtitle = 'Un entretien Zen, en toute simplicité !',
   desc = "Nos experts interviennent en toute sécurité et confiance à votre domicile et répondent à toutes vos questions sur l'entretien et la maintenance de vos installations.",
   steps,
+  titleStyle,
+  descStyle,
 }: FunFactProps) {
   const cards = steps?.length
     ? steps.map((s, i) => ({
@@ -181,17 +186,19 @@ export default function FunFact({
             fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
             fontSize: 48, fontWeight: 500, lineHeight: '58px', letterSpacing: -2,
             color: '#000', textAlign: 'center', maxWidth: 850, margin: 0,
+            ...toCSS(titleStyle),
           }}>
             {title}
           </h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 5, marginTop: 10 }}>
             <h3 style={{
               fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
-              fontSize: 24, fontWeight: 600, color: '#50B5A2', margin: 0
+              fontSize: 24, fontWeight: 600, color: 'var(--color-primary-light, #50b5a2)', margin: 0
             }}>{subtitle}</h3>
             <p style={{
               fontFamily: "var(--font-jost), 'Jost', sans-serif",
-              fontSize: 18, lineHeight: '28px', color: '#444', maxWidth: 800, margin: '0 auto'
+              fontSize: 18, lineHeight: '28px', color: '#444', maxWidth: 800, margin: '0 auto',
+              ...toCSS(descStyle),
             }}>
               {desc}
             </p>
@@ -216,14 +223,14 @@ export default function FunFact({
             href="tel:+41215120574"
             style={{
               display: 'inline-flex', alignItems: 'center',
-              borderRadius: 14, background: '#2c6262', color: '#fff',
+              borderRadius: 'var(--btn-radius, 14px)', background: 'var(--color-primary-dark, #2c6262)', color: '#fff',
               padding: '9px 8px 9px 24px', gap: 24,
               textDecoration: 'none', cursor: 'pointer',
               transition: 'all 0.18s ease',
             }}
             onMouseEnter={e => {
               const arr = e.currentTarget.querySelector('.ff-arr') as HTMLElement
-              if (arr) arr.style.background = '#50B5A2'
+              if (arr) arr.style.background = 'var(--color-primary-light, #50b5a2)'
             }}
             onMouseLeave={e => {
               const arr = e.currentTarget.querySelector('.ff-arr') as HTMLElement
@@ -239,7 +246,7 @@ export default function FunFact({
               </span>
             </span>
             <span className="ff-arr" style={{
-              width: 48, height: 44, borderRadius: 14, background: '#fff', flexShrink: 0,
+              width: 48, height: 44, borderRadius: 'var(--btn-radius-sm, 10px)', background: '#fff', flexShrink: 0,
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               transition: 'background 0.3s ease',
             }}>

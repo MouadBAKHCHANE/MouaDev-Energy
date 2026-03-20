@@ -15,13 +15,14 @@ import {
   HelpCircleIcon,
   BookIcon,
   BarChartIcon,
+  ColorWheelIcon,
 } from '@sanity/icons'
 
 // Singleton document types — shown as single items, not lists
 const singletonTypes = [
   'siteSettings', 'homePage', 'aboutPage', 'contactPage', 'servicesPage',
   'panneauxSolairesPage', 'pompeChaleurPage', 'boilerPage', 'pvCleanPage',
-  'marketingSettings',
+  'marketingSettings', 'themeSettings',
 ]
 
 // Helper to create a singleton list item with optional icon
@@ -48,6 +49,7 @@ export default defineConfig({
             // ── Configuration ──
             singleton(S, 'Paramètres du site', 'siteSettings', CogIcon),
             singleton(S, 'Marketing & Analytics', 'marketingSettings', BarChartIcon),
+            singleton(S, 'Thème & Design', 'themeSettings', ColorWheelIcon),
             S.divider(),
 
             // ── Pages principales ──

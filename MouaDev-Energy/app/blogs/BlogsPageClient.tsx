@@ -127,14 +127,14 @@ export default function BlogsPageClient({ articles, faqs }: Props) {
                 onClick={() => setVisibleCount(prev => prev + 3)}
                 style={{
                   display: 'inline-flex', alignItems: 'center',
-                  background: '#50B5A2', color: '#000',
-                  borderRadius: 14, padding: '12px 32px',
+                  background: 'var(--color-primary-light, #50b5a2)', color: '#000',
+                  borderRadius: 'var(--btn-radius, 14px)', padding: '12px 32px',
                   fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
                   fontSize: 16, fontWeight: 600, border: 'none', cursor: 'pointer',
                   transition: 'background 0.18s ease',
                 }}
                 onMouseEnter={(e) => (e.currentTarget as HTMLElement).style.background = '#3da090'}
-                onMouseLeave={(e) => (e.currentTarget as HTMLElement).style.background = '#50B5A2'}
+                onMouseLeave={(e) => (e.currentTarget as HTMLElement).style.background = 'var(--color-primary-light, #50b5a2)'}
               >
                 Voir plus d'articles
               </button>
@@ -194,9 +194,9 @@ export default function BlogsPageClient({ articles, faqs }: Props) {
                       <span>{faq.question}</span>
                       <span style={{
                         width: 36, height: 36, borderRadius: '50%', flexShrink: 0,
-                        border: isActive ? '1px solid #50B5A2' : '1px solid #e8e8e8',
+                        border: isActive ? '1px solid var(--color-primary-light, #50b5a2)' : '1px solid #e8e8e8',
                         display: 'flex', alignItems: 'center', justifyContent: 'center',
-                        background: isActive ? '#50B5A2' : 'transparent',
+                        background: isActive ? 'var(--color-primary-light, #50b5a2)' : 'transparent',
                         fontSize: 22, lineHeight: 1,
                         transform: isActive ? 'rotate(45deg)' : 'none',
                         transition: 'all 0.2s ease',
@@ -214,7 +214,7 @@ export default function BlogsPageClient({ articles, faqs }: Props) {
                           <span>
                             {faq.answerIntro}
                             {faq.answerLink && !faq.answerBullets?.length && !faq.answerOutro && (
-                              <>{' '}<Link href={faq.answerLink.href} style={{ color: '#50B5A2', fontWeight: 600 }}>{faq.answerLink.text}</Link>.</>
+                              <>{' '}<Link href={faq.answerLink.href} style={{ color: 'var(--color-primary-light, #50b5a2)', fontWeight: 600 }}>{faq.answerLink.text}</Link>.</>
                             )}
                           </span>
                         )}
@@ -222,7 +222,7 @@ export default function BlogsPageClient({ articles, faqs }: Props) {
                           <div style={{ marginTop: 10, display: 'flex', flexDirection: 'column', gap: 8 }}>
                             {faq.answerBullets.map((b, bi) => (
                               <div key={bi} style={{ display: 'flex', gap: 8 }}>
-                                <span style={{ color: '#50B5A2' }}>•</span>
+                                <span style={{ color: 'var(--color-primary-light, #50b5a2)' }}>•</span>
                                 <span>{b.bold && <strong>{b.bold}</strong>} {b.text}</span>
                               </div>
                             ))}
@@ -232,7 +232,7 @@ export default function BlogsPageClient({ articles, faqs }: Props) {
                           <div style={{ marginTop: 10 }}>
                             {faq.answerOutro}
                             {faq.answerLink && (
-                              <>{' '}<Link href={faq.answerLink.href} style={{ color: '#50B5A2', fontWeight: 600 }}>{faq.answerLink.text}</Link>.</>
+                              <>{' '}<Link href={faq.answerLink.href} style={{ color: 'var(--color-primary-light, #50b5a2)', fontWeight: 600 }}>{faq.answerLink.text}</Link>.</>
                             )}
                           </div>
                         )}
@@ -250,7 +250,7 @@ export default function BlogsPageClient({ articles, faqs }: Props) {
               viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
               style={{
-                background: 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)',
+                background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)',
                 borderRadius: 28, padding: 32,
                 display: 'flex', flexDirection: 'column',
                 justifyContent: 'flex-start', gap: 24,
@@ -268,8 +268,8 @@ export default function BlogsPageClient({ articles, faqs }: Props) {
               <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', gap: 12 }}>
                 {/* Icon */}
                 <div style={{
-                  width: 48, height: 48, borderRadius: 14,
-                  background: '#50B5A2',
+                  width: 48, height: 48, borderRadius: 'var(--btn-radius, 14px)',
+                  background: 'var(--color-primary-light, #50b5a2)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   marginBottom: 20,
                 }}>
@@ -298,8 +298,8 @@ export default function BlogsPageClient({ articles, faqs }: Props) {
                 href="/contact-us"
                 style={{
                   display: 'inline-flex', alignItems: 'center',
-                  background: '#50B5A2', color: '#000',
-                  borderRadius: 14, padding: '8px 8px 8px 24px', gap: 16,
+                  background: 'var(--color-primary-light, #50b5a2)', color: '#000',
+                  borderRadius: 'var(--btn-radius, 14px)', padding: '8px 8px 8px 24px', gap: 16,
                   fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
                   fontSize: 16, fontWeight: 600, textDecoration: 'none',
                   alignSelf: 'flex-start', transition: 'background 0.18s ease',
@@ -311,16 +311,16 @@ export default function BlogsPageClient({ articles, faqs }: Props) {
                   if (arr) { arr.style.background = '#fff'; arr.style.color = '#000' }
                 }}
                 onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.background = '#50B5A2'
+                  (e.currentTarget as HTMLElement).style.background = 'var(--color-primary-light, #50b5a2)'
                   const arr = e.currentTarget.querySelector('.bl-cta-arr') as HTMLElement
                   if (arr) { arr.style.background = '#000'; arr.style.color = '#fff' }
                 }}
               >
                 Contactez-nous
                 <span className="bl-cta-arr" style={{
-                  width: 40, height: 36, borderRadius: 10,
+                  width: 40, height: 36, borderRadius: 'var(--btn-radius-sm, 10px)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  background: '#2c6262', color: '#fff', transition: 'background 0.18s ease, color 0.18s ease',
+                  background: 'var(--color-primary-dark, #2c6262)', color: '#fff', transition: 'background 0.18s ease, color 0.18s ease',
                 }}>
                   <ArrowIcon direction="right" size={16} strokeColor="currentColor" />
                 </span>
@@ -339,10 +339,10 @@ export default function BlogsPageClient({ articles, faqs }: Props) {
         }
         .bl-card { cursor: pointer; }
         .bl-card:hover .bl-card-img { transform: scale(1.04); }
-        .bl-card:hover .bl-card-title { color: #50B5A2 !important; }
+        .bl-card:hover .bl-card-title { color: var(--color-primary-light, #50b5a2) !important; }
         .bl-card:hover .bl-card-arrow {
-          background: #50B5A2 !important;
-          border-color: #50B5A2 !important;
+          background: var(--color-primary-light, #50b5a2) !important;
+          border-color: var(--color-primary-light, #50b5a2) !important;
         }
 
         /* FAQ split */

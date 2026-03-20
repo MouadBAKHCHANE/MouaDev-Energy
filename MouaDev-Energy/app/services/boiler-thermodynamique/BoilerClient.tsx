@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import PageHero from '@/components/layout/PageHero'
 import SectionLabel from '@/components/ui/SectionLabel'
+import { toCSS, TextStyle } from '@/lib/textStyle'
 
 const reveal = {
   hidden: { opacity: 0, y: 44 },
@@ -12,10 +13,10 @@ const reveal = {
 }
 
 const sidebarServices = [
-  { label: 'Panneaux solaires', href: '/services/panneaux-solaires', icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-18.webp', accent: '#2a9b96' },
+  { label: 'Panneaux solaires', href: '/services/panneaux-solaires', icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-18.webp', accent: 'var(--color-primary, #2a9b96)' },
   { label: 'Pompe à chaleur', href: '/services/pompe-a-chaleur', icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-20.webp', accent: '#e8552c' },
   { label: 'Boiler thermodynamique', href: '/services/boiler-thermodynamique', icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-15.webp', accent: '#0c2a54' },
-  { label: 'PV Clean — Nettoyage', href: '/services/pv-clean', icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-23.webp', accent: '#2a9b96' },
+  { label: 'PV Clean — Nettoyage', href: '/services/pv-clean', icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-23.webp', accent: 'var(--color-primary, #2a9b96)' },
 ]
 
 const defaultFaqs = [
@@ -68,6 +69,9 @@ interface BoilerClientProps {
   detailImages?: string[]
   faqTitle?: string
   faqs?: { q: string; a: string }[]
+  overlayHeadlineStyle?: TextStyle
+  whyTitleStyle?: TextStyle
+  faqTitleStyle?: TextStyle
 }
 
 export default function BoilerClient({
@@ -90,6 +94,9 @@ export default function BoilerClient({
   ],
   faqTitle = "Questions sur l'entretien de votre boiler thermodynamique",
   faqs = defaultFaqs,
+  overlayHeadlineStyle,
+  whyTitleStyle,
+  faqTitleStyle,
 }: BoilerClientProps) {
   const [activeIdx, setActiveIdx] = useState(-1)
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' })
@@ -370,6 +377,7 @@ export default function BoilerClient({
                         color: '#000',
                         lineHeight: 1.3,
                         margin: 0,
+                        ...toCSS(overlayHeadlineStyle),
                       }}
                     >
                       {overlayHeadline}
@@ -443,7 +451,7 @@ export default function BoilerClient({
                           style={{
                             display: 'inline-flex', alignItems: 'center', gap: 10,
                             background: 'linear-gradient(135deg, #081d3d 0%, #0c2a54 100%)', color: '#fff',
-                            borderRadius: 14, padding: '10px 10px 10px 18px',
+                            borderRadius: 'var(--btn-radius, 14px)', padding: '10px 10px 10px 18px',
                             fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
                             fontSize: 12, fontWeight: 700, textDecoration: 'none',
                             transition: 'all 0.2s ease', whiteSpace: 'nowrap',
@@ -476,7 +484,7 @@ export default function BoilerClient({
                         >
                           Demander un Devis
                           <span className="tbl-arr" style={{
-                            width: 28, height: 28, borderRadius: 10, display: 'flex', alignItems: 'center',
+                            width: 28, height: 28, borderRadius: 'var(--btn-radius-sm, 10px)', display: 'flex', alignItems: 'center',
                             justifyContent: 'center', flexShrink: 0, background: 'linear-gradient(135deg, #081d3d 0%, #061428 100%)',
                             transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
                             boxShadow: '0 4px 8px rgba(8, 29, 61, 0.3)',
@@ -622,6 +630,7 @@ export default function BoilerClient({
                 <h3 style={{
                   fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
                   fontSize: 20, fontWeight: 700, color: '#000', marginBottom: 14, letterSpacing: -0.5, lineHeight: 1.3,
+                  ...toCSS(whyTitleStyle),
                 }}>
                   {whyTitle}
                 </h3>
@@ -682,6 +691,7 @@ export default function BoilerClient({
                   fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
                   fontSize: 28, fontWeight: 600, letterSpacing: -1,
                   color: '#000', marginBottom: 32, lineHeight: '36px',
+                  ...toCSS(faqTitleStyle),
                 }}
               >
                 {faqTitle}
@@ -881,7 +891,7 @@ export default function BoilerClient({
           .ps-service-nav .ps-nav-link {
             padding: 10px 14px !important;
             font-size: 13px !important;
-            border-radius: 12px !important;
+            border-radius: var(--btn-radius-sm, 10px) !important;
           }
           .ps-nav-arrow { display: none !important; }
           .ps-sidebar-extra { display: none !important; }

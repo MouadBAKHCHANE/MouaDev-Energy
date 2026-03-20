@@ -79,7 +79,7 @@ export default function BlogPostClient({ blog, relatedBlogs }: Props) {
             </span>
             <span
               style={{
-                background: '#2c6262',
+                background: 'var(--color-primary-dark, #2c6262)',
                 color: '#fff',
                 padding: '6px 16px',
                 borderRadius: 100,
@@ -192,7 +192,7 @@ export default function BlogPostClient({ blog, relatedBlogs }: Props) {
                           width: 10,
                           height: 10,
                           minWidth: 10,
-                          background: '#50B5A2',
+                          background: 'var(--color-primary-light, #50b5a2)',
                           borderRadius: 2,
                           marginTop: 8,
                           display: 'inline-block',
@@ -265,7 +265,7 @@ export default function BlogPostClient({ blog, relatedBlogs }: Props) {
                   >
                     <span
                       style={{
-                        background: '#2c6262',
+                        background: 'var(--color-primary-dark, #2c6262)',
                         color: '#fff',
                         padding: '4px 12px',
                         borderRadius: 100,
@@ -340,7 +340,7 @@ export default function BlogPostClient({ blog, relatedBlogs }: Props) {
 
 function RelatedReadMoreLink({ slug }: { slug: string }) {
   const handleEnter = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.currentTarget.style.color = '#50B5A2'
+    e.currentTarget.style.color = 'var(--color-primary-light, #50b5a2)'
   }
   const handleLeave = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.currentTarget.style.color = '#000'

@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import ArrowIcon from '@/components/ui/ArrowIcon'
 import { urlFor } from '@/lib/sanity'
+import { toCSS, TextStyle } from '@/lib/textStyle'
 
 const reveal = {
   hidden: { opacity: 0, y: 24 },
@@ -54,6 +55,8 @@ interface ServicesLimeProps {
   ctaLink?: string
   stats?: Array<{ value: string; label: string }>
   cards?: Array<{ title: string; desc: string; icon?: any }>
+  titleStyle?: TextStyle
+  descStyle?: TextStyle
 }
 
 function ServiceCard({ svc, index }: { svc: { icon: string; title: string; desc: string }; index: number }) {
@@ -133,6 +136,8 @@ export default function ServicesLime({
   ctaLink = '/services',
   stats,
   cards,
+  titleStyle,
+  descStyle,
 }: ServicesLimeProps) {
   const services = cards?.length
     ? cards.map((c) => ({
@@ -152,13 +157,13 @@ export default function ServicesLime({
     const parts = title.split(accent)
     return (
       <>
-        {parts[0]}<span style={{ color: '#50B5A2' }}>{accent}</span>{parts[1] || ''}
+        {parts[0]}<span style={{ color: 'var(--color-primary-light, #50b5a2)' }}>{accent}</span>{parts[1] || ''}
       </>
     )
   }
 
   return (
-    <section id="services" style={{ padding: '100px 20px', background: '#2c6262', position: 'relative', overflow: 'hidden' }}>
+    <section id="services" style={{ padding: '100px 20px', background: 'var(--color-primary-dark, #2c6262)', position: 'relative', overflow: 'hidden' }}>
 
       {/* Decorative blob */}
       <div style={{
@@ -205,6 +210,7 @@ export default function ServicesLime({
               fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
               fontSize: 'clamp(30px, 5vw, 44px)', fontWeight: 600, lineHeight: 1.08, letterSpacing: -1,
               color: '#fff', marginBottom: 20,
+              ...toCSS(titleStyle),
             }}
           >
             {renderTitle()}
@@ -220,6 +226,7 @@ export default function ServicesLime({
               fontFamily: "var(--font-inter), 'Inter', sans-serif",
               fontSize: 16, lineHeight: '26px', color: 'rgba(255,255,255,0.55)',
               maxWidth: 380, marginBottom: 36,
+              ...toCSS(descStyle),
             }}
           >
             {desc}
@@ -235,8 +242,8 @@ export default function ServicesLime({
               href={ctaLink}
               style={{
                 display: 'inline-flex', alignItems: 'center',
-                background: '#50B5A2', color: '#000',
-                borderRadius: 14, padding: '8px 8px 8px 24px', gap: 20,
+                background: 'var(--color-primary-light, #50b5a2)', color: '#000',
+                borderRadius: 'var(--btn-radius, 14px)', padding: '8px 8px 8px 24px', gap: 20,
                 fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
                 fontSize: 16, fontWeight: 600, textDecoration: 'none',
                 transition: 'all 0.18s ease',
@@ -247,16 +254,16 @@ export default function ServicesLime({
                 if (arr) { arr.style.background = '#fff'; arr.style.color = '#000' }
               }}
               onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.background = '#50B5A2'
+                (e.currentTarget as HTMLElement).style.background = 'var(--color-primary-light, #50b5a2)'
                 const arr = e.currentTarget.querySelector('.svc2-arr') as HTMLElement
                 if (arr) { arr.style.background = '#000'; arr.style.color = '#fff' }
               }}
             >
               {cta}
               <span className="svc2-arr" style={{
-                width: 44, height: 40, borderRadius: 12,
+                width: 44, height: 40, borderRadius: 'var(--btn-radius-sm, 10px)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                background: '#2c6262', color: '#fff', transition: 'background 0.18s ease',
+                background: 'var(--color-primary-dark, #2c6262)', color: '#fff', transition: 'background 0.18s ease',
               }}>
                 <ArrowIcon direction="right" size={18} strokeColor="currentColor" />
               </span>
@@ -274,7 +281,7 @@ export default function ServicesLime({
               <div key={i}>
                 <div style={{
                   fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
-                  fontSize: 28, fontWeight: 700, color: '#50B5A2', lineHeight: 1,
+                  fontSize: 28, fontWeight: 700, color: 'var(--color-primary-light, #50b5a2)', lineHeight: 1,
                 }}>{stat.value}</div>
                 <div style={{
                   fontFamily: "var(--font-inter), 'Inter', sans-serif",

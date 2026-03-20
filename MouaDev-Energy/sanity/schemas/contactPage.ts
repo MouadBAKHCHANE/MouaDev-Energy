@@ -28,6 +28,7 @@ export default defineType({
       type: 'string',
       group: 'hero',
     }),
+    defineField({ name: 'heroTitleStyle', title: 'Style du titre hero', type: 'textStyle', group: 'hero' }),
     defineField({
       name: 'heroBgImage',
       title: 'Image de fond du hero',
@@ -49,12 +50,14 @@ export default defineType({
       type: 'string',
       group: 'form',
     }),
+    defineField({ name: 'sectionTitleStyle', title: 'Style du titre', type: 'textStyle', group: 'form' }),
     defineField({
       name: 'formTitle',
       title: 'Titre du formulaire',
       type: 'string',
       group: 'form',
     }),
+    defineField({ name: 'formTitleStyle', title: 'Style du titre formulaire', type: 'textStyle', group: 'form' }),
     defineField({
       name: 'submitText',
       title: 'Texte du bouton envoyer',

@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import PageHero from '@/components/layout/PageHero'
 import SectionLabel from '@/components/ui/SectionLabel'
+import { toCSS, TextStyle } from '@/lib/textStyle'
 
 const reveal = {
   hidden: { opacity: 0, y: 44 },
@@ -12,10 +13,10 @@ const reveal = {
 }
 
 const sidebarServices = [
-  { label: 'Panneaux solaires', href: '/services/panneaux-solaires', icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-18.webp', accent: '#2a9b96' },
+  { label: 'Panneaux solaires', href: '/services/panneaux-solaires', icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-18.webp', accent: 'var(--color-primary, #2a9b96)' },
   { label: 'Pompe à chaleur', href: '/services/pompe-a-chaleur', icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-20.webp', accent: '#e8552c' },
   { label: 'Boiler thermodynamique', href: '/services/boiler-thermodynamique', icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-15.webp', accent: '#0c2a54' },
-  { label: 'PV Clean — Nettoyage', href: '/services/pv-clean', icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-23.webp', accent: '#2a9b96' },
+  { label: 'PV Clean — Nettoyage', href: '/services/pv-clean', icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-23.webp', accent: 'var(--color-primary, #2a9b96)' },
 ]
 
 const defaultFaqs = [
@@ -71,6 +72,9 @@ interface PompeChaleurClientProps {
   detailImages?: string[]
   faqTitle?: string
   faqs?: { q: string; a: string }[]
+  overlayHeadlineStyle?: TextStyle
+  whyTitleStyle?: TextStyle
+  faqTitleStyle?: TextStyle
 }
 
 export default function PompeChaleurClient({
@@ -91,6 +95,9 @@ export default function PompeChaleurClient({
   ],
   faqTitle = "Questions sur l'entretien de votre pompe à chaleur",
   faqs = defaultFaqs,
+  overlayHeadlineStyle,
+  whyTitleStyle,
+  faqTitleStyle,
 }: PompeChaleurClientProps) {
   const [activeIdx, setActiveIdx] = useState(-1)
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' })
@@ -277,7 +284,7 @@ export default function PompeChaleurClient({
                     transition: 'background 0.18s ease, color 0.18s ease',
                     marginTop: 4,
                   }}
-                    onMouseEnter={(e) => { e.currentTarget.style.background = '#50B5A2'; e.currentTarget.style.color = '#000' }}
+                    onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--color-primary-light, #50b5a2)'; e.currentTarget.style.color = '#000' }}
                     onMouseLeave={(e) => { e.currentTarget.style.background = 'linear-gradient(135deg, #8B3A1A 0%, #C94010 100%)'; e.currentTarget.style.color = '#fff' }}
                   >
                     Envoyer un message
@@ -373,6 +380,7 @@ export default function PompeChaleurClient({
                         color: '#000',
                         lineHeight: 1.3,
                         margin: 0,
+                        ...toCSS(overlayHeadlineStyle),
                       }}
                     >
                       {overlayHeadline}
@@ -444,7 +452,7 @@ export default function PompeChaleurClient({
                           style={{
                             display: 'inline-flex', alignItems: 'center', gap: 10,
                             background: 'linear-gradient(135deg, #c44420 0%, #e8552c 100%)', color: '#fff',
-                            borderRadius: 14, padding: '10px 10px 10px 18px',
+                            borderRadius: 'var(--btn-radius, 14px)', padding: '10px 10px 10px 18px',
                             fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
                             fontSize: 12, fontWeight: 700, textDecoration: 'none',
                             transition: 'all 0.2s ease', whiteSpace: 'nowrap',
@@ -477,7 +485,7 @@ export default function PompeChaleurClient({
                         >
                           Demander un Devis
                           <span className="tbl-arr" style={{
-                            width: 28, height: 28, borderRadius: 10, display: 'flex', alignItems: 'center',
+                            width: 28, height: 28, borderRadius: 'var(--btn-radius-sm, 10px)', display: 'flex', alignItems: 'center',
                             justifyContent: 'center', flexShrink: 0, background: 'linear-gradient(135deg, #c44420 0%, #a03518 100%)',
                             transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
                             boxShadow: '0 4px 8px rgba(196, 68, 32, 0.3)',
@@ -646,6 +654,7 @@ export default function PompeChaleurClient({
                 <h3 style={{
                   fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
                   fontSize: 20, fontWeight: 700, color: '#000', marginBottom: 14, letterSpacing: -0.5, lineHeight: 1.3,
+                  ...toCSS(whyTitleStyle),
                 }}>
                   {whyTitle}
                 </h3>
@@ -706,6 +715,7 @@ export default function PompeChaleurClient({
                   fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
                   fontSize: 28, fontWeight: 600, letterSpacing: -1,
                   color: '#000', marginBottom: 32, lineHeight: '36px',
+                  ...toCSS(faqTitleStyle),
                 }}
               >
                 {faqTitle}
@@ -800,7 +810,7 @@ export default function PompeChaleurClient({
                     onFocus={(e) => { e.currentTarget.style.borderColor = '#C94010' }} onBlur={(e) => { e.currentTarget.style.borderColor = '#e0e0e0' }} />
                 </div>
                 <button type="submit" style={{ width: '100%', padding: '14px', borderRadius: 8, background: 'linear-gradient(135deg, #8B3A1A 0%, #C94010 100%)', border: 'none', fontSize: 15, fontWeight: 700, fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif", color: '#fff', cursor: 'pointer', transition: 'background 0.18s ease, color 0.18s ease', marginTop: 4 }}
-                  onMouseEnter={(e) => { e.currentTarget.style.background = '#50B5A2'; e.currentTarget.style.color = '#000' }}
+                  onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--color-primary-light, #50b5a2)'; e.currentTarget.style.color = '#000' }}
                   onMouseLeave={(e) => { e.currentTarget.style.background = 'linear-gradient(135deg, #8B3A1A 0%, #C94010 100%)'; e.currentTarget.style.color = '#fff' }}>
                   Envoyer un message
                 </button>
@@ -905,7 +915,7 @@ export default function PompeChaleurClient({
           .ps-service-nav .ps-nav-link {
             padding: 10px 14px !important;
             font-size: 13px !important;
-            border-radius: 12px !important;
+            border-radius: var(--btn-radius-sm, 10px) !important;
           }
           .ps-nav-arrow { display: none !important; }
           .ps-sidebar-extra { display: none !important; }

@@ -7,6 +7,7 @@ import SectionLabel from '@/components/ui/SectionLabel'
 import Button from '@/components/ui/Button'
 import FAQ from '@/components/sections/FAQ'
 import { ArrowUpRight } from 'lucide-react'
+import { toCSS, TextStyle } from '@/lib/textStyle'
 
 const reveal = { hidden: { opacity: 0, y: 40 }, visible: { opacity: 1, y: 0 } }
 const slideLeft = { hidden: { opacity: 0, x: -50 }, visible: { opacity: 1, x: 0 } }
@@ -22,7 +23,7 @@ const defaultServiceCards = [
     img: '/Photos%20HD/Photos%20produits/Panneaux%20solaires/man-worker-firld-by-solar-panels.webp',
     href: '/services/panneaux-solaires',
     icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-18.webp',
-    accent: '#2a9b96',
+    accent: 'var(--color-primary, #2a9b96)',
   },
   {
     title: 'Pompe à chaleur',
@@ -46,7 +47,7 @@ const defaultServiceCards = [
     img: '/Photos%20HD/Visuels%20Technique/Nettoyage%20-%20PV/1789536761.webp',
     href: '/services/pv-clean',
     icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-23.webp',
-    accent: '#2a9b96',
+    accent: 'var(--color-primary, #2a9b96)',
   },
 ]
 
@@ -120,20 +121,26 @@ export interface ServicesClientProps {
   heroBgImage?: string
   cardsLabel?: string
   cardsTitle?: string
+  cardsTitleStyle?: TextStyle
   cardsDesc?: string
+  cardsDescStyle?: TextStyle
   serviceCards?: ServiceCard[]
   statsLabel?: string
   statsTitle?: string
+  statsTitleStyle?: TextStyle
   statsDesc?: string
+  statsDescStyle?: TextStyle
   stats?: Stat[]
   quoteTitle?: string
   quoteBody?: string
   expLabel?: string
   expTitle?: string
+  expTitleStyle?: TextStyle
   expImage?: string
   expItems?: ExpItem[]
   serviceDetails?: ServiceDetail[]
   ctaTitle?: string
+  ctaTitleStyle?: TextStyle
   ctaAccent?: string
   ctaButtonText?: string
   ctaButtonLink?: string
@@ -213,6 +220,7 @@ export default function ServicesClient(props: ServicesClientProps) {
                   fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
                   fontSize: 'clamp(32px, 5vw, 54px)', fontWeight: 600,
                   letterSpacing: -1, color: '#000', lineHeight: 1.1, margin: 0,
+                  ...toCSS(props.cardsTitleStyle),
                 }}
               >
                 {cardsTitle}
@@ -225,7 +233,8 @@ export default function ServicesClient(props: ServicesClientProps) {
             >
               <p style={{
                 fontFamily: "var(--font-inter), 'Inter', sans-serif",
-                fontSize: 17, lineHeight: '27px', color: '#555', margin: 0, maxWidth: 440
+                fontSize: 17, lineHeight: '27px', color: '#555', margin: 0, maxWidth: 440,
+                ...toCSS(props.cardsDescStyle),
               }}>
                 {descParts.map((part, i) => (
                   <span key={i}>{i > 0 && <><br /><br /></>}{part}</span>
@@ -242,7 +251,7 @@ export default function ServicesClient(props: ServicesClientProps) {
                 className="svc-card"
                 variants={reveal} initial="hidden" whileInView="visible"
                 viewport={vp} transition={{ duration: 0.6, delay: i * 0.1 }}
-                style={{ display: 'block', textDecoration: 'none', color: 'inherit', '--card-accent': accentByHref[card.href] || card.accent || '#2a9b96' } as any}
+                style={{ display: 'block', textDecoration: 'none', color: 'inherit', '--card-accent': accentByHref[card.href] || card.accent || 'var(--color-primary, #2a9b96)' } as any}
               >
                 <div className="svc-card-img-wrap" style={{ position: 'relative', overflow: 'hidden' }}>
                   <img className="svc-card-img" src={card.img} alt={card.title} loading="lazy" decoding="async" />
@@ -303,6 +312,7 @@ export default function ServicesClient(props: ServicesClientProps) {
                   fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
                   fontSize: 'clamp(32px, 5vw, 62px)', fontWeight: 600,
                   letterSpacing: -2, color: '#000', lineHeight: 1, margin: 0,
+                  ...toCSS(props.statsTitleStyle),
                 }}
               >
                 {statsTitle}
@@ -315,7 +325,8 @@ export default function ServicesClient(props: ServicesClientProps) {
             >
               <p style={{
                 fontFamily: "var(--font-jost), 'Jost', sans-serif",
-                fontSize: 17, lineHeight: '26px', color: '#555', margin: 0, maxWidth: 480
+                fontSize: 17, lineHeight: '26px', color: '#555', margin: 0, maxWidth: 480,
+                ...toCSS(props.statsDescStyle),
               }}>{statsDesc}</p>
             </motion.div>
           </div>
@@ -354,12 +365,12 @@ export default function ServicesClient(props: ServicesClientProps) {
             viewport={vp} transition={{ duration: 0.5, delay: 0.4 }}
             style={{
               marginTop: 80, padding: '40px',
-              background: '#f8fbfc', borderRadius: 32,
+              background: '#f8fbfc', borderRadius: 'var(--card-radius, 24px)',
               border: '1px solid #e1e9e8',
               display: 'flex', alignItems: 'center', gap: 40
             }}
           >
-            <div style={{ width: 4, alignSelf: 'stretch', background: '#50b5a2', borderRadius: 2 }} />
+            <div style={{ width: 4, alignSelf: 'stretch', background: 'var(--color-primary-light, #50b5a2)', borderRadius: 2 }} />
             <div style={{ flex: 1 }}>
               <p style={{
                 fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
@@ -376,7 +387,7 @@ export default function ServicesClient(props: ServicesClientProps) {
       </section>
 
       {/* ── L'EXPÉRIENCE ZEN ──────────────────────────────────────────── */}
-      <section style={{ background: 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)', padding: '0', overflow: 'hidden' }}>
+      <section style={{ background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)', padding: '0', overflow: 'hidden' }}>
         <div className="zen-exp-inner">
           <div className="zen-exp-photo">
             <img
@@ -387,7 +398,7 @@ export default function ServicesClient(props: ServicesClientProps) {
             />
             <div style={{
               position: 'absolute', inset: 0,
-              background: 'linear-gradient(to right, transparent 60%, #2a9b96 100%)',
+              background: 'linear-gradient(to right, transparent 60%, var(--color-primary, #2a9b96) 100%)',
             }} />
           </div>
 
@@ -412,6 +423,7 @@ export default function ServicesClient(props: ServicesClientProps) {
                 fontSize: 'clamp(30px, 3.5vw, 46px)', fontWeight: 600,
                 color: '#fff', letterSpacing: -1.5, lineHeight: 1.1,
                 marginBottom: 32,
+                ...toCSS(props.expTitleStyle),
               }}
             >
               {expTitle}
@@ -428,7 +440,7 @@ export default function ServicesClient(props: ServicesClientProps) {
                   <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8 }}>
                     <div style={{
                       width: 32, height: 32, flexShrink: 0,
-                      background: '#50b5a2',
+                      background: 'var(--color-primary-light, #50b5a2)',
                       WebkitMask: `url("${item.icon}") center/contain no-repeat`,
                       mask: `url("${item.icon}") center/contain no-repeat`,
                     }} />
@@ -500,7 +512,7 @@ export default function ServicesClient(props: ServicesClientProps) {
                   <div key={fi} style={{ display: 'flex', alignItems: 'flex-start', gap: 11 }}>
                     <span style={{
                       width: 20, height: 20, borderRadius: '50%',
-                      background: '#2a9b96',
+                      background: 'var(--color-primary, #2a9b96)',
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
                       flexShrink: 0, marginTop: 2,
                     }}>
@@ -522,7 +534,7 @@ export default function ServicesClient(props: ServicesClientProps) {
       ))}
 
       {/* ── CTA Banner ──────────────────────────────────────────────────── */}
-      <section style={{ background: 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)', padding: '0 20px', overflow: 'hidden' }}>
+      <section style={{ background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)', padding: '0 20px', overflow: 'hidden' }}>
         <div style={{ maxWidth: 1320, margin: '0 auto' }}>
           <div className="cta-banner-inner">
             <motion.div
@@ -530,14 +542,15 @@ export default function ServicesClient(props: ServicesClientProps) {
               viewport={vp} transition={{ duration: 0.8, ease: 'easeOut' }}
               className="cta-banner-left"
             >
-              <div style={{ width: 48, height: 3, background: '#50b5a2', borderRadius: 2, marginBottom: 28 }} />
+              <div style={{ width: 48, height: 3, background: 'var(--color-primary-light, #50b5a2)', borderRadius: 2, marginBottom: 28 }} />
               <h2 style={{
                 fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
                 fontSize: 'clamp(32px, 4vw, 52px)', fontWeight: 600,
                 letterSpacing: -1.5, color: '#fff', lineHeight: 1.1, marginBottom: 36,
+                ...toCSS(props.ctaTitleStyle),
               }}>
                 {ctaTitle} <br />
-                <span style={{ color: '#50b5a2' }}>{ctaAccent}</span>
+                <span style={{ color: 'var(--color-primary-light, #50b5a2)' }}>{ctaAccent}</span>
               </h2>
               <Button variant="lime" label={ctaButtonText} href={ctaButtonLink} />
             </motion.div>
@@ -573,8 +586,8 @@ export default function ServicesClient(props: ServicesClientProps) {
                   }}
                 >
                   <div style={{
-                    width: 42, height: 42, borderRadius: 12,
-                    background: '#50b5a2',
+                    width: 42, height: 42, borderRadius: 'var(--btn-radius-sm, 10px)',
+                    background: 'var(--color-primary-light, #50b5a2)',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     flexShrink: 0,
                   }}>
@@ -609,7 +622,7 @@ export default function ServicesClient(props: ServicesClientProps) {
                   }}
                 >
                   <div style={{
-                    width: 42, height: 42, borderRadius: 12,
+                    width: 42, height: 42, borderRadius: 'var(--btn-radius-sm, 10px)',
                     background: 'rgba(255,255,255,0.15)',
                     border: '1px solid rgba(255,255,255,0.25)',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -743,7 +756,7 @@ export default function ServicesClient(props: ServicesClientProps) {
           width: 48px;
           height: 48px;
           border-radius: 50%;
-          background: #50b5a2;
+          background: var(--color-primary-light, #50b5a2);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -823,7 +836,7 @@ export default function ServicesClient(props: ServicesClientProps) {
           font-family: var(--font-space-grotesk), 'Space Grotesk', sans-serif;
           font-size: 13px;
           font-weight: 700;
-          color: #50b5a2;
+          color: var(--color-primary-light, #50b5a2);
           letter-spacing: 0.05em;
           padding-top: 4px;
           flex-shrink: 0;
@@ -844,7 +857,7 @@ export default function ServicesClient(props: ServicesClientProps) {
         @media (max-width: 1024px) {
           .zen-exp-inner { grid-template-columns: 1fr; }
           .zen-exp-photo { height: 360px; }
-          .zen-exp-photo > div { background: linear-gradient(to bottom, transparent 60%, #2c6262 100%) !important; }
+          .zen-exp-photo > div { background: linear-gradient(to bottom, transparent 60%, var(--color-primary-dark, #2c6262) 100%) !important; }
           .zen-exp-content { padding: 60px 30px; }
         }
         @media (max-width: 860px) {

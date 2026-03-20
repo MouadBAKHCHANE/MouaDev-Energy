@@ -24,8 +24,10 @@ export const SECTION_REGISTRY: Record<string, SectionDef> = {
     propsMapper: (hp) => ({
       badge: hp?.heroBadge,
       title: hp?.heroTitle,
+      titleStyle: hp?.heroTitleStyle,
       accentWord: hp?.heroAccentWord,
       subtitle: hp?.heroSubtitle,
+      subtitleStyle: hp?.heroSubtitleStyle,
       bgImage: hp?.heroBgImage,
       cta: hp?.heroCta,
       ctaLink: hp?.heroCtaLink || undefined,
@@ -39,7 +41,9 @@ export const SECTION_REGISTRY: Record<string, SectionDef> = {
     propsMapper: (hp) => ({
       label: hp?.ourServicesLabel,
       title: hp?.ourServicesTitle,
+      titleStyle: hp?.ourServicesTitleStyle,
       desc: hp?.ourServicesDesc,
+      descStyle: hp?.ourServicesDescStyle,
       cta: hp?.ourServicesCta,
       ctaLink: hp?.ourServicesCtaLink || undefined,
       cards: hp?.ourServicesCards,
@@ -49,8 +53,10 @@ export const SECTION_REGISTRY: Record<string, SectionDef> = {
     component: ServicesLime,
     propsMapper: (hp) => ({
       title: hp?.slimeTitle,
+      titleStyle: hp?.slimeTitleStyle,
       accent: hp?.slimeAccent,
       desc: hp?.slimeDesc,
+      descStyle: hp?.slimeDescStyle,
       cta: hp?.slimeCta,
       ctaLink: hp?.slimeCtaLink || undefined,
       stats: hp?.slimeStats,
@@ -62,7 +68,9 @@ export const SECTION_REGISTRY: Record<string, SectionDef> = {
     propsMapper: (hp) => ({
       label: hp?.aboutLabel,
       title: hp?.aboutTitle,
+      titleStyle: hp?.aboutTitleStyle,
       body: hp?.aboutBody,
+      bodyStyle: hp?.aboutBodyStyle,
       ctaText: hp?.aboutCta,
       ctaLink: hp?.aboutCtaLink || undefined,
       image: hp?.aboutImage,
@@ -74,7 +82,9 @@ export const SECTION_REGISTRY: Record<string, SectionDef> = {
     propsMapper: (hp) => ({
       label: hp?.pricingLabel,
       title: hp?.pricingTitle,
+      titleStyle: hp?.pricingTitleStyle,
       desc: hp?.pricingDesc,
+      descStyle: hp?.pricingDescStyle,
       cards: hp?.pricingCards,
     }),
   },
@@ -83,8 +93,10 @@ export const SECTION_REGISTRY: Record<string, SectionDef> = {
     propsMapper: (hp) => ({
       label: hp?.processLabel,
       title: hp?.processTitle,
+      titleStyle: hp?.processTitleStyle,
       subtitle: hp?.processSubtitle,
       desc: hp?.processDesc,
+      descStyle: hp?.processDescStyle,
       steps: hp?.processSteps,
     }),
   },
@@ -104,6 +116,7 @@ export const SECTION_REGISTRY: Record<string, SectionDef> = {
     propsMapper: (hp) => ({
       label: hp?.newsLabel,
       title: hp?.newsTitle,
+      titleStyle: hp?.newsTitleStyle,
       cta: hp?.newsCta,
       ctaLink: hp?.newsCtaLink || undefined,
       articles: hp?.newsArticles,

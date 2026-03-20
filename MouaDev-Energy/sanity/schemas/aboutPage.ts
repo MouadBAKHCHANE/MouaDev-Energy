@@ -34,6 +34,7 @@ export default defineType({
       type: 'string',
       group: 'hero',
     }),
+    defineField({ name: 'heroTitleStyle', title: 'Style du titre hero', type: 'textStyle', group: 'hero' }),
     defineField({
       name: 'heroBgImage',
       title: 'Image de fond du hero',
@@ -57,6 +58,7 @@ export default defineType({
       type: 'string',
       group: 'intro',
     }),
+    defineField({ name: 'introTitleStyle', title: 'Style du titre', type: 'textStyle', group: 'intro' }),
     defineField({
       name: 'introParagraphs',
       title: 'Paragraphes',
@@ -94,6 +96,7 @@ export default defineType({
       rows: 2,
       group: 'whyChoose',
     }),
+    defineField({ name: 'whyTitleStyle', title: 'Style du titre', type: 'textStyle', group: 'whyChoose' }),
     defineField({
       name: 'whyBgImage',
       title: 'Image de fond',

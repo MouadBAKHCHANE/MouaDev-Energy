@@ -113,7 +113,7 @@ export default function Marquee({
           justifyContent: 'center',
           height: 80,
           overflow: 'hidden',
-          background: '#2c6262',
+          background: 'var(--color-primary-dark, #2c6262)',
           borderRadius: 40,
           transform: 'rotate(-2deg)',
           width: 'calc(100% + 60px)',

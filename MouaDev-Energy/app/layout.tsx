@@ -4,13 +4,15 @@ import './globals.css'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import ScrollTopButton from '@/components/ui/ScrollTopButton'
-import { getSiteSettings, getMarketingSettings } from '@/lib/queries'
+import { getSiteSettings, getMarketingSettings, getThemeSettings } from '@/lib/queries'
 import { urlFor } from '@/lib/sanity'
 import { SITE_URL, SITE_NAME } from '@/lib/seo'
 import { organizationJsonLd } from '@/lib/jsonld'
 import JsonLd from '@/components/seo/JsonLd'
 import SkipNav from '@/components/seo/SkipNav'
 import { TrackingHead, TrackingBodyStart, TrackingBodyEnd } from '@/components/seo/TrackingScripts'
+import ThemeStyles from '@/components/seo/ThemeStyles'
+import CookieBanner from '@/components/ui/CookieBanner'
 
 const barlow = Barlow({
   subsets: ['latin'],
@@ -78,7 +80,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const [settings, marketing] = await Promise.all([getSiteSettings(), getMarketingSettings()])
+  const [settings, marketing, theme] = await Promise.all([getSiteSettings(), getMarketingSettings(), getThemeSettings()])
 
   const img = (src: any) => src ? urlFor(src).width(400).quality(80).url() : undefined
 
@@ -111,6 +113,13 @@ export default async function RootLayout({
         />
       </head>
       <body suppressHydrationWarning>
+        <ThemeStyles
+          colorPrimary={theme?.colorPrimary}
+          colorHover={theme?.colorHover}
+          colorDark={theme?.colorDark}
+          buttonStyle={theme?.buttonStyle}
+          cardStyle={theme?.cardStyle}
+        />
         <TrackingBodyStart
           googleTagManagerId={marketing?.googleTagManagerId}
           bodyStartScripts={marketing?.bodyStartScripts}
@@ -122,6 +131,12 @@ export default async function RootLayout({
         <Footer siteData={siteData} />
         <ScrollTopButton />
         <TrackingBodyEnd bodyEndScripts={marketing?.bodyEndScripts} />
+        {marketing?.cookieConsentEnabled && marketing?.cookieConsentMessage && (
+          <CookieBanner
+            message={marketing.cookieConsentMessage}
+            privacyLink={marketing.cookieConsentPrivacyLink}
+          />
+        )}
       </body>
     </html>
   )

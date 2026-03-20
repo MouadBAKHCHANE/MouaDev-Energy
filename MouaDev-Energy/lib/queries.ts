@@ -30,29 +30,29 @@ export async function getHomePage() {
     `*[_type == "homePage"][0] {
       sectionOrder[]{ sectionId, enabled },
       seoTitle, seoDescription,
-      heroBadge, heroTitle, heroAccentWord, heroSubtitle,
+      heroBadge, heroTitle, heroTitleStyle, heroAccentWord, heroSubtitle, heroSubtitleStyle,
       heroBgImage, heroCta, heroCtaLink,
       heroReviewCount, heroRating, heroTickerText,
 
-      ourServicesLabel, ourServicesTitle, ourServicesDesc, ourServicesCta, ourServicesCtaLink,
+      ourServicesLabel, ourServicesTitle, ourServicesTitleStyle, ourServicesDesc, ourServicesDescStyle, ourServicesCta, ourServicesCtaLink,
       ourServicesCards[]{ title, image, icon, link },
 
-      slimeTitle, slimeAccent, slimeDesc, slimeCta, slimeCtaLink,
+      slimeTitle, slimeTitleStyle, slimeAccent, slimeDesc, slimeDescStyle, slimeCta, slimeCtaLink,
       slimeStats[]{ value, label },
       slimeCards[]{ title, desc, icon },
 
-      aboutLabel, aboutTitle, aboutBody, aboutCta, aboutCtaLink, aboutImage,
+      aboutLabel, aboutTitle, aboutTitleStyle, aboutBody, aboutBodyStyle, aboutCta, aboutCtaLink, aboutImage,
       aboutFeatures[]{ title, desc },
 
-      pricingLabel, pricingTitle, pricingDesc,
+      pricingLabel, pricingTitle, pricingTitleStyle, pricingDesc, pricingDescStyle,
       pricingCards[]{ title, price, image, ctaText, ctaLink },
 
-      processLabel, processTitle, processSubtitle, processDesc,
+      processLabel, processTitle, processTitleStyle, processSubtitle, processDesc, processDescStyle,
       processSteps[]{ title, desc, image, icon },
 
       marqueeLight, marqueeDark,
 
-      newsLabel, newsTitle, newsCta, newsCtaLink,
+      newsLabel, newsTitle, newsTitleStyle, newsCta, newsCtaLink,
       newsArticles[]{ title, image, author, readTime, link }
     }`
   )
@@ -65,9 +65,9 @@ export async function getAboutPage() {
     `*[_type == "aboutPage"][0] {
       sectionOrder[]{ sectionId, enabled },
       seoTitle, seoDescription,
-      heroTitle, heroBgImage,
-      introLabel, introTitle, introParagraphs, introImage, introCta,
-      whyLabel, whyTitle, whyBgImage,
+      heroTitle, heroTitleStyle, heroBgImage,
+      introLabel, introTitle, introTitleStyle, introParagraphs, introImage, introCta,
+      whyLabel, whyTitle, whyTitleStyle, whyBgImage,
       whyFeatures[]{ title, desc },
       whyTickerText
     }`
@@ -81,9 +81,9 @@ export async function getContactPage() {
     `*[_type == "contactPage"][0] {
       sectionOrder[]{ sectionId, enabled },
       seoTitle, seoDescription,
-      heroTitle, heroBgImage,
-      sectionLabel, sectionTitle,
-      formTitle, submitText
+      heroTitle, heroTitleStyle, heroBgImage,
+      sectionLabel, sectionTitle, sectionTitleStyle,
+      formTitle, formTitleStyle, submitText
     }`
   )
 }
@@ -95,16 +95,16 @@ export async function getServicesPage() {
     `*[_type == "servicesPage"][0] {
       sectionOrder[]{ sectionId, enabled },
       seoTitle, seoDescription,
-      heroTitle, heroBgImage,
-      cardsLabel, cardsTitle, cardsDesc,
+      heroTitle, heroTitleStyle, heroBgImage,
+      cardsLabel, cardsTitle, cardsTitleStyle, cardsDesc, cardsDescStyle,
       serviceCards[]{ title, desc, img, icon, href },
-      statsLabel, statsTitle, statsDesc,
+      statsLabel, statsTitle, statsTitleStyle, statsDesc, statsDescStyle,
       stats[]{ tag, prefix, num, suffix, desc },
       quoteTitle, quoteBody,
-      expLabel, expTitle, expImage,
+      expLabel, expTitle, expTitleStyle, expImage,
       expItems[]{ title, text, icon },
       serviceDetails[]{ label, title, desc, img, features, href, imgLeft },
-      ctaTitle, ctaAccent, ctaButtonText, ctaButtonLink,
+      ctaTitle, ctaTitleStyle, ctaAccent, ctaButtonText, ctaButtonLink,
       ctaQuestionLabel, ctaQuestionDesc
     }`
   )
@@ -115,20 +115,20 @@ export async function getServicesPage() {
 const servicePageFields = `
   sectionOrder[]{ sectionId, enabled },
   seoTitle, seoDescription,
-  heroTitle, heroBgImage, breadcrumbLabel,
-  mainImage, overlayHeadline,
-  contractsTitle,
+  heroTitle, heroTitleStyle, heroBgImage, breadcrumbLabel,
+  mainImage, overlayHeadline, overlayHeadlineStyle,
+  contractsTitle, contractsTitleStyle,
   contractFeatures[]{ label, acces, equilibre, plus },
   discountHeadline, discountText, discountBadge, disclaimer,
-  whyTitle, whyIntro, whyBullets, detailImages,
-  faqTitle, faqs[]{ question, answer }
+  whyTitle, whyTitleStyle, whyIntro, whyBullets, detailImages,
+  faqTitle, faqTitleStyle, faqs[]{ question, answer }
 `
 
 export async function getPanneauxSolairesPage() {
   return client.fetch(
     `*[_type == "panneauxSolairesPage"][0] {
       ${servicePageFields},
-      pvCleanTitle, pvCleanIntro, pvCleanImage,
+      pvCleanTitle, pvCleanTitleStyle, pvCleanIntro, pvCleanImage,
       pvCleanFeatures, pvCleanDisclaimer
     }`
   )
@@ -154,12 +154,12 @@ export async function getPvCleanPage() {
     `*[_type == "pvCleanPage"][0] {
       sectionOrder[]{ sectionId, enabled },
       seoTitle, seoDescription,
-      heroTitle, heroBgImage, breadcrumbLabel,
-      mainImage, overlayHeadline,
-      offerImage, offerTitle, offerSubtitle, offerLabel,
+      heroTitle, heroTitleStyle, heroBgImage, breadcrumbLabel,
+      mainImage, overlayHeadline, overlayHeadlineStyle,
+      offerImage, offerTitle, offerTitleStyle, offerSubtitle, offerLabel,
       offerFeatures, offerDisclaimer,
-      whyTitle, whyIntro, whyBullets, detailImages,
-      faqTitle, faqs[]{ question, answer }
+      whyTitle, whyTitleStyle, whyIntro, whyBullets, detailImages,
+      faqTitle, faqTitleStyle, faqs[]{ question, answer }
     }`
   )
 }
@@ -230,6 +230,20 @@ export async function getMarketingSettings() {
       cookieConsentEnabled,
       cookieConsentMessage,
       cookieConsentPrivacyLink
+    }`
+  )
+}
+
+// ── Theme Settings ───────────────────────────────────────────────────────────
+
+export async function getThemeSettings() {
+  return client.fetch(
+    `*[_type == "themeSettings"][0] {
+      colorPrimary,
+      colorHover,
+      colorDark,
+      buttonStyle,
+      cardStyle
     }`
   )
 }

@@ -6,6 +6,7 @@ import SectionLabel from '@/components/ui/SectionLabel'
 import CheckIcon from '@/components/ui/CheckIcon'
 import Button from '@/components/ui/Button'
 import { urlFor } from '@/lib/sanity'
+import { toCSS, TextStyle } from '@/lib/textStyle'
 
 const revealHeading = {
   hidden: { opacity: 0, y: 44 },
@@ -27,6 +28,8 @@ interface AboutProps {
   ctaLink?: string
   image?: any
   features?: Array<{ title: string; desc: string }>
+  titleStyle?: TextStyle
+  bodyStyle?: TextStyle
 }
 
 export default function About({
@@ -37,6 +40,8 @@ export default function About({
   ctaLink = '/about-us',
   image,
   features,
+  titleStyle,
+  bodyStyle,
 }: AboutProps) {
   const imgSrc = image
     ? urlFor(image).width(800).quality(80).url()
@@ -71,6 +76,7 @@ export default function About({
                   fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
                   fontSize: 48, fontWeight: 500, lineHeight: '58px', letterSpacing: -2, color: '#000',
                   margin: 0,
+                  ...toCSS(titleStyle),
                 }}
               >
                 {title}
@@ -80,6 +86,7 @@ export default function About({
             <p className="about-body" style={{
               fontFamily: "var(--font-jost), 'Jost', sans-serif",
               fontSize: 17, fontWeight: 400, lineHeight: '26px', color: '#000', margin: 0,
+              ...toCSS(bodyStyle),
             }}>
               {body}
             </p>
@@ -107,7 +114,7 @@ export default function About({
             {/* Lime circle with spinning "About us" text */}
             <div className="about-spin-badge" style={{
               position: 'absolute', bottom: 16, left: 16,
-              width: 124, height: 124, borderRadius: 150, background: '#50B5A2',
+              width: 124, height: 124, borderRadius: 150, background: 'var(--color-primary-light, #50b5a2)',
               padding: 10, display: 'flex', alignItems: 'center', justifyContent: 'center',
             }}>
               <div className="about-spin" style={{ width: 100, height: 100, position: 'relative' }}>

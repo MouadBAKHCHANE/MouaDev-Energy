@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import PageHero from '@/components/layout/PageHero'
 import SectionLabel from '@/components/ui/SectionLabel'
+import { toCSS, TextStyle } from '@/lib/textStyle'
 
 const reveal = {
   hidden: { opacity: 0, y: 44 },
@@ -12,10 +13,10 @@ const reveal = {
 }
 
 const sidebarServices = [
-  { label: 'Panneaux solaires', href: '/services/panneaux-solaires', icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-18.webp', accent: '#2a9b96' },
+  { label: 'Panneaux solaires', href: '/services/panneaux-solaires', icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-18.webp', accent: 'var(--color-primary, #2a9b96)' },
   { label: 'Pompe à chaleur', href: '/services/pompe-a-chaleur', icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-20.webp', accent: '#e8552c' },
   { label: 'Boiler thermodynamique', href: '/services/boiler-thermodynamique', icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-15.webp', accent: '#0c2a54' },
-  { label: 'PV Clean — Nettoyage', href: '/services/pv-clean', icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-23.webp', accent: '#2a9b96' },
+  { label: 'PV Clean — Nettoyage', href: '/services/pv-clean', icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-23.webp', accent: 'var(--color-primary, #2a9b96)' },
 ]
 
 const defaultFaqs = [
@@ -80,6 +81,10 @@ interface PanneauxSolairesClientProps {
   detailImages?: string[]
   faqTitle?: string
   faqs?: { q: string; a: string }[]
+  overlayHeadlineStyle?: TextStyle
+  pvCleanTitleStyle?: TextStyle
+  whyTitleStyle?: TextStyle
+  faqTitleStyle?: TextStyle
 }
 
 export default function PanneauxSolairesClient({
@@ -110,6 +115,10 @@ export default function PanneauxSolairesClient({
   ],
   faqTitle = "Questions sur l'entretien de vos panneaux",
   faqs = defaultFaqs,
+  overlayHeadlineStyle,
+  pvCleanTitleStyle,
+  whyTitleStyle,
+  faqTitleStyle,
 }: PanneauxSolairesClientProps) {
   const [activeIdx, setActiveIdx] = useState(-1)
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' })
@@ -125,7 +134,7 @@ export default function PanneauxSolairesClient({
   const renderCellValue = (val: string) => {
     if (val === 'check' || val === '✓') {
       return (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#2a9b96"/><path d="M7 12.5L10.5 16L17 9" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="var(--color-primary, #2a9b96)"/><path d="M7 12.5L10.5 16L17 9" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
       )
     }
     if (val === 'cross' || val === '✗') {
@@ -137,11 +146,11 @@ export default function PanneauxSolairesClient({
   }
 
   const rowIcons = [
-    <svg key="cal" width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1.5" y="3" width="11" height="9.5" rx="1.5" stroke="#2a9b96" strokeWidth="1.3"/><path d="M1.5 6h11" stroke="#2a9b96" strokeWidth="1.3"/><path d="M4.5 1v3M9.5 1v3" stroke="#2a9b96" strokeWidth="1.3" strokeLinecap="round"/></svg>,
-    <svg key="clk" width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="#2a9b96" strokeWidth="1.3" fill="none"/><path d="M7 4v3.5l2.5 1.5" stroke="#2a9b96" strokeWidth="1.3" strokeLinecap="round" fill="none"/></svg>,
-    <svg key="doc" width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2.5" y="1" width="9" height="12" rx="1.5" stroke="#2a9b96" strokeWidth="1.3" fill="none"/><path d="M5 5h4M5 7.5h4M5 10h2.5" stroke="#2a9b96" strokeWidth="1.1" strokeLinecap="round"/></svg>,
-    <svg key="usr" width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="4.5" r="2.5" stroke="#2a9b96" strokeWidth="1.3" fill="none"/><path d="M2.5 13c0-2.5 2-4.5 4.5-4.5s4.5 2 4.5 4.5" stroke="#2a9b96" strokeWidth="1.3" strokeLinecap="round" fill="none"/></svg>,
-    <svg key="wrn" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M8 3a3 3 0 00-4 4l-2 2 1.5 1.5 2-2a3 3 0 004-4L8 6 7 5z" stroke="#2a9b96" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" fill="none"/></svg>,
+    <svg key="cal" width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1.5" y="3" width="11" height="9.5" rx="1.5" stroke="var(--color-primary, #2a9b96)" strokeWidth="1.3"/><path d="M1.5 6h11" stroke="var(--color-primary, #2a9b96)" strokeWidth="1.3"/><path d="M4.5 1v3M9.5 1v3" stroke="var(--color-primary, #2a9b96)" strokeWidth="1.3" strokeLinecap="round"/></svg>,
+    <svg key="clk" width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="var(--color-primary, #2a9b96)" strokeWidth="1.3" fill="none"/><path d="M7 4v3.5l2.5 1.5" stroke="var(--color-primary, #2a9b96)" strokeWidth="1.3" strokeLinecap="round" fill="none"/></svg>,
+    <svg key="doc" width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2.5" y="1" width="9" height="12" rx="1.5" stroke="var(--color-primary, #2a9b96)" strokeWidth="1.3" fill="none"/><path d="M5 5h4M5 7.5h4M5 10h2.5" stroke="var(--color-primary, #2a9b96)" strokeWidth="1.1" strokeLinecap="round"/></svg>,
+    <svg key="usr" width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="4.5" r="2.5" stroke="var(--color-primary, #2a9b96)" strokeWidth="1.3" fill="none"/><path d="M2.5 13c0-2.5 2-4.5 4.5-4.5s4.5 2 4.5 4.5" stroke="var(--color-primary, #2a9b96)" strokeWidth="1.3" strokeLinecap="round" fill="none"/></svg>,
+    <svg key="wrn" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M8 3a3 3 0 00-4 4l-2 2 1.5 1.5 2-2a3 3 0 004-4L8 6 7 5z" stroke="var(--color-primary, #2a9b96)" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" fill="none"/></svg>,
   ]
 
   return (
@@ -253,7 +262,7 @@ export default function PanneauxSolairesClient({
                       type="text" name="name" placeholder="Prénom *"
                       value={formData.name} onChange={handleChange} required
                       style={formInputStyle}
-                      onFocus={(e) => { e.currentTarget.style.borderColor = '#50B5A2' }}
+                      onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--color-primary-light, #50b5a2)' }}
                       onBlur={(e) => { e.currentTarget.style.borderColor = '#e0e0e0' }}
                     />
                   </div>
@@ -263,7 +272,7 @@ export default function PanneauxSolairesClient({
                       type="email" name="email" placeholder="Adresse e-mail *"
                       value={formData.email} onChange={handleChange} required
                       style={formInputStyle}
-                      onFocus={(e) => { e.currentTarget.style.borderColor = '#50B5A2' }}
+                      onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--color-primary-light, #50b5a2)' }}
                       onBlur={(e) => { e.currentTarget.style.borderColor = '#e0e0e0' }}
                     />
                   </div>
@@ -273,7 +282,7 @@ export default function PanneauxSolairesClient({
                       type="tel" name="phone" placeholder="Numéro de téléphone *"
                       value={formData.phone} onChange={handleChange}
                       style={formInputStyle}
-                      onFocus={(e) => { e.currentTarget.style.borderColor = '#50B5A2' }}
+                      onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--color-primary-light, #50b5a2)' }}
                       onBlur={(e) => { e.currentTarget.style.borderColor = '#e0e0e0' }}
                     />
                   </div>
@@ -283,21 +292,21 @@ export default function PanneauxSolairesClient({
                       name="message" placeholder="Écrivez votre message..."
                       value={formData.message} onChange={handleChange} rows={4}
                       style={{ ...formInputStyle, borderRadius: 10, resize: 'vertical' }}
-                      onFocus={(e) => { e.currentTarget.style.borderColor = '#50B5A2' }}
+                      onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--color-primary-light, #50b5a2)' }}
                       onBlur={(e) => { e.currentTarget.style.borderColor = '#e0e0e0' }}
                     />
                   </div>
                   <button type="submit" style={{
                     width: '100%', padding: '14px',
-                    borderRadius: 8, background: 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)', border: 'none',
+                    borderRadius: 8, background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)', border: 'none',
                     fontSize: 15, fontWeight: 700,
                     fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
                     color: '#fff', cursor: 'pointer',
                     transition: 'background 0.18s ease, color 0.18s ease',
                     marginTop: 4,
                   }}
-                    onMouseEnter={(e) => { e.currentTarget.style.background = '#50B5A2'; e.currentTarget.style.color = '#000' }}
-                    onMouseLeave={(e) => { e.currentTarget.style.background = 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)'; e.currentTarget.style.color = '#fff' }}
+                    onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--color-primary-light, #50b5a2)'; e.currentTarget.style.color = '#000' }}
+                    onMouseLeave={(e) => { e.currentTarget.style.background = 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)'; e.currentTarget.style.color = '#fff' }}
                   >
                     Envoyer un message
                   </button>
@@ -306,7 +315,7 @@ export default function PanneauxSolairesClient({
 
               {/* CTA promo card */}
               <div style={{
-                background: 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)', borderRadius: 20, padding: '28px 24px',
+                background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)', borderRadius: 20, padding: '28px 24px',
                 position: 'relative', overflow: 'hidden',
               }}>
                 <div style={{
@@ -382,7 +391,7 @@ export default function PanneauxSolairesClient({
                   boxShadow: '0 10px 40px rgba(0, 0, 0, 0.1)',
                 }}>
                   <div style={{ display: 'flex', alignItems: 'flex-start', gap: 14 }}>
-                    <div style={{ width: 36, height: 36, flexShrink: 0, background: '#2a9b96', WebkitMask: 'url("/Logo image/Vert medium.webp") center/contain no-repeat', mask: 'url("/Logo image/Vert medium.webp") center/contain no-repeat' }} />
+                    <div style={{ width: 36, height: 36, flexShrink: 0, background: 'var(--color-primary, #2a9b96)', WebkitMask: 'url("/Logo image/Vert medium.webp") center/contain no-repeat', mask: 'url("/Logo image/Vert medium.webp") center/contain no-repeat' }} />
                     <h2
                       style={{
                         fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
@@ -392,6 +401,7 @@ export default function PanneauxSolairesClient({
                         color: '#000',
                         lineHeight: 1.3,
                         margin: 0,
+                        ...toCSS(overlayHeadlineStyle),
                       }}
                     >
                       {overlayHeadline}
@@ -415,24 +425,24 @@ export default function PanneauxSolairesClient({
                       <div style={{ fontFamily: "var(--font-jost), 'Jost', sans-serif", fontSize: 14, color: '#666' }}>Panneaux photovoltaïques</div>
                     </div>
                     <div style={{ padding: '24px 12px', textAlign: 'center', borderBottom: '2px solid #eee', background: '#fff' }}>
-                      <div style={{ fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif", fontSize: 16, fontWeight: 700, color: '#2a9b96' }}>Zen Acc&egrave;s</div>
+                      <div style={{ fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif", fontSize: 16, fontWeight: 700, color: 'var(--color-primary, #2a9b96)' }}>Zen Acc&egrave;s</div>
                       <div style={{ fontFamily: "var(--font-jost), 'Jost', sans-serif", fontSize: 12, color: '#888', marginTop: 2 }}>La tranquillit&eacute; essentielle</div>
                       <div style={{ display: 'flex', gap: 4, justifyContent: 'center', marginTop: 10 }}>
-                        {[0].map(i => <div key={i} style={{ width: 22, height: 22, background: '#2a9b96', WebkitMask: 'url("/Logo image/Vert medium.webp") center/contain no-repeat', mask: 'url("/Logo image/Vert medium.webp") center/contain no-repeat' }} />)}
+                        {[0].map(i => <div key={i} style={{ width: 22, height: 22, background: 'var(--color-primary, #2a9b96)', WebkitMask: 'url("/Logo image/Vert medium.webp") center/contain no-repeat', mask: 'url("/Logo image/Vert medium.webp") center/contain no-repeat' }} />)}
                       </div>
                     </div>
                     <div style={{ padding: '24px 12px', textAlign: 'center', borderBottom: '2px solid #eee', background: '#fff' }}>
-                      <div style={{ fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif", fontSize: 16, fontWeight: 700, color: '#2a9b96' }}>Zen &Eacute;quilibre</div>
+                      <div style={{ fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif", fontSize: 16, fontWeight: 700, color: 'var(--color-primary, #2a9b96)' }}>Zen &Eacute;quilibre</div>
                       <div style={{ fontFamily: "var(--font-jost), 'Jost', sans-serif", fontSize: 12, color: '#888', marginTop: 2 }}>La couverture compl&egrave;te</div>
                       <div style={{ display: 'flex', gap: 4, justifyContent: 'center', marginTop: 10 }}>
-                        {[0,1].map(i => <div key={i} style={{ width: 22, height: 22, background: '#2a9b96', WebkitMask: 'url("/Logo image/Vert medium.webp") center/contain no-repeat', mask: 'url("/Logo image/Vert medium.webp") center/contain no-repeat' }} />)}
+                        {[0,1].map(i => <div key={i} style={{ width: 22, height: 22, background: 'var(--color-primary, #2a9b96)', WebkitMask: 'url("/Logo image/Vert medium.webp") center/contain no-repeat', mask: 'url("/Logo image/Vert medium.webp") center/contain no-repeat' }} />)}
                       </div>
                     </div>
                     <div style={{ padding: '24px 12px', textAlign: 'center', borderBottom: '2px solid #eee', background: '#fff' }}>
-                      <div style={{ fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif", fontSize: 16, fontWeight: 700, color: '#2a9b96' }}>Zen Plus</div>
+                      <div style={{ fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif", fontSize: 16, fontWeight: 700, color: 'var(--color-primary, #2a9b96)' }}>Zen Plus</div>
                       <div style={{ fontFamily: "var(--font-jost), 'Jost', sans-serif", fontSize: 12, color: '#888', marginTop: 2 }}>La s&eacute;r&eacute;nit&eacute; assur&eacute;e</div>
                       <div style={{ display: 'flex', gap: 4, justifyContent: 'center', marginTop: 10 }}>
-                        {[0,1,2].map(i => <div key={i} style={{ width: 22, height: 22, background: '#2a9b96', WebkitMask: 'url("/Logo image/Vert medium.webp") center/contain no-repeat', mask: 'url("/Logo image/Vert medium.webp") center/contain no-repeat' }} />)}
+                        {[0,1,2].map(i => <div key={i} style={{ width: 22, height: 22, background: 'var(--color-primary, #2a9b96)', WebkitMask: 'url("/Logo image/Vert medium.webp") center/contain no-repeat', mask: 'url("/Logo image/Vert medium.webp") center/contain no-repeat' }} />)}
                       </div>
                     </div>
 
@@ -461,8 +471,8 @@ export default function PanneauxSolairesClient({
                           className="ps-tbl-cta-btn"
                           style={{
                             display: 'inline-flex', alignItems: 'center', gap: 10,
-                            background: 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)', color: '#fff',
-                            borderRadius: 14, padding: '10px 10px 10px 18px',
+                            background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)', color: '#fff',
+                            borderRadius: 'var(--btn-radius, 14px)', padding: '10px 10px 10px 18px',
                             fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
                             fontSize: 12, fontWeight: 700, textDecoration: 'none',
                             transition: 'all 0.2s ease', whiteSpace: 'nowrap',
@@ -470,22 +480,22 @@ export default function PanneauxSolairesClient({
                           }}
                           onMouseEnter={(e) => {
                             const btn = e.currentTarget as HTMLElement;
-                            btn.style.background = 'linear-gradient(135deg, #2a9b96 0%, #50b5a2 100%)';
+                            btn.style.background = 'linear-gradient(135deg, var(--color-primary, #2a9b96) 0%, var(--color-primary-light, #50b5a2) 100%)';
                             const arr = btn.querySelector('.tbl-arr') as HTMLElement | null;
                             if (arr) {
                               arr.style.background = '#fff';
                               arr.style.transform = 'translateX(4px)';
                               arr.style.boxShadow = '0 8px 16px rgba(255, 255, 255, 0.4)';
                               const svg = arr.querySelector('svg') as SVGElement | null;
-                              if (svg) svg.style.stroke = '#2c6262';
+                              if (svg) svg.style.stroke = 'var(--color-primary-dark, #2c6262)';
                             }
                           }}
                           onMouseLeave={(e) => {
                             const btn = e.currentTarget as HTMLElement;
-                            btn.style.background = 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)';
+                            btn.style.background = 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)';
                             const arr = btn.querySelector('.tbl-arr') as HTMLElement | null;
                             if (arr) {
-                              arr.style.background = 'linear-gradient(135deg, #2c6262 0%, #1f4545 100%)';
+                              arr.style.background = 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, #1f4545 100%)';
                               arr.style.transform = 'translateX(0)';
                               arr.style.boxShadow = '0 4px 8px rgba(44, 98, 98, 0.3)';
                               const svg = arr.querySelector('svg') as SVGElement | null;
@@ -495,8 +505,8 @@ export default function PanneauxSolairesClient({
                         >
                           Demander un Devis
                           <span className="tbl-arr" style={{
-                            width: 28, height: 28, borderRadius: 10, display: 'flex', alignItems: 'center',
-                            justifyContent: 'center', flexShrink: 0, background: 'linear-gradient(135deg, #2c6262 0%, #1f4545 100%)',
+                            width: 28, height: 28, borderRadius: 'var(--btn-radius-sm, 10px)', display: 'flex', alignItems: 'center',
+                            justifyContent: 'center', flexShrink: 0, background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, #1f4545 100%)',
                             transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
                             boxShadow: '0 4px 8px rgba(44, 98, 98, 0.3)',
                           }}>
@@ -519,11 +529,11 @@ export default function PanneauxSolairesClient({
                   ].map((contract) => (
                     <div key={contract.key} className="ps-contract-card">
                       <div className="ps-contract-header">
-                        <div className="ps-contract-name" style={{ color: '#2a9b96' }}>{contract.name}</div>
+                        <div className="ps-contract-name" style={{ color: 'var(--color-primary, #2a9b96)' }}>{contract.name}</div>
                         <div className="ps-contract-sub">{contract.sub}</div>
                         <div className="ps-contract-icons">
                           {Array.from({ length: contract.icons }).map((_, ii) => (
-                            <div key={ii} style={{ width: 18, height: 18, background: '#2a9b96', WebkitMask: 'url("/Logo image/Vert medium.webp") center/contain no-repeat', mask: 'url("/Logo image/Vert medium.webp") center/contain no-repeat' }} />
+                            <div key={ii} style={{ width: 18, height: 18, background: 'var(--color-primary, #2a9b96)', WebkitMask: 'url("/Logo image/Vert medium.webp") center/contain no-repeat', mask: 'url("/Logo image/Vert medium.webp") center/contain no-repeat' }} />
                           ))}
                         </div>
                       </div>
@@ -541,7 +551,7 @@ export default function PanneauxSolairesClient({
                           href="https://form.typeform.com/to/rRhOu7eb" target="_blank" rel="noopener noreferrer"
                           style={{
                             display: 'inline-flex', alignItems: 'center', gap: 8,
-                            background: 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)', color: '#fff',
+                            background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)', color: '#fff',
                             borderRadius: 10, padding: '10px 18px',
                             fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
                             fontSize: 13, fontWeight: 700, textDecoration: 'none', width: '100%', justifyContent: 'center',
@@ -570,7 +580,7 @@ export default function PanneauxSolairesClient({
                   }} />
                   <div className="ps-discount-banner" style={{
                     borderRadius: 16, overflow: 'hidden', position: 'relative',
-                    background: 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)',
+                    background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)',
                     border: '1.5px dashed rgba(255,255,255,0.45)',
                     padding: '24px 28px 20px',
                     display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap',
@@ -653,11 +663,12 @@ export default function PanneauxSolairesClient({
                 <div style={{ marginBottom: 16 }}>
                   <div style={{
                     fontFamily: "var(--font-jost), 'Jost', sans-serif",
-                    fontSize: 13, fontWeight: 600, color: '#2a9b96', letterSpacing: 1, textTransform: 'uppercase', marginBottom: 6,
+                    fontSize: 13, fontWeight: 600, color: 'var(--color-primary, #2a9b96)', letterSpacing: 1, textTransform: 'uppercase', marginBottom: 6,
                   }}>NOS SOLUTIONS D'ENTRETIEN :</div>
                   <h3 style={{
                     fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
                     fontSize: 22, fontWeight: 700, color: '#000', margin: '0 0 12px', letterSpacing: -0.5,
+                    ...toCSS(pvCleanTitleStyle),
                   }}>
                     {pvCleanTitle}
                   </h3>
@@ -720,7 +731,7 @@ export default function PanneauxSolairesClient({
 
                   {/* Right: price + features */}
                   <div style={{
-                    background: 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)', borderRadius: 16, padding: '28px 24px',
+                    background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)', borderRadius: 16, padding: '28px 24px',
                     display: 'flex', flexDirection: 'column',
                   }}>
                     {/* Included */}
@@ -765,6 +776,7 @@ export default function PanneauxSolairesClient({
                 <h3 style={{
                   fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
                   fontSize: 20, fontWeight: 700, color: '#000', marginBottom: 14, letterSpacing: -0.5, lineHeight: 1.3,
+                  ...toCSS(whyTitleStyle),
                 }}>
                   {whyTitle}
                 </h3>
@@ -778,7 +790,7 @@ export default function PanneauxSolairesClient({
                   {whyBullets.map((item, i) => (
                     <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
                       <span style={{
-                        width: 10, height: 10, minWidth: 10, background: '#50B5A2', borderRadius: 2,
+                        width: 10, height: 10, minWidth: 10, background: 'var(--color-primary-light, #50b5a2)', borderRadius: 2,
                         marginTop: 7, display: 'inline-block',
                       }} />
                       <span style={{
@@ -835,6 +847,7 @@ export default function PanneauxSolairesClient({
                   fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
                   fontSize: 28, fontWeight: 600, letterSpacing: -1,
                   color: '#000', marginBottom: 32, lineHeight: '36px',
+                  ...toCSS(faqTitleStyle),
                 }}
               >
                 {faqTitle}
@@ -862,8 +875,8 @@ export default function PanneauxSolairesClient({
                       <span className="ps-faq-q-text">{faq.q}</span>
                       <span style={{
                         width: 34, height: 34, borderRadius: '50%', flexShrink: 0,
-                        border: isActive ? '1px solid #50B5A2' : '1px solid #e8e8e8',
-                        background: isActive ? '#50B5A2' : 'transparent',
+                        border: isActive ? '1px solid var(--color-primary-light, #50b5a2)' : '1px solid #e8e8e8',
+                        background: isActive ? 'var(--color-primary-light, #50b5a2)' : 'transparent',
                         display: 'flex', alignItems: 'center', justifyContent: 'center',
                         fontSize: 20, lineHeight: 1,
                         transform: isActive ? 'rotate(45deg)' : 'none',
@@ -881,7 +894,7 @@ export default function PanneauxSolairesClient({
                         {faq.a.split('\n').map((line, li) =>
                           line.startsWith('\u2022') ? (
                             <div key={li} style={{ display: 'flex', gap: 8, marginBottom: 4 }}>
-                              <span style={{ color: '#50B5A2', flexShrink: 0 }}>&bull;</span>
+                              <span style={{ color: 'var(--color-primary-light, #50b5a2)', flexShrink: 0 }}>&bull;</span>
                               <span>{line.slice(1).trim()}</span>
                             </div>
                           ) : line.match(/^\d+\./) ? (
@@ -918,36 +931,36 @@ export default function PanneauxSolairesClient({
                 <div>
                   <label style={labelStyle}>Nom</label>
                   <input type="text" name="name" placeholder="Prénom *" value={formData.name} onChange={handleChange} required style={formInputStyle}
-                    onFocus={(e) => { e.currentTarget.style.borderColor = '#50B5A2' }}
+                    onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--color-primary-light, #50b5a2)' }}
                     onBlur={(e) => { e.currentTarget.style.borderColor = '#e0e0e0' }} />
                 </div>
                 <div>
                   <label style={labelStyle}>E-mail</label>
                   <input type="email" name="email" placeholder="Adresse e-mail *" value={formData.email} onChange={handleChange} required style={formInputStyle}
-                    onFocus={(e) => { e.currentTarget.style.borderColor = '#50B5A2' }}
+                    onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--color-primary-light, #50b5a2)' }}
                     onBlur={(e) => { e.currentTarget.style.borderColor = '#e0e0e0' }} />
                 </div>
                 <div>
                   <label style={labelStyle}>Téléphone</label>
                   <input type="tel" name="phone" placeholder="Numéro de téléphone *" value={formData.phone} onChange={handleChange} style={formInputStyle}
-                    onFocus={(e) => { e.currentTarget.style.borderColor = '#50B5A2' }}
+                    onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--color-primary-light, #50b5a2)' }}
                     onBlur={(e) => { e.currentTarget.style.borderColor = '#e0e0e0' }} />
                 </div>
                 <div>
                   <label style={labelStyle}>Message</label>
                   <textarea name="message" placeholder="Écrivez votre message..." value={formData.message} onChange={handleChange} rows={4}
                     style={{ ...formInputStyle, borderRadius: 10, resize: 'vertical' }}
-                    onFocus={(e) => { e.currentTarget.style.borderColor = '#50B5A2' }}
+                    onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--color-primary-light, #50b5a2)' }}
                     onBlur={(e) => { e.currentTarget.style.borderColor = '#e0e0e0' }} />
                 </div>
                 <button type="submit" style={{
                   width: '100%', padding: '14px', borderRadius: 8,
-                  background: 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)', border: 'none',
+                  background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)', border: 'none',
                   fontSize: 15, fontWeight: 700, fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
                   color: '#fff', cursor: 'pointer', transition: 'background 0.18s ease, color 0.18s ease', marginTop: 4,
                 }}
-                  onMouseEnter={(e) => { e.currentTarget.style.background = '#50B5A2'; e.currentTarget.style.color = '#000' }}
-                  onMouseLeave={(e) => { e.currentTarget.style.background = 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)'; e.currentTarget.style.color = '#fff' }}
+                  onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--color-primary-light, #50b5a2)'; e.currentTarget.style.color = '#000' }}
+                  onMouseLeave={(e) => { e.currentTarget.style.background = 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)'; e.currentTarget.style.color = '#fff' }}
                 >
                   Envoyer un message
                 </button>
@@ -955,7 +968,7 @@ export default function PanneauxSolairesClient({
             </div>
             {/* CTA promo card */}
             <div style={{
-              background: 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)', borderRadius: 20, padding: '28px 24px',
+              background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)', borderRadius: 20, padding: '28px 24px',
               position: 'relative', overflow: 'hidden',
             }}>
               <div style={{ position: 'absolute', top: -60, right: -60, width: 180, height: 180, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%)', pointerEvents: 'none' }} />
@@ -1073,7 +1086,7 @@ export default function PanneauxSolairesClient({
           .ps-service-nav .ps-nav-link {
             padding: 10px 14px !important;
             font-size: 13px !important;
-            border-radius: 12px !important;
+            border-radius: var(--btn-radius-sm, 10px) !important;
           }
           .ps-nav-arrow { display: none !important; }
           .ps-sidebar-extra { display: none !important; }

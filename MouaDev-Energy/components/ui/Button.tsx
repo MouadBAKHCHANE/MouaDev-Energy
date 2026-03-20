@@ -24,7 +24,7 @@ export default function Button({
   const baseStyle: React.CSSProperties = {
     display: 'inline-flex',
     alignItems: 'center',
-    borderRadius: 14,
+    borderRadius: 'var(--btn-radius, 14px)' as any,
     fontFamily: "var(--font-inter), 'Inter', sans-serif",
     fontSize: 16,
     fontWeight: 600,
@@ -41,13 +41,13 @@ export default function Button({
   // Variant styles
   if (variant === 'dark') {
     Object.assign(baseStyle, {
-      background: '#2c6262', color: '#fff',
+      background: 'var(--color-primary-dark, #2c6262)', color: '#fff',
       padding: isSm ? '8px 6px 8px 20px' : '9px 8px 9px 24px',
       gap: isSm ? 12 : 24,
     })
   } else if (variant === 'lime') {
     Object.assign(baseStyle, {
-      background: '#50B5A2', color: '#000',
+      background: 'var(--color-primary-light, #50B5A2)', color: '#000',
       padding: isSm ? '8px 6px 8px 20px' : '9px 8px 9px 24px',
       gap: isSm ? 12 : 24,
     })
@@ -67,7 +67,7 @@ export default function Button({
   const arrStyle: React.CSSProperties = {
     width: arrW,
     height: arrH,
-    borderRadius: 14,
+    borderRadius: 'var(--btn-radius, 14px)' as any,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -79,9 +79,9 @@ export default function Button({
   if (variant === 'dark') {
     arrStyle.background = '#fff'
   } else if (variant === 'lime') {
-    arrStyle.background = '#2c6262'
+    arrStyle.background = 'var(--color-primary-dark, #2c6262)'
   } else if (variant === 'outline') {
-    arrStyle.background = '#2c6262'
+    arrStyle.background = 'var(--color-primary-dark, #2c6262)'
   }
 
   const arrowStroke =
@@ -111,7 +111,7 @@ export default function Button({
 
     if (variant === 'dark') {
       if (arr) {
-        arr.style.background = '#50B5A2'
+        arr.style.background = 'var(--color-primary-light, #50b5a2)'
         arr.querySelectorAll('line, path, polyline').forEach(s => (s as SVGElement).setAttribute('stroke', '#000'))
       }
     } else if (variant === 'lime') {
@@ -120,9 +120,9 @@ export default function Button({
         arr.querySelectorAll('line, path, polyline').forEach(s => (s as SVGElement).setAttribute('stroke', '#000'))
       }
     } else if (variant === 'outline') {
-      el.style.background = '#2c6262'
+      el.style.background = 'var(--color-primary-dark, #2c6262)'
       el.style.color = '#fff'
-      el.style.borderColor = '#2c6262'
+      el.style.borderColor = 'var(--color-primary-dark, #2c6262)'
       if (arr) {
         arr.style.background = '#fff'
         arr.querySelectorAll('line, path, polyline').forEach(s => (s as SVGElement).setAttribute('stroke', '#000'))
@@ -146,7 +146,7 @@ export default function Button({
       }
     } else if (variant === 'lime') {
       if (arr) {
-        arr.style.background = '#2c6262'
+        arr.style.background = 'var(--color-primary-dark, #2c6262)'
         arr.querySelectorAll('line, path, polyline').forEach(s => (s as SVGElement).setAttribute('stroke', '#fff'))
       }
     } else if (variant === 'outline') {
@@ -154,7 +154,7 @@ export default function Button({
       el.style.color = '#000'
       el.style.borderColor = '#000'
       if (arr) {
-        arr.style.background = '#2c6262'
+        arr.style.background = 'var(--color-primary-dark, #2c6262)'
         arr.querySelectorAll('line, path, polyline').forEach(s => (s as SVGElement).setAttribute('stroke', '#fff'))
       }
     }

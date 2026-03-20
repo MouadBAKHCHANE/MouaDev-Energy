@@ -21,10 +21,10 @@ export interface SiteData {
 }
 
 const serviceAccents: Record<string, { icon: string; accent: string; hoverText: string }> = {
-  '/services/panneaux-solaires': { icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-18.webp', accent: '#2a9b96', hoverText: '#fff' },
+  '/services/panneaux-solaires': { icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-18.webp', accent: 'var(--color-primary, #2a9b96)', hoverText: '#fff' },
   '/services/pompe-a-chaleur': { icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-20.webp', accent: '#e8552c', hoverText: '#fff' },
   '/services/boiler-thermodynamique': { icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-15.webp', accent: '#0c2a54', hoverText: '#fff' },
-  '/services/pv-clean': { icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-23.webp', accent: '#2a9b96', hoverText: '#fff' },
+  '/services/pv-clean': { icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-23.webp', accent: 'var(--color-primary, #2a9b96)', hoverText: '#fff' },
 }
 
 const defaultNavItems = [
@@ -159,7 +159,7 @@ export default function Header({ siteData }: { siteData?: SiteData }) {
           {/* Desktop nav pill — hidden on mobile */}
           <div className="header-desktop-nav" style={{
             display: 'flex', alignItems: 'center',
-            borderRadius: 14, padding: '4px 8px',
+            borderRadius: 'var(--btn-radius, 14px)', padding: '4px 8px',
             border: isScrolled ? '1px solid rgba(0,0,0,0.08)' : '1px solid rgba(255,255,255,0.2)',
             background: isScrolled ? 'transparent' : 'rgba(255,255,255,0.06)',
             backdropFilter: isScrolled ? 'none' : 'blur(4px)',
@@ -174,11 +174,11 @@ export default function Header({ siteData }: { siteData?: SiteData }) {
                 <Link href={item.href} style={{
                   fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
                   fontSize: 15, fontWeight: 500, color: textColor,
-                  padding: '6px 14px', borderRadius: 14,
+                  padding: '6px 14px', borderRadius: 'var(--btn-radius, 14px)',
                   transition: 'background 0.18s ease, color 0.18s ease',
                   display: 'flex', alignItems: 'center', gap: 6,
                 }}
-                  onMouseEnter={(e) => { e.currentTarget.style.background = '#50B5A2'; e.currentTarget.style.color = '#fff' }}
+                  onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--color-primary-light, #50b5a2)'; e.currentTarget.style.color = '#fff' }}
                   onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = textColor }}
                 >
                   {item.label}
@@ -232,7 +232,7 @@ export default function Header({ siteData }: { siteData?: SiteData }) {
                                   if (arrow) arrow.style.color = sa.hoverText
                                 } else {
                                   e.currentTarget.style.background = '#f0faf8'
-                                  e.currentTarget.style.color = '#50B5A2'
+                                  e.currentTarget.style.color = 'var(--color-primary-light, #50b5a2)'
                                 }
                               }}
                               onMouseLeave={(e) => {
@@ -279,7 +279,7 @@ export default function Header({ siteData }: { siteData?: SiteData }) {
               width: 44, height: 44, display: 'flex', alignItems: 'center', justifyContent: 'center',
               background: 'none', border: 'none', cursor: 'pointer', color: textColor, transition: 'color 0.2s ease',
             }}
-            onMouseEnter={(e) => (e.currentTarget as HTMLElement).style.color = '#50B5A2'}
+            onMouseEnter={(e) => (e.currentTarget as HTMLElement).style.color = 'var(--color-primary-light, #50b5a2)'}
             onMouseLeave={(e) => (e.currentTarget as HTMLElement).style.color = textColor}
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -297,7 +297,7 @@ export default function Header({ siteData }: { siteData?: SiteData }) {
               alignItems: 'center', justifyContent: 'center', gap: 6,
               background: 'none', border: 'none', cursor: 'pointer',
             }}
-            onMouseEnter={(e) => e.currentTarget.querySelectorAll('span').forEach(s => s.style.background = '#50B5A2')}
+            onMouseEnter={(e) => e.currentTarget.querySelectorAll('span').forEach(s => s.style.background = 'var(--color-primary-light, #50b5a2)')}
             onMouseLeave={(e) => e.currentTarget.querySelectorAll('span').forEach(s => s.style.background = textColor)}
           >
             {[26, 23, 29].map((w, i) => (
@@ -308,10 +308,10 @@ export default function Header({ siteData }: { siteData?: SiteData }) {
           {/* Desktop CTA — hidden on mobile */}
           <Link href={typeformUrl} className="header-desktop-cta"
             style={{
-              display: 'inline-flex', alignItems: 'center', borderRadius: 14,
+              display: 'inline-flex', alignItems: 'center', borderRadius: 'var(--btn-radius, 14px)',
               fontFamily: "var(--font-barlow), 'Barlow', sans-serif", fontSize: 16, fontWeight: 600,
               cursor: 'pointer', transition: 'all 0.18s ease', whiteSpace: 'nowrap' as const,
-              background: '#50B5A2', color: '#000', padding: '6px 6px 6px 20px', gap: 20, border: 'none', textDecoration: 'none',
+              background: 'var(--color-primary-light, #50b5a2)', color: '#000', padding: '6px 6px 6px 20px', gap: 20, border: 'none', textDecoration: 'none',
             }}
             onMouseEnter={(e) => {
               const arr = e.currentTarget.querySelector('.cta-arrow') as HTMLElement
@@ -319,13 +319,13 @@ export default function Header({ siteData }: { siteData?: SiteData }) {
             }}
             onMouseLeave={(e) => {
               const arr = e.currentTarget.querySelector('.cta-arrow') as HTMLElement
-              if (arr) { arr.style.background = '#2c6262'; arr.style.color = '#fff' }
+              if (arr) { arr.style.background = 'var(--color-primary-dark, #2c6262)'; arr.style.color = '#fff' }
             }}
           >
             Demander un Devis
             <span className="cta-arrow" style={{
-              width: 40, height: 40, borderRadius: 14, display: 'flex', alignItems: 'center',
-              justifyContent: 'center', flexShrink: 0, background: '#2c6262', color: '#fff', transition: 'background 0.18s ease',
+              width: 40, height: 40, borderRadius: 'var(--btn-radius-sm, 10px)', display: 'flex', alignItems: 'center',
+              justifyContent: 'center', flexShrink: 0, background: 'var(--color-primary-dark, #2c6262)', color: '#fff', transition: 'background 0.18s ease',
             }}>
               <ArrowIcon direction="right" size={20} strokeColor="currentColor" />
             </span>
@@ -386,7 +386,7 @@ export default function Header({ siteData }: { siteData?: SiteData }) {
                   width: 36,
                   height: 36,
                   borderRadius: '50%',
-                  background: '#2c6262',
+                  background: 'var(--color-primary-dark, #2c6262)',
                   color: '#fff',
                   border: 'none',
                   cursor: 'pointer',
@@ -476,7 +476,7 @@ export default function Header({ siteData }: { siteData?: SiteData }) {
                                         if (icon) icon.style.background = sa.hoverText
                                       } else {
                                         e.currentTarget.style.background = '#f0faf8'
-                                        e.currentTarget.style.color = '#50B5A2'
+                                        e.currentTarget.style.color = 'var(--color-primary-light, #50b5a2)'
                                       }
                                     }}
                                     onMouseLeave={(e) => {
@@ -520,7 +520,7 @@ export default function Header({ siteData }: { siteData?: SiteData }) {
                           borderBottom: '1px solid rgba(0,0,0,0.07)',
                           transition: 'color 0.2s',
                         }}
-                        onMouseEnter={(e) => e.currentTarget.style.color = '#50B5A2'}
+                        onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-primary-light, #50b5a2)'}
                         onMouseLeave={(e) => e.currentTarget.style.color = '#000'}
                       >
                         {item.label}
@@ -544,7 +544,7 @@ export default function Header({ siteData }: { siteData?: SiteData }) {
                 <div>
                   <h4 style={{ fontFamily: "var(--font-space-grotesk)", fontSize: 13, fontWeight: 700, marginBottom: 3, textTransform: 'uppercase', letterSpacing: '0.04em', color: '#999' }}>Contact</h4>
                   <a href={`mailto:${email}`} style={{
-                    fontFamily: "var(--font-inter)", fontSize: 12, color: '#50B5A2',
+                    fontFamily: "var(--font-inter)", fontSize: 12, color: 'var(--color-primary-light, #50b5a2)',
                     textDecoration: 'none', fontWeight: 500, display: 'block', marginBottom: 2,
                   }}>
                     {email}
@@ -594,9 +594,9 @@ export default function Header({ siteData }: { siteData?: SiteData }) {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    background: '#50B5A2',
+                    background: 'var(--color-primary-light, #50b5a2)',
                     padding: '6px 6px 6px 18px',
-                    borderRadius: 14,
+                    borderRadius: 'var(--btn-radius, 14px)',
                     textDecoration: 'none',
                     color: '#000',
                     fontWeight: 600,
@@ -611,8 +611,8 @@ export default function Header({ siteData }: { siteData?: SiteData }) {
                   <div style={{
                     width: 40,
                     height: 40,
-                    borderRadius: 10,
-                    background: '#2c6262',
+                    borderRadius: 'var(--btn-radius-sm, 10px)',
+                    background: 'var(--color-primary-dark, #2c6262)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -665,7 +665,7 @@ export default function Header({ siteData }: { siteData?: SiteData }) {
             >
               <form onSubmit={handleSearch} style={{ maxWidth: 860, margin: '0 auto', display: 'flex', alignItems: 'center', gap: 16 }}>
                 {/* Search icon */}
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#50B5A2" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, stroke: 'var(--color-primary-light, #50b5a2)' }}>
                   <circle cx="11" cy="11" r="8" />
                   <line x1="21" y1="21" x2="16.65" y2="16.65" />
                 </svg>
@@ -692,8 +692,8 @@ export default function Header({ siteData }: { siteData?: SiteData }) {
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     style={{
-                      background: '#50B5A2', color: '#000', border: 'none', cursor: 'pointer',
-                      borderRadius: 12, padding: '10px 20px',
+                      background: 'var(--color-primary-light, #50b5a2)', color: '#000', border: 'none', cursor: 'pointer',
+                      borderRadius: 'var(--btn-radius-sm, 10px)', padding: '10px 20px',
                       fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
                       fontSize: 15, fontWeight: 600, whiteSpace: 'nowrap' as const,
                     }}
