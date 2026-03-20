@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import ArrowIcon from '@/components/ui/ArrowIcon'
 import { urlFor } from '@/lib/sanity'
+import { toCSS, TextStyle } from '@/lib/textStyle'
 
 const reveal = {
   hidden: { opacity: 0, y: 150 },
@@ -22,6 +23,8 @@ interface HeroProps {
   reviewCount?: string
   rating?: string
   tickerText?: string
+  titleStyle?: TextStyle
+  subtitleStyle?: TextStyle
 }
 
 export default function Hero({
@@ -35,6 +38,8 @@ export default function Hero({
   reviewCount = '100+ avis',
   rating = '4.96 sur 5',
   tickerText = 'Ma maison, Mon confort.',
+  titleStyle,
+  subtitleStyle,
 }: HeroProps) {
   const bgSrc = bgImage ? urlFor(bgImage).width(1920).quality(85).url() : '/Photos HD/Photos d_ambiance/happy-family-background-house-with-solar-panels-roof-selective-focus.webp'
 
@@ -46,7 +51,7 @@ export default function Hero({
     const parts = title.split(accentWord)
     return (
       <>
-        {parts[0]}<span style={{ color: '#50B5A2' }}>{accentWord}</span>{parts[1] || ''}
+        {parts[0]}<span style={{ color: 'var(--color-primary-light, #50b5a2)' }}>{accentWord}</span>{parts[1] || ''}
       </>
     )
   }
@@ -115,7 +120,7 @@ export default function Hero({
                   WebkitBackdropFilter: 'blur(10px)',
                   border: '1px solid rgba(255,255,255,0.2)',
                   padding: '6px 14px',
-                  borderRadius: 14,
+                  borderRadius: 'var(--btn-radius, 14px)',
                   marginBottom: 14,
                 }}>
                   <svg width="16" height="16" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ borderRadius: 4 }}>
@@ -137,6 +142,7 @@ export default function Hero({
                     color: '#fff',
                     maxWidth: 850,
                     margin: 0,
+                    ...toCSS(titleStyle),
                   }}
                 >
                   {renderTitle()}
@@ -170,7 +176,7 @@ export default function Hero({
                   fontSize: 12, fontWeight: 500, color: '#fff', lineHeight: 1.3, textAlign: 'center',
                 }}>
                   <strong style={{ display: 'block', fontSize: 13, fontWeight: 600 }}>{reviewCount}</strong>
-                  <span style={{ color: '#50B5A2', fontSize: 12 }}>{rating}</span>
+                  <span style={{ color: 'var(--color-primary-light, #50b5a2)', fontSize: 12 }}>{rating}</span>
                 </div>
               </div>
             </motion.div>
@@ -189,6 +195,7 @@ export default function Hero({
                 color: 'rgba(255,255,255,0.9)',
                 maxWidth: 500,
                 marginBottom: 0,
+                ...toCSS(subtitleStyle),
               }}
             >
               {subtitle}
@@ -209,14 +216,14 @@ export default function Hero({
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
-                  borderRadius: 14,
+                  borderRadius: 'var(--btn-radius, 14px)',
                   fontFamily: "var(--font-inter), 'Inter', sans-serif",
                   fontSize: 17,
                   fontWeight: 600,
                   cursor: 'pointer',
                   transition: 'all 0.18s ease',
                   whiteSpace: 'nowrap',
-                  background: '#50B5A2',
+                  background: 'var(--color-primary-light, #50b5a2)',
                   color: '#000',
                   padding: '8px 8px 8px 24px',
                   gap: 24,
@@ -231,7 +238,7 @@ export default function Hero({
                 }}
                 onMouseLeave={(e) => {
                   const arr = e.currentTarget.querySelector('.hero-btn-arr') as HTMLElement;
-                  if (arr) { arr.style.background = '#2c6262'; arr.style.color = '#fff'; }
+                  if (arr) { arr.style.background = 'var(--color-primary-dark, #2c6262)'; arr.style.color = '#fff'; }
                   const svg = e.currentTarget.querySelector('.hero-btn-arr svg') as SVGElement;
                   if (svg) svg.querySelectorAll('polyline, path, line').forEach((s) => (s as SVGElement).setAttribute('stroke', '#fff'));
                 }}
@@ -240,9 +247,9 @@ export default function Hero({
                 <span
                   className="hero-btn-arr"
                   style={{
-                    width: 48, height: 44, borderRadius: 14,
+                    width: 48, height: 44, borderRadius: 'var(--btn-radius-sm, 10px)',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    flexShrink: 0, background: '#2c6262', color: '#fff',
+                    flexShrink: 0, background: 'var(--color-primary-dark, #2c6262)', color: '#fff',
                     transition: 'background 0.2s ease',
                   }}
                 >
@@ -284,7 +291,7 @@ export default function Hero({
                 fontSize: 13, fontWeight: 500, color: '#fff', lineHeight: 1.4,
               }}>
                 <strong style={{ display: 'block', fontSize: 14, fontWeight: 700 }}>{reviewCount}</strong>
-                <span style={{ color: '#50B5A2' }}>{rating} ★</span>
+                <span style={{ color: 'var(--color-primary-light, #50b5a2)' }}>{rating} ★</span>
               </div>
             </motion.div>
           </div>

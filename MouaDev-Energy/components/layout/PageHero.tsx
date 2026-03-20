@@ -4,6 +4,7 @@ import { useRef } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
+import type { CSSProperties } from 'react'
 
 interface Crumb {
   label: string
@@ -15,9 +16,10 @@ interface PageHeroProps {
   title: string
   bgImage?: string
   compact?: boolean
+  titleStyle?: CSSProperties
 }
 
-export default function PageHero({ crumbs, title, bgImage, compact = false }: PageHeroProps) {
+export default function PageHero({ crumbs, title, bgImage, compact = false, titleStyle }: PageHeroProps) {
   const sectionRef = useRef<HTMLElement>(null)
 
   const { scrollYProgress } = useScroll({
@@ -42,7 +44,7 @@ export default function PageHero({ crumbs, title, bgImage, compact = false }: Pa
         flexDirection: 'column',
         justifyContent: 'flex-end',
         padding: compact ? 'clamp(80px, 10vw, 110px) 20px clamp(20px, 4vw, 40px)' : 'clamp(90px, 12vw, 140px) 20px clamp(30px, 5vw, 60px)',
-        background: 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)',
+        background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)',
         overflow: 'hidden',
       }}
     >
@@ -95,7 +97,7 @@ export default function PageHero({ crumbs, title, bgImage, compact = false }: Pa
                 <Link
                   href={crumb.href}
                   style={{ fontFamily: "var(--font-jost), 'Jost', sans-serif", fontSize: 14, color: 'rgba(255,255,255,0.55)', transition: 'color 0.18s ease' }}
-                  onMouseEnter={(e) => { e.currentTarget.style.color = '#50B5A2' }}
+                  onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--color-primary-light, #50b5a2)' }}
                   onMouseLeave={(e) => { e.currentTarget.style.color = 'rgba(255,255,255,0.55)' }}
                 >
                   {crumb.label}
@@ -120,6 +122,7 @@ export default function PageHero({ crumbs, title, bgImage, compact = false }: Pa
             color: '#fff',
             margin: 0,
             maxWidth: 900,
+            ...titleStyle,
           }}
         >
           {title}

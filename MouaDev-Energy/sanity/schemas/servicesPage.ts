@@ -31,12 +31,15 @@ export default defineType({
 
     // ── Hero ──
     defineField({ name: 'heroTitle', title: 'Titre du hero', type: 'string', group: 'hero' }),
+    defineField({ name: 'heroTitleStyle', title: 'Style du titre hero', type: 'textStyle', group: 'hero' }),
     defineField({ name: 'heroBgImage', title: 'Image de fond du hero', type: 'image', options: { hotspot: true }, group: 'hero' }),
 
     // ── Services card grid ──
     defineField({ name: 'cardsLabel', title: 'Label', type: 'string', group: 'cards' }),
     defineField({ name: 'cardsTitle', title: 'Titre', type: 'string', group: 'cards' }),
+    defineField({ name: 'cardsTitleStyle', title: 'Style du titre', type: 'textStyle', group: 'cards' }),
     defineField({ name: 'cardsDesc', title: 'Description', type: 'text', rows: 3, group: 'cards' }),
+    defineField({ name: 'cardsDescStyle', title: 'Style de la description', type: 'textStyle', group: 'cards' }),
     defineField({
       name: 'serviceCards',
       title: 'Cartes de services',
@@ -60,7 +63,9 @@ export default defineType({
     // ── Stats ──
     defineField({ name: 'statsLabel', title: 'Label', type: 'string', group: 'stats' }),
     defineField({ name: 'statsTitle', title: 'Titre', type: 'string', group: 'stats' }),
+    defineField({ name: 'statsTitleStyle', title: 'Style du titre', type: 'textStyle', group: 'stats' }),
     defineField({ name: 'statsDesc', title: 'Description', type: 'text', rows: 3, group: 'stats' }),
+    defineField({ name: 'statsDescStyle', title: 'Style de la description', type: 'textStyle', group: 'stats' }),
     defineField({
       name: 'stats',
       title: 'Statistiques',
@@ -86,6 +91,7 @@ export default defineType({
     // ── L'expérience Zen ──
     defineField({ name: 'expLabel', title: 'Label', type: 'string', group: 'experience' }),
     defineField({ name: 'expTitle', title: 'Titre', type: 'string', group: 'experience' }),
+    defineField({ name: 'expTitleStyle', title: 'Style du titre', type: 'textStyle', group: 'experience' }),
     defineField({ name: 'expImage', title: 'Image', type: 'image', options: { hotspot: true }, group: 'experience' }),
     defineField({
       name: 'expItems',
@@ -130,6 +136,7 @@ export default defineType({
 
     // ── CTA Banner ──
     defineField({ name: 'ctaTitle', title: 'Titre CTA', type: 'string', group: 'cta' }),
+    defineField({ name: 'ctaTitleStyle', title: 'Style du titre CTA', type: 'textStyle', group: 'cta' }),
     defineField({ name: 'ctaAccent', title: 'Texte accent CTA', type: 'string', group: 'cta' }),
     defineField({ name: 'ctaButtonText', title: 'Texte du bouton', type: 'string', group: 'cta' }),
     defineField({ name: 'ctaButtonLink', title: 'Lien du bouton', type: 'string', group: 'cta' }),

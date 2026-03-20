@@ -13,6 +13,9 @@ const TYPE_TO_PATHS: Record<string, string[]> = {
   service:              ['/services'],
   faq:                  ['/'],
   siteSettings:         ['/', '/services', '/about-us', '/contact-us'],
+  themeSettings:        ['/', '/services', '/about-us', '/contact-us', '/services/panneaux-solaires', '/services/pompe-a-chaleur', '/services/boiler-thermodynamique', '/services/pv-clean'],
+  marketingSettings:    ['/', '/services', '/about-us', '/contact-us'],
+  servicesPage:         ['/services'],
 }
 
 export async function POST(req: NextRequest) {

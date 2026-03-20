@@ -6,7 +6,7 @@ export default function CheckIcon() {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      background: '#50B5A2',
+      background: 'var(--color-primary-light, #50b5a2)',
       borderRadius: '50%',
       flexShrink: 0
     }}>

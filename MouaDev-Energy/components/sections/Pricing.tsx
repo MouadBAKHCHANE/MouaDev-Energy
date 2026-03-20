@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import SectionLabel from '@/components/ui/SectionLabel'
 import { urlFor } from '@/lib/sanity'
+import { toCSS, TextStyle } from '@/lib/textStyle'
 
 const revealHeading = {
   hidden: { opacity: 0, y: 44 },
@@ -55,6 +56,8 @@ interface PricingProps {
   title?: string
   desc?: string
   cards?: Array<{ title: string; price: string; image?: any; ctaText: string; ctaLink: string }>
+  titleStyle?: TextStyle
+  descStyle?: TextStyle
 }
 
 export default function Pricing({
@@ -62,6 +65,8 @@ export default function Pricing({
   title = "Découvrez nos offres d'entretien en un coup d'œil !",
   desc = "Choisissez la solution qui correspond à votre installation et profitez d'une expertise locale pour la pérennité de vos équipements.",
   cards,
+  titleStyle,
+  descStyle,
 }: PricingProps) {
   const plans = cards?.length
     ? cards.map((c, idx) => ({
@@ -85,12 +90,14 @@ export default function Pricing({
           <motion.h2 variants={revealHeading} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '0px 0px -50px 0px', amount: 0.1 }} transition={{ duration: 0.8, ease: 'easeOut', delay: 0.1 }} className="pricing-h2" style={{
             fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
             fontSize: 48, fontWeight: 500, lineHeight: '58px', letterSpacing: -2, color: '#000',
+            ...toCSS(titleStyle),
           }}>
             {title}
           </motion.h2>
           <motion.p variants={revealHeading} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '0px 0px -50px 0px', amount: 0.1 }} transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }} className="pricing-body" style={{
             fontFamily: "var(--font-jost), 'Jost', sans-serif",
             fontSize: 17, fontWeight: 400, lineHeight: '26px', color: '#000',
+            ...toCSS(descStyle),
           }}>
             {desc}
           </motion.p>
@@ -134,7 +141,7 @@ export default function Pricing({
                   rel="noopener noreferrer"
                   whileHover="hover"
                   style={{
-                    display: 'inline-block', textAlign: 'center', padding: '8px 22px', borderRadius: 12,
+                    display: 'inline-block', textAlign: 'center', padding: '8px 22px', borderRadius: 'var(--btn-radius-sm, 10px)',
                     fontFamily: "var(--font-inter), 'Inter', sans-serif", fontSize: 13, fontWeight: 600,
                     textDecoration: 'none', marginTop: 20,
                     background: plan.btnColor, color: '#fff', width: 'fit-content',

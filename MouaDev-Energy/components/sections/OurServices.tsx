@@ -8,6 +8,7 @@ import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import SectionLabel from '@/components/ui/SectionLabel'
 import Button from '@/components/ui/Button'
 import { urlFor } from '@/lib/sanity'
+import { toCSS, TextStyle } from '@/lib/textStyle'
 
 const reveal = {
   hidden: { opacity: 0, y: 40 },
@@ -20,7 +21,7 @@ const defaultSlides = [
     name: 'Panneaux solaires',
     icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-18.webp',
     href: '/services/panneaux-solaires',
-    accent: '#50b5a2',
+    accent: 'var(--color-primary-light, #50b5a2)',
   },
   {
     img: '/Photos%20HD/Visuels%20Technique/Technique%20-%20PAC/Pompes%20a%CC%80%20chaleur%20avantages%20et%20inconve%CC%81nients.webp',
@@ -41,7 +42,7 @@ const defaultSlides = [
     name: 'Nettoyage panneaux solaires',
     icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-23.webp',
     href: '/services/pv-clean',
-    accent: '#50b5a2',
+    accent: 'var(--color-primary-light, #50b5a2)',
   },
 ]
 
@@ -52,6 +53,8 @@ interface OurServicesProps {
   cta?: string
   ctaLink?: string
   cards?: Array<{ title: string; image?: any; icon?: any; link: string }>
+  titleStyle?: TextStyle
+  descStyle?: TextStyle
 }
 
 export default function OurServices({
@@ -61,6 +64,8 @@ export default function OurServices({
   cta = "Découvrir nos offres d'entretien",
   ctaLink = '/services',
   cards,
+  titleStyle,
+  descStyle,
 }: OurServicesProps) {
   const slides = (cards && cards.length > 0)
     ? cards.map((card, i) => ({
@@ -68,7 +73,7 @@ export default function OurServices({
         name: card.title ?? defaultSlides[i]?.name ?? '',
         icon: card.icon?.asset ? urlFor(card.icon).url() : defaultSlides[i]?.icon ?? '',
         href: card.link ?? defaultSlides[i]?.href ?? '/',
-        accent: defaultSlides[i]?.accent ?? '#50b5a2',
+        accent: defaultSlides[i]?.accent ?? 'var(--color-primary-light, #50b5a2)',
       }))
     : defaultSlides
 
@@ -184,7 +189,8 @@ export default function OurServices({
           style={{
             fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
             fontWeight: 500,
-            color: '#000', maxWidth: 800, margin: '16px auto 16px', textAlign: 'center'
+            color: '#000', maxWidth: 800, margin: '16px auto 16px', textAlign: 'center',
+            ...toCSS(titleStyle),
           }}
         >
           {title}
@@ -196,7 +202,8 @@ export default function OurServices({
           style={{
             fontFamily: "var(--font-jost), 'Jost', sans-serif",
             fontSize: 18, fontWeight: 400, lineHeight: '28px', color: '#555',
-            maxWidth: 850, margin: '0 auto 30px', textAlign: 'center'
+            maxWidth: 850, margin: '0 auto 30px', textAlign: 'center',
+            ...toCSS(descStyle),
           }}
         >
           {desc}
@@ -218,7 +225,7 @@ export default function OurServices({
               transition={{ duration: 0.8, ease: 'easeOut', delay: 0.5 + i * 0.1 }}
             >
               <motion.div initial="rest" whileHover="hover" animate="rest"
-                style={{ display: 'block', borderRadius: 32, overflow: 'hidden', position: 'relative', aspectRatio: '0.73', background: '#000', cursor: 'pointer' }}
+                style={{ display: 'block', borderRadius: 'var(--card-radius, 24px)', overflow: 'hidden', position: 'relative', aspectRatio: '0.73', background: '#000', cursor: 'pointer' }}
               >
                 <Link href={slide.href} style={{ display: 'contents', textDecoration: 'none' }}>
                   <motion.div
@@ -260,7 +267,7 @@ export default function OurServices({
 
         {/* Mobile carousel */}
         <div className="svc-carousel">
-          <div style={{ position: 'relative', overflow: 'hidden', borderRadius: 24 }}>
+          <div style={{ position: 'relative', overflow: 'hidden', borderRadius: 'var(--card-radius, 24px)' }}>
             <div
               className="svc-carousel-track"
               style={{ transform: `translateX(${-active * 100}%)`, transition: animated ? 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)' : 'none' }}
@@ -301,7 +308,7 @@ export default function OurServices({
           <div style={{ display: 'flex', justifyContent: 'center', gap: 8, marginTop: 20 }}>
             {slides.map((_, i) => (
               <button key={i} onClick={() => handleDot(i)}
-                style={{ width: i === realIndex ? 24 : 8, height: 8, borderRadius: 4, background: i === realIndex ? '#50b5a2' : '#ddd', border: 'none', padding: 0, cursor: 'pointer', transition: 'all 0.3s ease' }}
+                style={{ width: i === realIndex ? 24 : 8, height: 8, borderRadius: 4, background: i === realIndex ? 'var(--color-primary-light, #50b5a2)' : '#ddd', border: 'none', padding: 0, cursor: 'pointer', transition: 'all 0.3s ease' }}
                 aria-label={`Slide ${i + 1}`}
               />
             ))}
@@ -385,7 +392,7 @@ export default function OurServices({
             right: 12px;
           }
           .svc-arrow:active {
-            background: #50b5a2;
+            background: var(--color-primary-light, #50b5a2);
             color: #fff;
           }
         }

@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import PageHero from '@/components/layout/PageHero'
 import SectionLabel from '@/components/ui/SectionLabel'
+import { toCSS, TextStyle } from '@/lib/textStyle'
 
 const reveal = {
   hidden: { opacity: 0, y: 44 },
@@ -21,6 +22,9 @@ interface ContactUsClientProps {
   email?: string
   phone?: string
   googleMapUrl?: string
+  heroTitleStyle?: TextStyle | null
+  sectionTitleStyle?: TextStyle | null
+  formTitleStyle?: TextStyle | null
 }
 
 export default function ContactUsClient({
@@ -34,6 +38,9 @@ export default function ContactUsClient({
   email = 'contact@zen-energieservices.ch',
   phone = '+41 21 512 05 74',
   googleMapUrl = 'https://maps.google.com/maps?q=46.167925,6.106813&output=embed&z=17',
+  heroTitleStyle,
+  sectionTitleStyle,
+  formTitleStyle,
 }: ContactUsClientProps) {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' })
 
@@ -57,6 +64,7 @@ export default function ContactUsClient({
         title={heroTitle}
         bgImage={heroBgImage}
         compact={true}
+        titleStyle={toCSS(heroTitleStyle)}
       />
 
       <section className="contact-section" style={{ background: '#fff', padding: '80px 20px' }}>
@@ -75,16 +83,17 @@ export default function ContactUsClient({
               fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
               fontSize: 'clamp(32px, 4vw, 50px)', fontWeight: 600, letterSpacing: -2,
               color: '#000', marginBottom: 36, lineHeight: 1.1,
+              ...toCSS(sectionTitleStyle),
             }}>
               {sectionTitle}
             </h2>
 
             {/* Address card */}
             <div style={{
-              background: 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)', borderRadius: 16, padding: '28px 28px',
+              background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)', borderRadius: 16, padding: '28px 28px',
               marginBottom: 16, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 10,
             }}>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#50B5A2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary-light, #50b5a2)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
                 <circle cx="12" cy="10" r="3" />
               </svg>
@@ -100,10 +109,10 @@ export default function ContactUsClient({
             <div className="contact-info-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
               {/* Email */}
               <div style={{
-                background: 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)', borderRadius: 16, padding: '28px 22px',
+                background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)', borderRadius: 16, padding: '28px 22px',
                 display: 'flex', flexDirection: 'column', gap: 10, alignItems: 'center', textAlign: 'center',
               }}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#50B5A2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary-light, #50b5a2)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                   <polyline points="22,6 12,13 2,6" />
                 </svg>
@@ -117,10 +126,10 @@ export default function ContactUsClient({
 
               {/* Phone */}
               <div style={{
-                background: 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)', borderRadius: 16, padding: '28px 22px',
+                background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)', borderRadius: 16, padding: '28px 22px',
                 display: 'flex', flexDirection: 'column', gap: 10, alignItems: 'center', textAlign: 'center',
               }}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#50B5A2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary-light, #50b5a2)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
                 </svg>
                 <div style={{
@@ -143,6 +152,7 @@ export default function ContactUsClient({
               fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
               fontSize: 'clamp(26px, 3vw, 38px)', fontWeight: 600, letterSpacing: -1.5,
               color: '#000', marginBottom: 32, lineHeight: 1.2,
+              ...toCSS(formTitleStyle),
             }}>
               {formTitle}
             </h3>
@@ -156,7 +166,7 @@ export default function ContactUsClient({
                     type="text" name="name" placeholder="Prénom *"
                     value={formData.name} onChange={handleChange} required
                     style={inputStyle}
-                    onFocus={e => { e.currentTarget.style.borderColor = '#50B5A2' }}
+                    onFocus={e => { e.currentTarget.style.borderColor = 'var(--color-primary-light, #50b5a2)' }}
                     onBlur={e => { e.currentTarget.style.borderColor = '#e0e0e0' }}
                   />
                 </div>
@@ -167,7 +177,7 @@ export default function ContactUsClient({
                     type="email" name="email" placeholder="Adresse e-mail *"
                     value={formData.email} onChange={handleChange} required
                     style={inputStyle}
-                    onFocus={e => { e.currentTarget.style.borderColor = '#50B5A2' }}
+                    onFocus={e => { e.currentTarget.style.borderColor = 'var(--color-primary-light, #50b5a2)' }}
                     onBlur={e => { e.currentTarget.style.borderColor = '#e0e0e0' }}
                   />
                 </div>
@@ -178,7 +188,7 @@ export default function ContactUsClient({
                     type="tel" name="phone" placeholder="Numéro de téléphone"
                     value={formData.phone} onChange={handleChange}
                     style={inputStyle}
-                    onFocus={e => { e.currentTarget.style.borderColor = '#50B5A2' }}
+                    onFocus={e => { e.currentTarget.style.borderColor = 'var(--color-primary-light, #50b5a2)' }}
                     onBlur={e => { e.currentTarget.style.borderColor = '#e0e0e0' }}
                   />
                 </div>
@@ -191,7 +201,7 @@ export default function ContactUsClient({
                     name="message" placeholder="Écrivez votre message..." rows={3}
                     value={formData.message} onChange={handleChange}
                     style={{ ...inputStyle, borderRadius: 10, resize: 'none' }}
-                    onFocus={e => { e.currentTarget.style.borderColor = '#50B5A2' }}
+                    onFocus={e => { e.currentTarget.style.borderColor = 'var(--color-primary-light, #50b5a2)' }}
                     onBlur={e => { e.currentTarget.style.borderColor = '#e0e0e0' }}
                   />
                 </div>
@@ -201,14 +211,14 @@ export default function ContactUsClient({
                     type="submit"
                     style={{
                       width: '100%', padding: '16px',
-                      borderRadius: 10, background: 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)', border: 'none',
+                      borderRadius: 10, background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)', border: 'none',
                       fontSize: 16, fontWeight: 600,
                       fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
                       color: '#fff', cursor: 'pointer',
                       transition: 'background 0.18s ease, color 0.18s ease',
                     }}
-                    onMouseEnter={e => { e.currentTarget.style.background = '#50B5A2'; e.currentTarget.style.color = '#000' }}
-                    onMouseLeave={e => { e.currentTarget.style.background = 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)'; e.currentTarget.style.color = '#fff' }}
+                    onMouseEnter={e => { e.currentTarget.style.background = 'var(--color-primary-light, #50b5a2)'; e.currentTarget.style.color = '#000' }}
+                    onMouseLeave={e => { e.currentTarget.style.background = 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)'; e.currentTarget.style.color = '#fff' }}
                   >
                     {submitText}
                   </button>

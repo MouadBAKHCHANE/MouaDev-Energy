@@ -6,7 +6,7 @@ import Link from 'next/link'
 import type { SiteData } from './Header'
 
 export default function Footer({ siteData }: { siteData?: SiteData }) {
-  const brandGreen = '#50B5A2'
+  const brandGreen = 'var(--color-primary-light, #50b5a2)'
   const phone = siteData?.phone ?? '+41 21 512 05 74'
   const email = siteData?.email ?? 'contact@zen-energieservices.ch'
   const address = siteData?.address ?? 'Chemin du Pré-Fleuri 1-3, 1228 Plan-les-Ouates, Genève'
@@ -76,7 +76,7 @@ export default function Footer({ siteData }: { siteData?: SiteData }) {
       ]
 
   return (
-    <footer aria-label="Pied de page" style={{ background: '#2c6262', color: '#fff', padding: '40px 20px 20px' }}>
+    <footer aria-label="Pied de page" style={{ background: 'var(--color-primary-dark, #2c6262)', color: '#fff', padding: '40px 20px 20px' }}>
       <div style={{ maxWidth: 1400, margin: '0 auto' }}>
 
         {/* TOP BAR: Logo and Contact Blocks */}
@@ -203,7 +203,7 @@ export default function Footer({ siteData }: { siteData?: SiteData }) {
                 { icon: <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />, text: phone },
               ].map((item, i) => (
                 <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={brandGreen} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginTop: 4 }}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginTop: 4, stroke: brandGreen }}>
                     {item.icon}
                   </svg>
                   <span style={{ fontFamily: "var(--font-inter)", fontSize: 15, color: 'rgba(255, 255, 255, 0.88)', lineHeight: 1.3 }}>{item.text}</span>
@@ -242,7 +242,7 @@ export default function Footer({ siteData }: { siteData?: SiteData }) {
                 background: brandGreen,
                 color: '#000',
                 border: 'none',
-                borderRadius: 10,
+                borderRadius: 'var(--btn-radius-sm, 10px)',
                 padding: '10px 20px',
                 fontWeight: 600,
                 fontSize: 16,

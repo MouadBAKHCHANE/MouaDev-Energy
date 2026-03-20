@@ -5,6 +5,7 @@ import Link from 'next/link'
 import SectionLabel from '@/components/ui/SectionLabel'
 import Button from '@/components/ui/Button'
 import { urlFor } from '@/lib/sanity'
+import { toCSS, TextStyle } from '@/lib/textStyle'
 
 const reveal = {
   hidden: { opacity: 0, y: 30 },
@@ -46,6 +47,7 @@ interface NewsProps {
   cta?: string
   ctaLink?: string
   articles?: Array<{ title: string; image?: any; author: string; readTime: string; link: string }>
+  titleStyle?: TextStyle
 }
 
 export default function News({
@@ -54,6 +56,7 @@ export default function News({
   cta = "Plus d'articles",
   ctaLink = '/blogs',
   articles,
+  titleStyle,
 }: NewsProps) {
   const items = articles?.length
     ? articles.map((a) => ({
@@ -74,6 +77,7 @@ export default function News({
         <motion.h2 variants={reveal} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '0px 0px -50px 0px', amount: 0.1 }} transition={{ duration: 0.8, ease: 'easeOut', delay: 0.1 }} className="news-h2" style={{
           fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
           fontSize: 48, fontWeight: 500, lineHeight: '58px', letterSpacing: -2, color: '#000', marginBottom: 40,
+          ...toCSS(titleStyle),
         }}>
           {title}
         </motion.h2>
@@ -158,7 +162,7 @@ export default function News({
           transition: color 0.3s ease;
         }
         .news-card:hover h3 {
-          color: #50B5A2 !important;
+          color: var(--color-primary-light, #50b5a2) !important;
         }
       `}</style>
     </section>

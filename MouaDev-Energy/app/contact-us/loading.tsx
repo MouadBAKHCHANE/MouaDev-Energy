@@ -3,7 +3,7 @@ export default function ContactLoading() {
     <div style={{ minHeight: '100vh', background: '#fff' }}>
       <div style={{
         minHeight: 'clamp(360px, 50vh, 580px)',
-        background: 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)',
+        background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)',
         display: 'flex', flexDirection: 'column', justifyContent: 'flex-end',
         padding: 'clamp(100px, 15vw, 160px) 20px clamp(40px, 6vw, 80px)',
       }}>
@@ -18,7 +18,7 @@ export default function ContactLoading() {
           <div style={{ width: '90%', height: 40, borderRadius: 8, background: '#f0f0f0', marginBottom: 8 }} />
           <div style={{ width: '70%', height: 40, borderRadius: 8, background: '#f0f0f0', marginBottom: 32 }} />
           {[1, 2, 3].map(i => (
-            <div key={i} style={{ width: '100%', height: 80, borderRadius: 16, background: 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)', marginBottom: 16, opacity: 0.7 }} />
+            <div key={i} style={{ width: '100%', height: 80, borderRadius: 16, background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)', marginBottom: 16, opacity: 0.7 }} />
           ))}
         </div>
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 20 }}>

@@ -6,6 +6,7 @@ import PageHero from '@/components/layout/PageHero'
 import SectionLabel from '@/components/ui/SectionLabel'
 import ArrowIcon from '@/components/ui/ArrowIcon'
 import FAQ from '@/components/sections/FAQ'
+import { toCSS, TextStyle } from '@/lib/textStyle'
 
 const reveal = {
   hidden: { opacity: 0, y: 44 },
@@ -76,6 +77,9 @@ interface AboutUsClientProps {
   whyBgImage?: string
   whyFeatures?: Array<{ title: string; desc: string }>
   whyTickerText?: string
+  heroTitleStyle?: TextStyle | null
+  introTitleStyle?: TextStyle | null
+  whyTitleStyle?: TextStyle | null
 }
 
 export default function AboutUsClient({
@@ -91,6 +95,9 @@ export default function AboutUsClient({
   whyBgImage,
   whyFeatures,
   whyTickerText = 'Énergie Renouvelable',
+  heroTitleStyle,
+  introTitleStyle,
+  whyTitleStyle,
 }: AboutUsClientProps) {
   const paragraphs = introParagraphs?.length ? introParagraphs : defaultParagraphs
   const features = whyFeatures?.length ? whyFeatures : defaultFeatures
@@ -105,6 +112,7 @@ export default function AboutUsClient({
         title={heroTitle}
         bgImage={heroBgImage}
         compact={true}
+        titleStyle={toCSS(heroTitleStyle)}
       />
 
       {/* ── 2. Qui sommes-nous ── */}
@@ -141,6 +149,7 @@ export default function AboutUsClient({
                 fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
                 fontSize: 'clamp(26px, 3.5vw, 36px)', fontWeight: 600, lineHeight: 1.25, letterSpacing: -1,
                 color: '#000', marginBottom: 20,
+                ...toCSS(introTitleStyle),
               }}>
                 {introTitle}
               </h2>
@@ -161,8 +170,8 @@ export default function AboutUsClient({
                   href="/contact-us"
                   style={{
                     display: 'inline-flex', alignItems: 'center',
-                    background: '#50B5A2', color: '#000',
-                    borderRadius: 14, padding: '8px 8px 8px 24px', gap: 20,
+                    background: 'var(--color-primary-light, #50b5a2)', color: '#000',
+                    borderRadius: 'var(--btn-radius, 14px)', padding: '8px 8px 8px 24px', gap: 20,
                     fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
                     fontSize: 16, fontWeight: 600, textDecoration: 'none',
                     transition: 'background 0.18s ease',
@@ -173,16 +182,16 @@ export default function AboutUsClient({
                     if (arr) { arr.style.background = '#fff'; arr.style.color = '#000' }
                   }}
                   onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLElement).style.background = '#50B5A2'
+                    (e.currentTarget as HTMLElement).style.background = 'var(--color-primary-light, #50b5a2)'
                     const arr = e.currentTarget.querySelector('.au-btn-arr') as HTMLElement
                     if (arr) { arr.style.background = '#000'; arr.style.color = '#fff' }
                   }}
                 >
                   {introCta}
                   <span className="au-btn-arr" style={{
-                    width: 44, height: 40, borderRadius: 12,
+                    width: 44, height: 40, borderRadius: 'var(--btn-radius-sm, 10px)',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    background: '#2c6262', color: '#fff', transition: 'background 0.18s ease',
+                    background: 'var(--color-primary-dark, #2c6262)', color: '#fff', transition: 'background 0.18s ease',
                   }}>
                     <ArrowIcon direction="right" size={18} strokeColor="currentColor" />
                   </span>
@@ -221,7 +230,7 @@ export default function AboutUsClient({
             <span style={{
               fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
               fontSize: 13, fontWeight: 700, letterSpacing: '0.14em',
-              color: '#50B5A2', textTransform: 'uppercase',
+              color: 'var(--color-primary-light, #50b5a2)', textTransform: 'uppercase',
             }}>{whyLabel}</span>
           </motion.div>
 
@@ -234,6 +243,7 @@ export default function AboutUsClient({
               fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
               fontSize: 'clamp(26px, 4vw, 48px)', fontWeight: 700, lineHeight: 1.08,
               letterSpacing: -1.5, color: '#fff', textAlign: 'center', marginBottom: 40,
+              ...toCSS(whyTitleStyle),
             }}
           >
             {whyTitle}
@@ -252,7 +262,7 @@ export default function AboutUsClient({
                 <motion.div
                   style={{
                     width: 44, height: 44, borderRadius: '50%',
-                    background: '#50B5A2',
+                    background: 'var(--color-primary-light, #50b5a2)',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     flexShrink: 0, cursor: 'default',
                   }}
@@ -278,11 +288,11 @@ export default function AboutUsClient({
         </div>
 
         {/* Bottom dark ticker */}
-        <div style={{ position: 'relative', zIndex: 2, background: 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)', marginTop: 48, overflow: 'hidden', padding: '18px 0' }}>
+        <div style={{ position: 'relative', zIndex: 2, background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)', marginTop: 48, overflow: 'hidden', padding: '18px 0' }}>
           <div className="wc-ticker-track">
             {[...Array(10)].map((_, i) => (
               <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 28, flexShrink: 0, paddingRight: 28 }}>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="#50B5A2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="var(--color-primary-light, #50b5a2)"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
                 <span style={{
                   fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
                   fontSize: 22, fontWeight: 600, color: '#fff', whiteSpace: 'nowrap',

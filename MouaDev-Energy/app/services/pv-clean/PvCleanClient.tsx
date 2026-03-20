@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import PageHero from '@/components/layout/PageHero'
 import SectionLabel from '@/components/ui/SectionLabel'
+import { toCSS, TextStyle } from '@/lib/textStyle'
 
 const reveal = {
   hidden: { opacity: 0, y: 44 },
@@ -12,10 +13,10 @@ const reveal = {
 }
 
 const sidebarServices = [
-  { label: 'Panneaux solaires', href: '/services/panneaux-solaires', icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-18.webp', accent: '#2a9b96' },
+  { label: 'Panneaux solaires', href: '/services/panneaux-solaires', icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-18.webp', accent: 'var(--color-primary, #2a9b96)' },
   { label: 'Pompe à chaleur', href: '/services/pompe-a-chaleur', icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-20.webp', accent: '#e8552c' },
   { label: 'Boiler thermodynamique', href: '/services/boiler-thermodynamique', icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-15.webp', accent: '#0c2a54' },
-  { label: 'PV Clean — Nettoyage', href: '/services/pv-clean', icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-23.webp', accent: '#2a9b96' },
+  { label: 'PV Clean — Nettoyage', href: '/services/pv-clean', icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-23.webp', accent: 'var(--color-primary, #2a9b96)' },
 ]
 
 const defaultFaqs = [
@@ -68,6 +69,10 @@ interface PvCleanClientProps {
   detailImages?: string[]
   faqTitle?: string
   faqs?: { q: string; a: string }[]
+  overlayHeadlineStyle?: TextStyle
+  offerTitleStyle?: TextStyle
+  whyTitleStyle?: TextStyle
+  faqTitleStyle?: TextStyle
 }
 
 export default function PvCleanClient({
@@ -91,6 +96,10 @@ export default function PvCleanClient({
   ],
   faqTitle = 'Questions sur le nettoyage PV Clean',
   faqs = defaultFaqs,
+  overlayHeadlineStyle,
+  offerTitleStyle,
+  whyTitleStyle,
+  faqTitleStyle,
 }: PvCleanClientProps) {
   const [activeIdx, setActiveIdx] = useState(-1)
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' })
@@ -206,7 +215,7 @@ export default function PvCleanClient({
                       type="text" name="name" placeholder="Prénom *"
                       value={formData.name} onChange={handleChange} required
                       style={formInputStyle}
-                      onFocus={(e) => { e.currentTarget.style.borderColor = '#50B5A2' }}
+                      onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--color-primary-light, #50b5a2)' }}
                       onBlur={(e) => { e.currentTarget.style.borderColor = '#e0e0e0' }}
                     />
                   </div>
@@ -216,7 +225,7 @@ export default function PvCleanClient({
                       type="email" name="email" placeholder="Adresse e-mail *"
                       value={formData.email} onChange={handleChange} required
                       style={formInputStyle}
-                      onFocus={(e) => { e.currentTarget.style.borderColor = '#50B5A2' }}
+                      onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--color-primary-light, #50b5a2)' }}
                       onBlur={(e) => { e.currentTarget.style.borderColor = '#e0e0e0' }}
                     />
                   </div>
@@ -226,7 +235,7 @@ export default function PvCleanClient({
                       type="tel" name="phone" placeholder="Numéro de téléphone *"
                       value={formData.phone} onChange={handleChange}
                       style={formInputStyle}
-                      onFocus={(e) => { e.currentTarget.style.borderColor = '#50B5A2' }}
+                      onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--color-primary-light, #50b5a2)' }}
                       onBlur={(e) => { e.currentTarget.style.borderColor = '#e0e0e0' }}
                     />
                   </div>
@@ -236,21 +245,21 @@ export default function PvCleanClient({
                       name="message" placeholder="Écrivez votre message..."
                       value={formData.message} onChange={handleChange} rows={4}
                       style={{ ...formInputStyle, borderRadius: 10, resize: 'vertical' }}
-                      onFocus={(e) => { e.currentTarget.style.borderColor = '#50B5A2' }}
+                      onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--color-primary-light, #50b5a2)' }}
                       onBlur={(e) => { e.currentTarget.style.borderColor = '#e0e0e0' }}
                     />
                   </div>
                   <button type="submit" style={{
                     width: '100%', padding: '14px',
-                    borderRadius: 8, background: 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)', border: 'none',
+                    borderRadius: 8, background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)', border: 'none',
                     fontSize: 15, fontWeight: 700,
                     fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
                     color: '#fff', cursor: 'pointer',
                     transition: 'background 0.18s ease, color 0.18s ease',
                     marginTop: 4,
                   }}
-                    onMouseEnter={(e) => { e.currentTarget.style.background = '#50B5A2'; e.currentTarget.style.color = '#000' }}
-                    onMouseLeave={(e) => { e.currentTarget.style.background = 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)'; e.currentTarget.style.color = '#fff' }}
+                    onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--color-primary-light, #50b5a2)'; e.currentTarget.style.color = '#000' }}
+                    onMouseLeave={(e) => { e.currentTarget.style.background = 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)'; e.currentTarget.style.color = '#fff' }}
                   >
                     Envoyer un message
                   </button>
@@ -259,7 +268,7 @@ export default function PvCleanClient({
 
               {/* CTA promo card */}
               <div style={{
-                background: 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)', borderRadius: 20, padding: '28px 24px',
+                background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)', borderRadius: 20, padding: '28px 24px',
                 position: 'relative', overflow: 'hidden',
               }}>
                 <div style={{
@@ -335,7 +344,7 @@ export default function PvCleanClient({
                   boxShadow: '0 10px 40px rgba(0, 0, 0, 0.1)',
                 }}>
                   <div style={{ display: 'flex', alignItems: 'flex-start', gap: 14 }}>
-                    <div style={{ width: 36, height: 36, flexShrink: 0, background: '#2a9b96', WebkitMask: 'url("/Logo image/Blanc.webp") center/contain no-repeat', mask: 'url("/Logo image/Blanc.webp") center/contain no-repeat' }} />
+                    <div style={{ width: 36, height: 36, flexShrink: 0, background: 'var(--color-primary, #2a9b96)', WebkitMask: 'url("/Logo image/Blanc.webp") center/contain no-repeat', mask: 'url("/Logo image/Blanc.webp") center/contain no-repeat' }} />
                     <h2
                       style={{
                         fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
@@ -345,6 +354,7 @@ export default function PvCleanClient({
                         color: '#000',
                         lineHeight: 1.3,
                         margin: 0,
+                        ...toCSS(overlayHeadlineStyle),
                       }}
                     >
                       {overlayHeadline}
@@ -396,6 +406,7 @@ export default function PvCleanClient({
                       <div style={{
                         fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
                         fontSize: 15, fontWeight: 700, color: '#fff', lineHeight: 1.25,
+                        ...toCSS(offerTitleStyle),
                       }}>
                         {offerTitle}
                       </div>
@@ -404,7 +415,7 @@ export default function PvCleanClient({
 
                   {/* Right: price + features */}
                   <div style={{
-                    background: 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)', borderRadius: 16, padding: '28px 24px',
+                    background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)', borderRadius: 16, padding: '28px 24px',
                     display: 'flex', flexDirection: 'column',
                   }}>
                     <div style={{
@@ -450,8 +461,8 @@ export default function PvCleanClient({
                   target="_blank"
                   style={{
                     display: 'inline-flex', alignItems: 'center', gap: 14,
-                    background: 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)', color: '#fff',
-                    borderRadius: 14, padding: '12px 12px 12px 24px',
+                    background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)', color: '#fff',
+                    borderRadius: 'var(--btn-radius, 14px)', padding: '12px 12px 12px 24px',
                     fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
                     fontSize: 15, fontWeight: 700, textDecoration: 'none',
                     transition: 'all 0.2s ease', whiteSpace: 'nowrap',
@@ -459,22 +470,22 @@ export default function PvCleanClient({
                   }}
                   onMouseEnter={(e) => {
                     const btn = e.currentTarget as HTMLElement;
-                    btn.style.background = 'linear-gradient(135deg, #2a9b96 0%, #50b5a2 100%)';
+                    btn.style.background = 'linear-gradient(135deg, var(--color-primary, #2a9b96) 0%, var(--color-primary-light, #50b5a2) 100%)';
                     const arr = btn.querySelector('.card-arr') as HTMLElement | null;
                     if (arr) {
                       arr.style.background = '#fff';
                       arr.style.transform = 'translateX(4px)';
                       arr.style.boxShadow = '0 8px 16px rgba(255, 255, 255, 0.4)';
                       const svg = arr.querySelector('svg') as SVGElement | null;
-                      if (svg) svg.style.stroke = '#2c6262';
+                      if (svg) svg.style.stroke = 'var(--color-primary-dark, #2c6262)';
                     }
                   }}
                   onMouseLeave={(e) => {
                     const btn = e.currentTarget as HTMLElement;
-                    btn.style.background = 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)';
+                    btn.style.background = 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)';
                     const arr = btn.querySelector('.card-arr') as HTMLElement | null;
                     if (arr) {
-                      arr.style.background = 'linear-gradient(135deg, #2c6262 0%, #1f4545 100%)';
+                      arr.style.background = 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, #1f4545 100%)';
                       arr.style.transform = 'translateX(0)';
                       arr.style.boxShadow = '0 4px 8px rgba(44, 98, 98, 0.3)';
                       const svg = arr.querySelector('svg') as SVGElement | null;
@@ -484,8 +495,8 @@ export default function PvCleanClient({
                 >
                   Demander un Devis
                   <span className="card-arr" style={{
-                    width: 36, height: 36, borderRadius: 12, display: 'flex', alignItems: 'center',
-                    justifyContent: 'center', flexShrink: 0, background: 'linear-gradient(135deg, #2c6262 0%, #1f4545 100%)',
+                    width: 36, height: 36, borderRadius: 'var(--btn-radius-sm, 10px)', display: 'flex', alignItems: 'center',
+                    justifyContent: 'center', flexShrink: 0, background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, #1f4545 100%)',
                     transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
                     boxShadow: '0 4px 8px rgba(44, 98, 98, 0.3)',
                   }}>
@@ -505,6 +516,7 @@ export default function PvCleanClient({
                 <h3 style={{
                   fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
                   fontSize: 20, fontWeight: 700, color: '#000', marginBottom: 14, letterSpacing: -0.5, lineHeight: 1.3,
+                  ...toCSS(whyTitleStyle),
                 }}>
                   {whyTitle}
                 </h3>
@@ -518,7 +530,7 @@ export default function PvCleanClient({
                   {whyBullets.map((item, i) => (
                     <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
                       <span style={{
-                        width: 10, height: 10, minWidth: 10, background: '#50B5A2', borderRadius: 2,
+                        width: 10, height: 10, minWidth: 10, background: 'var(--color-primary-light, #50b5a2)', borderRadius: 2,
                         marginTop: 7, display: 'inline-block',
                       }} />
                       <span style={{
@@ -576,6 +588,7 @@ export default function PvCleanClient({
                   fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
                   fontSize: 28, fontWeight: 600, letterSpacing: -1,
                   color: '#000', marginBottom: 32, lineHeight: '36px',
+                  ...toCSS(faqTitleStyle),
                 }}
               >
                 {faqTitle}
@@ -603,8 +616,8 @@ export default function PvCleanClient({
                       <span className="ps-faq-q-text">{faq.q}</span>
                       <span style={{
                         width: 34, height: 34, borderRadius: '50%', flexShrink: 0,
-                        border: isActive ? '1px solid #50B5A2' : '1px solid #e8e8e8',
-                        background: isActive ? '#50B5A2' : 'transparent',
+                        border: isActive ? '1px solid var(--color-primary-light, #50b5a2)' : '1px solid #e8e8e8',
+                        background: isActive ? 'var(--color-primary-light, #50b5a2)' : 'transparent',
                         display: 'flex', alignItems: 'center', justifyContent: 'center',
                         fontSize: 20, lineHeight: 1,
                         transform: isActive ? 'rotate(45deg)' : 'none',
@@ -622,7 +635,7 @@ export default function PvCleanClient({
                         {faq.a.split('\n').map((line, li) =>
                           line.startsWith('•') ? (
                             <div key={li} style={{ display: 'flex', gap: 8, marginBottom: 4 }}>
-                              <span style={{ color: '#50B5A2', flexShrink: 0 }}>•</span>
+                              <span style={{ color: 'var(--color-primary-light, #50b5a2)', flexShrink: 0 }}>•</span>
                               <span>{line.slice(1).trim()}</span>
                             </div>
                           ) : line.match(/^\d+\./) ? (
@@ -651,32 +664,32 @@ export default function PvCleanClient({
                 <div>
                   <label style={labelStyle}>Nom</label>
                   <input type="text" name="name" placeholder="Prénom *" value={formData.name} onChange={handleChange} required style={formInputStyle}
-                    onFocus={(e) => { e.currentTarget.style.borderColor = '#50B5A2' }} onBlur={(e) => { e.currentTarget.style.borderColor = '#e0e0e0' }} />
+                    onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--color-primary-light, #50b5a2)' }} onBlur={(e) => { e.currentTarget.style.borderColor = '#e0e0e0' }} />
                 </div>
                 <div>
                   <label style={labelStyle}>E-mail</label>
                   <input type="email" name="email" placeholder="Adresse e-mail *" value={formData.email} onChange={handleChange} required style={formInputStyle}
-                    onFocus={(e) => { e.currentTarget.style.borderColor = '#50B5A2' }} onBlur={(e) => { e.currentTarget.style.borderColor = '#e0e0e0' }} />
+                    onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--color-primary-light, #50b5a2)' }} onBlur={(e) => { e.currentTarget.style.borderColor = '#e0e0e0' }} />
                 </div>
                 <div>
                   <label style={labelStyle}>Téléphone</label>
                   <input type="tel" name="phone" placeholder="Numéro de téléphone *" value={formData.phone} onChange={handleChange} style={formInputStyle}
-                    onFocus={(e) => { e.currentTarget.style.borderColor = '#50B5A2' }} onBlur={(e) => { e.currentTarget.style.borderColor = '#e0e0e0' }} />
+                    onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--color-primary-light, #50b5a2)' }} onBlur={(e) => { e.currentTarget.style.borderColor = '#e0e0e0' }} />
                 </div>
                 <div>
                   <label style={labelStyle}>Message</label>
                   <textarea name="message" placeholder="Écrivez votre message..." value={formData.message} onChange={handleChange} rows={4}
                     style={{ ...formInputStyle, borderRadius: 10, resize: 'vertical' }}
-                    onFocus={(e) => { e.currentTarget.style.borderColor = '#50B5A2' }} onBlur={(e) => { e.currentTarget.style.borderColor = '#e0e0e0' }} />
+                    onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--color-primary-light, #50b5a2)' }} onBlur={(e) => { e.currentTarget.style.borderColor = '#e0e0e0' }} />
                 </div>
-                <button type="submit" style={{ width: '100%', padding: '14px', borderRadius: 8, background: 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)', border: 'none', fontSize: 15, fontWeight: 700, fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif", color: '#fff', cursor: 'pointer', transition: 'background 0.18s ease, color 0.18s ease', marginTop: 4 }}
-                  onMouseEnter={(e) => { e.currentTarget.style.background = '#50B5A2'; e.currentTarget.style.color = '#000' }}
-                  onMouseLeave={(e) => { e.currentTarget.style.background = 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)'; e.currentTarget.style.color = '#fff' }}>
+                <button type="submit" style={{ width: '100%', padding: '14px', borderRadius: 8, background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)', border: 'none', fontSize: 15, fontWeight: 700, fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif", color: '#fff', cursor: 'pointer', transition: 'background 0.18s ease, color 0.18s ease', marginTop: 4 }}
+                  onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--color-primary-light, #50b5a2)'; e.currentTarget.style.color = '#000' }}
+                  onMouseLeave={(e) => { e.currentTarget.style.background = 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)'; e.currentTarget.style.color = '#fff' }}>
                   Envoyer un message
                 </button>
               </form>
             </div>
-            <div style={{ background: 'linear-gradient(135deg, #2c6262 0%, #2a9b96 100%)', borderRadius: 20, padding: '28px 24px', position: 'relative', overflow: 'hidden' }}>
+            <div style={{ background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)', borderRadius: 20, padding: '28px 24px', position: 'relative', overflow: 'hidden' }}>
               <div style={{ position: 'absolute', top: -60, right: -60, width: 180, height: 180, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%)', pointerEvents: 'none' }} />
               <div style={{ width: 40, height: 40, borderRadius: 10, background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 16 }}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>
@@ -742,7 +755,7 @@ export default function PvCleanClient({
           .ps-service-nav .ps-nav-link {
             padding: 10px 14px !important;
             font-size: 13px !important;
-            border-radius: 12px !important;
+            border-radius: var(--btn-radius-sm, 10px) !important;
           }
           .ps-nav-arrow { display: none !important; }
           .ps-sidebar-extra { display: none !important; }

@@ -82,7 +82,7 @@ function FaqAnswer({ faq }: { faq: FaqData }) {
           {faq.answerLink && !faq.answerBullets?.length && !faq.answerOutro && (
             <>
               {' '}
-              <Link href={faq.answerLink.href} style={{ color: '#50B5A2', fontWeight: 600 }}>
+              <Link href={faq.answerLink.href} style={{ color: 'var(--color-primary-light, #50b5a2)', fontWeight: 600 }}>
                 {faq.answerLink.text}
               </Link>
               .
@@ -95,7 +95,7 @@ function FaqAnswer({ faq }: { faq: FaqData }) {
         <div style={{ marginTop: 15, display: 'flex', flexDirection: 'column', gap: 10 }}>
           {faq.answerBullets.map((bullet, i) => (
             <div key={i} style={{ display: 'flex', gap: 8 }}>
-              <span style={{ color: '#50B5A2' }}>•</span>
+              <span style={{ color: 'var(--color-primary-light, #50b5a2)' }}>•</span>
               <span>
                 {bullet.bold && <strong>{bullet.bold}</strong>} {bullet.text}
               </span>
@@ -110,7 +110,7 @@ function FaqAnswer({ faq }: { faq: FaqData }) {
           {faq.answerLink && (
             <>
               {' '}
-              <Link href={faq.answerLink.href} style={{ color: '#50B5A2', fontWeight: 600 }}>
+              <Link href={faq.answerLink.href} style={{ color: 'var(--color-primary-light, #50b5a2)', fontWeight: 600 }}>
                 {faq.answerLink.text}
               </Link>
               .
@@ -183,10 +183,10 @@ export default function FAQ() {
                   <h4 style={{ margin: 0, font: 'inherit' }}>{faq.question}</h4>
                   <span style={{
                     width: 36, height: 36, borderRadius: '50%',
-                    border: isActive ? '1px solid #50B5A2' : '1px solid #e8e8e8',
+                    border: isActive ? '1px solid var(--color-primary-light, #50b5a2)' : '1px solid #e8e8e8',
                     display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
                     transition: 'all 0.18s ease', fontSize: 20, lineHeight: 1,
-                    background: isActive ? '#50B5A2' : 'transparent',
+                    background: isActive ? 'var(--color-primary-light, #50b5a2)' : 'transparent',
                     transform: isActive ? 'rotate(45deg)' : 'rotate(0deg)',
                   }}>+</span>
                 </div>

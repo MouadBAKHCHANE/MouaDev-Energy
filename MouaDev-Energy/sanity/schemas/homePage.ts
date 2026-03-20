@@ -54,6 +54,7 @@ export default defineType({
       type: 'string',
       group: 'hero',
     }),
+    defineField({ name: 'heroTitleStyle', title: 'Style du titre', type: 'textStyle', group: 'hero' }),
     defineField({
       name: 'heroAccentWord',
       title: 'Mot en couleur accent (ex: "confiance")',
@@ -67,6 +68,7 @@ export default defineType({
       rows: 2,
       group: 'hero',
     }),
+    defineField({ name: 'heroSubtitleStyle', title: 'Style du sous-titre', type: 'textStyle', group: 'hero' }),
     defineField({
       name: 'heroBgImage',
       title: 'Image de fond',
@@ -120,6 +122,7 @@ export default defineType({
       type: 'string',
       group: 'ourServices',
     }),
+    defineField({ name: 'ourServicesTitleStyle', title: 'Style du titre', type: 'textStyle', group: 'ourServices' }),
     defineField({
       name: 'ourServicesDesc',
       title: 'Description',
@@ -127,6 +130,7 @@ export default defineType({
       rows: 3,
       group: 'ourServices',
     }),
+    defineField({ name: 'ourServicesDescStyle', title: 'Style de la description', type: 'textStyle', group: 'ourServices' }),
     defineField({
       name: 'ourServicesCta',
       title: 'Texte du bouton',
@@ -169,6 +173,7 @@ export default defineType({
       rows: 2,
       group: 'servicesLime',
     }),
+    defineField({ name: 'slimeTitleStyle', title: 'Style du titre', type: 'textStyle', group: 'servicesLime' }),
     defineField({
       name: 'slimeAccent',
       title: 'Partie du titre en couleur accent',
@@ -182,6 +187,7 @@ export default defineType({
       rows: 2,
       group: 'servicesLime',
     }),
+    defineField({ name: 'slimeDescStyle', title: 'Style de la description', type: 'textStyle', group: 'servicesLime' }),
     defineField({
       name: 'slimeCta',
       title: 'Texte du bouton',
@@ -244,6 +250,7 @@ export default defineType({
       type: 'string',
       group: 'about',
     }),
+    defineField({ name: 'aboutTitleStyle', title: 'Style du titre', type: 'textStyle', group: 'about' }),
     defineField({
       name: 'aboutBody',
       title: 'Texte principal',
@@ -251,6 +258,7 @@ export default defineType({
       rows: 4,
       group: 'about',
     }),
+    defineField({ name: 'aboutBodyStyle', title: 'Style du texte', type: 'textStyle', group: 'about' }),
     defineField({
       name: 'aboutCta',
       title: 'Texte du bouton',
@@ -303,6 +311,7 @@ export default defineType({
       type: 'string',
       group: 'pricing',
     }),
+    defineField({ name: 'pricingTitleStyle', title: 'Style du titre', type: 'textStyle', group: 'pricing' }),
     defineField({
       name: 'pricingDesc',
       title: 'Description',
@@ -310,6 +319,7 @@ export default defineType({
       rows: 2,
       group: 'pricing',
     }),
+    defineField({ name: 'pricingDescStyle', title: 'Style de la description', type: 'textStyle', group: 'pricing' }),
     defineField({
       name: 'pricingCards',
       title: 'Cartes de prix',
@@ -345,6 +355,7 @@ export default defineType({
       type: 'string',
       group: 'process',
     }),
+    defineField({ name: 'processTitleStyle', title: 'Style du titre', type: 'textStyle', group: 'process' }),
     defineField({
       name: 'processSubtitle',
       title: 'Sous-titre (en couleur accent)',
@@ -358,6 +369,7 @@ export default defineType({
       rows: 3,
       group: 'process',
     }),
+    defineField({ name: 'processDescStyle', title: 'Style de la description', type: 'textStyle', group: 'process' }),
     defineField({
       name: 'processSteps',
       title: 'Étapes',
@@ -410,6 +422,7 @@ export default defineType({
       type: 'string',
       group: 'news',
     }),
+    defineField({ name: 'newsTitleStyle', title: 'Style du titre', type: 'textStyle', group: 'news' }),
     defineField({
       name: 'newsCta',
       title: 'Texte du bouton',

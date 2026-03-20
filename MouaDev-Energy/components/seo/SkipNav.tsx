@@ -23,7 +23,7 @@ export default function SkipNav() {
           overflow: 'visible',
           zIndex: '9999',
           padding: '12px 24px',
-          background: '#2a9b96',
+          background: 'var(--color-primary, #2a9b96)',
           color: '#fff',
           borderRadius: '8px',
           fontWeight: '600',
