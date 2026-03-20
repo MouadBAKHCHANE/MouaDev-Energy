@@ -116,7 +116,10 @@ interface ServiceDetail { label: string; title: string; desc: string; img: strin
 interface Stat { tag: string; prefix?: string; num: number; suffix: string; desc: string }
 interface ExpItem { title: string; text: string; icon: string }
 
+interface SectionEntry { sectionId: string; enabled?: boolean }
+
 export interface ServicesClientProps {
+  sectionOrder?: SectionEntry[]
   heroTitle?: string
   heroBgImage?: string
   cardsLabel?: string
@@ -166,6 +169,12 @@ function Counter({ value, prefix = '', suffix = '' }: { value: number; prefix?: 
 }
 
 export default function ServicesClient(props: ServicesClientProps) {
+  const show = (id: string) => {
+    if (!props.sectionOrder?.length) return true
+    const entry = props.sectionOrder.find((s) => s.sectionId === id)
+    return entry ? entry.enabled !== false : true
+  }
+
   const heroTitle = props.heroTitle || ''
   const heroBgImage = props.heroBgImage || ''
   const cardsLabel = props.cardsLabel || ''
@@ -194,14 +203,14 @@ export default function ServicesClient(props: ServicesClientProps) {
 
   return (
     <main>
-      <PageHero
+      {show('hero') && <PageHero
         crumbs={[{ label: 'Accueil', href: '/' }, { label: 'Nos Services' }]}
         title={heroTitle}
         bgImage={heroBgImage}
         compact={true}
-      />
+      />}
 
-      {/* ── Services Card Grid ──────────────────────────────────────────── */}
+      {show('cards') &&
       <section className="svc-cards-section" style={{ padding: '100px 20px', background: '#fff' }}>
         <div style={{ maxWidth: 1320, margin: '0 auto' }}>
           <div className="svc-header-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: 60, marginBottom: 80 }}>
@@ -292,9 +301,9 @@ export default function ServicesClient(props: ServicesClientProps) {
             ))}
           </div>
         </div>
-      </section>
+      </section>}
 
-      {/* ── Stats Banner ────────────────────────────────────────────────── */}
+      {show('stats') &&
       <section style={{ background: '#fff', padding: '90px 20px', overflow: 'hidden' }}>
         <div style={{ maxWidth: 1320, margin: '0 auto' }}>
           <div className="stats-header-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 60, marginBottom: 60 }}>
@@ -386,9 +395,9 @@ export default function ServicesClient(props: ServicesClientProps) {
             </motion.div>
           )}
         </div>
-      </section>
+      </section>}
 
-      {/* ── L'EXPÉRIENCE ZEN ──────────────────────────────────────────── */}
+      {show('experience') &&
       <section style={{ background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)', padding: '0', overflow: 'hidden' }}>
         <div className="zen-exp-inner">
           <div className="zen-exp-photo">
@@ -462,10 +471,9 @@ export default function ServicesClient(props: ServicesClientProps) {
             ))}
           </div>
         </div>
-      </section>
+      </section>}
 
-      {/* ── Alternating Service Sections ───────────────────────────────── */}
-      {details.map((svc, i) => (
+      {show('details') && details.map((svc, i) => (
         <section
           key={i}
           style={{ padding: '100px 20px', background: i % 2 === 0 ? '#fff' : '#f7f9f8', overflow: 'hidden' }}
@@ -535,7 +543,7 @@ export default function ServicesClient(props: ServicesClientProps) {
         </section>
       ))}
 
-      {/* ── CTA Banner ──────────────────────────────────────────────────── */}
+      {show('cta') &&
       <section style={{ background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)', padding: '0 20px', overflow: 'hidden' }}>
         <div style={{ maxWidth: 1320, margin: '0 auto' }}>
           <div className="cta-banner-inner">
@@ -651,10 +659,9 @@ export default function ServicesClient(props: ServicesClientProps) {
             </motion.div>
           </div>
         </div>
-      </section>
+      </section>}
 
-      {/* ── FAQ ─────────────────────────────────────────────────────────── */}
-      <FAQ />
+      {show('faq') && <FAQ />}
 
       <style dangerouslySetInnerHTML={{ __html: `
         .svc-card-grid {

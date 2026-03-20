@@ -53,6 +53,7 @@ export default async function ServicesPage() {
 
   return (
     <ServicesClient
+      sectionOrder={sp?.sectionOrder}
       heroTitle={sp?.heroTitle}
       heroBgImage={img(sp?.heroBgImage)}
       cardsLabel={sp?.cardsLabel}

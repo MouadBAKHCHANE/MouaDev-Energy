@@ -31,6 +31,7 @@ export default async function AboutUsPage() {
       whyBgImage={ap?.whyBgImage ? urlFor(ap.whyBgImage).width(1920).quality(80).url() : undefined}
       whyFeatures={ap?.whyFeatures}
       whyTickerText={ap?.whyTickerText}
+      sectionOrder={ap?.sectionOrder}
     />
   )
 }

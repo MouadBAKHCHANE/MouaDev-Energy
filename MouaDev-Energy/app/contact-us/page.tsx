@@ -29,6 +29,7 @@ export default async function ContactUsPage() {
       email={settings?.email}
       phone={settings?.phone}
       googleMapUrl={settings?.googleMapUrl || undefined}
+      sectionOrder={cp?.sectionOrder}
     />
   )
 }

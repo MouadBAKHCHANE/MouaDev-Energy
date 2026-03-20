@@ -80,6 +80,7 @@ interface AboutUsClientProps {
   heroTitleStyle?: TextStyle | null
   introTitleStyle?: TextStyle | null
   whyTitleStyle?: TextStyle | null
+  sectionOrder?: { sectionId: string; enabled?: boolean }[]
 }
 
 export default function AboutUsClient({
@@ -98,7 +99,14 @@ export default function AboutUsClient({
   heroTitleStyle,
   introTitleStyle,
   whyTitleStyle,
+  sectionOrder,
 }: AboutUsClientProps) {
+  const show = (id: string) => {
+    if (!sectionOrder?.length) return true
+    const entry = sectionOrder.find(s => s.sectionId === id)
+    return entry ? entry.enabled !== false : true
+  }
+
   const paragraphs = introParagraphs?.length ? introParagraphs : defaultParagraphs
   const features = whyFeatures?.length ? whyFeatures : defaultFeatures
   const whyBgUrl = whyBgImage || '/Photos%20HD/Photos%20d_ambiance/man-showing-thumbs-up-gesture-ie-class-front-roof-with-installed-solar-panels.webp'
@@ -107,202 +115,208 @@ export default function AboutUsClient({
     <main>
 
       {/* ── 1. Hero ── */}
-      <PageHero
-        crumbs={[{ label: 'Accueil', href: '/' }, { label: 'À propos' }]}
-        title={heroTitle}
-        bgImage={heroBgImage}
-        compact={true}
-        titleStyle={toCSS(heroTitleStyle)}
-      />
+      {show('hero') && (
+        <PageHero
+          crumbs={[{ label: 'Accueil', href: '/' }, { label: 'À propos' }]}
+          title={heroTitle}
+          bgImage={heroBgImage}
+          compact={true}
+          titleStyle={toCSS(heroTitleStyle)}
+        />
+      )}
 
       {/* ── 2. Qui sommes-nous ── */}
-      <section style={{ padding: '100px 20px', background: '#fff' }}>
-        <div style={{ maxWidth: 1400, margin: '0 auto' }}>
-          <div className="au-intro-row">
+      {show('intro') && (
+        <section style={{ padding: '100px 20px', background: '#fff' }}>
+          <div style={{ maxWidth: 1400, margin: '0 auto' }}>
+            <div className="au-intro-row">
 
-            {/* Left — image */}
-            <motion.div
-              className="au-intro-right"
-              variants={reveal} initial="hidden" whileInView="visible"
-              viewport={{ once: true, amount: 0.1 }}
-              transition={{ duration: 0.8, ease: 'easeOut' }}
-            >
-              <img
-                src={introImage}
-                alt="Personne près d'une installation énergétique"
-                loading="lazy" decoding="async"
-                style={{ width: '100%', height: 480, objectFit: 'cover', objectPosition: 'center', borderRadius: 40, display: 'block' }}
-              />
-            </motion.div>
-
-            {/* Right — text */}
-            <motion.div
-              className="au-intro-left"
-              variants={reveal} initial="hidden" whileInView="visible"
-              viewport={{ once: true, amount: 0.1 }}
-              transition={{ duration: 0.8, ease: 'easeOut', delay: 0.12 }}
-            >
-              <div style={{ marginBottom: 14 }}>
-                <SectionLabel text={introLabel} />
-              </div>
-              <h2 className="au-h2" style={{
-                fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
-                fontSize: 'clamp(26px, 3.5vw, 36px)', fontWeight: 600, lineHeight: 1.25, letterSpacing: -1,
-                color: '#000', marginBottom: 20,
-                ...toCSS(introTitleStyle),
-              }}>
-                {introTitle}
-              </h2>
-              {paragraphs.map((text, i) => (
-                <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 12, marginBottom: i < paragraphs.length - 1 ? 12 : 32 }}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="#000" style={{ flexShrink: 0, marginTop: 3 }}>
-                    <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
-                    <polyline points="9 12 11 14 15 10" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                  <p style={{
-                    fontFamily: "var(--font-inter), 'Inter', sans-serif",
-                    fontSize: 16, lineHeight: '26px', color: i === 0 ? '#555' : '#777', margin: 0,
-                  }}>{text}</p>
-                </div>
-              ))}
-              <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-                <Link
-                  href="/contact-us"
-                  style={{
-                    display: 'inline-flex', alignItems: 'center',
-                    background: 'var(--color-primary-light, #50b5a2)', color: '#000',
-                    borderRadius: 'var(--btn-radius, 14px)', padding: '8px 8px 8px 24px', gap: 20,
-                    fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
-                    fontSize: 16, fontWeight: 600, textDecoration: 'none',
-                    transition: 'background 0.18s ease',
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLElement).style.background = '#3da090'
-                    const arr = e.currentTarget.querySelector('.au-btn-arr') as HTMLElement
-                    if (arr) { arr.style.background = '#fff'; arr.style.color = '#000' }
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLElement).style.background = 'var(--color-primary-light, #50b5a2)'
-                    const arr = e.currentTarget.querySelector('.au-btn-arr') as HTMLElement
-                    if (arr) { arr.style.background = '#000'; arr.style.color = '#fff' }
-                  }}
-                >
-                  {introCta}
-                  <span className="au-btn-arr" style={{
-                    width: 44, height: 40, borderRadius: 'var(--btn-radius-sm, 10px)',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    background: 'var(--color-primary-dark, #2c6262)', color: '#fff', transition: 'background 0.18s ease',
-                  }}>
-                    <ArrowIcon direction="right" size={18} strokeColor="currentColor" />
-                  </span>
-                </Link>
-              </div>
-            </motion.div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* ── 3. Pourquoi nous choisir ── */}
-      <section style={{ position: 'relative', paddingTop: 56, overflow: 'hidden' }}>
-
-        {/* Background image */}
-        <div className="wc-bg" style={{
-          position: 'absolute', inset: 0,
-          backgroundImage: `url('${whyBgUrl}')`,
-          backgroundSize: 'cover', backgroundPosition: 'center 20%',
-          zIndex: 0,
-        }} />
-        {/* Dark overlay */}
-        <div style={{ position: 'absolute', inset: 0, background: 'rgba(44,98,98,0.72)', zIndex: 1 }} />
-
-        {/* Content */}
-        <div style={{ position: 'relative', zIndex: 2, maxWidth: 1400, margin: '0 auto', padding: '0 20px' }}>
-
-          {/* Top label — centered */}
-          <motion.div
-            variants={reveal} initial="hidden" whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
-            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, marginBottom: 12 }}
-          >
-            <img src="/Logo image/Blanc.webp" alt="" style={{ width: 22, height: 22, objectFit: 'contain' }} />
-            <span style={{
-              fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
-              fontSize: 13, fontWeight: 700, letterSpacing: '0.14em',
-              color: 'var(--color-primary-light, #50b5a2)', textTransform: 'uppercase',
-            }}>{whyLabel}</span>
-          </motion.div>
-
-          {/* Heading — centered */}
-          <motion.h2
-            variants={reveal} initial="hidden" whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.7, ease: 'easeOut', delay: 0.08 }}
-            style={{
-              fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
-              fontSize: 'clamp(26px, 4vw, 48px)', fontWeight: 700, lineHeight: 1.08,
-              letterSpacing: -1.5, color: '#fff', textAlign: 'center', marginBottom: 40,
-              ...toCSS(whyTitleStyle),
-            }}
-          >
-            {whyTitle}
-          </motion.h2>
-
-          {/* 2×2 features grid — centered */}
-          <div className="wc-features">
-            {features.map((card, i) => (
+              {/* Left — image */}
               <motion.div
-                key={i}
+                className="au-intro-right"
                 variants={reveal} initial="hidden" whileInView="visible"
                 viewport={{ once: true, amount: 0.1 }}
-                transition={{ duration: 0.7, ease: 'easeOut', delay: i * 0.09 }}
-                style={{ display: 'flex', flexDirection: 'column', gap: 10 }}
+                transition={{ duration: 0.8, ease: 'easeOut' }}
               >
-                <motion.div
-                  style={{
-                    width: 44, height: 44, borderRadius: '50%',
-                    background: 'var(--color-primary-light, #50b5a2)',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    flexShrink: 0, cursor: 'default',
-                  }}
-                  whileInView={{ rotate: [0, -12, 12, -8, 8, 0], scale: [1, 1.15, 1.15, 1.1, 1.1, 1] }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.7, ease: 'easeOut', delay: 0.3 + i * 0.12 }}
-                  whileHover={{ scale: 1.2, rotate: 8, background: '#3da090' }}
-                >
-                  {defaultIcons[i] || defaultIcons[0]}
-                </motion.div>
-                <h3 style={{
-                  fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
-                  fontSize: 17, fontWeight: 700, color: '#fff', margin: 0,
-                }}>{card.title}</h3>
-                <p style={{
-                  fontFamily: "var(--font-inter), 'Inter', sans-serif",
-                  fontSize: 14, lineHeight: '22px', color: 'rgba(255,255,255,0.6)', margin: 0,
-                }}>{card.desc}</p>
+                <img
+                  src={introImage}
+                  alt="Personne près d'une installation énergétique"
+                  loading="lazy" decoding="async"
+                  style={{ width: '100%', height: 480, objectFit: 'cover', objectPosition: 'center', borderRadius: 40, display: 'block' }}
+                />
               </motion.div>
-            ))}
+
+              {/* Right — text */}
+              <motion.div
+                className="au-intro-left"
+                variants={reveal} initial="hidden" whileInView="visible"
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 0.8, ease: 'easeOut', delay: 0.12 }}
+              >
+                <div style={{ marginBottom: 14 }}>
+                  <SectionLabel text={introLabel} />
+                </div>
+                <h2 className="au-h2" style={{
+                  fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
+                  fontSize: 'clamp(26px, 3.5vw, 36px)', fontWeight: 600, lineHeight: 1.25, letterSpacing: -1,
+                  color: '#000', marginBottom: 20,
+                  ...toCSS(introTitleStyle),
+                }}>
+                  {introTitle}
+                </h2>
+                {paragraphs.map((text, i) => (
+                  <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 12, marginBottom: i < paragraphs.length - 1 ? 12 : 32 }}>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="#000" style={{ flexShrink: 0, marginTop: 3 }}>
+                      <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
+                      <polyline points="9 12 11 14 15 10" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                    <p style={{
+                      fontFamily: "var(--font-inter), 'Inter', sans-serif",
+                      fontSize: 16, lineHeight: '26px', color: i === 0 ? '#555' : '#777', margin: 0,
+                    }}>{text}</p>
+                  </div>
+                ))}
+                <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
+                  <Link
+                    href="/contact-us"
+                    style={{
+                      display: 'inline-flex', alignItems: 'center',
+                      background: 'var(--color-primary-light, #50b5a2)', color: '#000',
+                      borderRadius: 'var(--btn-radius, 14px)', padding: '8px 8px 8px 24px', gap: 20,
+                      fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
+                      fontSize: 16, fontWeight: 600, textDecoration: 'none',
+                      transition: 'background 0.18s ease',
+                    }}
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLElement).style.background = '#3da090'
+                      const arr = e.currentTarget.querySelector('.au-btn-arr') as HTMLElement
+                      if (arr) { arr.style.background = '#fff'; arr.style.color = '#000' }
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLElement).style.background = 'var(--color-primary-light, #50b5a2)'
+                      const arr = e.currentTarget.querySelector('.au-btn-arr') as HTMLElement
+                      if (arr) { arr.style.background = '#000'; arr.style.color = '#fff' }
+                    }}
+                  >
+                    {introCta}
+                    <span className="au-btn-arr" style={{
+                      width: 44, height: 40, borderRadius: 'var(--btn-radius-sm, 10px)',
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      background: 'var(--color-primary-dark, #2c6262)', color: '#fff', transition: 'background 0.18s ease',
+                    }}>
+                      <ArrowIcon direction="right" size={18} strokeColor="currentColor" />
+                    </span>
+                  </Link>
+                </div>
+              </motion.div>
+
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ── 3. Pourquoi nous choisir ── */}
+      {show('whyChoose') && (
+        <section style={{ position: 'relative', paddingTop: 56, overflow: 'hidden' }}>
+
+          {/* Background image */}
+          <div className="wc-bg" style={{
+            position: 'absolute', inset: 0,
+            backgroundImage: `url('${whyBgUrl}')`,
+            backgroundSize: 'cover', backgroundPosition: 'center 20%',
+            zIndex: 0,
+          }} />
+          {/* Dark overlay */}
+          <div style={{ position: 'absolute', inset: 0, background: 'rgba(44,98,98,0.72)', zIndex: 1 }} />
+
+          {/* Content */}
+          <div style={{ position: 'relative', zIndex: 2, maxWidth: 1400, margin: '0 auto', padding: '0 20px' }}>
+
+            {/* Top label — centered */}
+            <motion.div
+              variants={reveal} initial="hidden" whileInView="visible"
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.6, ease: 'easeOut' }}
+              style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, marginBottom: 12 }}
+            >
+              <img src="/Logo image/Blanc.webp" alt="" style={{ width: 22, height: 22, objectFit: 'contain' }} />
+              <span style={{
+                fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
+                fontSize: 13, fontWeight: 700, letterSpacing: '0.14em',
+                color: 'var(--color-primary-light, #50b5a2)', textTransform: 'uppercase',
+              }}>{whyLabel}</span>
+            </motion.div>
+
+            {/* Heading — centered */}
+            <motion.h2
+              variants={reveal} initial="hidden" whileInView="visible"
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.7, ease: 'easeOut', delay: 0.08 }}
+              style={{
+                fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
+                fontSize: 'clamp(26px, 4vw, 48px)', fontWeight: 700, lineHeight: 1.08,
+                letterSpacing: -1.5, color: '#fff', textAlign: 'center', marginBottom: 40,
+                ...toCSS(whyTitleStyle),
+              }}
+            >
+              {whyTitle}
+            </motion.h2>
+
+            {/* 2x2 features grid — centered */}
+            <div className="wc-features">
+              {features.map((card, i) => (
+                <motion.div
+                  key={i}
+                  variants={reveal} initial="hidden" whileInView="visible"
+                  viewport={{ once: true, amount: 0.1 }}
+                  transition={{ duration: 0.7, ease: 'easeOut', delay: i * 0.09 }}
+                  style={{ display: 'flex', flexDirection: 'column', gap: 10 }}
+                >
+                  <motion.div
+                    style={{
+                      width: 44, height: 44, borderRadius: '50%',
+                      background: 'var(--color-primary-light, #50b5a2)',
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      flexShrink: 0, cursor: 'default',
+                    }}
+                    whileInView={{ rotate: [0, -12, 12, -8, 8, 0], scale: [1, 1.15, 1.15, 1.1, 1.1, 1] }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.7, ease: 'easeOut', delay: 0.3 + i * 0.12 }}
+                    whileHover={{ scale: 1.2, rotate: 8, background: '#3da090' }}
+                  >
+                    {defaultIcons[i] || defaultIcons[0]}
+                  </motion.div>
+                  <h3 style={{
+                    fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
+                    fontSize: 17, fontWeight: 700, color: '#fff', margin: 0,
+                  }}>{card.title}</h3>
+                  <p style={{
+                    fontFamily: "var(--font-inter), 'Inter', sans-serif",
+                    fontSize: 14, lineHeight: '22px', color: 'rgba(255,255,255,0.6)', margin: 0,
+                  }}>{card.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+
           </div>
 
-        </div>
-
-        {/* Bottom dark ticker */}
-        <div style={{ position: 'relative', zIndex: 2, background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)', marginTop: 48, overflow: 'hidden', padding: '18px 0' }}>
-          <div className="wc-ticker-track">
-            {[...Array(10)].map((_, i) => (
-              <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 28, flexShrink: 0, paddingRight: 28 }}>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="var(--color-primary-light, #50b5a2)"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-                <span style={{
-                  fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
-                  fontSize: 22, fontWeight: 600, color: '#fff', whiteSpace: 'nowrap',
-                }}>{whyTickerText}</span>
-              </div>
-            ))}
+          {/* Bottom dark ticker */}
+          <div style={{ position: 'relative', zIndex: 2, background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)', marginTop: 48, overflow: 'hidden', padding: '18px 0' }}>
+            <div className="wc-ticker-track">
+              {[...Array(10)].map((_, i) => (
+                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 28, flexShrink: 0, paddingRight: 28 }}>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="var(--color-primary-light, #50b5a2)"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                  <span style={{
+                    fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
+                    fontSize: 22, fontWeight: 600, color: '#fff', whiteSpace: 'nowrap',
+                  }}>{whyTickerText}</span>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
 
-      </section>
+        </section>
+      )}
 
       {/* ── 4. FAQ ── */}
       <FAQ />

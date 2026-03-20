@@ -29,6 +29,7 @@ export default async function PompeChaleurPage() {
       <JsonLd data={breadcrumbJsonLd([{ name: 'Accueil', url: '/' }, { name: 'Services', url: '/services' }, { name: 'Pompe à Chaleur', url: '/services/pompe-a-chaleur' }])} />
       {faqs?.length ? <JsonLd data={faqPageJsonLd(faqs.map((f: any) => ({ question: f.q, answer: f.a })))} /> : null}
       <PompeChaleurClient
+        sectionOrder={v(data?.sectionOrder)}
         heroTitle={v(data?.heroTitle)}
         heroBgImage={img(data?.heroBgImage)}
         breadcrumbLabel={v(data?.breadcrumbLabel)}

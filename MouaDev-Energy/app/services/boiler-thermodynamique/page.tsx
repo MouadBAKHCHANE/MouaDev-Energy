@@ -29,6 +29,7 @@ export default async function BoilerThermodynamiquePage() {
       <JsonLd data={breadcrumbJsonLd([{ name: 'Accueil', url: '/' }, { name: 'Services', url: '/services' }, { name: 'Boiler Thermodynamique', url: '/services/boiler-thermodynamique' }])} />
       {faqs?.length ? <JsonLd data={faqPageJsonLd(faqs.map((f: any) => ({ question: f.q, answer: f.a })))} /> : null}
       <BoilerClient
+        sectionOrder={v(data?.sectionOrder)}
         heroTitle={v(data?.heroTitle)}
         heroBgImage={img(data?.heroBgImage)}
         breadcrumbLabel={v(data?.breadcrumbLabel)}

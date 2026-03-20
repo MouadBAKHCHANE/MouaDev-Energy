@@ -85,6 +85,7 @@ interface PanneauxSolairesClientProps {
   pvCleanTitleStyle?: TextStyle
   whyTitleStyle?: TextStyle
   faqTitleStyle?: TextStyle
+  sectionOrder?: { sectionId: string; enabled?: boolean }[]
 }
 
 export default function PanneauxSolairesClient({
@@ -119,7 +120,14 @@ export default function PanneauxSolairesClient({
   pvCleanTitleStyle,
   whyTitleStyle,
   faqTitleStyle,
+  sectionOrder,
 }: PanneauxSolairesClientProps) {
+  const show = (id: string) => {
+    if (!sectionOrder?.length) return true
+    const entry = sectionOrder.find(s => s.sectionId === id)
+    return entry ? entry.enabled !== false : true
+  }
+
   const [activeIdx, setActiveIdx] = useState(-1)
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' })
 
@@ -155,7 +163,7 @@ export default function PanneauxSolairesClient({
 
   return (
     <main>
-      <PageHero
+      {show('hero') && <PageHero
         crumbs={[
           { label: 'Accueil', href: '/' },
           { label: 'Services', href: '/services' },
@@ -164,7 +172,7 @@ export default function PanneauxSolairesClient({
         title={heroTitle}
         bgImage={heroBgImage}
         compact={true}
-      />
+      />}
 
       {/* ── Main layout: sticky left + scrolling right ── */}
       <section className="ps-section-wrap" style={{ background: '#fff', padding: '100px 20px' }}>
@@ -364,6 +372,7 @@ export default function PanneauxSolairesClient({
             {/* ── RIGHT CONTENT (scrolls) ── */}
             <div className="ps-content">
 
+              {show('content') && <>
               {/* Intro headline & Main image */}
               <motion.div
                 variants={reveal} initial="hidden" whileInView="visible"
@@ -409,7 +418,9 @@ export default function PanneauxSolairesClient({
                   </div>
                 </div>
               </motion.div>
+              </>}
 
+              {show('contracts') && <>
               {/* Pricing section — Comparison table */}
               <motion.div
                 variants={reveal} initial="hidden" whileInView="visible"
@@ -652,7 +663,9 @@ export default function PanneauxSolairesClient({
                   <strong style={{ color: '#555' }}>*</strong> {disclaimer}
                 </p>
               </motion.div>
+              </>}
 
+              {show('pvClean') && <>
               {/* PV Clean section */}
               <motion.div
                 variants={reveal} initial="hidden" whileInView="visible"
@@ -766,7 +779,9 @@ export default function PanneauxSolairesClient({
                   </div>
                 </div>
               </motion.div>
+              </>}
 
+              {show('why') && <>
               {/* Why maintain section */}
               <motion.div
                 variants={reveal} initial="hidden" whileInView="visible"
@@ -829,8 +844,10 @@ export default function PanneauxSolairesClient({
                   />
                 </motion.div>
               </div>
+              </>}
 
 
+              {show('faq') && <>
               {/* FAQ */}
               <motion.div
                 variants={reveal} initial="hidden" whileInView="visible"
@@ -910,6 +927,7 @@ export default function PanneauxSolairesClient({
                   </motion.div>
                 )
               })}
+              </>}
             </div>
           </div>
 
