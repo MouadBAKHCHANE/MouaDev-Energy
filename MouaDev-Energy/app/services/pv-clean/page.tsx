@@ -29,6 +29,7 @@ export default async function PvCleanPage() {
       <JsonLd data={breadcrumbJsonLd([{ name: 'Accueil', url: '/' }, { name: 'Services', url: '/services' }, { name: 'PV Clean', url: '/services/pv-clean' }])} />
       {faqs?.length ? <JsonLd data={faqPageJsonLd(faqs.map((f: any) => ({ question: f.q, answer: f.a })))} /> : null}
       <PvCleanClient
+        sectionOrder={v(data?.sectionOrder)}
         heroTitle={v(data?.heroTitle)}
         heroBgImage={img(data?.heroBgImage)}
         breadcrumbLabel={v(data?.breadcrumbLabel)}

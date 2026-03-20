@@ -73,6 +73,7 @@ interface PvCleanClientProps {
   offerTitleStyle?: TextStyle
   whyTitleStyle?: TextStyle
   faqTitleStyle?: TextStyle
+  sectionOrder?: { sectionId: string; enabled?: boolean }[]
 }
 
 export default function PvCleanClient({
@@ -100,7 +101,14 @@ export default function PvCleanClient({
   offerTitleStyle,
   whyTitleStyle,
   faqTitleStyle,
+  sectionOrder,
 }: PvCleanClientProps) {
+  const show = (id: string) => {
+    if (!sectionOrder?.length) return true
+    const entry = sectionOrder.find(s => s.sectionId === id)
+    return entry ? entry.enabled !== false : true
+  }
+
   const [activeIdx, setActiveIdx] = useState(-1)
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' })
 
@@ -113,7 +121,7 @@ export default function PvCleanClient({
 
   return (
     <main>
-      <PageHero
+      {show('hero') && <PageHero
         crumbs={[
           { label: 'Accueil', href: '/' },
           { label: 'Services', href: '/services' },
@@ -122,7 +130,7 @@ export default function PvCleanClient({
         title={heroTitle}
         bgImage={heroBgImage}
         compact={true}
-      />
+      />}
 
       {/* ── Main layout: sticky left + scrolling right ── */}
       <section className="ps-section" style={{ background: '#fff', padding: '60px 20px' }}>
@@ -317,6 +325,7 @@ export default function PvCleanClient({
             {/* ── RIGHT CONTENT (scrolls) ── */}
             <div className="ps-content">
 
+              {show('content') && <>
               {/* Intro headline & Main image */}
               <motion.div
                 variants={reveal} initial="hidden" whileInView="visible"
@@ -362,7 +371,9 @@ export default function PvCleanClient({
                   </div>
                 </div>
               </motion.div>
+              </>}
 
+              {show('offer') && <>
               {/* PV Clean pricing card */}
               <motion.div
                 variants={reveal} initial="hidden" whileInView="visible"
@@ -506,7 +517,9 @@ export default function PvCleanClient({
                   </span>
                 </Link>
               </motion.div>
+              </>}
 
+              {show('why') && <>
               {/* Why clean section */}
               <motion.div
                 variants={reveal} initial="hidden" whileInView="visible"
@@ -571,7 +584,9 @@ export default function PvCleanClient({
                   </motion.div>
                 )}
               </div>
+              </>}
 
+              {show('faq') && <>
               {/* FAQ */}
               <motion.div
                 variants={reveal} initial="hidden" whileInView="visible"
@@ -651,6 +666,7 @@ export default function PvCleanClient({
                   </motion.div>
                 )
               })}
+              </>}
             </div>
           </div>
 

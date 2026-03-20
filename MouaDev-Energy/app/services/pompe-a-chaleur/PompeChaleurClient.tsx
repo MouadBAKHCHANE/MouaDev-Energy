@@ -75,6 +75,7 @@ interface PompeChaleurClientProps {
   overlayHeadlineStyle?: TextStyle
   whyTitleStyle?: TextStyle
   faqTitleStyle?: TextStyle
+  sectionOrder?: { sectionId: string; enabled?: boolean }[]
 }
 
 export default function PompeChaleurClient({
@@ -98,7 +99,14 @@ export default function PompeChaleurClient({
   overlayHeadlineStyle,
   whyTitleStyle,
   faqTitleStyle,
+  sectionOrder,
 }: PompeChaleurClientProps) {
+  const show = (id: string) => {
+    if (!sectionOrder?.length) return true
+    const entry = sectionOrder.find(s => s.sectionId === id)
+    return entry ? entry.enabled !== false : true
+  }
+
   const [activeIdx, setActiveIdx] = useState(-1)
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' })
 
@@ -139,7 +147,7 @@ export default function PompeChaleurClient({
 
   return (
     <main>
-      <PageHero
+      {show('hero') && <PageHero
         crumbs={[
           { label: 'Accueil', href: '/' },
           { label: 'Services', href: '/services' },
@@ -148,7 +156,7 @@ export default function PompeChaleurClient({
         title={heroTitle}
         bgImage={heroBgImage}
         compact={true}
-      />
+      />}
 
       {/* ── Main layout: sticky left + scrolling right ── */}
       <section className="ps-section" style={{ background: '#fff', padding: '100px 20px' }}>
@@ -343,6 +351,7 @@ export default function PompeChaleurClient({
             {/* ── RIGHT CONTENT (scrolls) ── */}
             <div className="ps-content">
 
+              {show('content') && <>
               {/* Intro headline & Main image */}
               <motion.div
                 variants={reveal} initial="hidden" whileInView="visible"
@@ -388,7 +397,9 @@ export default function PompeChaleurClient({
                   </div>
                 </div>
               </motion.div>
+              </>}
 
+              {show('contracts') && <>
               {/* Pricing section */}
               <motion.div
                 variants={reveal} initial="hidden" whileInView="visible"
@@ -644,7 +655,9 @@ export default function PompeChaleurClient({
                   <strong style={{ color: '#555' }}>*</strong> {disclaimer}
                 </p>
               </motion.div>
+              </>}
 
+              {show('why') && <>
               {/* Why maintain section */}
               <motion.div
                 variants={reveal} initial="hidden" whileInView="visible"
@@ -698,7 +711,9 @@ export default function PompeChaleurClient({
                   </motion.div>
                 ))}
               </div>
+              </>}
 
+              {show('faq') && <>
               {/* FAQ */}
               <motion.div
                 variants={reveal} initial="hidden" whileInView="visible"
@@ -778,6 +793,7 @@ export default function PompeChaleurClient({
                   </motion.div>
                 )
               })}
+              </>}
             </div>
           </div>
 

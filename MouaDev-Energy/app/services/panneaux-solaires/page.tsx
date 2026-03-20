@@ -30,6 +30,7 @@ export default async function PanneauxSolairesPage() {
       <JsonLd data={breadcrumbJsonLd([{ name: 'Accueil', url: '/' }, { name: 'Services', url: '/services' }, { name: 'Panneaux Solaires', url: '/services/panneaux-solaires' }])} />
       {faqs?.length ? <JsonLd data={faqPageJsonLd(faqs.map((f: any) => ({ question: f.q, answer: f.a })))} /> : null}
       <PanneauxSolairesClient
+        sectionOrder={v(data?.sectionOrder)}
         heroTitle={v(data?.heroTitle)}
         heroBgImage={img(data?.heroBgImage)}
         breadcrumbLabel={v(data?.breadcrumbLabel)}

@@ -72,6 +72,7 @@ interface BoilerClientProps {
   overlayHeadlineStyle?: TextStyle
   whyTitleStyle?: TextStyle
   faqTitleStyle?: TextStyle
+  sectionOrder?: { sectionId: string; enabled?: boolean }[]
 }
 
 export default function BoilerClient({
@@ -97,7 +98,14 @@ export default function BoilerClient({
   overlayHeadlineStyle,
   whyTitleStyle,
   faqTitleStyle,
+  sectionOrder,
 }: BoilerClientProps) {
+  const show = (id: string) => {
+    if (!sectionOrder?.length) return true
+    const entry = sectionOrder.find(s => s.sectionId === id)
+    return entry ? entry.enabled !== false : true
+  }
+
   const [activeIdx, setActiveIdx] = useState(-1)
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' })
 
@@ -136,7 +144,7 @@ export default function BoilerClient({
 
   return (
     <main>
-      <PageHero
+      {show('hero') && <PageHero
         crumbs={[
           { label: 'Accueil', href: '/' },
           { label: 'Services', href: '/services' },
@@ -145,7 +153,7 @@ export default function BoilerClient({
         title={heroTitle}
         bgImage={heroBgImage}
         compact={true}
-      />
+      />}
 
       {/* ── Main layout: sticky left + scrolling right ── */}
       <section className="ps-section" style={{ background: '#fff', padding: '100px 20px' }}>
@@ -340,6 +348,7 @@ export default function BoilerClient({
             {/* ── RIGHT CONTENT (scrolls) ── */}
             <div className="ps-content">
 
+              {show('content') && <>
               {/* Intro headline & Main image */}
               <motion.div
                 variants={reveal} initial="hidden" whileInView="visible"
@@ -385,7 +394,9 @@ export default function BoilerClient({
                   </div>
                 </div>
               </motion.div>
+              </>}
 
+              {show('contracts') && <>
               {/* Pricing section */}
               <motion.div
                 variants={reveal} initial="hidden" whileInView="visible"
@@ -620,7 +631,9 @@ export default function BoilerClient({
                   <strong style={{ color: '#555' }}>*</strong> {disclaimer}
                 </p>
               </motion.div>
+              </>}
 
+              {show('why') && <>
               {/* Why maintain section */}
               <motion.div
                 variants={reveal} initial="hidden" whileInView="visible"
@@ -674,7 +687,9 @@ export default function BoilerClient({
                   </motion.div>
                 ))}
               </div>
+              </>}
 
+              {show('faq') && <>
               {/* FAQ */}
               <motion.div
                 variants={reveal} initial="hidden" whileInView="visible"
@@ -754,6 +769,7 @@ export default function BoilerClient({
                   </motion.div>
                 )
               })}
+              </>}
             </div>
           </div>
 
