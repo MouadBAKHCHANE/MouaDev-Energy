@@ -195,7 +195,7 @@ export default function ServicesClient(props: ServicesClientProps) {
       />
 
       {/* ── Services Card Grid ──────────────────────────────────────────── */}
-      <section style={{ padding: '100px 20px', background: '#fff' }}>
+      <section className="svc-cards-section" style={{ padding: '100px 20px', background: '#fff' }}>
         <div style={{ maxWidth: 1320, margin: '0 auto' }}>
           <div className="svc-header-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: 60, marginBottom: 80 }}>
             <div style={{ flex: '0 0 55%' }}>
@@ -864,24 +864,26 @@ export default function ServicesClient(props: ServicesClientProps) {
           .svc-stats-grid h3 { font-size: 60px !important; }
         }
         @media (max-width: 640px) {
+          .svc-cards-section { padding: 40px 20px 60px !important; }
+          .svc-header-row { margin-bottom: 32px !important; }
           .svc-card-grid {
             display: flex;
-            gap: 16px;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-            padding-bottom: 12px;
-            margin: 0 -20px;
-            padding-left: 20px;
-            padding-right: 20px;
-            scrollbar-width: none;
+            flex-direction: column;
+            gap: 20px;
           }
-          .svc-card-grid::-webkit-scrollbar { display: none; }
-          .svc-card-grid > * {
-            flex: 0 0 85%;
-            min-width: 85%;
-            scroll-snap-align: start;
+          .svc-card {
+            transform: translateY(30px);
+            opacity: 0;
+            animation: svcCardReveal 0.6s ease forwards;
           }
+          .svc-card:nth-child(1) { animation-delay: 0.05s; }
+          .svc-card:nth-child(2) { animation-delay: 0.15s; }
+          .svc-card:nth-child(3) { animation-delay: 0.25s; }
+          .svc-card:nth-child(4) { animation-delay: 0.35s; }
+          @keyframes svcCardReveal {
+            to { transform: translateY(0); opacity: 1; }
+          }
+          .svc-card-read-more { opacity: 1 !important; max-width: 130px !important; margin-right: 8px !important; }
           .svc-cards-title { font-size: clamp(24px, 7vw, 32px) !important; }
           .svc-stats-grid { grid-template-columns: 1fr !important; }
           .svc-card:hover { transform: none; }
