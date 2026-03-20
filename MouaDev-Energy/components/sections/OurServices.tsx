@@ -69,11 +69,11 @@ export default function OurServices({
 }: OurServicesProps) {
   const slides = (cards && cards.length > 0)
     ? cards.map((card, i) => ({
-        img: card.image?.asset ? urlFor(card.image).width(900).url() : defaultSlides[i]?.img ?? '',
-        name: card.title ?? defaultSlides[i]?.name ?? '',
-        icon: card.icon?.asset ? urlFor(card.icon).url() : defaultSlides[i]?.icon ?? '',
-        href: card.link ?? defaultSlides[i]?.href ?? '/',
-        accent: defaultSlides[i]?.accent ?? 'var(--color-primary-light, #50b5a2)',
+        img: card.image?.asset ? urlFor(card.image).width(900).url() : '',
+        name: card.title || '',
+        icon: card.icon?.asset ? urlFor(card.icon).url() : '',
+        href: card.link || '/',
+        accent: 'var(--color-primary-light, #50b5a2)',
       }))
     : defaultSlides
 
