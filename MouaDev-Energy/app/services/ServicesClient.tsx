@@ -166,29 +166,29 @@ function Counter({ value, prefix = '', suffix = '' }: { value: number; prefix?: 
 }
 
 export default function ServicesClient(props: ServicesClientProps) {
-  const heroTitle = props.heroTitle ?? "Nos solutions d'entretien"
-  const heroBgImage = props.heroBgImage ?? '/Photos%20HD/Photos%20d_ambiance/happy-family-background-house-with-solar-panels-roof-selective-focus.webp'
-  const cardsLabel = props.cardsLabel ?? 'NOS SERVICES'
-  const cardsTitle = props.cardsTitle ?? 'Nos solutions pour votre confort en toute sérénité'
-  const cardsDesc = props.cardsDesc ?? "Un entretien sur mesure pour vos installations de chauffage et photovoltaïques.\n\nDécouvrez nos solutions adaptées à vos équipements et besoins."
+  const heroTitle = props.heroTitle || ''
+  const heroBgImage = props.heroBgImage || ''
+  const cardsLabel = props.cardsLabel || ''
+  const cardsTitle = props.cardsTitle || ''
+  const cardsDesc = props.cardsDesc || ''
   const cards = props.serviceCards?.length ? props.serviceCards : defaultServiceCards
-  const statsLabel = props.statsLabel ?? 'RÉSULTATS CONCRETS'
-  const statsTitle = props.statsTitle ?? "Ce que l'entretien Zen apporte concrètement"
-  const statsDesc = props.statsDesc ?? 'Plusieurs évènements peuvent venir endommager votre installation solaire ou de pompe à chaleur et ses performances.'
+  const statsLabel = props.statsLabel || ''
+  const statsTitle = props.statsTitle || ''
+  const statsDesc = props.statsDesc || ''
   const statsList = props.stats?.length ? props.stats : defaultStats
-  const quoteTitle = props.quoteTitle ?? 'Ces conséquences peuvent être évitées avec une maintenance et un entretien régulier.'
-  const quoteBody = props.quoteBody ?? "Nous observons un gain de longévité allant jusqu'à 10 ans avec une maintenance régulière et professionnelle de vos installations. Afin de prévenir et d'éviter des problèmes de sécurité ou d'usure, les experts Zen s'assurent du diagnostic, du suivi, des réparations et de la maintenance de vos installations."
-  const expLabel = props.expLabel ?? "L'expérience Zen"
-  const expTitle = props.expTitle ?? "Les atouts de nos contrats d'entretien"
-  const expImage = props.expImage ?? '/Photos%20HD/Photos%20d_ambiance/Zen.webp'
+  const quoteTitle = props.quoteTitle || ''
+  const quoteBody = props.quoteBody || ''
+  const expLabel = props.expLabel || ''
+  const expTitle = props.expTitle || ''
+  const expImage = props.expImage || ''
   const expItems = props.expItems?.length ? props.expItems : defaultExpItems
   const details = props.serviceDetails?.length ? props.serviceDetails : defaultServiceDetails
-  const ctaTitle = props.ctaTitle ?? 'Prêt à protéger'
-  const ctaAccent = props.ctaAccent ?? 'vos installations ?'
-  const ctaButtonText = props.ctaButtonText ?? 'Demander un devis'
-  const ctaButtonLink = props.ctaButtonLink ?? 'https://form.typeform.com/to/rRhOu7eb'
-  const ctaQuestionLabel = props.ctaQuestionLabel ?? 'Une question ?'
-  const ctaQuestionDesc = props.ctaQuestionDesc ?? 'Notre équipe est disponible pour vous accompagner et répondre à toutes vos questions.'
+  const ctaTitle = props.ctaTitle || ''
+  const ctaAccent = props.ctaAccent || ''
+  const ctaButtonText = props.ctaButtonText || ''
+  const ctaButtonLink = props.ctaButtonLink || ''
+  const ctaQuestionLabel = props.ctaQuestionLabel || ''
+  const ctaQuestionDesc = props.ctaQuestionDesc || ''
 
   const descParts = cardsDesc.split('\n\n')
 
@@ -360,29 +360,31 @@ export default function ServicesClient(props: ServicesClientProps) {
             ))}
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }}
-            viewport={vp} transition={{ duration: 0.5, delay: 0.4 }}
-            style={{
-              marginTop: 80, padding: '40px',
-              background: '#f8fbfc', borderRadius: 'var(--card-radius, 24px)',
-              border: '1px solid #e1e9e8',
-              display: 'flex', alignItems: 'center', gap: 40
-            }}
-          >
-            <div style={{ width: 4, alignSelf: 'stretch', background: 'var(--color-primary-light, #50b5a2)', borderRadius: 2 }} />
-            <div style={{ flex: 1 }}>
-              <p style={{
-                fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
-                fontSize: 19, lineHeight: '28px', color: '#000', fontWeight: 600,
-                marginBottom: 16, letterSpacing: -0.5
-              }}>{quoteTitle}</p>
-              <p style={{
-                fontFamily: "var(--font-jost), 'Jost', sans-serif",
-                fontSize: 16, lineHeight: '26px', color: '#555', margin: 0, maxWidth: 900
-              }}>{quoteBody}</p>
-            </div>
-          </motion.div>
+          {(quoteTitle || quoteBody) && (
+            <motion.div
+              initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }}
+              viewport={vp} transition={{ duration: 0.5, delay: 0.4 }}
+              style={{
+                marginTop: 80, padding: '40px',
+                background: '#f8fbfc', borderRadius: 'var(--card-radius, 24px)',
+                border: '1px solid #e1e9e8',
+                display: 'flex', alignItems: 'center', gap: 40
+              }}
+            >
+              <div style={{ width: 4, alignSelf: 'stretch', background: 'var(--color-primary-light, #50b5a2)', borderRadius: 2 }} />
+              <div style={{ flex: 1 }}>
+                {quoteTitle && <p style={{
+                  fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
+                  fontSize: 19, lineHeight: '28px', color: '#000', fontWeight: 600,
+                  marginBottom: 16, letterSpacing: -0.5
+                }}>{quoteTitle}</p>}
+                {quoteBody && <p style={{
+                  fontFamily: "var(--font-jost), 'Jost', sans-serif",
+                  fontSize: 16, lineHeight: '26px', color: '#555', margin: 0, maxWidth: 900
+                }}>{quoteBody}</p>}
+              </div>
+            </motion.div>
+          )}
         </div>
       </section>
 
