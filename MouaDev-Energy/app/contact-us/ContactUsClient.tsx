@@ -50,13 +50,35 @@ export default function ContactUsClient({
     return entry ? entry.enabled !== false : true
   }
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' })
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [errorMsg, setErrorMsg] = useState('')
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setStatus('loading')
+    setErrorMsg('')
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
+      const data = await res.json()
+      if (!res.ok) {
+        setErrorMsg(data.error || 'Erreur lors de l\'envoi.')
+        setStatus('error')
+      } else {
+        setStatus('success')
+        setFormData({ name: '', email: '', phone: '', message: '' })
+      }
+    } catch {
+      setErrorMsg('Erreur réseau. Veuillez réessayer.')
+      setStatus('error')
+    }
   }
 
   // Split address at comma for line break
@@ -99,10 +121,17 @@ export default function ContactUsClient({
               </h2>
 
               {/* Address card */}
-              <div style={{
-                background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)', borderRadius: 16, padding: '28px 28px',
-                marginBottom: 16, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 10,
-              }}>
+              <a
+                href={`https://maps.google.com/maps?q=${encodeURIComponent(address)}`}
+                target="_blank" rel="noopener noreferrer"
+                style={{
+                  background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)', borderRadius: 16, padding: '28px 28px',
+                  marginBottom: 16, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 10,
+                  textDecoration: 'none', cursor: 'pointer', transition: 'opacity 0.18s ease',
+                }}
+                onMouseEnter={e => { e.currentTarget.style.opacity = '0.85' }}
+                onMouseLeave={e => { e.currentTarget.style.opacity = '1' }}
+              >
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary-light, #50b5a2)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
                   <circle cx="12" cy="10" r="3" />
@@ -113,15 +142,21 @@ export default function ContactUsClient({
                 }}>
                   {addressLine1},<br />{addressLine2}
                 </div>
-              </div>
+              </a>
 
               {/* Email + Phone row */}
               <div className="contact-info-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
                 {/* Email */}
-                <div style={{
-                  background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)', borderRadius: 16, padding: '28px 22px',
-                  display: 'flex', flexDirection: 'column', gap: 10, alignItems: 'center', textAlign: 'center',
-                }}>
+                <a
+                  href={`mailto:${email}`}
+                  style={{
+                    background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)', borderRadius: 16, padding: '28px 22px',
+                    display: 'flex', flexDirection: 'column', gap: 10, alignItems: 'center', textAlign: 'center',
+                    textDecoration: 'none', cursor: 'pointer', transition: 'opacity 0.18s ease',
+                  }}
+                  onMouseEnter={e => { e.currentTarget.style.opacity = '0.85' }}
+                  onMouseLeave={e => { e.currentTarget.style.opacity = '1' }}
+                >
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary-light, #50b5a2)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                     <polyline points="22,6 12,13 2,6" />
@@ -132,13 +167,19 @@ export default function ContactUsClient({
                   }}>
                     {email}
                   </div>
-                </div>
+                </a>
 
                 {/* Phone */}
-                <div style={{
-                  background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)', borderRadius: 16, padding: '28px 22px',
-                  display: 'flex', flexDirection: 'column', gap: 10, alignItems: 'center', textAlign: 'center',
-                }}>
+                <a
+                  href={`tel:${phone.replace(/\s/g, '')}`}
+                  style={{
+                    background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)', borderRadius: 16, padding: '28px 22px',
+                    display: 'flex', flexDirection: 'column', gap: 10, alignItems: 'center', textAlign: 'center',
+                    textDecoration: 'none', cursor: 'pointer', transition: 'opacity 0.18s ease',
+                  }}
+                  onMouseEnter={e => { e.currentTarget.style.opacity = '0.85' }}
+                  onMouseLeave={e => { e.currentTarget.style.opacity = '1' }}
+                >
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary-light, #50b5a2)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
                   </svg>
@@ -148,7 +189,7 @@ export default function ContactUsClient({
                   }}>
                     {phone}
                   </div>
-                </div>
+                </a>
               </div>
             </motion.div>
 
@@ -217,20 +258,40 @@ export default function ContactUsClient({
                   </div>
 
                   <div style={{ gridColumn: '1 / -1' }}>
+                    {status === 'success' && (
+                      <div style={{
+                        background: '#e6f7f5', border: '1px solid #2a9b96', borderRadius: 10,
+                        padding: '14px 20px', marginBottom: 16, color: '#2c6262', fontWeight: 600,
+                        fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
+                      }}>
+                        Message envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.
+                      </div>
+                    )}
+                    {status === 'error' && (
+                      <div style={{
+                        background: '#fef2f2', border: '1px solid #f87171', borderRadius: 10,
+                        padding: '14px 20px', marginBottom: 16, color: '#b91c1c', fontWeight: 500,
+                        fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
+                      }}>
+                        {errorMsg}
+                      </div>
+                    )}
                     <button
                       type="submit"
+                      disabled={status === 'loading'}
                       style={{
                         width: '100%', padding: '16px',
                         borderRadius: 10, background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)', border: 'none',
                         fontSize: 16, fontWeight: 600,
                         fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
-                        color: '#fff', cursor: 'pointer',
+                        color: '#fff', cursor: status === 'loading' ? 'not-allowed' : 'pointer',
+                        opacity: status === 'loading' ? 0.7 : 1,
                         transition: 'background 0.18s ease, color 0.18s ease',
                       }}
-                      onMouseEnter={e => { e.currentTarget.style.background = 'var(--color-primary-light, #50b5a2)'; e.currentTarget.style.color = '#000' }}
+                      onMouseEnter={e => { if (status !== 'loading') { e.currentTarget.style.background = 'var(--color-primary-light, #50b5a2)'; e.currentTarget.style.color = '#000' }}}
                       onMouseLeave={e => { e.currentTarget.style.background = 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)'; e.currentTarget.style.color = '#fff' }}
                     >
-                      {submitText}
+                      {status === 'loading' ? 'Envoi en cours…' : submitText}
                     </button>
                   </div>
 
