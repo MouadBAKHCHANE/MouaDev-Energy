@@ -93,28 +93,28 @@ export default function PanneauxSolairesClient({
   heroBgImage = '/Photos HD/Photos produits/Panneaux solaires/roof-house-with-solar-panels-roof-natureproduced-energy-sunproduced-energy-ph.webp',
   breadcrumbLabel = 'Panneaux solaires',
   mainImage = '/Photos%20HD/Photos%20produits/Panneaux%20solaires/man-worker-firld-by-solar-panels.webp',
-  overlayHeadline = 'Maximisez votre production solaire grâce à un entretien régulier de vos panneaux photovoltaïques',
+  overlayHeadline = '',
   contractFeatures = defaultContractFeatures,
-  discountHeadline = 'Vous possédez plusieurs équipements différents ?',
-  discountText = "sur la 1ère année de contrat à partir de 2 contrats d'entretien souscrits !",
-  discountBadge = '10 %',
-  disclaimer = "Contrats d'une durée d'engagement de 4 ans. Les pièces de rechange sont à la totale charge du client. Les contrats d'entretien sont résiliables sous conditions en période de contrat selon les conditions générales de vente applicables ; et avec un préavis écrit de trois mois avant le prochain renouvellement de contrat de 4 ans. Sans cette résiliation, le contrat est automatiquement prolongé pour une période 4 années supplémentaires. Tous les prix s'entendent TVA comprise. Le nettoyage des panneaux n'est pas inclus.",
-  pvCleanTitle = 'Pensez à faire nettoyer vos panneaux solaires par un professionnel',
+  discountHeadline = '',
+  discountText = '',
+  discountBadge = '',
+  disclaimer = '',
+  pvCleanTitle = '',
   pvCleanIntro = [
     "La garantie de la performance maximale de vos panneaux solaires passe inévitablement par leur propreté. 15% de production annuelle sont en moyenne perdus en raison de la saleté de l'installation.",
     "Notre service de nettoyage spécialisé utilise des techniques de pointe pour éliminer débris, mousses et saletés diverses et s'adapte à la surface et à la configuration de votre installation existante.",
   ],
   pvCleanImage = '/Photos%20HD/Photos%20produits/Panneaux%20solaires/man-solar-technician-installing-solar-panel-outdoors.webp',
   pvCleanFeatures = defaultPvCleanFeatures,
-  pvCleanDisclaimer = '* Offre tarifaire valable pour une intervention à partir de 8 panneaux.',
-  whyTitle = 'Pourquoi dois-je entretenir régulièrement mes panneaux photovoltaïques ?',
-  whyIntro = "L'entretien régulier de vos panneaux photovoltaïques est essentiel pour garantir leur performance et leur durabilité. En Suisse, les conditions climatiques (neige, pollen, poussière) peuvent réduire l'efficacité des panneaux en formant des dépôts sur leur surface. Un entretien régulier permet :",
+  pvCleanDisclaimer = '',
+  whyTitle = '',
+  whyIntro = '',
   whyBullets = defaultWhyBullets,
   detailImages = [
     '/Photos%20HD/Visuels%20Technique/Technique%20-%20PV/Ouvrier%20et%20panneaux%20solaires.webp',
     '/Photos%20HD/Visuels%20Technique/Technique%20-%20PV/Re%CC%81paration%20de%20panneaux%20solaires.webp',
   ],
-  faqTitle = "Questions sur l'entretien de vos panneaux",
+  faqTitle = '',
   faqs = defaultFaqs,
   overlayHeadlineStyle,
   pvCleanTitleStyle,
@@ -648,6 +648,7 @@ export default function PanneauxSolairesClient({
               </motion.div>
 
               {/* Disclaimer card */}
+              {disclaimer && (
               <motion.div
                 variants={reveal} initial="hidden" whileInView="visible"
                 viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.7, ease: 'easeOut' }}
@@ -663,6 +664,7 @@ export default function PanneauxSolairesClient({
                   <strong style={{ color: '#555' }}>*</strong> {disclaimer}
                 </p>
               </motion.div>
+              )}
               </>}
 
               {show('pvClean') && <>
@@ -770,12 +772,14 @@ export default function PanneauxSolairesClient({
                         </li>
                       ))}
                     </ul>
+                    {pvCleanDisclaimer && (
                     <p style={{
                       fontFamily: "var(--font-jost), 'Jost', sans-serif",
                       fontSize: 11, color: 'rgba(255,255,255,0.4)', lineHeight: '17px', margin: '16px 0 0',
                     }}>
                       {pvCleanDisclaimer}
                     </p>
+                    )}
                   </div>
                 </div>
               </motion.div>
@@ -788,19 +792,19 @@ export default function PanneauxSolairesClient({
                 viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.7, ease: 'easeOut' }}
                 className="ps-why-block" style={{ background: '#f8f8f8', borderRadius: 20, padding: '32px 28px', marginBottom: 48 }}
               >
-                <h3 style={{
+                {whyTitle && <h3 style={{
                   fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
                   fontSize: 20, fontWeight: 700, color: '#000', marginBottom: 14, letterSpacing: -0.5, lineHeight: 1.3,
                   ...toCSS(whyTitleStyle),
                 }}>
                   {whyTitle}
-                </h3>
-                <p style={{
+                </h3>}
+                {whyIntro && <p style={{
                   fontFamily: "var(--font-jost), 'Jost', sans-serif",
                   fontSize: 15, color: '#444', lineHeight: '24px', marginBottom: 14,
                 }}>
                   {whyIntro}
-                </p>
+                </p>}
                 <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: 10 }}>
                   {whyBullets.map((item, i) => (
                     <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
@@ -856,7 +860,7 @@ export default function PanneauxSolairesClient({
               >
                 <SectionLabel text="QUESTIONS FRÉQUENTES" />
               </motion.div>
-              <motion.h3
+              {faqTitle && <motion.h3
                 variants={reveal} initial="hidden" whileInView="visible"
                 viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.7, ease: 'easeOut', delay: 0.08 }}
                 className="ps-faq-title"
@@ -868,7 +872,7 @@ export default function PanneauxSolairesClient({
                 }}
               >
                 {faqTitle}
-              </motion.h3>
+              </motion.h3>}
 
               {faqs.map((faq, i) => {
                 const isActive = activeIdx === i

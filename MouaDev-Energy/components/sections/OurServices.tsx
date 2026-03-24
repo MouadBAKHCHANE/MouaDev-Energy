@@ -58,10 +58,10 @@ interface OurServicesProps {
 }
 
 export default function OurServices({
-  label = 'NOS SERVICES',
-  title = 'Des solutions énergétiques sur mesure adaptées à vos besoins',
-  desc = "Notre équipe conçoit et installe des systèmes d'énergie solaire personnalisés basés sur votre consommation, la configuration de votre propriété et votre budget.",
-  cta = "Découvrir nos offres d'entretien",
+  label = '',
+  title = '',
+  desc = '',
+  cta = '',
   ctaLink = '/services',
   cards,
   titleStyle,
@@ -180,9 +180,9 @@ export default function OurServices({
           transition={{ duration: 0.5, ease: 'easeOut', delay: 0.3 }}
           style={{ display: 'flex', justifyContent: 'center' }}
         >
-          <SectionLabel text={label} />
+          {label && <SectionLabel text={label} />}
         </motion.div>
-        <motion.h2
+        {title && <motion.h2
           variants={reveal} initial="hidden" animate="visible"
           transition={{ duration: 0.5, ease: 'easeOut', delay: 0.37 }}
           className="our-svc-h2"
@@ -194,8 +194,8 @@ export default function OurServices({
           }}
         >
           {title}
-        </motion.h2>
-        <motion.p
+        </motion.h2>}
+        {desc && <motion.p
           variants={reveal} initial="hidden" animate="visible"
           transition={{ duration: 0.5, ease: 'easeOut', delay: 0.42 }}
           className="our-svc-body"
@@ -207,14 +207,14 @@ export default function OurServices({
           }}
         >
           {desc}
-        </motion.p>
-        <motion.div
+        </motion.p>}
+        {cta && <motion.div
           variants={reveal} initial="hidden" animate="visible"
           transition={{ duration: 0.5, ease: 'easeOut', delay: 0.48 }}
           style={{ display: 'flex', justifyContent: 'center', marginBottom: 50 }}
         >
           <Button variant="lime" label={cta} href={ctaLink} />
-        </motion.div>
+        </motion.div>}
 
         {/* Desktop grid */}
         <div className="svc-grid-container">

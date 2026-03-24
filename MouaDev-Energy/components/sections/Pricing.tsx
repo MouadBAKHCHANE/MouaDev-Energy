@@ -61,9 +61,9 @@ interface PricingProps {
 }
 
 export default function Pricing({
-  label = "NOS SOLUTIONS D'ENTRETIEN",
-  title = "Découvrez nos offres d'entretien en un coup d'œil !",
-  desc = "Choisissez la solution qui correspond à votre installation et profitez d'une expertise locale pour la pérennité de vos équipements.",
+  label = '',
+  title = '',
+  desc = '',
   cards,
   titleStyle,
   descStyle,
@@ -85,22 +85,22 @@ export default function Pricing({
       <div className="pricing-inner">
         <div className="pricing-left">
           <motion.div variants={revealHeading} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '0px 0px -50px 0px', amount: 0.1 }} transition={{ duration: 0.8, ease: 'easeOut' }}>
-            <SectionLabel text={label} />
+            {label && <SectionLabel text={label} />}
           </motion.div>
-          <motion.h2 variants={revealHeading} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '0px 0px -50px 0px', amount: 0.1 }} transition={{ duration: 0.8, ease: 'easeOut', delay: 0.1 }} className="pricing-h2" style={{
+          {title && <motion.h2 variants={revealHeading} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '0px 0px -50px 0px', amount: 0.1 }} transition={{ duration: 0.8, ease: 'easeOut', delay: 0.1 }} className="pricing-h2" style={{
             fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
             fontSize: 48, fontWeight: 500, lineHeight: '58px', letterSpacing: -2, color: '#000',
             ...toCSS(titleStyle),
           }}>
             {title}
-          </motion.h2>
-          <motion.p variants={revealHeading} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '0px 0px -50px 0px', amount: 0.1 }} transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }} className="pricing-body" style={{
+          </motion.h2>}
+          {desc && <motion.p variants={revealHeading} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '0px 0px -50px 0px', amount: 0.1 }} transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }} className="pricing-body" style={{
             fontFamily: "var(--font-jost), 'Jost', sans-serif",
             fontSize: 17, fontWeight: 400, lineHeight: '26px', color: '#000',
             ...toCSS(descStyle),
           }}>
             {desc}
-          </motion.p>
+          </motion.p>}
         </div>
 
         <div className="pricing-right">

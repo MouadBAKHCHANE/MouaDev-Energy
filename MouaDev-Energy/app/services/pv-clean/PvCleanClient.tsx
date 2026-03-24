@@ -81,21 +81,21 @@ export default function PvCleanClient({
   heroBgImage = '/Photos%20HD/Visuels%20Technique/Nettoyage%20-%20PV/close-up-view-cleaning-solar-panels-surface.webp',
   breadcrumbLabel = 'PV Clean — Nettoyage',
   mainImage = '/Photos%20HD/Visuels%20Technique/Nettoyage%20-%20PV/close-up-worker-cleaning-solar-panels-from-dust.webp',
-  overlayHeadline = 'Retrouvez toute la puissance de vos panneaux solaires avec notre offre PV Clean',
+  overlayHeadline = '',
   offerImage = '/Photos%20HD/Photos%20produits/Panneaux%20solaires/man-solar-technician-installing-solar-panel-outdoors.webp',
-  offerTitle = "L'EFFICACITÉ RETROUVÉE DE VOS PANNEAUX PHOTOVOLTAÏQUES !",
-  offerSubtitle = 'OFFRE PV CLEAN :',
-  offerLabel = 'Ce que contient votre offre PV Clean :',
+  offerTitle = '',
+  offerSubtitle = '',
+  offerLabel = '',
   offerFeatures = defaultOfferFeatures,
-  offerDisclaimer = '* Offre tarifaire valable pour une intervention à partir de 8 panneaux.',
-  whyTitle = 'Pourquoi faire nettoyer ses panneaux solaires par un professionnel ?',
-  whyIntro = "Des panneaux encrassés perdent jusqu'à 25% de leur rendement. Un nettoyage professionnel permet :",
+  offerDisclaimer = '',
+  whyTitle = '',
+  whyIntro = '',
   whyBullets = defaultWhyBullets,
   detailImages = [
     '/Photos%20HD/Visuels%20Technique/Nettoyage%20-%20PV/1789536761.webp',
     '/Photos%20HD/Visuels%20Technique/Nettoyage%20-%20PV/close-up-view-cleaning-solar-panels-surface.webp',
   ],
-  faqTitle = 'Questions sur le nettoyage PV Clean',
+  faqTitle = '',
   faqs = defaultFaqs,
   overlayHeadlineStyle,
   offerTitleStyle,
@@ -451,12 +451,14 @@ export default function PvCleanClient({
                         </li>
                       ))}
                     </ul>
+                    {offerDisclaimer && (
                     <p style={{
                       fontFamily: "var(--font-jost), 'Jost', sans-serif",
                       fontSize: 11, color: 'rgba(255,255,255,0.4)', lineHeight: '17px', margin: '16px 0 0',
                     }}>
                       {offerDisclaimer}
                     </p>
+                    )}
                   </div>
                 </div>
               </motion.div>
@@ -526,19 +528,19 @@ export default function PvCleanClient({
                 viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.7, ease: 'easeOut' }}
                 className="ps-why-block" style={{ background: '#f8f8f8', borderRadius: 20, padding: '32px 28px', marginBottom: 48 }}
               >
-                <h3 style={{
+                {whyTitle && <h3 style={{
                   fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
                   fontSize: 20, fontWeight: 700, color: '#000', marginBottom: 14, letterSpacing: -0.5, lineHeight: 1.3,
                   ...toCSS(whyTitleStyle),
                 }}>
                   {whyTitle}
-                </h3>
-                <p style={{
+                </h3>}
+                {whyIntro && <p style={{
                   fontFamily: "var(--font-jost), 'Jost', sans-serif",
                   fontSize: 15, color: '#444', lineHeight: '24px', marginBottom: 14,
                 }}>
                   {whyIntro}
-                </p>
+                </p>}
                 <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: 10 }}>
                   {whyBullets.map((item, i) => (
                     <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
@@ -595,7 +597,7 @@ export default function PvCleanClient({
               >
                 <SectionLabel text="QUESTIONS FRÉQUENTES" />
               </motion.div>
-              <motion.h3
+              {faqTitle && <motion.h3
                 variants={reveal} initial="hidden" whileInView="visible"
                 viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.7, ease: 'easeOut', delay: 0.08 }}
                 className="ps-faq-title"
@@ -607,7 +609,7 @@ export default function PvCleanClient({
                 }}
               >
                 {faqTitle}
-              </motion.h3>
+              </motion.h3>}
 
               {faqs.map((faq, i) => {
                 const isActive = activeIdx === i

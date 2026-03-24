@@ -33,10 +33,10 @@ interface AboutProps {
 }
 
 export default function About({
-  label = 'À PROPOS DE NOUS',
-  title = 'Pourquoi choisir Zen Énergie Services ?',
-  body = "Fort d'une expertise reconnue depuis de nombreuses années en Suisse, Zen Énergie Services s'assure de la longévité et de l'optimisation du rendement de vos installations sur le long terme. Des experts locaux au service des particuliers tout au long de l'année.",
-  ctaText = 'En savoir plus',
+  label = '',
+  title = '',
+  body = '',
+  ctaText = '',
   ctaLink = '/about-us',
   image,
   features,
@@ -69,8 +69,8 @@ export default function About({
             }}
           >
             <div style={{ display: 'flex', flexDirection: 'column', gap: 15 }}>
-              <SectionLabel text={label} />
-              <h2
+              {label && <SectionLabel text={label} />}
+              {title && <h2
                 className="about-h2"
                 style={{
                   fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
@@ -80,20 +80,20 @@ export default function About({
                 }}
               >
                 {title}
-              </h2>
+              </h2>}
             </div>
 
-            <p className="about-body" style={{
+            {body && <p className="about-body" style={{
               fontFamily: "var(--font-jost), 'Jost', sans-serif",
               fontSize: 17, fontWeight: 400, lineHeight: '26px', color: '#000', margin: 0,
               ...toCSS(bodyStyle),
             }}>
               {body}
-            </p>
+            </p>}
 
-            <div>
+            {ctaText && <div>
               <Button variant="lime" label={ctaText} href={ctaLink} />
-            </div>
+            </div>}
           </motion.div>
 
           {/* Column 2: Image + spinning lime circle */}

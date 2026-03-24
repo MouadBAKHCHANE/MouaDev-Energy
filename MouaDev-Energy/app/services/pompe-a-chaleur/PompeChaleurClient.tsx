@@ -83,18 +83,18 @@ export default function PompeChaleurClient({
   heroBgImage = '/Photos%20HD/Visuels%20Technique/Technique%20-%20PAC/Pompes%20a%CC%80%20chaleur%20avantages%20et%20inconve%CC%81nients.webp',
   breadcrumbLabel = 'Pompe à chaleur',
   mainImage = '/Photos%20HD/Visuels%20Technique/Technique%20-%20PAC/heat-pump-airwater-technology-home.webp',
-  overlayHeadline = "Profitez d\u2019un confort thermique optimal gr\u00e2ce \u00e0 l\u2019entretien r\u00e9gulier de votre pompe \u00e0 chaleur",
+  overlayHeadline = '',
   contractFeatures = defaultContractFeatures,
   discountBoxes = defaultDiscountBoxes,
-  disclaimer = "Contrats d'une durée d'engagement de 4 ans. Les pièces de rechange sont à la totale charge du client. Les contrats d'entretien sont résiliables sous conditions en période de contrat selon les conditions générales de vente applicables ; et avec un préavis écrit de trois mois avant le prochain renouvellement de contrat de 4 ans. Sans cette résiliation, le contrat est automatiquement prolongé pour une période 4 années supplémentaires. Tous les prix s'entendent TVA comprise.",
-  whyTitle = 'Pourquoi dois-je entretenir régulièrement ma pompe à chaleur ?',
-  whyIntro = "L'entretien régulier de votre pompe à chaleur est indispensable pour garantir son efficacité et prolonger sa durée de vie. Un entretien régulier permet :",
+  disclaimer = '',
+  whyTitle = '',
+  whyIntro = '',
   whyBullets = defaultWhyBullets,
   detailImages = [
     '/Photos%20HD/Visuels%20Technique/Technique%20-%20PAC/side-view-man-working-construction-site.webp',
     '/Photos%20HD/Visuels%20Technique/Technique%20-%20PAC/Heat%20pump%20AdobeStock.webp',
   ],
-  faqTitle = "Questions sur l'entretien de votre pompe à chaleur",
+  faqTitle = '',
   faqs = defaultFaqs,
   overlayHeadlineStyle,
   whyTitleStyle,
@@ -640,6 +640,7 @@ export default function PompeChaleurClient({
               </motion.div>
 
               {/* Disclaimer card */}
+              {disclaimer && (
               <motion.div
                 variants={reveal} initial="hidden" whileInView="visible"
                 viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.7, ease: 'easeOut' }}
@@ -655,6 +656,7 @@ export default function PompeChaleurClient({
                   <strong style={{ color: '#555' }}>*</strong> {disclaimer}
                 </p>
               </motion.div>
+              )}
               </>}
 
               {show('why') && <>
@@ -664,19 +666,19 @@ export default function PompeChaleurClient({
                 viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.7, ease: 'easeOut' }}
                 className="ps-why-block" style={{ background: '#f8f8f8', borderRadius: 20, padding: '32px 28px', marginBottom: 48 }}
               >
-                <h3 style={{
+                {whyTitle && <h3 style={{
                   fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
                   fontSize: 20, fontWeight: 700, color: '#000', marginBottom: 14, letterSpacing: -0.5, lineHeight: 1.3,
                   ...toCSS(whyTitleStyle),
                 }}>
                   {whyTitle}
-                </h3>
-                <p style={{
+                </h3>}
+                {whyIntro && <p style={{
                   fontFamily: "var(--font-jost), 'Jost', sans-serif",
                   fontSize: 15, color: '#444', lineHeight: '24px', marginBottom: 14,
                 }}>
                   {whyIntro}
-                </p>
+                </p>}
                 <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: 10 }}>
                   {whyBullets.map((item, i) => (
                     <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
@@ -722,7 +724,7 @@ export default function PompeChaleurClient({
               >
                 <SectionLabel text="QUESTIONS FRÉQUENTES" />
               </motion.div>
-              <motion.h3
+              {faqTitle && <motion.h3
                 variants={reveal} initial="hidden" whileInView="visible"
                 viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.7, ease: 'easeOut', delay: 0.08 }}
                 className="ps-faq-title"
@@ -734,7 +736,7 @@ export default function PompeChaleurClient({
                 }}
               >
                 {faqTitle}
-              </motion.h3>
+              </motion.h3>}
 
               {faqs.map((faq, i) => {
                 const isActive = activeIdx === i

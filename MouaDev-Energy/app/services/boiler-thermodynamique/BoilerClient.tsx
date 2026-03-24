@@ -80,20 +80,20 @@ export default function BoilerClient({
   heroBgImage = '/Photos%20HD/Visuels%20Technique/Technique%20-%20Boiler/Ajustement%20de%20re%CC%81troe%CC%81clairage.webp',
   breadcrumbLabel = 'Boiler thermodynamique',
   mainImage = '/Photos%20HD/Photos%20produits/Boiler/1.webp',
-  overlayHeadline = "Optimisez votre production d\u2019eau chaude gr\u00e2ce \u00e0 l\u2019entretien de votre boiler thermodynamique",
+  overlayHeadline = '',
   contractFeatures = defaultContractFeatures,
-  discountHeadline = 'Vous possédez plusieurs équipements différents ?',
-  discountText = "sur la 1ère année de contrat à partir de 2 contrats d'entretien souscrits !",
-  discountBadge = '10 %',
-  disclaimer = "Contrats d'une durée d'engagement de 4 ans. Les pièces de rechange sont à la totale charge du client. Les contrats d'entretien sont résiliables sous conditions en période de contrat selon les conditions générales de vente applicables ; et avec un préavis écrit de trois mois avant le prochain renouvellement de contrat de 4 ans. Sans cette résiliation, le contrat est automatiquement prolongé pour une période 4 années supplémentaires. Tous les prix s'entendent TVA comprise.",
-  whyTitle = 'Pourquoi dois-je entretenir régulièrement mon boiler thermodynamique ?',
-  whyIntro = "L'entretien régulier de votre boiler thermodynamique est essentiel pour garantir une production d'eau chaude efficace et économique. Un entretien régulier permet :",
+  discountHeadline = '',
+  discountText = '',
+  discountBadge = '',
+  disclaimer = '',
+  whyTitle = '',
+  whyIntro = '',
   whyBullets = defaultWhyBullets,
   detailImages = [
     '/Photos%20HD/Visuels%20Technique/Technique%20-%20Boiler/Boiler%20AdobeStock.webp',
     '/Photos%20HD/Photos%20produits/Boiler/4.webp',
   ],
-  faqTitle = "Questions sur l'entretien de votre boiler thermodynamique",
+  faqTitle = '',
   faqs = defaultFaqs,
   overlayHeadlineStyle,
   whyTitleStyle,
@@ -616,6 +616,7 @@ export default function BoilerClient({
 
 
               {/* Disclaimer card */}
+              {disclaimer && (
               <motion.div
                 variants={reveal} initial="hidden" whileInView="visible"
                 viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.7, ease: 'easeOut' }}
@@ -631,6 +632,7 @@ export default function BoilerClient({
                   <strong style={{ color: '#555' }}>*</strong> {disclaimer}
                 </p>
               </motion.div>
+              )}
               </>}
 
               {show('why') && <>
@@ -640,19 +642,19 @@ export default function BoilerClient({
                 viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.7, ease: 'easeOut' }}
                 className="ps-why-block" style={{ background: '#f8f8f8', borderRadius: 20, padding: '32px 28px', marginBottom: 48 }}
               >
-                <h3 style={{
+                {whyTitle && <h3 style={{
                   fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
                   fontSize: 20, fontWeight: 700, color: '#000', marginBottom: 14, letterSpacing: -0.5, lineHeight: 1.3,
                   ...toCSS(whyTitleStyle),
                 }}>
                   {whyTitle}
-                </h3>
-                <p style={{
+                </h3>}
+                {whyIntro && <p style={{
                   fontFamily: "var(--font-jost), 'Jost', sans-serif",
                   fontSize: 15, color: '#444', lineHeight: '24px', marginBottom: 14,
                 }}>
                   {whyIntro}
-                </p>
+                </p>}
                 <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: 10 }}>
                   {whyBullets.map((item, i) => (
                     <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
@@ -698,7 +700,7 @@ export default function BoilerClient({
               >
                 <SectionLabel text="QUESTIONS FRÉQUENTES" />
               </motion.div>
-              <motion.h3
+              {faqTitle && <motion.h3
                 variants={reveal} initial="hidden" whileInView="visible"
                 viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.7, ease: 'easeOut', delay: 0.08 }}
                 className="ps-faq-title"
@@ -710,7 +712,7 @@ export default function BoilerClient({
                 }}
               >
                 {faqTitle}
-              </motion.h3>
+              </motion.h3>}
 
               {faqs.map((faq, i) => {
                 const isActive = activeIdx === i

@@ -152,10 +152,10 @@ const fallbackIcons = [
 ]
 
 export default function FunFact({
-  label = "Process de l'intervention",
-  title = 'Comment se déroule une intervention avec Zen Énergie Services ?',
-  subtitle = 'Un entretien Zen, en toute simplicité !',
-  desc = "Nos experts interviennent en toute sécurité et confiance à votre domicile et répondent à toutes vos questions sur l'entretien et la maintenance de vos installations.",
+  label = '',
+  title = '',
+  subtitle = '',
+  desc = '',
   steps,
   titleStyle,
   descStyle,
@@ -181,28 +181,28 @@ export default function FunFact({
           transition={{ duration: 0.8, ease: 'easeOut' }}
           style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10, textAlign: 'center' }}
         >
-          <SectionLabel text={label} />
-          <h2 className="ff-h2" style={{
+          {label && <SectionLabel text={label} />}
+          {title && <h2 className="ff-h2" style={{
             fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
             fontSize: 48, fontWeight: 500, lineHeight: '58px', letterSpacing: -2,
             color: '#000', textAlign: 'center', maxWidth: 850, margin: 0,
             ...toCSS(titleStyle),
           }}>
             {title}
-          </h2>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 5, marginTop: 10 }}>
-            <h3 style={{
+          </h2>}
+          {(subtitle || desc) && <div style={{ display: 'flex', flexDirection: 'column', gap: 5, marginTop: 10 }}>
+            {subtitle && <h3 style={{
               fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
               fontSize: 24, fontWeight: 600, color: 'var(--color-primary-light, #50b5a2)', margin: 0
-            }}>{subtitle}</h3>
-            <p style={{
+            }}>{subtitle}</h3>}
+            {desc && <p style={{
               fontFamily: "var(--font-jost), 'Jost', sans-serif",
               fontSize: 18, lineHeight: '28px', color: '#444', maxWidth: 800, margin: '0 auto',
               ...toCSS(descStyle),
             }}>
               {desc}
-            </p>
-          </div>
+            </p>}
+          </div>}
         </motion.div>
 
         {/* Cards stack */}

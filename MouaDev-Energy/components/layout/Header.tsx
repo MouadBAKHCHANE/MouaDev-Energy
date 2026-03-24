@@ -535,9 +535,15 @@ export default function Header({ siteData }: { siteData?: SiteData }) {
                 {/* Adresse */}
                 <div>
                   <h4 style={{ fontFamily: "var(--font-space-grotesk)", fontSize: 13, fontWeight: 700, marginBottom: 3, textTransform: 'uppercase', letterSpacing: '0.04em', color: '#999' }}>Adresse</h4>
-                  <p style={{ fontFamily: "var(--font-inter)", fontSize: 13, color: '#444', lineHeight: 1.4, margin: 0 }}>
+                  <a
+                    href={`https://maps.google.com/maps?q=${encodeURIComponent(address)}`}
+                    target="_blank" rel="noopener noreferrer"
+                    style={{ fontFamily: "var(--font-inter)", fontSize: 13, color: '#444', lineHeight: 1.4, textDecoration: 'none', display: 'block', transition: 'color 0.18s ease' }}
+                    onMouseEnter={e => { e.currentTarget.style.color = 'var(--color-primary, #2a9b96)' }}
+                    onMouseLeave={e => { e.currentTarget.style.color = '#444' }}
+                  >
                     {address}
-                  </p>
+                  </a>
                 </div>
 
                 {/* Contact */}
@@ -545,13 +551,21 @@ export default function Header({ siteData }: { siteData?: SiteData }) {
                   <h4 style={{ fontFamily: "var(--font-space-grotesk)", fontSize: 13, fontWeight: 700, marginBottom: 3, textTransform: 'uppercase', letterSpacing: '0.04em', color: '#999' }}>Contact</h4>
                   <a href={`mailto:${email}`} style={{
                     fontFamily: "var(--font-inter)", fontSize: 12, color: 'var(--color-primary-light, #50b5a2)',
-                    textDecoration: 'none', fontWeight: 500, display: 'block', marginBottom: 2,
-                  }}>
+                    textDecoration: 'none', fontWeight: 500, display: 'block', marginBottom: 2, transition: 'color 0.18s ease',
+                  }}
+                    onMouseEnter={e => { e.currentTarget.style.color = 'var(--color-primary, #2a9b96)' }}
+                    onMouseLeave={e => { e.currentTarget.style.color = 'var(--color-primary-light, #50b5a2)' }}
+                  >
                     {email}
                   </a>
-                  <div style={{ fontFamily: "var(--font-inter)", fontSize: 13, color: '#444' }}>
+                  <a href={`tel:${phone.replace(/\s/g, '')}`} style={{
+                    fontFamily: "var(--font-inter)", fontSize: 13, color: '#444', textDecoration: 'none', display: 'block', transition: 'color 0.18s ease',
+                  }}
+                    onMouseEnter={e => { e.currentTarget.style.color = 'var(--color-primary, #2a9b96)' }}
+                    onMouseLeave={e => { e.currentTarget.style.color = '#444' }}
+                  >
                     {phone}
-                  </div>
+                  </a>
                 </div>
 
                 {/* Social */}
