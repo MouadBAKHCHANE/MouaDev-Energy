@@ -108,12 +108,37 @@ export default function BoilerClient({
 
   const [activeIdx, setActiveIdx] = useState(-1)
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' })
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [errorMsg, setErrorMsg] = useState('')
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setStatus('loading')
+    setErrorMsg('')
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
+
+      if (res.ok) {
+        setStatus('success')
+        setFormData({ name: '', email: '', phone: '', message: '' })
+      } else {
+        const data = await res.json()
+        setStatus('error')
+        setErrorMsg(data.error || 'Une erreur est survenue.')
+      }
+    } catch (err) {
+      console.error('Contact form error:', err)
+      setStatus('error')
+      setErrorMsg('Impossible d\'envoyer le message. Veuillez réessayer.')
+    }
   }
 
   const renderCheck = () => (
@@ -280,20 +305,31 @@ export default function BoilerClient({
                       onBlur={(e) => { e.currentTarget.style.borderColor = '#e0e0e0' }}
                     />
                   </div>
-                  <button type="submit" style={{
+                  <button type="submit" disabled={status === 'loading'} style={{
                     width: '100%', padding: '14px',
-                    borderRadius: 8, background: 'linear-gradient(135deg, #0c2a54 0%, #1a4a8a 100%)', border: 'none',
+                    borderRadius: 8, background: status === 'loading' ? '#ccc' : 'linear-gradient(135deg, #0c2a54 0%, #1a4a8a 100%)', border: 'none',
                     fontSize: 15, fontWeight: 700,
                     fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
-                    color: '#fff', cursor: 'pointer',
+                    color: '#fff', cursor: status === 'loading' ? 'not-allowed' : 'pointer',
                     transition: 'background 0.18s ease, color 0.18s ease',
                     marginTop: 4,
                   }}
-                    onMouseEnter={(e) => { e.currentTarget.style.background = '#1a4a8a'; e.currentTarget.style.color = '#000' }}
-                    onMouseLeave={(e) => { e.currentTarget.style.background = 'linear-gradient(135deg, #0c2a54 0%, #1a4a8a 100%)'; e.currentTarget.style.color = '#fff' }}
+                    onMouseEnter={(e) => { if (status !== 'loading') { e.currentTarget.style.background = '#1a4a8a'; e.currentTarget.style.color = '#000' } }}
+                    onMouseLeave={(e) => { if (status !== 'loading') { e.currentTarget.style.background = 'linear-gradient(135deg, #0c2a54 0%, #1a4a8a 100%)'; e.currentTarget.style.color = '#fff' } }}
                   >
-                    Envoyer un message
+                    {status === 'loading' ? 'Envoi en cours...' : 'Envoyer un message'}
                   </button>
+
+                  {status === 'success' && (
+                    <p style={{ marginTop: 12, color: '#2a9b96', fontSize: 13, textAlign: 'center', fontWeight: 600 }}>
+                      ✓ Votre message a été envoyé avec succès !
+                    </p>
+                  )}
+                  {status === 'error' && (
+                    <p style={{ marginTop: 12, color: '#e8552c', fontSize: 13, textAlign: 'center', fontWeight: 600 }}>
+                      ⚠ {errorMsg}
+                    </p>
+                  )}
                 </form>
               </div>
 
@@ -803,11 +839,22 @@ export default function BoilerClient({
                     style={{ ...formInputStyle, borderRadius: 10, resize: 'vertical' }}
                     onFocus={(e) => { e.currentTarget.style.borderColor = '#0c2a54' }} onBlur={(e) => { e.currentTarget.style.borderColor = '#e0e0e0' }} />
                 </div>
-                <button type="submit" style={{ width: '100%', padding: '14px', borderRadius: 8, background: 'linear-gradient(135deg, #0c2a54 0%, #1a4a8a 100%)', border: 'none', fontSize: 15, fontWeight: 700, fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif", color: '#fff', cursor: 'pointer', transition: 'background 0.18s ease, color 0.18s ease', marginTop: 4 }}
-                  onMouseEnter={(e) => { e.currentTarget.style.background = '#1a4a8a'; e.currentTarget.style.color = '#000' }}
-                  onMouseLeave={(e) => { e.currentTarget.style.background = 'linear-gradient(135deg, #0c2a54 0%, #1a4a8a 100%)'; e.currentTarget.style.color = '#fff' }}>
-                  Envoyer un message
+                <button type="submit" disabled={status === 'loading'} style={{ width: '100%', padding: '14px', borderRadius: 8, background: status === 'loading' ? '#ccc' : 'linear-gradient(135deg, #0c2a54 0%, #1a4a8a 100%)', border: 'none', fontSize: 15, fontWeight: 700, fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif", color: '#fff', cursor: status === 'loading' ? 'not-allowed' : 'pointer', transition: 'background 0.18s ease, color 0.18s ease', marginTop: 4 }}
+                  onMouseEnter={(e) => { if (status !== 'loading') { e.currentTarget.style.background = '#1a4a8a'; e.currentTarget.style.color = '#000' } }}
+                  onMouseLeave={(e) => { if (status !== 'loading') { e.currentTarget.style.background = 'linear-gradient(135deg, #0c2a54 0%, #1a4a8a 100%)'; e.currentTarget.style.color = '#fff' } }}>
+                  {status === 'loading' ? 'Envoi en cours...' : 'Envoyer un message'}
                 </button>
+
+                {status === 'success' && (
+                  <p style={{ marginTop: 12, color: '#2a9b96', fontSize: 13, textAlign: 'center', fontWeight: 600 }}>
+                    ✓ Votre message a été envoyé avec succès !
+                  </p>
+                )}
+                {status === 'error' && (
+                  <p style={{ marginTop: 12, color: '#e8552c', fontSize: 13, textAlign: 'center', fontWeight: 600 }}>
+                    ⚠ {errorMsg}
+                  </p>
+                )}
               </form>
             </div>
             <div style={{ background: 'linear-gradient(135deg, #0c2a54 0%, #1a4a8a 100%)', borderRadius: 20, padding: '28px 24px', position: 'relative', overflow: 'hidden' }}>

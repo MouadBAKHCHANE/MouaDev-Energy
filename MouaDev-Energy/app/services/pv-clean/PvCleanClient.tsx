@@ -111,12 +111,34 @@ export default function PvCleanClient({
 
   const [activeIdx, setActiveIdx] = useState(-1)
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' })
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [errorMsg, setErrorMsg] = useState('')
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setStatus('loading')
+    setErrorMsg('')
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
+      const data = await res.json()
+      if (!res.ok) {
+        setErrorMsg(data.error || 'Erreur lors de l’envoi.')
+        setStatus('error')
+      } else {
+        setStatus('success')
+        setFormData({ name: '', email: '', phone: '', message: '' })
+      }
+    } catch {
+      setErrorMsg('Erreur réseau. Veuillez réessayer.')
+      setStatus('error')
+    }
   }
 
   return (
@@ -257,20 +279,49 @@ export default function PvCleanClient({
                       onBlur={(e) => { e.currentTarget.style.borderColor = '#e0e0e0' }}
                     />
                   </div>
-                  <button type="submit" style={{
-                    width: '100%', padding: '14px',
-                    borderRadius: 8, background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)', border: 'none',
-                    fontSize: 15, fontWeight: 700,
-                    fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
-                    color: '#fff', cursor: 'pointer',
-                    transition: 'background 0.18s ease, color 0.18s ease',
-                    marginTop: 4,
-                  }}
-                    onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--color-primary-light, #50b5a2)'; e.currentTarget.style.color = '#000' }}
-                    onMouseLeave={(e) => { e.currentTarget.style.background = 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)'; e.currentTarget.style.color = '#fff' }}
-                  >
-                    Envoyer un message
-                  </button>
+                  <div>
+                    {status === 'success' && (
+                      <div style={{
+                        background: '#e6f7f5', border: '1px solid #2a9b96', borderRadius: 8,
+                        padding: '12px 14px', marginBottom: 14, color: '#2c6262', fontSize: 13, fontWeight: 600,
+                        fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
+                      }}>
+                        Message envoyé !
+                      </div>
+                    )}
+                    {status === 'error' && (
+                      <div style={{
+                        background: '#fef2f2', border: '1px solid #f87171', borderRadius: 8,
+                        padding: '12px 14px', marginBottom: 14, color: '#b91c1c', fontSize: 13, fontWeight: 500,
+                        fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
+                      }}>
+                        {errorMsg}
+                      </div>
+                    )}
+                    <button type="submit" disabled={status === 'loading'} style={{
+                      width: '100%', padding: '14px',
+                      borderRadius: 8, background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)', border: 'none',
+                      fontSize: 15, fontWeight: 700,
+                      fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
+                      color: '#fff', cursor: status === 'loading' ? 'not-allowed' : 'pointer',
+                      transition: 'background 0.18s ease, color 0.18s ease',
+                      marginTop: 4,
+                      opacity: status === 'loading' ? 0.7 : 1,
+                    }}
+                      onMouseEnter={(e) => { 
+                        if (status !== 'loading') {
+                          e.currentTarget.style.background = 'var(--color-primary-light, #50b5a2)'; 
+                          e.currentTarget.style.color = '#000' 
+                        }
+                      }}
+                      onMouseLeave={(e) => { 
+                        e.currentTarget.style.background = 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)'; 
+                        e.currentTarget.style.color = '#fff' 
+                      }}
+                    >
+                      {status === 'loading' ? 'Envoi en cours...' : 'Envoyer un message'}
+                    </button>
+                  </div>
                 </form>
               </div>
 
@@ -700,11 +751,36 @@ export default function PvCleanClient({
                     style={{ ...formInputStyle, borderRadius: 10, resize: 'vertical' }}
                     onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--color-primary-light, #50b5a2)' }} onBlur={(e) => { e.currentTarget.style.borderColor = '#e0e0e0' }} />
                 </div>
-                <button type="submit" style={{ width: '100%', padding: '14px', borderRadius: 8, background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)', border: 'none', fontSize: 15, fontWeight: 700, fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif", color: '#fff', cursor: 'pointer', transition: 'background 0.18s ease, color 0.18s ease', marginTop: 4 }}
-                  onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--color-primary-light, #50b5a2)'; e.currentTarget.style.color = '#000' }}
-                  onMouseLeave={(e) => { e.currentTarget.style.background = 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)'; e.currentTarget.style.color = '#fff' }}>
-                  Envoyer un message
-                </button>
+                <div>
+                  {status === 'success' && (
+                    <div style={{
+                      background: '#e6f7f5', border: '1px solid #2a9b96', borderRadius: 8,
+                      padding: '12px 14px', marginBottom: 14, color: '#2c6262', fontSize: 13, fontWeight: 600,
+                      fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
+                    }}>
+                      Message envoyé !
+                    </div>
+                  )}
+                  {status === 'error' && (
+                    <div style={{
+                      background: '#fef2f2', border: '1px solid #f87171', borderRadius: 8,
+                      padding: '12px 14px', marginBottom: 14, color: '#b91c1c', fontSize: 13, fontWeight: 500,
+                      fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
+                    }}>
+                      {errorMsg}
+                    </div>
+                  )}
+                  <button type="submit" disabled={status === 'loading'} style={{ width: '100%', padding: '14px', borderRadius: 8, background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)', border: 'none', fontSize: 15, fontWeight: 700, fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif", color: '#fff', cursor: status === 'loading' ? 'not-allowed' : 'pointer', transition: 'background 0.18s ease, color 0.18s ease', marginTop: 4, opacity: status === 'loading' ? 0.7 : 1 }}
+                    onMouseEnter={(e) => { 
+                      if (status !== 'loading') {
+                        e.currentTarget.style.background = 'var(--color-primary-light, #50b5a2)'; 
+                        e.currentTarget.style.color = '#000' 
+                      }
+                    }}
+                    onMouseLeave={(e) => { e.currentTarget.style.background = 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)'; e.currentTarget.style.color = '#fff' }}>
+                    {status === 'loading' ? 'Envoi en cours...' : 'Envoyer un message'}
+                  </button>
+                </div>
               </form>
             </div>
             <div style={{ background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)', borderRadius: 20, padding: '28px 24px', position: 'relative', overflow: 'hidden' }}>
