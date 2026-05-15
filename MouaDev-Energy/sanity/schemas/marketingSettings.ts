@@ -41,6 +41,13 @@ export default defineType({
       group: 'analytics',
       description: 'Le contenu de la balise meta "google-site-verification". Se trouve dans Search Console → Paramètres → Validation de la propriété.',
     }),
+    defineField({
+      name: 'facebookDomainVerification',
+      title: 'Meta (Facebook) — Code de vérification de domaine',
+      type: 'string',
+      group: 'analytics',
+      description: 'Le contenu de la balise meta "facebook-domain-verification". Se trouve dans Meta Business → Paramètres de l\'entreprise → Sécurité de la marque → Domaines.',
+    }),
 
     // ── Pixels & Ads ──
     defineField({

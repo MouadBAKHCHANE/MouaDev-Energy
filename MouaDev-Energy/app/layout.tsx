@@ -105,6 +105,7 @@ export default async function RootLayout({
           googleAnalyticsId={marketing?.googleAnalyticsId}
           googleTagManagerId={marketing?.googleTagManagerId}
           googleSearchConsoleVerification={marketing?.googleSearchConsoleVerification}
+          facebookDomainVerification={marketing?.facebookDomainVerification}
           facebookPixelId={marketing?.facebookPixelId}
           tiktokPixelId={marketing?.tiktokPixelId}
           linkedinPartnerId={marketing?.linkedinPartnerId}

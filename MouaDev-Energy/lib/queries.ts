@@ -220,6 +220,7 @@ export async function getMarketingSettings() {
       googleAnalyticsId,
       googleTagManagerId,
       googleSearchConsoleVerification,
+      facebookDomainVerification,
       facebookPixelId,
       tiktokPixelId,
       linkedinPartnerId,

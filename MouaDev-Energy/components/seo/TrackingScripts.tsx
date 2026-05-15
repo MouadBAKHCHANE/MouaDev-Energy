@@ -4,6 +4,7 @@ interface TrackingScriptsProps {
   googleAnalyticsId?: string | null
   googleTagManagerId?: string | null
   googleSearchConsoleVerification?: string | null
+  facebookDomainVerification?: string | null
   facebookPixelId?: string | null
   tiktokPixelId?: string | null
   linkedinPartnerId?: string | null
@@ -17,6 +18,7 @@ export function TrackingHead({
   googleAnalyticsId,
   googleTagManagerId,
   googleSearchConsoleVerification,
+  facebookDomainVerification,
   facebookPixelId,
   tiktokPixelId,
   linkedinPartnerId,
@@ -28,6 +30,11 @@ export function TrackingHead({
       {/* Google Search Console verification */}
       {googleSearchConsoleVerification && (
         <meta name="google-site-verification" content={googleSearchConsoleVerification} />
+      )}
+
+      {/* Meta (Facebook) domain verification */}
+      {facebookDomainVerification && (
+        <meta name="facebook-domain-verification" content={facebookDomainVerification} />
       )}
 
       {/* Google Tag Manager */}
