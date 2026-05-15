@@ -46,7 +46,15 @@ export default defineType({
       title: 'Meta (Facebook) — Code de vérification de domaine',
       type: 'string',
       group: 'analytics',
-      description: 'Le contenu de la balise meta "facebook-domain-verification". Se trouve dans Meta Business → Paramètres de l\'entreprise → Sécurité de la marque → Domaines.',
+      description: '⚠️ UNIQUEMENT le token (ex : "dze0w7jsiz66aocjj0s5ucbmnglgoa") — ne pas coller toute la balise <meta>. Se trouve dans Meta Business → Sécurité de la marque → Domaines → "content=".',
+      validation: (Rule) =>
+        Rule.custom((value) => {
+          if (!value) return true
+          if (typeof value === 'string' && /[<>"']/.test(value)) {
+            return 'Ne collez que la valeur du token (ex : "dze0w7jsiz66aocjj0s5ucbmnglgoa"), pas la balise <meta> entière.'
+          }
+          return true
+        }),
     }),
 
     // ── Pixels & Ads ──
