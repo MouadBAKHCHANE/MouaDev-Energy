@@ -10,6 +10,7 @@ import { SITE_URL, SITE_NAME } from '@/lib/seo'
 import { organizationJsonLd } from '@/lib/jsonld'
 import JsonLd from '@/components/seo/JsonLd'
 import SkipNav from '@/components/seo/SkipNav'
+import TypeformLeadPopup from '@/components/seo/TypeformLeadPopup'
 import { TrackingHead, TrackingBodyStart, TrackingBodyEnd } from '@/components/seo/TrackingScripts'
 import ThemeStyles from '@/components/seo/ThemeStyles'
 import CookieBanner from '@/components/ui/CookieBanner'
@@ -131,6 +132,7 @@ export default async function RootLayout({
         <div id="main-content">{children}</div>
         <Footer siteData={siteData} />
         <ScrollTopButton />
+        <TypeformLeadPopup />
         <TrackingBodyEnd bodyEndScripts={marketing?.bodyEndScripts} />
         {marketing?.cookieConsentEnabled && marketing?.cookieConsentMessage && (
           <CookieBanner
