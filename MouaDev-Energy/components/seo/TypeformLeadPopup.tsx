@@ -12,30 +12,34 @@ declare global {
 }
 
 /**
- * Intercepte globalement les clics vers un lien Typeform (form.typeform.com/to/<id>)
+ * Intercepte globalement les clics vers un lien Typeform (*.typeform.com/to/<id>)
  * et ouvre le formulaire en POPUP (l'utilisateur reste sur le domaine).
- * À la soumission réelle (callback onSubmit), déclenche la conversion une seule fois :
+ *
+ * IMPORTANT : on écoute en phase CAPTURE (3e arg = true) pour passer AVANT le
+ * onClick du <Link> de Next.js (sinon Next gère le clic en premier et notre
+ * handler ne s'exécute pas / la page part vers typeform.com).
+ *
+ * À la soumission réelle (callback onSubmit), conversion déclenchée UNE seule fois :
  *  - GA4   : generate_lead
  *  - Meta  : Lead   (Pixel déjà chargé sur le site)
  *  - (Google Ads futur : ajouter ici gtag('event','conversion',{ send_to:'AW-…/label' }))
- *
- * Avantage vs lien externe / page merci : on ne quitte jamais le site, donc le contexte
- * d'attribution (gclid Google, _fbc Meta) reste disponible → conversion exacte, sans sur-comptage.
  */
 export default function TypeformLeadPopup() {
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
-      // ignore les clics modifiés (ouverture volontaire dans un nouvel onglet)
-      if (e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return
+      // laisser le comportement natif pour clic milieu / cmd / ctrl (nouvel onglet voulu)
+      if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return
 
       const target = e.target as HTMLElement | null
-      const link = target?.closest('a[href*="form.typeform.com/to/"]') as HTMLAnchorElement | null
+      const link = target?.closest('a[href*="typeform.com/to/"]') as HTMLAnchorElement | null
       if (!link) return
 
-      const match = link.href.match(/form\.typeform\.com\/to\/([A-Za-z0-9]+)/)
+      const match = link.href.match(/typeform\.com\/to\/([A-Za-z0-9]+)/)
       if (!match) return
 
+      // on passe en premier (capture) → on bloque la navigation ET le handler du <Link>
       e.preventDefault()
+      e.stopPropagation()
 
       const popup = createPopup(match[1], {
         onSubmit: () => {
@@ -46,8 +50,9 @@ export default function TypeformLeadPopup() {
       popup.open()
     }
 
-    document.addEventListener('click', handleClick)
-    return () => document.removeEventListener('click', handleClick)
+    // 3e argument = true → phase CAPTURE
+    document.addEventListener('click', handleClick, true)
+    return () => document.removeEventListener('click', handleClick, true)
   }, [])
 
   return null
