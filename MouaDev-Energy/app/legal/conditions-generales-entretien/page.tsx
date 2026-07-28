@@ -1,11 +1,12 @@
 import type { Metadata } from 'next'
+import { pageTitle } from '@/lib/seo'
 import LegalPageLayout from '../LegalPageLayout'
 import { getLegalPage } from '@/lib/queries'
 
 export async function generateMetadata(): Promise<Metadata> {
   const data = await getLegalPage('cge')
   return {
-    title: data?.seoTitle || "Conditions Générales d'Entretien",
+    title: pageTitle(data?.seoTitle, "Conditions Générales d'Entretien"),
     description: data?.seoDescription || "Conditions générales d'entretien (CGE) de Zen Énergie Services. Modalités des contrats de maintenance énergétique.",
     alternates: { canonical: '/legal/conditions-generales-entretien' },
   }

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { pageTitle } from '@/lib/seo'
 import { getPompeChaleurPage } from '@/lib/queries'
 import { urlFor } from '@/lib/sanity'
 import { serviceJsonLd, breadcrumbJsonLd, faqPageJsonLd } from '@/lib/jsonld'
@@ -8,7 +9,7 @@ import PompeChaleurClient from './PompeChaleurClient'
 export async function generateMetadata(): Promise<Metadata> {
   const data = await getPompeChaleurPage()
   return {
-    title: data?.seoTitle || 'Entretien Pompe à Chaleur',
+    title: pageTitle(data?.seoTitle, 'Entretien Pompe à Chaleur'),
     description: data?.seoDescription || "Maintenance et entretien de pompes à chaleur à Genève. Contrats adaptés avec Zen Énergie Services.",
     alternates: { canonical: '/services/pompe-a-chaleur' },
   }

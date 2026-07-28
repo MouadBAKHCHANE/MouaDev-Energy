@@ -1,10 +1,11 @@
 import type { Metadata } from 'next'
+import { pageTitle } from '@/lib/seo'
 import { getAboutPage } from '@/lib/queries'
 
 export async function generateMetadata(): Promise<Metadata> {
   const data = await getAboutPage()
   return {
-    title: data?.seoTitle || 'À Propos',
+    title: pageTitle(data?.seoTitle, 'À Propos'),
     description: data?.seoDescription || "Découvrez Zen Énergie Services, votre partenaire de confiance pour la maintenance énergétique en Suisse romande depuis Plan-les-Ouates, Genève.",
     alternates: { canonical: '/about-us' },
   }

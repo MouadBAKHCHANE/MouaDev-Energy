@@ -1,11 +1,12 @@
 import type { Metadata } from 'next'
+import { pageTitle } from '@/lib/seo'
 import LegalPageLayout from '../LegalPageLayout'
 import { getLegalPage } from '@/lib/queries'
 
 export async function generateMetadata(): Promise<Metadata> {
   const data = await getLegalPage('cgv')
   return {
-    title: data?.seoTitle || 'Conditions Générales de Vente',
+    title: pageTitle(data?.seoTitle, 'Conditions Générales de Vente'),
     description: data?.seoDescription || "Conditions générales de vente (CGV) de Zen Énergie Services. Modalités de souscription et paiement.",
     alternates: { canonical: '/legal/conditions-generales-vente' },
   }

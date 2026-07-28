@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { getBlogBySlug, getAllBlogs, getAllBlogSlugs } from '@/lib/queries'
 import { urlFor } from '@/lib/sanity'
-import { SITE_NAME } from '@/lib/seo'
+import { pageTitle, SITE_NAME } from '@/lib/seo'
 import { blogPostingJsonLd, breadcrumbJsonLd } from '@/lib/jsonld'
 import JsonLd from '@/components/seo/JsonLd'
 import BlogPostClient from './BlogPostClient'
@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const ogImage = blog.coverImage ? urlFor(blog.coverImage).width(1200).height(630).url() : undefined
 
   return {
-    title: blog.seoTitle || blog.title,
+    title: pageTitle(blog.seoTitle, blog.title),
     description: blog.seoDescription || blog.excerpt || `Lisez "${blog.title}" sur le blog de ${SITE_NAME}.`,
     alternates: { canonical: `/blogs/${params.slug}` },
     openGraph: {

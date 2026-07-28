@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { pageTitle } from '@/lib/seo'
 import { getBoilerPage } from '@/lib/queries'
 import { urlFor } from '@/lib/sanity'
 import { serviceJsonLd, breadcrumbJsonLd, faqPageJsonLd } from '@/lib/jsonld'
@@ -8,7 +9,7 @@ import BoilerClient from './BoilerClient'
 export async function generateMetadata(): Promise<Metadata> {
   const data = await getBoilerPage()
   return {
-    title: data?.seoTitle || 'Entretien Boiler Thermodynamique',
+    title: pageTitle(data?.seoTitle, 'Entretien Boiler Thermodynamique'),
     description: data?.seoDescription || "Maintenance de boilers thermodynamiques en Suisse romande. Contrats d'entretien régulier avec Zen Énergie Services.",
     alternates: { canonical: '/services/boiler-thermodynamique' },
   }

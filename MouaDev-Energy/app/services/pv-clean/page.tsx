@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { pageTitle } from '@/lib/seo'
 import { getPvCleanPage } from '@/lib/queries'
 import { urlFor } from '@/lib/sanity'
 import { serviceJsonLd, breadcrumbJsonLd, faqPageJsonLd } from '@/lib/jsonld'
@@ -8,7 +9,7 @@ import PvCleanClient from './PvCleanClient'
 export async function generateMetadata(): Promise<Metadata> {
   const data = await getPvCleanPage()
   return {
-    title: data?.seoTitle || 'PV Clean — Nettoyage Panneaux Solaires',
+    title: pageTitle(data?.seoTitle, 'PV Clean — Nettoyage Panneaux Solaires'),
     description: data?.seoDescription || "Service de nettoyage professionnel de panneaux solaires. À partir de CHF 392 pour 8 panneaux. Devis gratuit.",
     alternates: { canonical: '/services/pv-clean' },
   }

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { pageTitle } from '@/lib/seo'
 import { getPanneauxSolairesPage } from '@/lib/queries'
 import { urlFor } from '@/lib/sanity'
 import { serviceJsonLd, breadcrumbJsonLd, faqPageJsonLd } from '@/lib/jsonld'
@@ -8,7 +9,7 @@ import PanneauxSolairesClient from './PanneauxSolairesClient'
 export async function generateMetadata(): Promise<Metadata> {
   const data = await getPanneauxSolairesPage()
   return {
-    title: data?.seoTitle || 'Entretien Panneaux Solaires',
+    title: pageTitle(data?.seoTitle, 'Entretien Panneaux Solaires'),
     description: data?.seoDescription || "Contrats de maintenance pour panneaux solaires en Suisse romande. Formules Zen Accès, Zen Équilibre et Zen Plus.",
     alternates: { canonical: '/services/panneaux-solaires' },
   }

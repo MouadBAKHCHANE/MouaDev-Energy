@@ -1,11 +1,12 @@
 import type { Metadata } from 'next'
+import { pageTitle } from '@/lib/seo'
 import LegalPageLayout from '../LegalPageLayout'
 import { getLegalPage } from '@/lib/queries'
 
 export async function generateMetadata(): Promise<Metadata> {
   const data = await getLegalPage('cgu')
   return {
-    title: data?.seoTitle || "Conditions Générales d'Utilisation",
+    title: pageTitle(data?.seoTitle, "Conditions Générales d'Utilisation"),
     description: data?.seoDescription || "Conditions générales d'utilisation (CGU) du site zen-energieservices.ch. Règles d'accès et d'utilisation.",
     alternates: { canonical: '/legal/conditions-generales-utilisation' },
   }

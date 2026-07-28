@@ -1,11 +1,12 @@
 import type { Metadata } from 'next'
+import { pageTitle } from '@/lib/seo'
 import LegalPageLayout from '../LegalPageLayout'
 import { getLegalPage } from '@/lib/queries'
 
 export async function generateMetadata(): Promise<Metadata> {
   const data = await getLegalPage('confidentialite')
   return {
-    title: data?.seoTitle || 'Politique de Confidentialité et Cookies',
+    title: pageTitle(data?.seoTitle, 'Politique de Confidentialité et Cookies'),
     description: data?.seoDescription || "Politique de confidentialité et gestion des cookies de Zen Énergie Services. Protection de vos données personnelles.",
     alternates: { canonical: '/legal/politique-confidentialite-cookies' },
   }
