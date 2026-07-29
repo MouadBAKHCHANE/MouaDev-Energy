@@ -26,8 +26,30 @@
   box-sizing: border-box;
 }
 
+/*
+ * Pas de `scroll-behavior: smooth` global : le navigateur applique alors une
+ * durée d'animation quasi fixe quelle que soit la distance, ce qui rend les
+ * sauts d'ancre et les retours en haut de page brutalement rapides sur une
+ * page longue. Le défilement animé est géré au cas par cas, avec une durée
+ * proportionnelle à la distance (voir components/ui/ScrollTopButton.tsx).
+ */
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
+}
+
+/* Décale les ancres sous le header fixe */
+html {
+  scroll-padding-top: 100px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 body {
