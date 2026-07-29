@@ -82,7 +82,7 @@ export default function Marquee({
             display: 'flex',
             alignItems: 'center',
             gap: 32,
-            animation: 'mqReverse 30s linear infinite',
+            animation: 'mqReverse 75s linear infinite',
             whiteSpace: 'nowrap',
           }}
         >
@@ -144,7 +144,7 @@ export default function Marquee({
               display: 'flex',
               alignItems: 'center',
               gap: 30,
-              animation: 'mq 30s linear infinite',
+              animation: 'mq 75s linear infinite',
               whiteSpace: 'nowrap',
             }}
           >

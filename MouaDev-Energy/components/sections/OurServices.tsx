@@ -132,7 +132,7 @@ export default function OurServices({
         lockRef.current = true
         setActive(i => i + 1)
       }
-    }, 4000)
+    }, 7000)
   }, [])
 
   const pauseAutoPlay = useCallback(() => {
