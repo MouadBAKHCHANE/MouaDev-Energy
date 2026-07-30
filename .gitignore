@@ -10,3 +10,5 @@ out/
 
 # Claude settings
 .claude/
+.vercel
+.env*
