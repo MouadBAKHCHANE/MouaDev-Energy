@@ -879,7 +879,7 @@ export default function BoilerClient({
         </div>
       </section>
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         .ps-layout {
           display: flex;
           gap: 60px;
@@ -1106,7 +1106,7 @@ export default function BoilerClient({
             gap: 8px;
           }
         }
-      `}</style>
+      ` }} />
     </main>
   )
 }

@@ -903,7 +903,7 @@ export default function PompeChaleurClient({
         </div>
       </section>
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         .ps-layout {
           display: flex;
           gap: 60px;
@@ -1135,7 +1135,7 @@ export default function PompeChaleurClient({
             gap: 8px;
           }
         }
-      `}</style>
+      ` }} />
     </main>
   )
 }

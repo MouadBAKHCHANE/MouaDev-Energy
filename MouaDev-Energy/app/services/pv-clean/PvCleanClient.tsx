@@ -805,7 +805,7 @@ export default function PvCleanClient({
         </div>
       </section>
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         .ps-layout {
           display: flex;
           gap: 60px;
@@ -920,7 +920,7 @@ export default function PvCleanClient({
             margin-bottom: 20px !important;
           }
         }
-      `}</style>
+      ` }} />
     </main>
   )
 }

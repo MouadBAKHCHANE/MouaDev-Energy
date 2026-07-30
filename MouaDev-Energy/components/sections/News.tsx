@@ -125,7 +125,7 @@ export default function News({
         </motion.div>
       </div>
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         .news-read-more {
           display: inline-flex;
           align-items: center;
@@ -164,7 +164,7 @@ export default function News({
         .news-card:hover h3 {
           color: var(--color-primary-light, #50b5a2) !important;
         }
-      `}</style>
+      ` }} />
     </section>
   )
 }

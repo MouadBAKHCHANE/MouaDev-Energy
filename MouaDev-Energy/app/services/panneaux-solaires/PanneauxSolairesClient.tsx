@@ -1066,7 +1066,7 @@ export default function PanneauxSolairesClient({
         </div>
       </section>
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         .ps-layout {
           display: flex;
           gap: 60px;
@@ -1305,7 +1305,7 @@ export default function PanneauxSolairesClient({
             gap: 8px;
           }
         }
-      `}</style>
+      ` }} />
     </main>
   )
 }
