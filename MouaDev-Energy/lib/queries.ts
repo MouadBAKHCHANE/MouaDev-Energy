@@ -151,7 +151,12 @@ export async function getPompeChaleurPage() {
 
 export async function getBoilerPage() {
   return client.fetch(
-    `*[_type == "boilerPage"][0] { ${servicePageFields} }`
+    `*[_type == "boilerPage"][0] {
+      ${servicePageFields},
+      procedureTitle, procedureTitleStyle, procedureIntro, procedureNote,
+      procedureFacts[]{ value, label },
+      procedureSteps[]{ title, items }
+    }`
   )
 }
 

@@ -63,6 +63,11 @@ interface BoilerClientProps {
   discountText?: string
   discountBadge?: string
   disclaimer?: string
+  procedureTitle?: string
+  procedureIntro?: string
+  procedureFacts?: { value: string; label: string }[]
+  procedureSteps?: { title: string; items?: string[] }[]
+  procedureNote?: string
   whyTitle?: string
   whyIntro?: string
   whyBullets?: string[]
@@ -70,6 +75,7 @@ interface BoilerClientProps {
   faqTitle?: string
   faqs?: { q: string; a: string }[]
   overlayHeadlineStyle?: TextStyle
+  procedureTitleStyle?: TextStyle
   whyTitleStyle?: TextStyle
   faqTitleStyle?: TextStyle
   sectionOrder?: { sectionId: string; enabled?: boolean }[]
@@ -95,7 +101,13 @@ export default function BoilerClient({
   ],
   faqTitle = '',
   faqs = defaultFaqs,
+  procedureTitle = '',
+  procedureIntro = '',
+  procedureFacts = [],
+  procedureSteps = [],
+  procedureNote = '',
   overlayHeadlineStyle,
+  procedureTitleStyle,
   whyTitleStyle,
   faqTitleStyle,
   sectionOrder,
@@ -671,6 +683,66 @@ export default function BoilerClient({
               )}
               </>}
 
+              {show('procedure') && procedureSteps.length > 0 && (
+              <motion.section
+                variants={reveal} initial="hidden" whileInView="visible"
+                viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.7, ease: 'easeOut' }}
+                style={{ marginBottom: 48 }}
+              >
+                {procedureTitle && <h2 style={{
+                  fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
+                  fontSize: 26, fontWeight: 700, color: '#000', marginBottom: 14,
+                  letterSpacing: -0.5, lineHeight: 1.25,
+                  ...toCSS(procedureTitleStyle),
+                }}>
+                  {procedureTitle}
+                </h2>}
+
+                {procedureIntro && <p style={{
+                  fontFamily: "var(--font-jost), 'Jost', sans-serif",
+                  fontSize: 15, color: '#444', lineHeight: '25px', marginBottom: 24,
+                }}>
+                  {procedureIntro}
+                </p>}
+
+                {procedureFacts.length > 0 && (
+                  <div className="ps-proc-facts" style={{ marginBottom: 28 }}>
+                    {procedureFacts.map((f, i) => (
+                      <div key={i} className="ps-proc-fact">
+                        <span className="ps-proc-fact-value">{f.value}</span>
+                        <span className="ps-proc-fact-label">{f.label}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                <ol className="ps-proc-list">
+                  {procedureSteps.map((step, i) => (
+                    <li key={i} className="ps-proc-step">
+                      <div className="ps-proc-step-head">
+                        <span className="ps-proc-num" aria-hidden="true">{i + 1}</span>
+                        <h3 className="ps-proc-step-title">{step.title}</h3>
+                      </div>
+                      {step.items && step.items.length > 0 && (
+                        <ul className="ps-proc-items">
+                          {step.items.map((it, j) => (
+                            <li key={j}>{it}</li>
+                          ))}
+                        </ul>
+                      )}
+                    </li>
+                  ))}
+                </ol>
+
+                {procedureNote && <p style={{
+                  fontFamily: "var(--font-jost), 'Jost', sans-serif",
+                  fontSize: 13, color: '#777', lineHeight: '21px', marginTop: 18, fontStyle: 'italic',
+                }}>
+                  {procedureNote}
+                </p>}
+              </motion.section>
+              )}
+
               {show('why') && <>
               {/* Why maintain section */}
               <motion.div
@@ -678,13 +750,13 @@ export default function BoilerClient({
                 viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.7, ease: 'easeOut' }}
                 className="ps-why-block" style={{ background: '#f8f8f8', borderRadius: 20, padding: '32px 28px', marginBottom: 48 }}
               >
-                {whyTitle && <h3 style={{
+                {whyTitle && <h2 style={{
                   fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
                   fontSize: 20, fontWeight: 700, color: '#000', marginBottom: 14, letterSpacing: -0.5, lineHeight: 1.3,
                   ...toCSS(whyTitleStyle),
                 }}>
                   {whyTitle}
-                </h3>}
+                </h2>}
                 {whyIntro && <p style={{
                   fontFamily: "var(--font-jost), 'Jost', sans-serif",
                   fontSize: 15, color: '#444', lineHeight: '24px', marginBottom: 14,
@@ -736,7 +808,7 @@ export default function BoilerClient({
               >
                 <SectionLabel text="QUESTIONS FRÉQUENTES" />
               </motion.div>
-              {faqTitle && <motion.h3
+              {faqTitle && <motion.h2
                 variants={reveal} initial="hidden" whileInView="visible"
                 viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.7, ease: 'easeOut', delay: 0.08 }}
                 className="ps-faq-title"
@@ -748,7 +820,7 @@ export default function BoilerClient({
                 }}
               >
                 {faqTitle}
-              </motion.h3>}
+              </motion.h2>}
 
               {faqs.map((faq, i) => {
                 const isActive = activeIdx === i
@@ -1028,6 +1100,95 @@ export default function BoilerClient({
             margin-bottom: 20px !important;
           }
         }
+        /* ── Déroulé de l'intervention ── */
+        .ps-proc-facts {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+          gap: 12px;
+        }
+        .ps-proc-fact {
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+          padding: 14px 16px;
+          border-radius: 14px;
+          background: #e7ecf3;
+          border-left: 3px solid #0c2a54;
+        }
+        .ps-proc-fact-value {
+          font-family: var(--font-space-grotesk), "Space Grotesk", sans-serif;
+          font-size: 20px;
+          font-weight: 700;
+          color: #0c2a54;
+          line-height: 1.2;
+        }
+        .ps-proc-fact-label {
+          font-family: var(--font-jost), "Jost", sans-serif;
+          font-size: 13px;
+          color: #666;
+          line-height: 1.35;
+        }
+        .ps-proc-list {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+        }
+        .ps-proc-step {
+          padding: 20px 22px;
+          border-radius: 16px;
+          background: #fff;
+          border: 1px solid #ebebeb;
+        }
+        .ps-proc-step-head {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          margin-bottom: 12px;
+        }
+        .ps-proc-num {
+          flex-shrink: 0;
+          width: 28px;
+          height: 28px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: #0c2a54;
+          color: #fff;
+          font-family: var(--font-space-grotesk), "Space Grotesk", sans-serif;
+          font-size: 14px;
+          font-weight: 700;
+        }
+        .ps-proc-step-title {
+          margin: 0;
+          font-family: var(--font-space-grotesk), "Space Grotesk", sans-serif;
+          font-size: 17px;
+          font-weight: 700;
+          color: #000;
+          line-height: 1.3;
+          letter-spacing: -0.3px;
+        }
+        .ps-proc-items {
+          margin: 0;
+          padding-left: 40px;
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+          gap: 6px 24px;
+        }
+        .ps-proc-items li {
+          font-family: var(--font-jost), "Jost", sans-serif;
+          font-size: 14px;
+          color: #444;
+          line-height: 22px;
+        }
+        @media (max-width: 640px) {
+          .ps-proc-step { padding: 16px 16px; }
+          .ps-proc-items { padding-left: 0; grid-template-columns: 1fr; }
+        }
+
         .ps-tbl-desktop { display: block; }
         .ps-tbl-mobile { display: none; }
         @media (max-width: 640px) {
