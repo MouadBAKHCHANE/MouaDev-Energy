@@ -42,6 +42,12 @@ export default async function PvCleanPage() {
         offerLabel={v(data?.offerLabel)}
         offerFeatures={v(data?.offerFeatures)}
         offerDisclaimer={v(data?.offerDisclaimer)}
+        procedureTitle={v(data?.procedureTitle)}
+        procedureTitleStyle={v(data?.procedureTitleStyle)}
+        procedureIntro={v(data?.procedureIntro)}
+        procedureFacts={v(data?.procedureFacts)}
+        procedureSteps={v(data?.procedureSteps)}
+        procedureNote={v(data?.procedureNote)}
         whyTitle={v(data?.whyTitle)}
         whyIntro={v(data?.whyIntro)}
         whyBullets={v(data?.whyBullets)}

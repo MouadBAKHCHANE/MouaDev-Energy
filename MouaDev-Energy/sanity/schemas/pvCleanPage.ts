@@ -11,6 +11,7 @@ export default defineType({
     { name: 'hero', title: 'Hero' },
     { name: 'content', title: 'Contenu principal' },
     { name: 'offer', title: 'Offre PV Clean' },
+    { name: 'procedure', title: 'Méthode et matériel' },
     { name: 'why', title: 'Pourquoi nettoyer' },
     { name: 'faq', title: 'FAQ' },
   ],
@@ -19,6 +20,7 @@ export default defineType({
       { title: 'Hero', value: 'hero' },
       { title: 'Contenu principal', value: 'content' },
       { title: 'Offre PV Clean', value: 'offer' },
+      { title: 'Méthode et matériel', value: 'procedure' },
       { title: 'Pourquoi nettoyer', value: 'why' },
       { title: 'FAQ', value: 'faq' },
     ]),
@@ -46,6 +48,47 @@ export default defineType({
     defineField({ name: 'offerLabel', title: 'Label liste', type: 'string', group: 'offer' }),
     defineField({ name: 'offerFeatures', title: 'Points offre', type: 'array', of: [{ type: 'string' }], group: 'offer' }),
     defineField({ name: 'offerDisclaimer', title: 'Mention offre', type: 'string', group: 'offer' }),
+
+    // ── Méthode et matériel ──
+    defineField({ name: 'procedureTitle', title: 'Titre de la section', type: 'string', group: 'procedure' }),
+    defineField({ name: 'procedureTitleStyle', title: 'Style du titre', type: 'textStyle', group: 'procedure' }),
+    defineField({ name: 'procedureIntro', title: 'Introduction', type: 'text', rows: 4, group: 'procedure' }),
+    defineField({
+      name: 'procedureFacts',
+      title: 'Chiffres clés',
+      description: "Affichés en encarts au-dessus des étapes (durée, fréquence, délai d'urgence…).",
+      type: 'array',
+      group: 'procedure',
+      of: [{
+        type: 'object',
+        fields: [
+          defineField({ name: 'value', title: 'Valeur', type: 'string' }),
+          defineField({ name: 'label', title: 'Libellé', type: 'string' }),
+        ],
+        preview: { select: { title: 'value', subtitle: 'label' } },
+      }],
+    }),
+    defineField({
+      name: 'procedureSteps',
+      title: 'Étapes de la prestation',
+      description: 'Chaque étape devient un sous-titre suivi de sa liste de points contrôlés.',
+      type: 'array',
+      group: 'procedure',
+      of: [{
+        type: 'object',
+        fields: [
+          defineField({ name: 'title', title: "Titre de l'étape", type: 'string' }),
+          defineField({ name: 'items', title: 'Points contrôlés', type: 'array', of: [{ type: 'string' }] }),
+        ],
+        preview: {
+          select: { title: 'title', items: 'items' },
+          prepare({ title, items }: any) {
+            return { title, subtitle: `${items?.length ?? 0} point(s)` }
+          },
+        },
+      }],
+    }),
+    defineField({ name: 'procedureNote', title: 'Note de bas de section', type: 'text', rows: 3, group: 'procedure' }),
 
     // ── Pourquoi nettoyer ──
     defineField({ name: 'whyTitle', title: 'Titre', type: 'string', group: 'why' }),

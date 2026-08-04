@@ -170,7 +170,10 @@ export async function getPvCleanPage() {
       offerImage, offerTitle, offerTitleStyle, offerSubtitle, offerLabel,
       offerFeatures, offerDisclaimer,
       whyTitle, whyTitleStyle, whyIntro, whyBullets, detailImages,
-      faqTitle, faqTitleStyle, faqs[]{ question, answer }
+      faqTitle, faqTitleStyle, faqs[]{ question, answer },
+      procedureTitle, procedureTitleStyle, procedureIntro, procedureNote,
+      procedureFacts[]{ value, label },
+      procedureSteps[]{ title, items }
     }`
   )
 }
