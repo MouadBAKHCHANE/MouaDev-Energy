@@ -138,7 +138,10 @@ export async function getPompeChaleurPage() {
   return client.fetch(
     `*[_type == "pompeChaleurPage"][0] {
       ${servicePageFields},
-      discountBoxes[]{ pct, desc, iconCount }
+      discountBoxes[]{ pct, desc, iconCount },
+      procedureTitle, procedureTitleStyle, procedureIntro, procedureNote,
+      procedureFacts[]{ value, label },
+      procedureSteps[]{ title, items }
     }`
   )
 }

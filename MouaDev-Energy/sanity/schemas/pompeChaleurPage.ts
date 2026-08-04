@@ -11,6 +11,7 @@ export default defineType({
     { name: 'hero', title: 'Hero' },
     { name: 'content', title: 'Contenu principal' },
     { name: 'contracts', title: 'Contrats & Tarifs' },
+    { name: 'procedure', title: "Déroulé de l'intervention" },
     { name: 'why', title: 'Pourquoi entretenir' },
     { name: 'faq', title: 'FAQ' },
   ],
@@ -19,6 +20,7 @@ export default defineType({
       { title: 'Hero', value: 'hero' },
       { title: 'Contenu principal', value: 'content' },
       { title: 'Contrats & Tarifs', value: 'contracts' },
+      { title: "Déroulé de l'intervention", value: 'procedure' },
       { title: 'Pourquoi entretenir', value: 'why' },
       { title: 'FAQ', value: 'faq' },
     ]),
@@ -74,6 +76,47 @@ export default defineType({
       }],
     }),
     defineField({ name: 'disclaimer', title: 'Mention légale', type: 'text', rows: 6, group: 'contracts' }),
+
+    // ── Déroulé de l'intervention ──
+    defineField({ name: 'procedureTitle', title: 'Titre de la section', type: 'string', group: 'procedure' }),
+    defineField({ name: 'procedureTitleStyle', title: 'Style du titre', type: 'textStyle', group: 'procedure' }),
+    defineField({ name: 'procedureIntro', title: 'Introduction', type: 'text', rows: 4, group: 'procedure' }),
+    defineField({
+      name: 'procedureFacts',
+      title: 'Chiffres clés',
+      description: "Affichés en encarts au-dessus des étapes (durée, fréquence, délai d'urgence…).",
+      type: 'array',
+      group: 'procedure',
+      of: [{
+        type: 'object',
+        fields: [
+          defineField({ name: 'value', title: 'Valeur', type: 'string' }),
+          defineField({ name: 'label', title: 'Libellé', type: 'string' }),
+        ],
+        preview: { select: { title: 'value', subtitle: 'label' } },
+      }],
+    }),
+    defineField({
+      name: 'procedureSteps',
+      title: "Étapes de l'intervention",
+      description: 'Chaque étape devient un sous-titre suivi de sa liste de points contrôlés.',
+      type: 'array',
+      group: 'procedure',
+      of: [{
+        type: 'object',
+        fields: [
+          defineField({ name: 'title', title: "Titre de l'étape", type: 'string' }),
+          defineField({ name: 'items', title: 'Points contrôlés', type: 'array', of: [{ type: 'string' }] }),
+        ],
+        preview: {
+          select: { title: 'title', items: 'items' },
+          prepare({ title, items }: any) {
+            return { title, subtitle: `${items?.length ?? 0} point(s)` }
+          },
+        },
+      }],
+    }),
+    defineField({ name: 'procedureNote', title: 'Note de bas de section', type: 'text', rows: 3, group: 'procedure' }),
 
     // ── Pourquoi entretenir ──
     defineField({ name: 'whyTitle', title: 'Titre', type: 'string', group: 'why' }),
