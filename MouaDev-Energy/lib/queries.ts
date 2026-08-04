@@ -129,7 +129,10 @@ export async function getPanneauxSolairesPage() {
     `*[_type == "panneauxSolairesPage"][0] {
       ${servicePageFields},
       pvCleanTitle, pvCleanTitleStyle, pvCleanIntro, pvCleanImage,
-      pvCleanFeatures, pvCleanDisclaimer
+      pvCleanFeatures, pvCleanDisclaimer,
+      procedureTitle, procedureTitleStyle, procedureIntro, procedureNote,
+      procedureFacts[]{ value, label },
+      procedureSteps[]{ title, items }
     }`
   )
 }
