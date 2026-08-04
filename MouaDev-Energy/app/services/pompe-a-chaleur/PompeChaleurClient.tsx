@@ -1141,14 +1141,14 @@ export default function PompeChaleurClient({
           gap: 2px;
           padding: 14px 16px;
           border-radius: 14px;
-          background: #f8f8f8;
-          border-left: 3px solid var(--color-primary, #2A9B96);
+          background: #fdeee9;
+          border-left: 3px solid #e8552c;
         }
         .ps-proc-fact-value {
           font-family: var(--font-space-grotesk), "Space Grotesk", sans-serif;
           font-size: 20px;
           font-weight: 700;
-          color: var(--color-primary-dark, #2c6262);
+          color: #C94010;
           line-height: 1.2;
         }
         .ps-proc-fact-label {
@@ -1185,7 +1185,7 @@ export default function PompeChaleurClient({
           display: flex;
           align-items: center;
           justify-content: center;
-          background: var(--color-primary, #2A9B96);
+          background: #e8552c;
           color: #fff;
           font-family: var(--font-space-grotesk), "Space Grotesk", sans-serif;
           font-size: 14px;
