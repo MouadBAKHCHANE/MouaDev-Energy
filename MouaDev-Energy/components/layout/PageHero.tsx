@@ -39,11 +39,11 @@ export default function PageHero({ crumbs, title, bgImage, compact = false, titl
       className="page-hero-section"
       style={{
         position: 'relative',
-        minHeight: compact ? 'clamp(240px, 30vh, 380px)' : 'clamp(300px, 40vh, 480px)',
+        minHeight: compact ? 'clamp(280px, 34vh, 420px)' : 'clamp(360px, 48vh, 560px)',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-end',
-        padding: compact ? 'clamp(80px, 10vw, 110px) 20px clamp(20px, 4vw, 40px)' : 'clamp(90px, 12vw, 140px) 20px clamp(30px, 5vw, 60px)',
+        padding: compact ? 'clamp(90px, 11vw, 120px) 20px clamp(26px, 4vw, 48px)' : 'clamp(110px, 13vw, 160px) 20px clamp(40px, 6vw, 80px)',
         background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)',
         overflow: 'hidden',
       }}

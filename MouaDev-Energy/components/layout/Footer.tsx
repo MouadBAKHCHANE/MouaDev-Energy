@@ -193,24 +193,33 @@ export default function Footer({ siteData }: { siteData?: SiteData }) {
             </ul>
           </div>
 
-          {/* Col 3: Contact Information */}
+          {/* Col 3: Services */}
           <div>
-            <h4 style={{ fontFamily: "var(--font-barlow)", fontSize: 18, fontWeight: 600, marginBottom: 15 }}>Contact</h4>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+            <h4 style={{ fontFamily: "var(--font-barlow)", fontSize: 18, fontWeight: 600, marginBottom: 15 }}>Nos Services</h4>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
               {[
-                { icon: <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0zm-9 3a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />, text: address, href: `https://maps.google.com/maps?q=${encodeURIComponent(address)}`, target: '_blank' },
-                { icon: <path d="M4 19a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4z M22 7l-10 7L2 7" />, text: email, href: `mailto:${email}`, target: undefined },
-                { icon: <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />, text: phone, href: `tel:${phone.replace(/\s/g, '')}`, target: undefined },
-              ].map((item, i) => (
-                <a key={i} href={item.href} target={item.target} rel={item.target === '_blank' ? 'noopener noreferrer' : undefined}
-                  style={{ display: 'flex', alignItems: 'flex-start', gap: 10, textDecoration: 'none' }}>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginTop: 4, stroke: brandGreen, flexShrink: 0 }}>
-                    {item.icon}
-                  </svg>
-                  <span style={{ fontFamily: "var(--font-inter)", fontSize: 15, color: 'rgba(255, 255, 255, 0.88)', lineHeight: 1.3 }}>{item.text}</span>
-                </a>
+                { text: 'Entretien panneaux solaires', href: '/services/panneaux-solaires' },
+                { text: 'Entretien pompe à chaleur', href: '/services/pompe-a-chaleur' },
+                { text: 'Entretien boiler thermodynamique', href: '/services/boiler-thermodynamique' },
+                { text: 'PV Clean — Nettoyage solaire', href: '/services/pv-clean' },
+                { text: "Tous nos contrats d'entretien", href: '/services' },
+              ].map((link) => (
+                <li key={link.href} style={{ marginBottom: 8 }}>
+                  <Link href={link.href} style={{
+                    fontFamily: "var(--font-inter)",
+                    fontSize: 15,
+                    color: 'rgba(255, 255, 255, 0.88)',
+                    textDecoration: 'none',
+                    transition: 'color 0.2s'
+                  }}
+                    onMouseEnter={(e) => e.currentTarget.style.color = '#000'}
+                    onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255, 255, 255, 0.88)'}
+                  >
+                    {link.text}
+                  </Link>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
 
           {/* Col 4: Newsletter */}

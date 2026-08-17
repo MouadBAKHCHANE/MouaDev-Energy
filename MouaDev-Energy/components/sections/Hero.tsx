@@ -35,8 +35,8 @@ export default function Hero({
   bgImage,
   cta = 'Explorer maintenant',
   ctaLink = '/services',
-  reviewCount = '100+ avis',
-  rating = '4.96 sur 5',
+  reviewCount = '',
+  rating = '5 sur 5',
   tickerText = 'Ma maison, Mon confort.',
   titleStyle,
   subtitleStyle,
@@ -171,13 +171,19 @@ export default function Hero({
                     />
                   ))}
                 </div>
-                <div style={{
-                  fontFamily: "var(--font-inter), 'Inter', sans-serif",
-                  fontSize: 12, fontWeight: 500, color: '#fff', lineHeight: 1.3, textAlign: 'center',
-                }}>
-                  <strong style={{ display: 'block', fontSize: 13, fontWeight: 600 }}>{reviewCount}</strong>
-                  <span style={{ color: 'var(--color-primary-light, #50b5a2)', fontSize: 12 }}>{rating}</span>
-                </div>
+                <a
+                  href="https://maps.app.goo.gl/UKeKJtM1KNF2HnaJ7"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Voir nos avis Google"
+                  style={{
+                    fontFamily: "var(--font-inter), 'Inter', sans-serif",
+                    fontSize: 13, fontWeight: 700, lineHeight: 1.3, textAlign: 'center',
+                    color: 'var(--color-primary-light, #50b5a2)', textDecoration: 'none',
+                  }}
+                >
+                  {rating} ★
+                </a>
               </div>
             </motion.div>
 
@@ -286,13 +292,19 @@ export default function Hero({
                   />
                 ))}
               </div>
-              <div style={{
-                fontFamily: "var(--font-inter), 'Inter', sans-serif",
-                fontSize: 13, fontWeight: 500, color: '#fff', lineHeight: 1.4,
-              }}>
-                <strong style={{ display: 'block', fontSize: 14, fontWeight: 700 }}>{reviewCount}</strong>
-                <span style={{ color: 'var(--color-primary-light, #50b5a2)' }}>{rating} ★</span>
-              </div>
+              <a
+                href="https://maps.app.goo.gl/UKeKJtM1KNF2HnaJ7"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Voir nos avis Google"
+                style={{
+                  fontFamily: "var(--font-inter), 'Inter', sans-serif",
+                  fontSize: 15, fontWeight: 700, lineHeight: 1.4,
+                  color: 'var(--color-primary-light, #50b5a2)', textDecoration: 'none',
+                }}
+              >
+                {rating} ★
+              </a>
             </motion.div>
           </div>
         </div>

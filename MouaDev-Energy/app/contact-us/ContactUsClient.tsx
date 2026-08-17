@@ -38,7 +38,7 @@ export default function ContactUsClient({
   address = 'Chemin du Pré-Fleuri 1-3, 1228 Plan-les-Ouates, Genève',
   email = 'contact@zen-energieservices.ch',
   phone = '+41 21 512 05 74',
-  googleMapUrl = 'https://maps.google.com/maps?q=46.167925,6.106813&output=embed&z=17',
+  googleMapUrl = 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d88390.22443205377!2d6.1386482!3d46.1866878!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478c7b159ea4d829%3A0x8e6093da28a7d236!2sZen%20%C3%89nergie%20Services%20Suisse!5e0!3m2!1sen!2sch!4v1786990556734!5m2!1sen!2sch',
   heroTitleStyle,
   sectionTitleStyle,
   formTitleStyle,
@@ -304,9 +304,9 @@ export default function ContactUsClient({
 
       {/* ── Map ── */}
       {show('contactForm') && (
-        <section style={{ background: '#fff', paddingBottom: 80 }}>
+        <section style={{ background: '#fff' }}>
           <iframe
-            src={googleMapUrl.includes('output=embed') ? googleMapUrl : `${googleMapUrl}${googleMapUrl.includes('?') ? '&' : '?'}output=embed`}
+            src={googleMapUrl.includes('output=embed') || googleMapUrl.includes('/maps/embed') ? googleMapUrl : `${googleMapUrl}${googleMapUrl.includes('?') ? '&' : '?'}output=embed`}
             width="100%"
             height="480"
             className="contact-map"
