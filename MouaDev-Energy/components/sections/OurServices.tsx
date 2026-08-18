@@ -76,7 +76,7 @@ export default function OurServices({
 
   const slides = (cards && cards.length > 0)
     ? cards.map((card, i) => ({
-        img: card.image?.asset ? urlFor(card.image).width(900).url() : '',
+        img: card.image?.asset ? urlFor(card.image).width(1920).quality(90).url() : '',
         name: card.title || '',
         icon: card.icon?.asset ? urlFor(card.icon).url() : '',
         href: card.link || '/',
