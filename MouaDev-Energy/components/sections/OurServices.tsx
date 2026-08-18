@@ -243,7 +243,7 @@ export default function OurServices({
                     <Image src={slide.img} alt={slide.name}
                       fill
                       quality={95}
-                      sizes="(max-width: 640px) 100vw, (max-width: 1200px) 50vw, 450px"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1200px) 70vw, 1000px"
                       style={{ objectFit: 'cover', objectPosition: 'center center', opacity: 0.9 }}
                     />
                   </motion.div>
