@@ -33,7 +33,7 @@ const defaultPlans = [
   },
   {
     name: 'BOILER THERMODYNAMIQUE', price: 'À partir de CHF 140.- / an !',
-    btnColor: '#0a6363',
+    btnColor: '#0e254a',
     image: '/Photos%20HD/Visuels%20Technique/Technique%20-%20Boiler/zen-05.webp',
     bgPos: 'center 50%',
     ctaText: 'Demander un Devis',
@@ -41,7 +41,7 @@ const defaultPlans = [
   },
   {
     name: 'NETTOYAGE DES PANNEAUX PHOTOVOLTAÏQUES', price: '49 CHF',
-    btnColor: '#0e254a',
+    btnColor: '#0a6363',
     image: '/Photos%20HD/Visuels%20Technique/Technique%20-%20PV/Ouvrier%20et%20panneaux%20solaires.webp',
     bgPos: 'center 40%',
     ctaText: 'Demander un Devis',
@@ -49,7 +49,7 @@ const defaultPlans = [
   },
 ]
 
-const btnColors = ['#09b8a0', '#f26422', '#0a6363', '#0e254a']
+const btnColors = ['#09b8a0', '#f26422', '#0e254a', '#0a6363']
 
 interface PricingProps {
   label?: string
