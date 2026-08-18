@@ -99,7 +99,7 @@ export const services: Service[] = [
   },
   {
     slug: 'pv-clean',
-    title: 'PV Clean — Nettoyage panneaux solaires',
+    title: 'PV Clean | Nettoyage panneaux solaires',
     shortDesc: 'Service de nettoyage professionnel ponctuel pour redonner à vos panneaux solaires leur pleine capacité de production.',
     intro: 'Un panneau propre est un panneau performant. Notre service PV Clean élimine toutes les impuretés qui réduisent votre production d\'énergie solaire.',
     body: [

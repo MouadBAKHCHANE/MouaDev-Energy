@@ -16,7 +16,7 @@ const sidebarServices = [
   { label: 'Panneaux solaires', href: '/services/panneaux-solaires', icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-18.webp', accent: 'var(--color-primary, #2a9b96)' },
   { label: 'Pompe à chaleur', href: '/services/pompe-a-chaleur', icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-20.webp', accent: '#e8552c' },
   { label: 'Boiler thermodynamique', href: '/services/boiler-thermodynamique', icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-15.webp', accent: '#0c2a54' },
-  { label: 'PV Clean — Nettoyage', href: '/services/pv-clean', icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-23.webp', accent: 'var(--color-primary, #2a9b96)' },
+  { label: 'PV Clean | Nettoyage', href: '/services/pv-clean', icon: '/icons/CHARTEGRAPHIQUENAOSERVICE-23.webp', accent: 'var(--color-primary, #2a9b96)' },
 ]
 
 const defaultFaqs = [
@@ -83,9 +83,9 @@ interface PvCleanClientProps {
 }
 
 export default function PvCleanClient({
-  heroTitle = 'PV Clean — Nettoyage',
+  heroTitle = 'PV Clean | Nettoyage',
   heroBgImage = '/Photos%20HD/Visuels%20Technique/Nettoyage%20-%20PV/close-up-view-cleaning-solar-panels-surface.webp',
-  breadcrumbLabel = 'PV Clean — Nettoyage',
+  breadcrumbLabel = 'PV Clean | Nettoyage',
   mainImage = '/Photos%20HD/Visuels%20Technique/Nettoyage%20-%20PV/close-up-worker-cleaning-solar-panels-from-dust.webp',
   overlayHeadline = '',
   offerImage = '/Photos%20HD/Photos%20produits/Panneaux%20solaires/man-solar-technician-installing-solar-panel-outdoors.webp',

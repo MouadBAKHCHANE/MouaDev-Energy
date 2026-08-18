@@ -183,6 +183,7 @@ export default function Hero({
                   }}
                 >
                   {rating} ★
+                  <span style={{ display: 'block', fontSize: 11, fontWeight: 500, color: '#fff' }}>avis Google</span>
                 </a>
               </div>
             </motion.div>
@@ -304,6 +305,7 @@ export default function Hero({
                 }}
               >
                 {rating} ★
+                <span style={{ display: 'block', fontSize: 12, fontWeight: 500, color: '#fff' }}>avis Google</span>
               </a>
             </motion.div>
           </div>

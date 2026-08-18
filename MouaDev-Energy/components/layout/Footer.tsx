@@ -201,7 +201,7 @@ export default function Footer({ siteData }: { siteData?: SiteData }) {
                 { text: 'Entretien panneaux solaires', href: '/services/panneaux-solaires' },
                 { text: 'Entretien pompe à chaleur', href: '/services/pompe-a-chaleur' },
                 { text: 'Entretien boiler thermodynamique', href: '/services/boiler-thermodynamique' },
-                { text: 'PV Clean — Nettoyage solaire', href: '/services/pv-clean' },
+                { text: 'PV Clean | Nettoyage solaire', href: '/services/pv-clean' },
                 { text: "Tous nos contrats d'entretien", href: '/services' },
               ].map((link) => (
                 <li key={link.href} style={{ marginBottom: 8 }}>

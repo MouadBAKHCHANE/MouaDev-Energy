@@ -37,7 +37,7 @@ const defaultNavItems = [
       { label: 'Panneaux solaires', href: '/services/panneaux-solaires' },
       { label: 'Pompe à chaleur', href: '/services/pompe-a-chaleur' },
       { label: 'Boiler thermodynamique', href: '/services/boiler-thermodynamique' },
-      { label: 'PV Clean — Nettoyage', href: '/services/pv-clean' },
+      { label: 'PV Clean | Nettoyage', href: '/services/pv-clean' },
     ]
   },
   { label: 'À propos', href: '/about-us' },

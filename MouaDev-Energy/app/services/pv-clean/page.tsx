@@ -9,7 +9,7 @@ import PvCleanClient from './PvCleanClient'
 export async function generateMetadata(): Promise<Metadata> {
   const data = await getPvCleanPage()
   return {
-    title: pageTitle(data?.seoTitle, 'PV Clean — Nettoyage Panneaux Solaires'),
+    title: pageTitle(data?.seoTitle, 'PV Clean | Nettoyage Panneaux Solaires'),
     description: data?.seoDescription || "Service de nettoyage professionnel de panneaux solaires. À partir de CHF 392 pour 8 panneaux. Devis gratuit.",
     alternates: { canonical: '/services/pv-clean' },
   }
@@ -26,7 +26,7 @@ export default async function PvCleanPage() {
 
   return (
     <>
-      <JsonLd data={serviceJsonLd({ name: 'PV Clean — Nettoyage Panneaux Solaires', description: 'Service de nettoyage professionnel de panneaux solaires.', url: '/services/pv-clean' })} />
+      <JsonLd data={serviceJsonLd({ name: 'PV Clean | Nettoyage Panneaux Solaires', description: 'Service de nettoyage professionnel de panneaux solaires.', url: '/services/pv-clean' })} />
       <JsonLd data={breadcrumbJsonLd([{ name: 'Accueil', url: '/' }, { name: 'Services', url: '/services' }, { name: 'PV Clean', url: '/services/pv-clean' }])} />
       {faqs?.length ? <JsonLd data={faqPageJsonLd(faqs.map((f: any) => ({ question: f.q, answer: f.a })))} /> : null}
       <PvCleanClient
