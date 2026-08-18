@@ -114,7 +114,7 @@ export default function ContactUsClient({
               <h2 style={{
                 fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
                 fontSize: 'clamp(32px, 4vw, 50px)', fontWeight: 600, letterSpacing: -2,
-                color: '#000', marginBottom: 36, lineHeight: 1.1,
+                color: '#000', marginBottom: 34, lineHeight: 1.1,
                 ...toCSS(sectionTitleStyle),
               }}>
                 {sectionTitle}
@@ -125,8 +125,8 @@ export default function ContactUsClient({
                 href={`https://maps.google.com/maps?q=${encodeURIComponent(address)}`}
                 target="_blank" rel="noopener noreferrer"
                 style={{
-                  background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)', borderRadius: 16, padding: '28px 28px',
-                  marginBottom: 16, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 10,
+                  background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)', borderRadius: 16, padding: '20px 24px',
+                  marginBottom: 16, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 7,
                   textDecoration: 'none', cursor: 'pointer', transition: 'opacity 0.18s ease',
                 }}
                 onMouseEnter={e => { e.currentTarget.style.opacity = '0.85' }}
@@ -150,8 +150,8 @@ export default function ContactUsClient({
                 <a
                   href={`mailto:${email}`}
                   style={{
-                    background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)', borderRadius: 16, padding: '28px 22px',
-                    display: 'flex', flexDirection: 'column', gap: 10, alignItems: 'center', textAlign: 'center',
+                    background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)', borderRadius: 16, padding: '20px 20px',
+                    display: 'flex', flexDirection: 'column', gap: 7, alignItems: 'center', textAlign: 'center',
                     textDecoration: 'none', cursor: 'pointer', transition: 'opacity 0.18s ease',
                   }}
                   onMouseEnter={e => { e.currentTarget.style.opacity = '0.85' }}
@@ -173,8 +173,8 @@ export default function ContactUsClient({
                 <a
                   href={`tel:${phone.replace(/\s/g, '')}`}
                   style={{
-                    background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)', borderRadius: 16, padding: '28px 22px',
-                    display: 'flex', flexDirection: 'column', gap: 10, alignItems: 'center', textAlign: 'center',
+                    background: 'linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%)', borderRadius: 16, padding: '20px 20px',
+                    display: 'flex', flexDirection: 'column', gap: 7, alignItems: 'center', textAlign: 'center',
                     textDecoration: 'none', cursor: 'pointer', transition: 'opacity 0.18s ease',
                   }}
                   onMouseEnter={e => { e.currentTarget.style.opacity = '0.85' }}
@@ -323,9 +323,11 @@ export default function ContactUsClient({
         .contact-inner {
           display: flex;
           gap: 80px;
-          align-items: flex-start;
+          align-items: stretch;
         }
-        .contact-left { flex: 0 0 48%; }
+        .contact-left { flex: 0 0 48%; display: flex; flex-direction: column; }
+        /* Ancre les cartes info en bas de colonne, alignées avec le bas du formulaire */
+        .contact-left > a[href^="https://maps"] { margin-top: auto; }
         .contact-right { flex: 1; }
         .contact-form-grid {
           display: grid;

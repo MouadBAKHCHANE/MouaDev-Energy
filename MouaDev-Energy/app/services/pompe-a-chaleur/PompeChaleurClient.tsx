@@ -380,17 +380,17 @@ export default function PompeChaleurClient({
                   Des techniciens qualifiés interviennent dans toute la Suisse romande pour l&apos;entretien de vos installations.
                 </p>
                 <Link href="https://form.typeform.com/to/rRhOu7eb" target="_blank" style={{
-                  display: 'inline-flex', alignItems: 'center', gap: 10,
-                  background: '#fff', color: '#000',
-                  borderRadius: 8, padding: '10px 20px',
-                  fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
-                  fontSize: 14, fontWeight: 600, textDecoration: 'none',
-                  transition: 'background 0.18s ease',
+                  display: 'inline-flex', alignItems: 'center', gap: 14,
+                  background: 'var(--color-primary-light, #50b5a2)', color: '#000',
+                  borderRadius: 'var(--btn-radius, 14px)', padding: '6px 6px 6px 18px',
+                  fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
+                  fontSize: 15, fontWeight: 600, textDecoration: 'none', transition: 'all 0.18s ease',
                 }}
-                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = '#e0f5f3' }}
-                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = '#fff' }}
+                  onMouseEnter={(e) => { const a = e.currentTarget.querySelector('.card-cta-arrow') as HTMLElement; if (a) { a.style.background = '#fff'; a.style.color = '#000' } }}
+                  onMouseLeave={(e) => { const a = e.currentTarget.querySelector('.card-cta-arrow') as HTMLElement; if (a) { a.style.background = 'var(--color-primary-dark, #2c6262)'; a.style.color = '#fff' } }}
                 >
-                  Demander un Devis &rarr;
+                  Demander un Devis
+                  <span className="card-cta-arrow" style={{ width: 34, height: 34, borderRadius: 'var(--btn-radius-sm, 10px)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, background: 'var(--color-primary-dark, #2c6262)', color: '#fff', transition: 'background 0.18s ease', fontSize: 17 }}>→</span>
                 </Link>
               </div>
               </div>
@@ -964,11 +964,19 @@ export default function PompeChaleurClient({
               <p style={{ fontFamily: "var(--font-jost), 'Jost', sans-serif", fontSize: 14, color: 'rgba(255,255,255,0.75)', lineHeight: '22px', marginBottom: 20 }}>
                 Des techniciens qualifiés interviennent dans toute la Suisse romande pour l&apos;entretien de vos installations.
               </p>
-              <Link href="https://form.typeform.com/to/rRhOu7eb" target="_blank" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, background: '#fff', color: '#000', borderRadius: 8, padding: '10px 20px', fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif", fontSize: 14, fontWeight: 600, textDecoration: 'none', transition: 'background 0.18s ease' }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = '#e0f5f3' }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = '#fff' }}>
-                Demander un Devis →
-              </Link>
+              <Link href="https://form.typeform.com/to/rRhOu7eb" target="_blank" style={{
+                  display: 'inline-flex', alignItems: 'center', gap: 14,
+                  background: 'var(--color-primary-light, #50b5a2)', color: '#000',
+                  borderRadius: 'var(--btn-radius, 14px)', padding: '6px 6px 6px 18px',
+                  fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
+                  fontSize: 15, fontWeight: 600, textDecoration: 'none', transition: 'all 0.18s ease',
+                }}
+                  onMouseEnter={(e) => { const a = e.currentTarget.querySelector('.card-cta-arrow') as HTMLElement; if (a) { a.style.background = '#fff'; a.style.color = '#000' } }}
+                  onMouseLeave={(e) => { const a = e.currentTarget.querySelector('.card-cta-arrow') as HTMLElement; if (a) { a.style.background = 'var(--color-primary-dark, #2c6262)'; a.style.color = '#fff' } }}
+                >
+                  Demander un Devis
+                  <span className="card-cta-arrow" style={{ width: 34, height: 34, borderRadius: 'var(--btn-radius-sm, 10px)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, background: 'var(--color-primary-dark, #2c6262)', color: '#fff', transition: 'background 0.18s ease', fontSize: 17 }}>→</span>
+                </Link>
             </div>
           </div>
 
