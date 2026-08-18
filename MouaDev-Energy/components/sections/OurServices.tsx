@@ -67,13 +67,20 @@ export default function OurServices({
   titleStyle,
   descStyle,
 }: OurServicesProps) {
+  // Couleur d'accent propre à chaque service (nav latérale des pages services)
+  const accentByHref = (href: string) => {
+    if (href.includes('pompe-a-chaleur')) return '#e8552c'
+    if (href.includes('boiler')) return '#0c2a54'
+    return 'var(--color-primary-light, #50b5a2)'
+  }
+
   const slides = (cards && cards.length > 0)
     ? cards.map((card, i) => ({
         img: card.image?.asset ? urlFor(card.image).width(900).url() : '',
         name: card.title || '',
         icon: card.icon?.asset ? urlFor(card.icon).url() : '',
         href: card.link || '/',
-        accent: 'var(--color-primary-light, #50b5a2)',
+        accent: accentByHref(card.link || ''),
       }))
     : defaultSlides
 
