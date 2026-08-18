@@ -349,6 +349,8 @@ export default function Hero({
           }
           .hero-bg-img {
             transform: none !important;
+            /* cadre sur la droite de la photo pour garder les techniciens visibles */
+            object-position: 68% 72% !important;
           }
           .hero-h1 {
             font-size: 40px !important;
@@ -413,12 +415,12 @@ export default function Hero({
               key={i}
               style={{
                 fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
-                fontSize: 120,
+                fontSize: 88,
                 fontWeight: 700,
                 color: 'transparent',
                 WebkitTextStroke: '1px rgb(255, 255, 255)',
                 WebkitTextFillColor: 'rgba(255, 255, 255, 0)',
-                lineHeight: '120px',
+                lineHeight: '88px',
                 letterSpacing: -1,
                 whiteSpace: 'pre',
               }}
