@@ -67,7 +67,7 @@ export default function Hero({
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-end',
-        padding: '0 20px 90px',
+        padding: '0 20px 44px',
         overflow: 'hidden',
       }}
     >
@@ -82,7 +82,7 @@ export default function Hero({
           className="hero-bg-img"
           style={{
             objectFit: 'cover',
-            objectPosition: '40% center',
+            objectPosition: '40% 72%',
             transform: 'scale(1.05)',
           }}
         />
@@ -330,7 +330,7 @@ export default function Hero({
             width: 100% !important;
           }
           .hero-section {
-            padding: 0 0 90px !important;
+            padding: 0 0 44px !important;
             min-height: 100svh !important;
             justify-content: flex-end !important;
           }
