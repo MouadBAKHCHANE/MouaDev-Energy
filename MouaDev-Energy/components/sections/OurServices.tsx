@@ -215,14 +215,6 @@ export default function OurServices({
         >
           {desc}
         </motion.p>}
-        {cta && <motion.div
-          variants={reveal} initial="hidden" animate="visible"
-          transition={{ duration: 0.5, ease: 'easeOut', delay: 0.48 }}
-          style={{ display: 'flex', justifyContent: 'center', marginBottom: 50 }}
-        >
-          <Button variant="lime" label={cta} href={ctaLink} />
-        </motion.div>}
-
         {/* Desktop grid */}
         <div className="svc-grid-container">
           {slides.map((slide, i) => (
@@ -321,6 +313,15 @@ export default function OurServices({
             ))}
           </div>
         </div>
+
+        {cta && <motion.div
+          variants={reveal} initial="hidden" whileInView="visible"
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+          style={{ display: 'flex', justifyContent: 'center', marginTop: 44 }}
+        >
+          <Button variant="lime" label={cta} href={ctaLink} />
+        </motion.div>}
 
       </div>
       <style>{`

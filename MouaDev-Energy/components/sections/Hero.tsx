@@ -219,7 +219,7 @@ export default function Hero({
             >
               <Link
                 href={ctaLink}
-                className="hero-cta-link"
+                className="hero-cta-link hero-cta-desktop"
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
@@ -251,6 +251,52 @@ export default function Hero({
                 }}
               >
                 <span>{cta}</span>
+                <span
+                  className="hero-btn-arr"
+                  style={{
+                    width: 48, height: 44, borderRadius: 'var(--btn-radius-sm, 10px)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    flexShrink: 0, background: 'var(--color-primary-dark, #2c6262)', color: '#fff',
+                    transition: 'background 0.2s ease',
+                  }}
+                >
+                  <ArrowIcon direction="right" size={20} strokeColor="currentColor" />
+                </span>
+              </Link>
+              <Link
+                href="https://form.typeform.com/to/rRhOu7eb" target="_blank"
+                className="hero-cta-link hero-cta-mobile"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  borderRadius: 'var(--btn-radius, 14px)',
+                  fontFamily: "var(--font-inter), 'Inter', sans-serif",
+                  fontSize: 17,
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  transition: 'all 0.18s ease',
+                  whiteSpace: 'nowrap',
+                  background: 'var(--color-primary-light, #50b5a2)',
+                  color: '#000',
+                  padding: '8px 8px 8px 24px',
+                  gap: 24,
+                  border: 'none',
+                  textDecoration: 'none',
+                }}
+                onMouseEnter={(e) => {
+                  const arr = e.currentTarget.querySelector('.hero-btn-arr') as HTMLElement;
+                  if (arr) { arr.style.background = '#fff'; arr.style.color = '#000'; }
+                  const svg = e.currentTarget.querySelector('.hero-btn-arr svg') as SVGElement;
+                  if (svg) svg.querySelectorAll('polyline, path, line').forEach((s) => (s as SVGElement).setAttribute('stroke', '#000'));
+                }}
+                onMouseLeave={(e) => {
+                  const arr = e.currentTarget.querySelector('.hero-btn-arr') as HTMLElement;
+                  if (arr) { arr.style.background = 'var(--color-primary-dark, #2c6262)'; arr.style.color = '#fff'; }
+                  const svg = e.currentTarget.querySelector('.hero-btn-arr svg') as SVGElement;
+                  if (svg) svg.querySelectorAll('polyline, path, line').forEach((s) => (s as SVGElement).setAttribute('stroke', '#fff'));
+                }}
+              >
+                <span>Demander un Devis</span>
                 <span
                   className="hero-btn-arr"
                   style={{
@@ -399,6 +445,13 @@ export default function Hero({
             height: 34px !important;
             border-radius: 8px !important;
           }
+        }
+
+        /* CTA hero : offres sur desktop, devis sur mobile/tablette */
+        .hero-cta-mobile { display: none !important; }
+        @media (max-width: 1024px) {
+          .hero-cta-desktop { display: none !important; }
+          .hero-cta-mobile { display: inline-flex !important; }
         }
 
         .hero-ticker-track {
