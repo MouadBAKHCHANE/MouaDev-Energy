@@ -375,6 +375,16 @@ export default function Hero({
 
         /* ── Mobile (≤640px) — smaller sizes ── */
         @media (max-width: 640px) {
+          /* image décalée davantage vers la gauche : cadre la partie droite
+             de la photo (les deux techniciens) */
+          .hero-bg-img {
+            object-position: 82% 72% !important;
+          }
+          /* contenu (badge, titre, CTA, avis) remonté au milieu du hero */
+          .hero-section {
+            justify-content: center !important;
+            padding-bottom: 0 !important;
+          }
           .hero-h1 {
             font-size: 32px !important;
             line-height: 0.95 !important;
