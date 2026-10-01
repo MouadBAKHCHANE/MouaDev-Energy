@@ -41,7 +41,10 @@ export default function Hero({
   titleStyle,
   subtitleStyle,
 }: HeroProps) {
-  const bgSrc = bgImage ? urlFor(bgImage).width(1920).quality(85).url() : '/Photos HD/Photos d_ambiance/happy-family-background-house-with-solar-panels-roof-selective-focus.webp'
+  const isOldTechniciansAsset = typeof bgImage === 'object' && bgImage?.asset?._ref === 'image-1600e0080dfc48610c9e09cf41f9fca04dd9a12b-2400x1340-webp'
+  const bgSrc = (bgImage && !isOldTechniciansAsset)
+    ? (typeof bgImage === 'string' ? bgImage : urlFor(bgImage).width(1920).quality(85).url())
+    : '/Photos HD/Photos d_ambiance/hero-house-solar-panels-no-technicians.webp'
 
   // Build title with accent word highlighted
   function renderTitle() {
