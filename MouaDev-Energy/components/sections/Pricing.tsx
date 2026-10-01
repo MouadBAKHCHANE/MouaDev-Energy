@@ -125,7 +125,7 @@ export default function Pricing({
                     backgroundSize: 'cover', backgroundPosition: plan.bgPos || 'center',
                     zIndex: 0
                   }} />
-                  <div style={{
+                  <div className="price-card-overlay" style={{
                     position: 'absolute', top: 0, bottom: 0, left: 0,
                     width: '65%',
                     background: 'linear-gradient(to right, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0) 100%)',
@@ -133,9 +133,10 @@ export default function Pricing({
                   }} />
                 </>
               )}
-              <div style={{ flex: 1, position: 'relative', zIndex: 2 }}>
-                <div style={{ fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif", fontSize: 22, fontWeight: 600, lineHeight: '28px', marginBottom: 12 }}>{plan.name}</div>
+              <div className="price-card-body" style={{ flex: 1, position: 'relative', zIndex: 2 }}>
+                <div className="price-card-title" style={{ fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif", fontSize: 22, fontWeight: 600, lineHeight: '28px', marginBottom: 12 }}>{plan.name}</div>
                 <motion.a
+                  className="price-card-cta"
                   href={plan.ctaLink}
                   target="_blank"
                   rel="noopener noreferrer"

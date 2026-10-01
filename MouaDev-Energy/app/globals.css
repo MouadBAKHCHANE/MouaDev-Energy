@@ -435,9 +435,32 @@ button {
     min-height: 300px;
   }
 
+  /* Cartes tarifs : titre + CTA calés en bas à gauche, en plus petit */
   .price-card {
     flex-direction: column !important;
-    gap: 30px !important;
+    gap: 0 !important;
+    align-items: flex-start !important;
+    justify-content: flex-end !important;
+    padding: 24px 24px 22px !important;
+    min-height: 260px !important;
+    border-radius: 28px !important;
+  }
+  .price-card-overlay {
+    width: 100% !important;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.78) 0%, rgba(0, 0, 0, 0.35) 45%, rgba(0, 0, 0, 0) 75%) !important;
+  }
+  .price-card-body {
+    flex: none !important;
+  }
+  .price-card-title {
+    font-size: 17px !important;
+    line-height: 22px !important;
+    margin-bottom: 0 !important;
+  }
+  .price-card-cta {
+    margin-top: 12px !important;
+    padding: 7px 16px !important;
+    font-size: 12px !important;
   }
 
   .partners-grid {
