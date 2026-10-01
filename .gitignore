@@ -12,3 +12,4 @@ out/
 .claude/
 .vercel
 .env*
+.playwright-mcp/
