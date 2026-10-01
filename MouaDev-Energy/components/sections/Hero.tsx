@@ -401,10 +401,11 @@ export default function Hero({
             /* cadre sur la droite de la photo pour garder les techniciens visibles */
             object-position: 82% 72% !important;
           }
-          /* contenu (badge, titre, CTA, avis) centré verticalement */
+          /* contenu (badge, titre, CTA, avis) posé juste au-dessus du texte
+             défilant, qui occupe les ~68px du bas */
           .hero-section {
-            justify-content: center !important;
-            padding-bottom: 0 !important;
+            justify-content: flex-end !important;
+            padding-bottom: 56px !important;
           }
           .hero-h1 {
             font-size: 40px !important;
