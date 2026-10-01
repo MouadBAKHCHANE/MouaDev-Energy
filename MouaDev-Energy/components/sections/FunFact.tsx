@@ -64,7 +64,7 @@ function StackCard({ card, index, totalCards }: { card: typeof defaultCards[0]; 
   const scale = useTransform(scrollYProgress, [0, 1], isLast ? [1, 1] : [1, 0.972])
 
   return (
-    <div ref={ref} style={{ position: 'sticky', top: 100 + index * 20, zIndex: index + 1 }}>
+    <div ref={ref} className="ff-stack-item" style={{ position: 'sticky', top: 100 + index * 20, zIndex: index + 1 }}>
       <motion.div
         className="ff-card"
         style={{
@@ -206,7 +206,7 @@ export default function FunFact({
         </motion.div>
 
         {/* Cards stack */}
-        <div className="ff-cards-container" style={{ width: '100%', maxWidth: 1200, display: 'flex', flexDirection: 'column', gap: 50 }}>
+        <div className="ff-cards-container" style={{ width: '100%', maxWidth: 1200, display: 'flex', flexDirection: 'column', gap: 120 }}>
           {cards.map((card, i) => (
             <StackCard key={i} card={card} index={i} totalCards={cards.length} />
           ))}
@@ -263,6 +263,15 @@ export default function FunFact({
         @media (max-width: 640px) {
           .ff-cards-container {
             gap: 24px !important;
+          }
+          /* Pas d'empilement sur mobile : la carte suivante recouvrait le
+             paragraphe (placé en bas de carte) avant qu'on puisse le lire */
+          .ff-stack-item {
+            position: relative !important;
+            top: auto !important;
+          }
+          .ff-stack-item .ff-card {
+            transform: none !important;
           }
           .ff-card {
             flex-direction: column !important;
