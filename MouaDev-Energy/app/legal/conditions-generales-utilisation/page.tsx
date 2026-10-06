@@ -7,7 +7,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const data = await getLegalPage('cgu')
   return {
     title: pageTitle(data?.seoTitle, "Conditions Générales d'Utilisation"),
-    description: data?.seoDescription || "Conditions générales d'utilisation (CGU) du site zen-energieservices.ch. Règles d'accès et d'utilisation.",
+    description: data?.seoDescription || "Conditions générales d'utilisation (CGU) du site zen-energieservices.com. Règles d'accès et d'utilisation.",
     alternates: { canonical: '/legal/conditions-generales-utilisation' },
   }
 }
