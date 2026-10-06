@@ -26,7 +26,7 @@ export default async function BoilerThermodynamiquePage() {
 
   return (
     <>
-      <JsonLd data={serviceJsonLd({ name: 'Entretien Boiler Thermodynamique', description: "Maintenance de boilers thermodynamiques en Suisse romande.", url: '/services/boiler-thermodynamique' })} />
+      <JsonLd data={serviceJsonLd({ name: "Entretien boiler thermodynamique", serviceType: "Maintenance de chauffe-eau thermodynamique", description: "Contrats d'entretien de boilers thermodynamiques : ballon, circuit frigorifique et régulation, en Suisse romande.", url: '/services/boiler-thermodynamique' })} />
       <JsonLd data={breadcrumbJsonLd([{ name: 'Accueil', url: '/' }, { name: 'Services', url: '/services' }, { name: 'Boiler Thermodynamique', url: '/services/boiler-thermodynamique' }])} />
       {faqs?.length ? <JsonLd data={faqPageJsonLd(faqs.map((f: any) => ({ question: f.q, answer: f.a })))} /> : null}
       <BoilerClient

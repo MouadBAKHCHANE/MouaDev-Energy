@@ -35,4 +35,11 @@ export const COMPANY = {
   email: 'contact@zen-energieservices.ch',
   rc: 'CH-660.5.256.023-9',
   ceo: 'Olivier RICHARD',
+  googleMaps: 'https://maps.app.goo.gl/UKeKJtM1KNF2HnaJ7',
+  sameAs: [
+    'https://www.facebook.com/zen.energie.services/',
+    'https://www.instagram.com/zenenergieservices_suisse/',
+    'https://www.linkedin.com/company/zen-%C3%A9nergie-services-suisse/',
+  ],
+  cantons: ['Genève', 'Vaud', 'Valais', 'Neuchâtel', 'Fribourg'],
 } as const

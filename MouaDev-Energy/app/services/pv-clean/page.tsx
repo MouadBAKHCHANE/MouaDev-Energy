@@ -26,7 +26,7 @@ export default async function PvCleanPage() {
 
   return (
     <>
-      <JsonLd data={serviceJsonLd({ name: 'PV Clean | Nettoyage Panneaux Solaires', description: 'Service de nettoyage professionnel de panneaux solaires.', url: '/services/pv-clean' })} />
+      <JsonLd data={serviceJsonLd({ name: "Nettoyage panneaux solaires", serviceType: "Nettoyage photovoltaïque", description: "Nettoyage professionnel de panneaux solaires à l'eau déminéralisée, prestation ponctuelle sans engagement, en Suisse romande.", url: '/services/pv-clean' })} />
       <JsonLd data={breadcrumbJsonLd([{ name: 'Accueil', url: '/' }, { name: 'Services', url: '/services' }, { name: 'PV Clean', url: '/services/pv-clean' }])} />
       {faqs?.length ? <JsonLd data={faqPageJsonLd(faqs.map((f: any) => ({ question: f.q, answer: f.a })))} /> : null}
       <PvCleanClient

@@ -1,76 +1,77 @@
-import { SITE_URL, SITE_NAME, COMPANY } from './seo'
+import { SITE_URL, SITE_NAME, COMPANY, DEFAULT_OG_IMAGE } from './seo'
+
+const ORG_ID = `${SITE_URL}/#organization`
+const BUSINESS_ID = `${SITE_URL}/#localbusiness`
+const LOGO = `${SITE_URL}/Logo complet/Vert medium.webp`
+
+const postalAddress = {
+  '@type': 'PostalAddress',
+  streetAddress: COMPANY.streetAddress,
+  addressLocality: COMPANY.locality,
+  postalCode: COMPANY.postalCode,
+  addressRegion: COMPANY.region,
+  addressCountry: COMPANY.country,
+}
+
+const cantonsServed = COMPANY.cantons.map((name) => ({ '@type': 'AdministrativeArea', name }))
 
 export function organizationJsonLd() {
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
+    '@id': ORG_ID,
     name: COMPANY.name,
     url: SITE_URL,
-    logo: `${SITE_URL}/Logo complet/Vert medium.webp`,
+    logo: LOGO,
+    email: COMPANY.email,
+    sameAs: COMPANY.sameAs,
     contactPoint: {
       '@type': 'ContactPoint',
       telephone: COMPANY.phone,
       contactType: 'customer service',
+      areaServed: 'CH',
       availableLanguage: 'French',
     },
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: COMPANY.streetAddress,
-      addressLocality: COMPANY.locality,
-      postalCode: COMPANY.postalCode,
-      addressRegion: COMPANY.region,
-      addressCountry: COMPANY.country,
-    },
+    address: postalAddress,
   }
 }
 
 export function localBusinessJsonLd() {
   return {
     '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    '@id': `${SITE_URL}/#localbusiness`,
+    // Sous-type schema.org des entreprises de chauffage et climatisation
+    '@type': 'HVACBusiness',
+    '@id': BUSINESS_ID,
     name: COMPANY.name,
-    image: `${SITE_URL}/Logo complet/Vert medium.webp`,
+    image: DEFAULT_OG_IMAGE,
+    logo: LOGO,
     url: SITE_URL,
     telephone: COMPANY.phone,
     email: COMPANY.email,
     priceRange: 'CHF',
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: COMPANY.streetAddress,
-      addressLocality: COMPANY.locality,
-      postalCode: COMPANY.postalCode,
-      addressRegion: COMPANY.region,
-      addressCountry: COMPANY.country,
-    },
+    address: postalAddress,
     geo: {
       '@type': 'GeoCoordinates',
-      latitude: 46.1667,
-      longitude: 6.1167,
+      latitude: 46.167925,
+      longitude: 6.106813,
     },
-    areaServed: {
-      '@type': 'GeoCircle',
-      geoMidpoint: { '@type': 'GeoCoordinates', latitude: 46.2044, longitude: 6.1432 },
-      geoRadius: '50000',
-    },
+    hasMap: COMPANY.googleMaps,
+    areaServed: cantonsServed,
+    sameAs: COMPANY.sameAs,
+    parentOrganization: { '@id': ORG_ID },
   }
 }
 
-export function serviceJsonLd(service: { name: string; description: string; url: string }) {
+export function serviceJsonLd(service: { name: string; description: string; url: string; serviceType?: string }) {
   return {
     '@context': 'https://schema.org',
     '@type': 'Service',
     name: service.name,
+    serviceType: service.serviceType ?? service.name,
     description: service.description,
     url: `${SITE_URL}${service.url}`,
-    provider: {
-      '@type': 'Organization',
-      name: COMPANY.name,
-    },
-    areaServed: {
-      '@type': 'AdministrativeArea',
-      name: 'Suisse romande',
-    },
+    provider: { '@type': 'HVACBusiness', '@id': BUSINESS_ID, name: COMPANY.name },
+    areaServed: cantonsServed,
   }
 }
 

@@ -26,7 +26,7 @@ export default async function PompeChaleurPage() {
 
   return (
     <>
-      <JsonLd data={serviceJsonLd({ name: 'Entretien Pompe à Chaleur', description: 'Maintenance et entretien de pompes à chaleur à Genève.', url: '/services/pompe-a-chaleur' })} />
+      <JsonLd data={serviceJsonLd({ name: "Entretien pompe à chaleur", serviceType: "Maintenance de pompe à chaleur", description: "Contrats d'entretien et dépannage de pompes à chaleur air-eau, air-air et géothermiques : protocole de 22 points de contrôle, en Suisse romande.", url: '/services/pompe-a-chaleur' })} />
       <JsonLd data={breadcrumbJsonLd([{ name: 'Accueil', url: '/' }, { name: 'Services', url: '/services' }, { name: 'Pompe à Chaleur', url: '/services/pompe-a-chaleur' }])} />
       {faqs?.length ? <JsonLd data={faqPageJsonLd(faqs.map((f: any) => ({ question: f.q, answer: f.a })))} /> : null}
       <PompeChaleurClient

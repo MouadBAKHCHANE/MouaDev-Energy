@@ -27,7 +27,7 @@ export default async function PanneauxSolairesPage() {
 
   return (
     <>
-      <JsonLd data={serviceJsonLd({ name: 'Entretien Panneaux Solaires', description: 'Contrats de maintenance pour panneaux solaires en Suisse romande.', url: '/services/panneaux-solaires' })} />
+      <JsonLd data={serviceJsonLd({ name: "Entretien panneaux solaires", serviceType: "Maintenance photovoltaïque", description: "Contrats d'entretien de panneaux solaires photovoltaïques : toiture, onduleur, tableau électrique et monitoring, en Suisse romande.", url: '/services/panneaux-solaires' })} />
       <JsonLd data={breadcrumbJsonLd([{ name: 'Accueil', url: '/' }, { name: 'Services', url: '/services' }, { name: 'Panneaux Solaires', url: '/services/panneaux-solaires' }])} />
       {faqs?.length ? <JsonLd data={faqPageJsonLd(faqs.map((f: any) => ({ question: f.q, answer: f.a })))} /> : null}
       <PanneauxSolairesClient
