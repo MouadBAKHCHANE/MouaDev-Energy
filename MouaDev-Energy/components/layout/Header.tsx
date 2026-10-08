@@ -209,9 +209,9 @@ export default function Header({ siteData }: { siteData?: SiteData }) {
                         }}
                       >
                         <div style={{
-                          background: 'rgba(255,255,255,0.85)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)',
+                          background: 'rgba(255,255,255,0.97)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)',
                           borderRadius: 20, padding: '10px 8px',
-                          boxShadow: '0 10px 30px rgba(0,0,0,0.10)', minWidth: 240,
+                          boxShadow: '0 12px 32px rgba(0,0,0,0.14)', minWidth: 240,
                           border: '1px solid rgba(255,255,255,0.5)', display: 'flex', flexDirection: 'column', gap: 2,
                         }}>
                           {item.subItems.map((sub) => {
