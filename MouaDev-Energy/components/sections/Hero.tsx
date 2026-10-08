@@ -65,7 +65,7 @@ export default function Hero({
       className="hero-section"
       style={{
         position: 'relative',
-        height: '75vh',
+        height: '90vh',
         minHeight: 480,
         display: 'flex',
         flexDirection: 'column',
@@ -86,7 +86,7 @@ export default function Hero({
           style={{
             objectFit: 'cover',
             objectPosition: '50% 0%',
-            transform: 'scale(1.05)',
+            transform: 'none',
           }}
         />
         <div
@@ -430,6 +430,10 @@ export default function Hero({
 
         /* ── Mobile (≤640px) — smaller sizes ── */
         @media (max-width: 640px) {
+          /* mobile : image décalée vers la droite, plus de panneaux visibles à gauche */
+          .hero-bg-img {
+            object-position: 45% 0% !important;
+          }
           .hero-h1 {
             font-size: 32px !important;
             line-height: 0.95 !important;
