@@ -44,7 +44,7 @@ export default function Hero({
   const isOldTechniciansAsset = typeof bgImage === 'object' && bgImage?.asset?._ref === 'image-1600e0080dfc48610c9e09cf41f9fca04dd9a12b-2400x1340-webp'
   const bgSrc = (bgImage && !isOldTechniciansAsset)
     ? (typeof bgImage === 'string' ? bgImage : urlFor(bgImage).width(1920).quality(85).url())
-    : '/Photos HD/Photos d_ambiance/hero-house-solar-panels-no-technicians.webp'
+    : '/Photos HD/Photos produits/Panneaux solaires/low-angle-view-man-installing-solar-panels-roof-against-blue-sky.webp'
 
   // Build title with accent word highlighted
   function renderTitle() {
@@ -85,7 +85,7 @@ export default function Hero({
           className="hero-bg-img"
           style={{
             objectFit: 'cover',
-            objectPosition: '40% 72%',
+            objectPosition: '50% 0%',
             transform: 'scale(1.05)',
           }}
         />
@@ -399,7 +399,7 @@ export default function Hero({
           .hero-bg-img {
             transform: none !important;
             /* cadre sur la droite de la photo pour garder les techniciens visibles */
-            object-position: 82% 72% !important;
+            object-position: 58% 0% !important;
           }
           /* contenu (badge, titre, CTA, avis) posé juste au-dessus du texte
              défilant, qui occupe les ~68px du bas */
