@@ -44,7 +44,7 @@ export default function Hero({
   const isOldTechniciansAsset = typeof bgImage === 'object' && bgImage?.asset?._ref === 'image-1600e0080dfc48610c9e09cf41f9fca04dd9a12b-2400x1340-webp'
   const bgSrc = (bgImage && !isOldTechniciansAsset)
     ? (typeof bgImage === 'string' ? bgImage : urlFor(bgImage).width(1920).quality(85).url())
-    : '/Photos HD/Photos produits/Panneaux solaires/low-angle-view-man-installing-solar-panels-roof-against-blue-sky.webp'
+    : '/Photos HD/Photos d_ambiance/hero-technicien-pose-panneaux-toiture.webp'
 
   // Build title with accent word highlighted
   function renderTitle() {
@@ -85,11 +85,8 @@ export default function Hero({
           className="hero-bg-img"
           style={{
             objectFit: 'cover',
-            objectPosition: '50% 12%',
-            // La photo remplit déjà toute la largeur : un léger zoom ancré à gauche
-            // est le seul moyen de la décaler vers la droite.
-            transform: 'scale(1.06)',
-            transformOrigin: '0% 50%',
+            objectPosition: '50% 30%',
+            transform: 'none',
           }}
         />
         <div
@@ -402,7 +399,7 @@ export default function Hero({
           .hero-bg-img {
             transform: none !important;
             /* cadre sur la droite de la photo pour garder les techniciens visibles */
-            object-position: 78% 0% !important;
+            object-position: 64% 0% !important;
           }
           /* contenu (badge, titre, CTA, avis) posé juste au-dessus du texte
              défilant, qui occupe les ~68px du bas */
@@ -433,9 +430,9 @@ export default function Hero({
 
         /* ── Mobile (≤640px) — smaller sizes ── */
         @media (max-width: 640px) {
-          /* mobile : cadré sur le technicien et le panneau qu'il entretient */
+          /* mobile : cadré sur le technicien et le panneau qu'il pose */
           .hero-bg-img {
-            object-position: 66% 0% !important;
+            object-position: 60% 0% !important;
           }
           .hero-h1 {
             font-size: 32px !important;
