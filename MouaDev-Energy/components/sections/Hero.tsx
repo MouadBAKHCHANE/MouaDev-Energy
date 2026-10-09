@@ -399,7 +399,7 @@ export default function Hero({
           .hero-bg-img {
             transform: none !important;
             /* cadre sur la droite de la photo pour garder les techniciens visibles */
-            object-position: 58% 0% !important;
+            object-position: 78% 0% !important;
           }
           /* contenu (badge, titre, CTA, avis) posé juste au-dessus du texte
              défilant, qui occupe les ~68px du bas */
@@ -430,9 +430,9 @@ export default function Hero({
 
         /* ── Mobile (≤640px) — smaller sizes ── */
         @media (max-width: 640px) {
-          /* mobile : image décalée vers la droite, plus de panneaux visibles à gauche */
+          /* mobile : cadré sur le technicien et le panneau qu'il entretient */
           .hero-bg-img {
-            object-position: 45% 0% !important;
+            object-position: 70% 0% !important;
           }
           .hero-h1 {
             font-size: 32px !important;
