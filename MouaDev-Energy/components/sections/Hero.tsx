@@ -85,8 +85,11 @@ export default function Hero({
           className="hero-bg-img"
           style={{
             objectFit: 'cover',
-            objectPosition: '50% 0%',
-            transform: 'none',
+            objectPosition: '50% 12%',
+            // La photo remplit déjà toute la largeur : un léger zoom ancré à gauche
+            // est le seul moyen de la décaler vers la droite.
+            transform: 'scale(1.06)',
+            transformOrigin: '0% 50%',
           }}
         />
         <div
@@ -432,7 +435,7 @@ export default function Hero({
         @media (max-width: 640px) {
           /* mobile : cadré sur le technicien et le panneau qu'il entretient */
           .hero-bg-img {
-            object-position: 70% 0% !important;
+            object-position: 66% 0% !important;
           }
           .hero-h1 {
             font-size: 32px !important;
