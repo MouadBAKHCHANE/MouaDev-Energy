@@ -85,7 +85,7 @@ export default function Hero({
           className="hero-bg-img"
           style={{
             objectFit: 'cover',
-            objectPosition: '50% 30%',
+            objectPosition: '50% 50%',
             transform: 'none',
           }}
         />
@@ -432,7 +432,7 @@ export default function Hero({
         @media (max-width: 640px) {
           /* mobile : cadré sur le technicien et le panneau qu'il pose */
           .hero-bg-img {
-            object-position: 60% 0% !important;
+            object-position: 52% 0% !important;
           }
           .hero-h1 {
             font-size: 32px !important;
