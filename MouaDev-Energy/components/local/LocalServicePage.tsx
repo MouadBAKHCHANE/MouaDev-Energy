@@ -1,5 +1,6 @@
-import Link from 'next/link'
 import PageHero from '@/components/layout/PageHero'
+import Button from '@/components/ui/Button'
+import LocalFaq from './LocalFaq'
 import { renderInline } from '@/lib/inlineLinks'
 
 export interface LocalServicePageData {
@@ -73,22 +74,14 @@ export default function LocalServicePage({ data, heroBgImage, parent, ctaHref }:
           <div className="lp-cta">
             <p className="lp-cta-text">Besoin d’une intervention à {city} ?</p>
             <div className="lp-cta-actions">
-              <a href={ctaHref} target="_blank" rel="noopener noreferrer" className="lp-btn">Demander un devis</a>
-              <Link href={parent.href} className="lp-link">Voir le service {parent.label}</Link>
+              <Button variant="lime" label="Demander un devis" href={ctaHref} />
+              <Button variant="dark" label={`Voir le service ${parent.label}`} href={parent.href} />
             </div>
           </div>
 
           {faqs.length > 0 && (
             <div className="lp-block">
-              <h2 className="lp-h2">Questions fréquentes à {city}</h2>
-              <div className="lp-faqs">
-                {faqs.map((f, i) => (
-                  <details key={i} className="lp-faq">
-                    <summary>{f.question}</summary>
-                    <p className="lp-p">{renderInline(f.answer)}</p>
-                  </details>
-                ))}
-              </div>
+              <LocalFaq title={`Questions fréquentes à ${city}`} faqs={faqs} />
             </div>
           )}
         </div>
@@ -129,19 +122,6 @@ export default function LocalServicePage({ data, heroBgImage, parent, ctaHref }:
         }
         .lp-cta-text { font-family: var(--font-space-grotesk), 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 600; color: #fff; margin: 0; }
         .lp-cta-actions { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
-        .lp-btn {
-          display: inline-flex; align-items: center; padding: 12px 22px; border-radius: var(--btn-radius, 14px);
-          background: var(--color-primary-light, #50b5a2); color: #000; font-family: var(--font-barlow), 'Barlow', sans-serif;
-          font-size: 16px; font-weight: 600; text-decoration: none;
-        }
-        .lp-link { color: #fff; font-family: var(--font-jost), 'Jost', sans-serif; font-size: 15px; text-decoration: underline; text-underline-offset: 3px; }
-        .lp-faqs { display: flex; flex-direction: column; gap: 10px; }
-        .lp-faq { border: 1px solid #ebebeb; border-radius: 14px; padding: 16px 20px; background: #fff; }
-        .lp-faq summary {
-          cursor: pointer; font-family: var(--font-space-grotesk), 'Space Grotesk', sans-serif;
-          font-size: 17px; font-weight: 600; color: #000; list-style-position: outside;
-        }
-        .lp-faq[open] summary { margin-bottom: 10px; }
         @media (max-width: 640px) {
           .lp-section { padding: 40px 16px 60px; }
           .lp-intro { font-size: 17px; line-height: 27px; }
