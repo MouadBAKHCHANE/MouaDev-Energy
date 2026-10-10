@@ -29,6 +29,12 @@ export async function POST(req: NextRequest) {
     const body = await req.json()
     const { _type, slug } = body
 
+    if (_type === 'localPage' && body.service && slug?.current) {
+      const localPaths = [`/services/${body.service}/${slug.current}`, `/services/${body.service}`, '/sitemap.xml']
+      for (const path of localPaths) revalidatePath(path)
+      return NextResponse.json({ revalidated: true, paths: localPaths })
+    }
+
     const paths = TYPE_TO_PATHS[_type]
 
     if (paths) {

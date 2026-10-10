@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import PageHero from '@/components/layout/PageHero'
+import { renderInline } from '@/lib/inlineLinks'
 import { urlFor } from '@/lib/sanity'
 
 const reveal = {
@@ -10,36 +11,6 @@ const reveal = {
   visible: { opacity: 1, y: 0 },
 }
 
-const linkStyle = {
-  color: 'var(--color-primary, #2a9b96)',
-  fontWeight: 500,
-  textDecoration: 'underline',
-  textUnderlineOffset: 3,
-} as const
-
-/**
- * Le corps des articles est du texte brut saisi dans Sanity. On y accepte la
- * syntaxe `[texte](/chemin)` pour poser des liens : chemin interne → <Link>,
- * URL externe → nouvel onglet.
- */
-function renderInline(text: string) {
-  const out: React.ReactNode[] = []
-  const re = /\[([^\]]+)\]\(([^)\s]+)\)/g
-  let last = 0
-  let m: RegExpExecArray | null
-  while ((m = re.exec(text)) !== null) {
-    if (m.index > last) out.push(text.slice(last, m.index))
-    const [, label, href] = m
-    out.push(
-      href.startsWith('/')
-        ? <Link key={m.index} href={href} style={linkStyle}>{label}</Link>
-        : <a key={m.index} href={href} target="_blank" rel="noopener noreferrer" style={linkStyle}>{label}</a>
-    )
-    last = m.index + m[0].length
-  }
-  if (last < text.length) out.push(text.slice(last))
-  return out
-}
 
 interface BlogSection {
   heading: string

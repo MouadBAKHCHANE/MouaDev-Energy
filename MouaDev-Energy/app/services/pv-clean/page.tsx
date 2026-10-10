@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { pageTitle } from '@/lib/seo'
-import { getPvCleanPage } from '@/lib/queries'
+import { getPvCleanPage, getLocalPages } from '@/lib/queries'
 import { urlFor } from '@/lib/sanity'
 import { serviceJsonLd, breadcrumbJsonLd, faqPageJsonLd } from '@/lib/jsonld'
 import JsonLd from '@/components/seo/JsonLd'
@@ -22,6 +22,7 @@ export default async function PvCleanPage() {
   const img = (src: any) => src ? urlFor(src).width(1200).quality(85).url() : undefined
   const v = <T,>(x: T | null | undefined): T | undefined => x ?? undefined
 
+  const localPages = ((await getLocalPages('pv-clean')) ?? []).map((p: any) => ({ city: p.city, href: `/services/pv-clean/${p.slug}` }))
   const faqs = data?.faqs?.map((f: any) => ({ q: f.question, a: f.answer }))
 
   return (
@@ -31,6 +32,7 @@ export default async function PvCleanPage() {
       {faqs?.length ? <JsonLd data={faqPageJsonLd(faqs.map((f: any) => ({ question: f.q, answer: f.a })))} /> : null}
       <PvCleanClient
         sectionOrder={v(data?.sectionOrder)}
+        localPages={localPages}
         heroTitle={v(data?.heroTitle)}
         heroBgImage={img(data?.heroBgImage)}
         breadcrumbLabel={v(data?.breadcrumbLabel)}

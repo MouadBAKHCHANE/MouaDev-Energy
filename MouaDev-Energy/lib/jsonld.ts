@@ -62,7 +62,14 @@ export function localBusinessJsonLd() {
   }
 }
 
-export function serviceJsonLd(service: { name: string; description: string; url: string; serviceType?: string }) {
+export function serviceJsonLd(service: {
+  name: string
+  description: string
+  url: string
+  serviceType?: string
+  /** Zones précises (pages locales) ; par défaut les 5 cantons. */
+  areaServed?: { '@type': 'City' | 'AdministrativeArea'; name: string }[]
+}) {
   return {
     '@context': 'https://schema.org',
     '@type': 'Service',
@@ -71,7 +78,7 @@ export function serviceJsonLd(service: { name: string; description: string; url:
     description: service.description,
     url: `${SITE_URL}${service.url}`,
     provider: { '@type': 'HVACBusiness', '@id': BUSINESS_ID, name: COMPANY.name },
-    areaServed: cantonsServed,
+    areaServed: service.areaServed ?? cantonsServed,
   }
 }
 

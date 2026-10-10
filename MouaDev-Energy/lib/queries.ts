@@ -277,3 +277,27 @@ export async function getAllFAQs() {
     }`
   )
 }
+
+// ── Pages locales (/services/<service>/<slug>) ────────────────────────────────
+
+export async function getLocalPage(service: string, slug: string) {
+  return client.fetch(
+    `*[_type == "localPage" && service == $service && slug.current == $slug][0] {
+      service, city, "slug": slug.current,
+      seoTitle, seoDescription, heroTitle, heroBgImage, intro,
+      facts[]{ value, label }, communes,
+      sections[]{ heading, body },
+      faqs[]{ question, answer }
+    }`,
+    { service, slug }
+  )
+}
+
+export async function getLocalPages(service?: string) {
+  return client.fetch(
+    `*[_type == "localPage" && defined(slug.current) && (!defined($service) || service == $service)] | order(city asc) {
+      service, city, "slug": slug.current
+    }`,
+    { service: service ?? null }
+  )
+}

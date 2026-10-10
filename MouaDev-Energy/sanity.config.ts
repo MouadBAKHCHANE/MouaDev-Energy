@@ -81,6 +81,10 @@ export default defineConfig({
               .icon(BookIcon)
               .child(S.documentTypeList('blog').title('Articles')),
             S.listItem()
+              .title('Pages locales')
+              .icon(SunIcon)
+              .child(S.documentTypeList('localPage').title('Pages locales')),
+            S.listItem()
               .title('FAQ')
               .icon(HelpCircleIcon)
               .child(S.documentTypeList('faq').title('FAQ')),

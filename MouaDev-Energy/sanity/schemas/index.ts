@@ -10,6 +10,7 @@ import pompeChaleurPage from './pompeChaleurPage'
 import boilerPage from './boilerPage'
 import pvCleanPage from './pvCleanPage'
 import legalPage from './legalPage'
+import localPage from './localPage'
 import marketingSettings from './marketingSettings'
 import themeSettings from './themeSettings'
 import textStyle from './helpers/textStyle'
@@ -18,6 +19,6 @@ export const schemaTypes = [
   textStyle,
   siteSettings, homePage, aboutPage, contactPage, servicesPage,
   panneauxSolairesPage, pompeChaleurPage, boilerPage, pvCleanPage,
-  blog, faq,
+  blog, faq, localPage,
   legalPage, marketingSettings, themeSettings,
 ]

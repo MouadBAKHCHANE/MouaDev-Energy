@@ -11,7 +11,7 @@ export const revalidate = 0
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const blog = await getBlogBySlug(params.slug)
-  if (!blog) return { title: 'Article non trouvé' }
+  if (!blog) notFound()
 
   const ogImage = blog.coverImage ? urlFor(blog.coverImage).width(1200).height(630).url() : undefined
 

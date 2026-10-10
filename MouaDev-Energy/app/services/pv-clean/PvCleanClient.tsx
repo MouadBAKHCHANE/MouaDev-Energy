@@ -80,6 +80,7 @@ interface PvCleanClientProps {
   whyTitleStyle?: TextStyle
   faqTitleStyle?: TextStyle
   sectionOrder?: { sectionId: string; enabled?: boolean }[]
+  localPages?: { city: string; href: string }[]
 }
 
 export default function PvCleanClient({
@@ -114,6 +115,7 @@ export default function PvCleanClient({
   whyTitleStyle,
   faqTitleStyle,
   sectionOrder,
+  localPages = [],
 }: PvCleanClientProps) {
   const show = (id: string) => {
     if (!sectionOrder?.length) return true
@@ -642,6 +644,21 @@ export default function PvCleanClient({
                   {procedureNote}
                 </p>}
               </motion.section>
+              )}
+
+              {localPages.length > 0 && (
+              <div style={{ marginBottom: 48, padding: '22px 24px', borderRadius: 16, background: '#f3f8f7', border: '1px solid #d5ebe8' }}>
+                <h2 style={{ fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif", fontSize: 20, fontWeight: 700, color: '#000', margin: '0 0 12px', letterSpacing: -0.3 }}>
+                  Nos zones d&apos;intervention
+                </h2>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
+                  {localPages.map((p) => (
+                    <Link key={p.href} href={p.href} style={{ fontFamily: "var(--font-jost), 'Jost', sans-serif", fontSize: 15, color: '#2c6262', background: '#fff', border: '1px solid #d5ebe8', borderRadius: 999, padding: '7px 16px', textDecoration: 'none' }}>
+                      Nettoyage de panneaux solaires à {p.city}
+                    </Link>
+                  ))}
+                </div>
+              </div>
               )}
 
               {show('why') && <>

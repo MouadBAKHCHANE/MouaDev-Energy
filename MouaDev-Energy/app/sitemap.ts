@@ -1,9 +1,13 @@
 import type { MetadataRoute } from 'next'
-import { getAllBlogSlugs } from '@/lib/queries'
+import { getAllBlogSlugs, getLocalPages } from '@/lib/queries'
 import { SITE_URL } from '@/lib/seo'
+
+// Régénéré une fois par jour : les pages locales créées dans le studio y apparaissent sans redéploiement.
+export const revalidate = 86400
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const blogSlugs = (await getAllBlogSlugs()) ?? []
+  const localPages: { service: string; slug: string }[] = (await getLocalPages()) ?? []
 
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: SITE_URL, lastModified: new Date(), changeFrequency: 'weekly', priority: 1.0 },
@@ -29,5 +33,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }))
 
-  return [...staticRoutes, ...blogRoutes]
+  const localRoutes: MetadataRoute.Sitemap = localPages.map((p) => ({
+    url: `${SITE_URL}/services/${p.service}/${p.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }))
+
+  return [...staticRoutes, ...localRoutes, ...blogRoutes]
 }
