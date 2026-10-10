@@ -287,6 +287,7 @@ export async function getLocalPage(service: string, slug: string) {
       seoTitle, seoDescription, heroTitle, heroBgImage, intro,
       facts[]{ value, label }, communes,
       sections[]{ heading, body },
+      ctaTitle, ctaText, ctaImage,
       faqs[]{ question, answer }
     }`,
     { service, slug }

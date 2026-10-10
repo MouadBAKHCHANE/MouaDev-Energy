@@ -10,6 +10,7 @@ import LocalServicePage from '@/components/local/LocalServicePage'
 const SERVICE = 'pv-clean'
 const PARENT = { label: 'PV Clean', href: '/services/pv-clean' }
 const FALLBACK_HERO = '/Photos HD/Visuels Technique/Technique - PV/Ouvrier et panneaux solaires.webp'
+const FALLBACK_CTA = '/Photos HD/Visuels Technique/Nettoyage - PV/close-up-worker-cleaning-solar-panels-from-dust.webp'
 
 export const revalidate = 3600
 
@@ -34,6 +35,7 @@ export default async function LocalPvCleanPage({ params }: { params: { city: str
 
   const url = `/services/${SERVICE}/${params.city}`
   const hero = data.heroBgImage ? urlFor(data.heroBgImage).width(1920).quality(85).url() : FALLBACK_HERO
+  const ctaImage = data.ctaImage ? urlFor(data.ctaImage).width(900).quality(85).url() : FALLBACK_CTA
 
   return (
     <>
@@ -54,6 +56,7 @@ export default async function LocalPvCleanPage({ params }: { params: { city: str
       <LocalServicePage
         data={data}
         heroBgImage={hero}
+        ctaImage={ctaImage}
         parent={PARENT}
         ctaHref="https://form.typeform.com/to/rRhOu7eb"
       />

@@ -84,6 +84,9 @@ export default defineType({
         preview: { select: { title: 'heading' } },
       }],
     }),
+    defineField({ name: 'ctaTitle', title: 'Carte devis : titre', description: 'Par défaut : « Besoin d’une intervention à <ville> ? »', type: 'string', group: 'content' }),
+    defineField({ name: 'ctaText', title: 'Carte devis : texte', type: 'text', rows: 3, group: 'content' }),
+    defineField({ name: 'ctaImage', title: 'Carte devis : image', type: 'image', group: 'content', options: { hotspot: true } }),
     defineField({
       name: 'faqs',
       title: 'Questions fréquentes',
