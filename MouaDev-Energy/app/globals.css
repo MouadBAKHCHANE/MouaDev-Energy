@@ -672,3 +672,36 @@ button {
     padding-bottom: 36px !important;
   }
 }
+/* ── Footer : blocs de contact (téléphone, email, localisation) ── */
+.ft-contact-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: var(--color-primary-light, #50b5a2);
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition:
+    transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+.ft-contact:hover .ft-contact-icon,
+.ft-contact:focus-visible .ft-contact-icon {
+  background: #fff;
+  transform: translateY(-3px) rotate(-8deg);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+}
+.ft-contact:hover .ft-contact-icon svg,
+.ft-contact:focus-visible .ft-contact-icon svg {
+  animation: ft-icon-ring 0.5s ease;
+}
+@keyframes ft-icon-ring {
+  0%, 100% { transform: rotate(0); }
+  20% { transform: rotate(-14deg); }
+  40% { transform: rotate(12deg); }
+  60% { transform: rotate(-8deg); }
+  80% { transform: rotate(4deg); }
+}

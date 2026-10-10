@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import ArrowIcon from '@/components/ui/ArrowIcon'
+import Button from '@/components/ui/Button'
 
 export interface SiteData {
   phone: string
@@ -306,30 +307,7 @@ export default function Header({ siteData }: { siteData?: SiteData }) {
           </button>
 
           {/* Desktop CTA — hidden on mobile */}
-          <Link href={typeformUrl} className="header-desktop-cta"
-            style={{
-              display: 'inline-flex', alignItems: 'center', borderRadius: 'var(--btn-radius, 14px)',
-              fontFamily: "var(--font-barlow), 'Barlow', sans-serif", fontSize: 16, fontWeight: 600,
-              cursor: 'pointer', transition: 'all 0.18s ease', whiteSpace: 'nowrap' as const,
-              background: 'var(--color-primary-light, #50b5a2)', color: '#000', padding: '6px 6px 6px 20px', gap: 20, border: 'none', textDecoration: 'none',
-            }}
-            onMouseEnter={(e) => {
-              const arr = e.currentTarget.querySelector('.cta-arrow') as HTMLElement
-              if (arr) { arr.style.background = '#fff'; arr.style.color = '#000' }
-            }}
-            onMouseLeave={(e) => {
-              const arr = e.currentTarget.querySelector('.cta-arrow') as HTMLElement
-              if (arr) { arr.style.background = 'var(--color-primary-dark, #2c6262)'; arr.style.color = '#fff' }
-            }}
-          >
-            Demander un Devis
-            <span className="cta-arrow" style={{
-              width: 40, height: 40, borderRadius: 'var(--btn-radius-sm, 10px)', display: 'flex', alignItems: 'center',
-              justifyContent: 'center', flexShrink: 0, background: 'var(--color-primary-dark, #2c6262)', color: '#fff', transition: 'background 0.18s ease',
-            }}>
-              <ArrowIcon direction="right" size={20} strokeColor="currentColor" />
-            </span>
-          </Link>
+          <Button variant="lime" size="sm" label="Demander un Devis" href={typeformUrl} className="header-desktop-cta" />
         </div>
 
       </nav>
@@ -601,40 +579,7 @@ export default function Header({ siteData }: { siteData?: SiteData }) {
 
               {/* CTA */}
               <div style={{ marginTop: 'auto', paddingTop: 10 }}>
-                <Link
-                  href={typeformUrl}
-                  onClick={() => setIsDrawerOpen(false)}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    background: 'var(--color-primary-light, #50b5a2)',
-                    padding: '6px 6px 6px 18px',
-                    borderRadius: 'var(--btn-radius, 14px)',
-                    textDecoration: 'none',
-                    color: '#000',
-                    fontWeight: 600,
-                    fontSize: 16,
-                    fontFamily: "var(--font-barlow)",
-                    transition: 'transform 0.2s ease',
-                  }}
-                  onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
-                  onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
-                >
-                  Demander un Devis
-                  <div style={{
-                    width: 40,
-                    height: 40,
-                    borderRadius: 'var(--btn-radius-sm, 10px)',
-                    background: 'var(--color-primary-dark, #2c6262)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: '#fff'
-                  }}>
-                    <ArrowIcon direction="right" size={20} strokeColor="#fff" />
-                  </div>
-                </Link>
+                <Button variant="lime" size="sm" fullWidth label="Demander un Devis" href={typeformUrl} onClick={() => setIsDrawerOpen(false)} />
               </div>
             </motion.div>
           </>

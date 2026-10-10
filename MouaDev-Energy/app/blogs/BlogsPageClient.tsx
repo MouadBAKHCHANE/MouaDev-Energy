@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import Button from '@/components/ui/Button'
 import PageHero from '@/components/layout/PageHero'
 import SectionLabel from '@/components/ui/SectionLabel'
 import ArrowIcon from '@/components/ui/ArrowIcon'
@@ -294,37 +295,9 @@ export default function BlogsPageClient({ articles, faqs }: Props) {
                 </p>
               </div>
 
-              <Link
-                href="/contact-us"
-                style={{
-                  display: 'inline-flex', alignItems: 'center',
-                  background: 'var(--color-primary-light, #50b5a2)', color: '#000',
-                  borderRadius: 'var(--btn-radius, 14px)', padding: '8px 8px 8px 24px', gap: 16,
-                  fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
-                  fontSize: 16, fontWeight: 600, textDecoration: 'none',
-                  alignSelf: 'flex-start', transition: 'background 0.18s ease',
-                  position: 'relative', zIndex: 1,
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.background = '#3da090'
-                  const arr = e.currentTarget.querySelector('.bl-cta-arr') as HTMLElement
-                  if (arr) { arr.style.background = '#fff'; arr.style.color = '#000' }
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.background = 'var(--color-primary-light, #50b5a2)'
-                  const arr = e.currentTarget.querySelector('.bl-cta-arr') as HTMLElement
-                  if (arr) { arr.style.background = '#000'; arr.style.color = '#fff' }
-                }}
-              >
-                Contactez-nous
-                <span className="bl-cta-arr" style={{
-                  width: 40, height: 36, borderRadius: 'var(--btn-radius-sm, 10px)',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  background: 'var(--color-primary-dark, #2c6262)', color: '#fff', transition: 'background 0.18s ease, color 0.18s ease',
-                }}>
-                  <ArrowIcon direction="right" size={16} strokeColor="currentColor" />
-                </span>
-              </Link>
+              <div style={{ alignSelf: 'flex-start', position: 'relative', zIndex: 1 }}>
+                <Button variant="lime" label="Contactez-nous" href="/contact-us" />
+              </div>
             </motion.div>
           </div>
         </div>

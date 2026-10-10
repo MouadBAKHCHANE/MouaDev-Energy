@@ -101,18 +101,10 @@ export default function Footer({ siteData }: { siteData?: SiteData }) {
               <a
                 key={idx}
                 href={item.href}
+                className="ft-contact"
                 style={{ display: 'flex', alignItems: 'center', gap: 12, textDecoration: 'none', color: 'inherit' }}
               >
-                <div style={{
-                  width: 44,
-                  height: 44,
-                  borderRadius: 10,
-                  background: brandGreen,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: '#000'
-                }}>
+                <div className="ft-contact-icon">
                   {item.icon}
                 </div>
                 <div>

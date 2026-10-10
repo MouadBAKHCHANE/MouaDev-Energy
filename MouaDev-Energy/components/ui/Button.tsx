@@ -8,6 +8,10 @@ interface ButtonProps {
   label: string
   href?: string
   showArrow?: boolean
+  className?: string
+  onClick?: () => void
+  /** Occupe toute la largeur, libellé à gauche et flèche à droite. */
+  fullWidth?: boolean
 }
 
 export default function Button({
@@ -16,6 +20,9 @@ export default function Button({
   label,
   href,
   showArrow = true,
+  className,
+  onClick,
+  fullWidth = false,
 }: ButtonProps) {
   const isOutline = variant === 'outline'
   const isSm = size === 'sm'
@@ -36,6 +43,7 @@ export default function Button({
     textAlign: 'left',
     maxWidth: '100%',
     textDecoration: 'none',
+    ...(fullWidth ? { display: 'flex', width: '100%', justifyContent: 'space-between' } : {}),
   }
 
   // Variant styles
@@ -164,6 +172,8 @@ export default function Button({
     return (
       <a
         href={href}
+        className={className}
+        onClick={onClick}
         style={baseStyle}
         onMouseEnter={handleHover}
         onMouseLeave={handleLeave}
@@ -175,6 +185,9 @@ export default function Button({
 
   return (
     <button
+      type='button'
+      className={className}
+      onClick={onClick}
       style={baseStyle}
       onMouseEnter={handleHover}
       onMouseLeave={handleLeave}

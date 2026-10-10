@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import Button from '@/components/ui/Button'
 import ArrowIcon from '@/components/ui/ArrowIcon'
 import { urlFor } from '@/lib/sanity'
 import { toCSS, TextStyle } from '@/lib/textStyle'
@@ -238,36 +239,7 @@ export default function ServicesLime({
             viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.7, ease: 'easeOut', delay: 0.2 }}
           >
-            <Link
-              href={ctaLink}
-              style={{
-                display: 'inline-flex', alignItems: 'center',
-                background: 'var(--color-primary-light, #50b5a2)', color: '#000',
-                borderRadius: 'var(--btn-radius, 14px)', padding: '8px 8px 8px 24px', gap: 20,
-                fontFamily: "var(--font-barlow), 'Barlow', sans-serif",
-                fontSize: 16, fontWeight: 600, textDecoration: 'none',
-                transition: 'all 0.18s ease',
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.background = '#3da090'
-                const arr = e.currentTarget.querySelector('.svc2-arr') as HTMLElement
-                if (arr) { arr.style.background = '#fff'; arr.style.color = '#000' }
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.background = 'var(--color-primary-light, #50b5a2)'
-                const arr = e.currentTarget.querySelector('.svc2-arr') as HTMLElement
-                if (arr) { arr.style.background = '#000'; arr.style.color = '#fff' }
-              }}
-            >
-              {cta}
-              <span className="svc2-arr" style={{
-                width: 44, height: 40, borderRadius: 'var(--btn-radius-sm, 10px)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                background: 'var(--color-primary-dark, #2c6262)', color: '#fff', transition: 'background 0.18s ease',
-              }}>
-                <ArrowIcon direction="right" size={18} strokeColor="currentColor" />
-              </span>
-            </Link>
+            <Button variant="lime" label={cta} href={ctaLink} />
           </motion.div>
 
           {/* Stats row */}

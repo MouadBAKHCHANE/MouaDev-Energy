@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 import ArrowIcon from '@/components/ui/ArrowIcon'
+import Button from '@/components/ui/Button'
 import { urlFor } from '@/lib/sanity'
 import { toCSS, TextStyle } from '@/lib/textStyle'
 
@@ -220,98 +221,8 @@ export default function Hero({
               animate="visible"
               transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
             >
-              <Link
-                href={ctaLink}
-                className="hero-cta-link hero-cta-desktop"
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  borderRadius: 'var(--btn-radius, 14px)',
-                  fontFamily: "var(--font-inter), 'Inter', sans-serif",
-                  fontSize: 17,
-                  fontWeight: 600,
-                  cursor: 'pointer',
-                  transition: 'all 0.18s ease',
-                  whiteSpace: 'nowrap',
-                  background: 'var(--color-primary-light, #50b5a2)',
-                  color: '#000',
-                  padding: '8px 8px 8px 24px',
-                  gap: 24,
-                  border: 'none',
-                  textDecoration: 'none',
-                }}
-                onMouseEnter={(e) => {
-                  const arr = e.currentTarget.querySelector('.hero-btn-arr') as HTMLElement;
-                  if (arr) { arr.style.background = '#fff'; arr.style.color = '#000'; }
-                  const svg = e.currentTarget.querySelector('.hero-btn-arr svg') as SVGElement;
-                  if (svg) svg.querySelectorAll('polyline, path, line').forEach((s) => (s as SVGElement).setAttribute('stroke', '#000'));
-                }}
-                onMouseLeave={(e) => {
-                  const arr = e.currentTarget.querySelector('.hero-btn-arr') as HTMLElement;
-                  if (arr) { arr.style.background = 'var(--color-primary-dark, #2c6262)'; arr.style.color = '#fff'; }
-                  const svg = e.currentTarget.querySelector('.hero-btn-arr svg') as SVGElement;
-                  if (svg) svg.querySelectorAll('polyline, path, line').forEach((s) => (s as SVGElement).setAttribute('stroke', '#fff'));
-                }}
-              >
-                <span>{cta}</span>
-                <span
-                  className="hero-btn-arr"
-                  style={{
-                    width: 48, height: 44, borderRadius: 'var(--btn-radius-sm, 10px)',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    flexShrink: 0, background: 'var(--color-primary-dark, #2c6262)', color: '#fff',
-                    transition: 'background 0.2s ease',
-                  }}
-                >
-                  <ArrowIcon direction="right" size={20} strokeColor="currentColor" />
-                </span>
-              </Link>
-              <Link
-                href="https://form.typeform.com/to/rRhOu7eb" target="_blank"
-                className="hero-cta-link hero-cta-mobile"
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  borderRadius: 'var(--btn-radius, 14px)',
-                  fontFamily: "var(--font-inter), 'Inter', sans-serif",
-                  fontSize: 17,
-                  fontWeight: 600,
-                  cursor: 'pointer',
-                  transition: 'all 0.18s ease',
-                  whiteSpace: 'nowrap',
-                  background: 'var(--color-primary-light, #50b5a2)',
-                  color: '#000',
-                  padding: '8px 8px 8px 24px',
-                  gap: 24,
-                  border: 'none',
-                  textDecoration: 'none',
-                }}
-                onMouseEnter={(e) => {
-                  const arr = e.currentTarget.querySelector('.hero-btn-arr') as HTMLElement;
-                  if (arr) { arr.style.background = '#fff'; arr.style.color = '#000'; }
-                  const svg = e.currentTarget.querySelector('.hero-btn-arr svg') as SVGElement;
-                  if (svg) svg.querySelectorAll('polyline, path, line').forEach((s) => (s as SVGElement).setAttribute('stroke', '#000'));
-                }}
-                onMouseLeave={(e) => {
-                  const arr = e.currentTarget.querySelector('.hero-btn-arr') as HTMLElement;
-                  if (arr) { arr.style.background = 'var(--color-primary-dark, #2c6262)'; arr.style.color = '#fff'; }
-                  const svg = e.currentTarget.querySelector('.hero-btn-arr svg') as SVGElement;
-                  if (svg) svg.querySelectorAll('polyline, path, line').forEach((s) => (s as SVGElement).setAttribute('stroke', '#fff'));
-                }}
-              >
-                <span>Demander un Devis</span>
-                <span
-                  className="hero-btn-arr"
-                  style={{
-                    width: 48, height: 44, borderRadius: 'var(--btn-radius-sm, 10px)',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    flexShrink: 0, background: 'var(--color-primary-dark, #2c6262)', color: '#fff',
-                    transition: 'background 0.2s ease',
-                  }}
-                >
-                  <ArrowIcon direction="right" size={20} strokeColor="currentColor" />
-                </span>
-              </Link>
+              <Button variant="lime" label={cta} href={ctaLink} className="hero-cta-link hero-cta-desktop" />
+              <Button variant="lime" label="Demander un Devis" href="https://form.typeform.com/to/rRhOu7eb" className="hero-cta-link hero-cta-mobile" />
             </motion.div>
 
             {/* Social proof — desktop bottom right */}
@@ -448,7 +359,7 @@ export default function Hero({
             gap: 14px !important;
             border-radius: 10px !important;
           }
-          .hero-cta-link .hero-btn-arr {
+          .hero-cta-link .arr {
             width: 36px !important;
             height: 34px !important;
             border-radius: 8px !important;
