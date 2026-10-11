@@ -34,7 +34,7 @@ export default function LocalServicePage({ data, heroBgImage, ctaImage, parent, 
   // Arguments de la carte devis : repris des chiffres clés de la page (donc vérifiés et éditables)
   const ctaPoints = facts.slice(0, 3).map((f) => f.value)
   // Accroche du hero : éditable dans Sanity, sinon les mêmes chiffres clés
-  const subtitle = heroSubtitle || (ctaPoints.length > 0 ? `${ctaPoints.join(' · ')} — devis gratuit` : undefined)
+  const subtitle = heroSubtitle || (ctaPoints.length > 0 ? ctaPoints.join(' · ') : undefined)
 
   return (
     <main>
