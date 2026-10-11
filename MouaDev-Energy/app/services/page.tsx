@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { pageTitle } from '@/lib/seo'
-import { getServicesPage } from '@/lib/queries'
+import { getServicesPage, getAllFAQs } from '@/lib/queries'
 
 export async function generateMetadata(): Promise<Metadata> {
   const data = await getServicesPage()
@@ -16,7 +16,7 @@ import ServicesClient from './ServicesClient'
 export const revalidate = 0
 
 export default async function ServicesPage() {
-  const sp = await getServicesPage()
+  const [sp, faqs] = await Promise.all([getServicesPage(), getAllFAQs()])
 
   const img = (src: any) => src ? urlFor(src).width(1400).quality(80).url() : undefined
 
@@ -55,6 +55,7 @@ export default async function ServicesPage() {
   return (
     <ServicesClient
       sectionOrder={sp?.sectionOrder}
+      faqs={faqs}
       heroTitle={sp?.heroTitle}
       heroBgImage={img(sp?.heroBgImage)}
       cardsLabel={sp?.cardsLabel}

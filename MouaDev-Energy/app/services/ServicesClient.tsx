@@ -5,7 +5,7 @@ import { motion, useMotionValue, useTransform, animate, useInView } from 'framer
 import PageHero from '@/components/layout/PageHero'
 import SectionLabel from '@/components/ui/SectionLabel'
 import Button from '@/components/ui/Button'
-import FAQ from '@/components/sections/FAQ'
+import FAQ, { type FaqData } from '@/components/sections/FAQ'
 import { ArrowUpRight } from 'lucide-react'
 import { toCSS, TextStyle } from '@/lib/textStyle'
 
@@ -120,6 +120,7 @@ interface SectionEntry { sectionId: string; enabled?: boolean }
 
 export interface ServicesClientProps {
   sectionOrder?: SectionEntry[]
+  faqs?: FaqData[]
   heroTitle?: string
   heroBgImage?: string
   cardsLabel?: string
@@ -661,7 +662,7 @@ export default function ServicesClient(props: ServicesClientProps) {
         </div>
       </section>}
 
-      {show('faq') && <FAQ />}
+      {show('faq') && <FAQ faqs={props.faqs} />}
 
       <style dangerouslySetInnerHTML={{ __html: `
         .svc-card-grid {

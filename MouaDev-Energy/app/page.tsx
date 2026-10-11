@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { pageTitle } from '@/lib/seo'
-import { getHomePage } from '@/lib/queries'
+import { getHomePage, getAllFAQs } from '@/lib/queries'
 import { localBusinessJsonLd } from '@/lib/jsonld'
 import JsonLd from '@/components/seo/JsonLd'
 
@@ -18,7 +18,7 @@ import type { SectionEntry } from '@/lib/sectionRegistry'
 export const revalidate = 0
 
 export default async function Home() {
-  const hp = await getHomePage()
+  const [hp, faqs] = await Promise.all([getHomePage(), getAllFAQs()])
 
   const sections: SectionEntry[] =
     hp?.sectionOrder?.length > 0 ? hp.sectionOrder : DEFAULT_SECTION_ORDER
@@ -32,7 +32,7 @@ export default async function Home() {
           const def = SECTION_REGISTRY[s.sectionId]
           if (!def) return null
           const Component = def.component
-          return <Component key={s.sectionId} {...def.propsMapper(hp)} />
+          return <Component key={s.sectionId} {...def.propsMapper({ ...hp, _faqs: faqs })} />
         })}
     </main>
   )

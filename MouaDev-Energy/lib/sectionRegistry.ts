@@ -109,7 +109,7 @@ export const SECTION_REGISTRY: Record<string, SectionDef> = {
   },
   faq: {
     component: FAQ,
-    propsMapper: () => ({}),
+    propsMapper: (hp) => ({ faqs: hp?._faqs }),
   },
   news: {
     component: News,

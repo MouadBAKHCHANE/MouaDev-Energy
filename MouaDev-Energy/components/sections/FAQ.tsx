@@ -1,11 +1,10 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import SectionLabel from '@/components/ui/SectionLabel'
 import Button from '@/components/ui/Button'
-import { client } from '@/lib/sanity'
 
 const reveal = {
   hidden: { opacity: 0, y: 150 },
@@ -22,7 +21,7 @@ interface FaqLink {
   href: string
 }
 
-interface FaqData {
+export interface FaqData {
   question: string
   answerIntro?: string
   answerBullets?: FaqBullet[]
@@ -122,28 +121,11 @@ function FaqAnswer({ faq }: { faq: FaqData }) {
   )
 }
 
-export default function FAQ() {
+// Les FAQ sont chargées côté serveur (getAllFAQs) et passées en props : un chargement
+// côté client remplaçait le contenu après l'affichage, ce qui faisait sauter la page.
+export default function FAQ({ faqs: sanityFaqs }: { faqs?: FaqData[] }) {
   const [activeIdx, setActiveIdx] = useState(-1)
-  const [faqs, setFaqs] = useState<FaqData[]>(fallbackFaqs)
-
-  useEffect(() => {
-    client
-      .fetch(
-        `*[_type == "faq"] | order(order asc) {
-          question,
-          answerIntro,
-          answerBullets[]{ bold, text },
-          answerOutro,
-          answerLink{ text, href }
-        }`
-      )
-      .then((data: FaqData[]) => {
-        if (data && data.length > 0) setFaqs(data)
-      })
-      .catch(() => {
-        // Keep fallback
-      })
-  }, [])
+  const faqs = sanityFaqs && sanityFaqs.length > 0 ? sanityFaqs : fallbackFaqs
 
   const toggleFaq = (idx: number) => { setActiveIdx(activeIdx === idx ? -1 : idx) }
 

@@ -6,7 +6,7 @@ import Button from '@/components/ui/Button'
 import PageHero from '@/components/layout/PageHero'
 import SectionLabel from '@/components/ui/SectionLabel'
 import ArrowIcon from '@/components/ui/ArrowIcon'
-import FAQ from '@/components/sections/FAQ'
+import FAQ, { type FaqData } from '@/components/sections/FAQ'
 import { toCSS, TextStyle } from '@/lib/textStyle'
 
 const reveal = {
@@ -82,6 +82,7 @@ interface AboutUsClientProps {
   introTitleStyle?: TextStyle | null
   whyTitleStyle?: TextStyle | null
   sectionOrder?: { sectionId: string; enabled?: boolean }[]
+  faqs?: FaqData[]
 }
 
 export default function AboutUsClient({
@@ -101,6 +102,7 @@ export default function AboutUsClient({
   introTitleStyle,
   whyTitleStyle,
   sectionOrder,
+  faqs,
 }: AboutUsClientProps) {
   const show = (id: string) => {
     if (!sectionOrder?.length) return true
@@ -291,7 +293,7 @@ export default function AboutUsClient({
       )}
 
       {/* ── 4. FAQ ── */}
-      <FAQ />
+      <FAQ faqs={faqs} />
 
       <style>{`
         /* Intro row */

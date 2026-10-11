@@ -55,7 +55,9 @@ export default function Header({ siteData }: { siteData?: SiteData }) {
   const logoDark = siteData?.logoDark ?? '/Logo complet/Vert medium.webp'
   const socialLinks = siteData?.socialLinks ?? []
   const navItems = defaultNavItems
-  const [scrollY, setScrollY] = useState(0)
+  // Booléen plutôt que la position : setState ne déclenche un rendu qu'au franchissement
+  // du seuil, et non à chaque image pendant le scroll.
+  const [isScrolled, setIsScrolled] = useState(false)
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const [isMobileContractsOpen, setIsMobileContractsOpen] = useState(false)
@@ -69,7 +71,7 @@ export default function Header({ siteData }: { siteData?: SiteData }) {
     const onScroll = () => {
       if (!ticking) {
         requestAnimationFrame(() => {
-          setScrollY(window.scrollY)
+          setIsScrolled(window.scrollY > 50)
           ticking = false
         })
         ticking = true
@@ -104,7 +106,6 @@ export default function Header({ siteData }: { siteData?: SiteData }) {
     router.push(`/blogs?q=${encodeURIComponent(searchQuery.trim())}`)
   }
 
-  const isScrolled = scrollY > 50
   const textColor = isScrolled ? '#000' : '#fff'
   const isDark = isScrolled
 

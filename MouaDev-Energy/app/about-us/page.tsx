@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { pageTitle } from '@/lib/seo'
-import { getAboutPage } from '@/lib/queries'
+import { getAboutPage, getAllFAQs } from '@/lib/queries'
 
 export async function generateMetadata(): Promise<Metadata> {
   const data = await getAboutPage()
@@ -16,7 +16,7 @@ import AboutUsClient from './AboutUsClient'
 export const revalidate = 0
 
 export default async function AboutUsPage() {
-  const ap = await getAboutPage()
+  const [ap, faqs] = await Promise.all([getAboutPage(), getAllFAQs()])
 
   return (
     <AboutUsClient
@@ -33,6 +33,7 @@ export default async function AboutUsPage() {
       whyFeatures={ap?.whyFeatures}
       whyTickerText={ap?.whyTickerText}
       sectionOrder={ap?.sectionOrder}
+      faqs={faqs}
     />
   )
 }
