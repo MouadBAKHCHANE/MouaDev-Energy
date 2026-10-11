@@ -6,15 +6,15 @@ import CallButton from '@/components/ui/CallButton'
 
 /**
  * Barre d'action fixée en bas de l'écran, sur mobile uniquement (CSS).
- * Elle n'apparaît que lorsqu'aucun autre bouton devis n'est visible : ni ceux du hero,
- * ni la carte devis, ni le footer (qu'elle masquerait).
+ * Elle n'apparaît que lorsqu'aucun autre bouton devis n'est visible : ni ceux sous
+ * l'introduction, ni la carte devis, ni le footer (qu'elle masquerait).
  */
 export default function LocalStickyCta({ phone, ctaHref }: { phone: string; ctaHref: string }) {
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
     const targets = [
-      document.getElementById('lp-hero-actions'),
+      document.getElementById('lp-intro-actions'),
       document.querySelector('.lp-cta'),
       document.querySelector('footer'),
     ].filter(Boolean) as Element[]

@@ -35,6 +35,8 @@ export default function LocalServicePage({ data, heroBgImage, ctaImage, parent, 
   const ctaPoints = facts.slice(0, 3).map((f) => f.value)
   // Accroche du hero : éditable dans Sanity, sinon les mêmes chiffres clés
   const subtitle = heroSubtitle || (ctaPoints.length > 0 ? ctaPoints.join(' · ') : undefined)
+  // Espace insécable avant « ? ! : ; » (typographie française) : la ponctuation ne passe jamais seule à la ligne
+  const cardTitle = (ctaTitle || `Besoin d’une intervention à ${city} ?`).replace(/ ([?!:;])/g, ' $1')
 
   return (
     <main>
@@ -49,17 +51,17 @@ export default function LocalServicePage({ data, heroBgImage, ctaImage, parent, 
         bgImage={heroBgImage}
         compact={true}
         subtitle={subtitle}
-        actions={
-          <div id="lp-hero-actions" className="lp-hero-actions">
-            <Button variant="lime" label="Demander un devis" href={ctaHref} />
-            <CallButton phone={phone} tone="light" />
-          </div>
-        }
       />
 
       <section className="lp-section">
         <div className="lp-inner">
-          {intro && <p className="lp-intro">{renderInline(intro)}</p>}
+          <div className="lp-intro-row">
+            {intro && <p className="lp-intro">{renderInline(intro)}</p>}
+            <div id="lp-intro-actions" className="lp-intro-actions">
+              <Button variant="lime" label="Demander un devis" href={ctaHref} />
+              <CallButton phone={phone} tone="dark" />
+            </div>
+          </div>
 
           {facts.length > 0 && (
             <div className="lp-facts">
@@ -95,7 +97,7 @@ export default function LocalServicePage({ data, heroBgImage, ctaImage, parent, 
               <Image src={ctaImage} alt={`Nettoyage de panneaux solaires à ${city}`} fill sizes="(max-width: 760px) 100vw, 420px" style={{ objectFit: 'cover' }} />
             </div>
             <div className="lp-cta-body">
-              <h2 className="lp-cta-title">{ctaTitle || `Besoin d’une intervention à ${city} ?`}</h2>
+              <h2 className="lp-cta-title">{cardTitle}</h2>
               <p className="lp-cta-text">
                 {ctaText || `Nous intervenons à ${city} et dans les communes voisines, avec la même méthode et les mêmes conditions que partout en Suisse romande.`}
               </p>
@@ -126,8 +128,12 @@ export default function LocalServicePage({ data, heroBgImage, ctaImage, parent, 
         .lp-inner { max-width: 960px; margin: 0 auto; }
         .lp-intro {
           font-family: var(--font-jost), 'Jost', sans-serif;
-          font-size: 19px; line-height: 30px; color: #333; margin: 0 0 32px;
+          font-size: 19px; line-height: 30px; color: #333; margin: 0;
         }
+        .lp-intro-row { display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; margin-bottom: 36px; }
+        .lp-intro-actions { display: flex; flex-direction: column; gap: 10px; }
+        .lp-intro-actions > a { justify-content: space-between; }
+        .lp-intro-actions > a.call-btn { justify-content: flex-start; }
         .lp-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 44px; }
         .lp-fact {
           display: flex; flex-direction: column; gap: 2px; padding: 14px 16px;
@@ -154,25 +160,24 @@ export default function LocalServicePage({ data, heroBgImage, ctaImage, parent, 
           background: linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%);
           display: grid; grid-template-columns: 1fr 1fr; box-shadow: 0 18px 40px rgba(44, 98, 98, 0.18);
         }
-        .lp-cta-media { position: relative; min-height: 340px; }
-        .lp-cta-body { padding: 36px 36px 38px; display: flex; flex-direction: column; gap: 14px; }
+        .lp-cta-media { position: relative; min-height: 280px; }
+        .lp-cta-body { padding: 28px 32px; display: flex; flex-direction: column; justify-content: center; gap: 10px; }
         .lp-cta-title {
           font-family: var(--font-space-grotesk), 'Space Grotesk', sans-serif;
-          font-size: 30px; font-weight: 600; letter-spacing: -0.8px; line-height: 1.15; color: #fff; margin: 0;
+          font-size: 24px; font-weight: 600; letter-spacing: -0.6px; line-height: 1.2; color: #fff; margin: 0;
         }
-        .lp-cta-text { font-family: var(--font-jost), 'Jost', sans-serif; font-size: 16px; line-height: 25px; color: rgba(255,255,255,0.88); margin: 0; }
-        .lp-cta-points { list-style: none; padding: 0; margin: 2px 0 6px; display: flex; flex-wrap: wrap; gap: 8px 18px; }
+        .lp-cta-text { font-family: var(--font-jost), 'Jost', sans-serif; font-size: 15px; line-height: 23px; color: rgba(255,255,255,0.88); margin: 0; }
+        .lp-cta-points { list-style: none; padding: 0; margin: 0 0 4px; display: flex; flex-wrap: wrap; gap: 6px 16px; }
         .lp-cta-points li {
           position: relative; padding-left: 20px; font-family: var(--font-jost), 'Jost', sans-serif;
-          font-size: 15px; font-weight: 500; color: #fff;
+          font-size: 14px; font-weight: 500; color: #fff;
         }
         .lp-cta-points li::before {
           content: ''; position: absolute; left: 0; top: 50%; width: 10px; height: 10px; margin-top: -5px;
           border-radius: 2px; background: var(--color-primary-light, #50b5a2);
         }
-        .lp-cta-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 6px; }
-        .lp-cta-actions > a.call-btn, .lp-hero-actions > a.call-btn { justify-content: flex-start; }
-        .lp-hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+        .lp-cta-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 4px; }
+        .lp-cta-actions > a.call-btn { justify-content: flex-start; }
 
         /* Barre d'action mobile : masquée au-dessus de 760px */
         .lp-sticky { display: none; }
@@ -195,9 +200,11 @@ export default function LocalServicePage({ data, heroBgImage, ctaImage, parent, 
           .lp-sticky .lbl { white-space: nowrap; }
         }
 
+        @media (max-width: 760px) {
+          .lp-intro-row { grid-template-columns: 1fr; gap: 20px; }
+        }
+
         @media (max-width: 640px) {
-          .lp-hero-actions { flex-direction: column; align-items: stretch; }
-          .lp-hero-actions > a { justify-content: space-between; }
           .lp-cta-actions { flex-direction: column; align-items: stretch; }
           .lp-cta-actions > a { justify-content: space-between; }
           .lp-section { padding: 40px 16px 60px; }
@@ -205,8 +212,8 @@ export default function LocalServicePage({ data, heroBgImage, ctaImage, parent, 
           .lp-h2 { font-size: 22px; }
           .lp-cta { grid-template-columns: 1fr; }
           .lp-cta-media { min-height: 220px; }
-          .lp-cta-body { padding: 26px 22px 28px; }
-          .lp-cta-title { font-size: 24px; }
+          .lp-cta-body { padding: 24px 20px 26px; }
+          .lp-cta-title { font-size: 22px; }
         }
       `}</style>
     </main>
