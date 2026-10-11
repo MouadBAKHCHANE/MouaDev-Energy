@@ -221,7 +221,7 @@ export default function Header({ siteData }: { siteData?: SiteData }) {
                             <Link key={sub.label} href={sub.href} style={{
                               fontFamily: "var(--font-inter)", fontSize: 12.5, color: '#333',
                               padding: '8px 14px', borderRadius: 10, textDecoration: 'none', transition: 'all 0.2s ease',
-                              display: 'flex', alignItems: 'center', gap: 9,
+                              display: 'flex', alignItems: 'center', gap: 9, whiteSpace: 'nowrap',
                             }}
                               onMouseEnter={(e) => {
                                 if (sa) {
