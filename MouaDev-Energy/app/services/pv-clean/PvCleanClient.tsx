@@ -653,8 +653,9 @@ export default function PvCleanClient({
                 </h2>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
                   {localPages.map((p) => (
-                    <Link key={p.href} href={p.href} style={{ fontFamily: "var(--font-jost), 'Jost', sans-serif", fontSize: 15, color: '#2c6262', background: '#fff', border: '1px solid #d5ebe8', borderRadius: 'var(--btn-radius-sm, 10px)', padding: '7px 16px', textDecoration: 'none' }}>
+                    <Link key={p.href} href={p.href} className="ps-zone-chip">
                       Nettoyage de panneaux solaires à {p.city}
+                      <span className="ps-zone-arrow" aria-hidden="true">→</span>
                     </Link>
                   ))}
                 </div>
@@ -895,6 +896,21 @@ export default function PvCleanClient({
       </section>
 
       <style dangerouslySetInnerHTML={{ __html: `
+        /* ── Zones d'intervention ── */
+        .ps-zone-chip {
+          display: inline-flex; align-items: center; gap: 8px;
+          font-family: var(--font-jost), 'Jost', sans-serif; font-size: 15px; color: #2c6262;
+          background: #fff; border: 1px solid #d5ebe8; border-radius: var(--btn-radius-sm, 10px);
+          padding: 7px 14px 7px 16px; text-decoration: none;
+          transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .ps-zone-arrow { display: inline-block; transition: transform 0.25s ease; }
+        .ps-zone-chip:hover, .ps-zone-chip:focus-visible {
+          background: var(--color-primary-dark, #2c6262); border-color: var(--color-primary-dark, #2c6262); color: #fff;
+          transform: translateY(-2px); box-shadow: 0 8px 18px rgba(44, 98, 98, 0.22);
+        }
+        .ps-zone-chip:hover .ps-zone-arrow, .ps-zone-chip:focus-visible .ps-zone-arrow { transform: translateX(4px); }
+
         /* ── Méthode et matériel ── */
         .ps-proc-facts {
           display: grid;
