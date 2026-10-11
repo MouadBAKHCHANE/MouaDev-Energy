@@ -35,8 +35,10 @@ export default function LocalServicePage({ data, heroBgImage, ctaImage, parent, 
   const ctaPoints = facts.slice(0, 3).map((f) => f.value)
   // Accroche du hero : éditable dans Sanity, sinon les mêmes chiffres clés
   const subtitle = heroSubtitle || (ctaPoints.length > 0 ? ctaPoints.join(' · ') : undefined)
+  // Format suisse (021 …) dans la carte : plus court, il tient à côté du bouton devis
+  const phoneNational = phone.replace(/^\+41\s?/, '0')
   // Espace insécable avant « ? ! : ; » (typographie française) : la ponctuation ne passe jamais seule à la ligne
-  const cardTitle = (ctaTitle || `Besoin d’une intervention à ${city} ?`).replace(/ ([?!:;])/g, ' $1')
+  const cardTitle = (ctaTitle || `Besoin d’une intervention à ${city} ?`).replace(/ ([?!:;])/g, '\u00A0$1')
 
   return (
     <main>
@@ -108,7 +110,7 @@ export default function LocalServicePage({ data, heroBgImage, ctaImage, parent, 
               )}
               <div className="lp-cta-actions">
                 <Button variant="lime" size="sm" label="Demander un devis" href={ctaHref} />
-                <CallButton phone={phone} label="Appeler" tone="light" size="sm" />
+                <CallButton phone={phone} label={phoneNational} tone="light" size="sm" />
               </div>
             </div>
           </div>
@@ -177,7 +179,7 @@ export default function LocalServicePage({ data, heroBgImage, ctaImage, parent, 
           border-radius: 2px; background: var(--color-primary-light, #50b5a2);
         }
         .lp-cta-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 4px; }
-        .lp-cta-actions > a.call-btn { justify-content: flex-start; }
+        .lp-cta-actions > a.call-btn { flex: 1; justify-content: flex-start; }
 
         /* Barre d'action mobile : masquée au-dessus de 760px */
         .lp-sticky { display: none; }
