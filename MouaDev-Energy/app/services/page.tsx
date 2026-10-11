@@ -13,7 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
 import { urlFor } from '@/lib/sanity'
 import ServicesClient from './ServicesClient'
 
-export const revalidate = 0
+export const revalidate = 3600
 
 export default async function ServicesPage() {
   const [sp, faqs] = await Promise.all([getServicesPage(), getAllFAQs()])

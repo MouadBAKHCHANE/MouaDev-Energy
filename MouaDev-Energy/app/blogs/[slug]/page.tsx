@@ -7,7 +7,7 @@ import { blogPostingJsonLd, breadcrumbJsonLd } from '@/lib/jsonld'
 import JsonLd from '@/components/seo/JsonLd'
 import BlogPostClient from './BlogPostClient'
 
-export const revalidate = 0
+export const revalidate = 3600
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const blog = await getBlogBySlug(params.slug)

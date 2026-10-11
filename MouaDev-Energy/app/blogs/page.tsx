@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 // Note: blogs listing page keeps static metadata (no per-page Sanity document for the blog index)
 import BlogsPageClient from './BlogsPageClient'
 
-export const revalidate = 0
+export const revalidate = 3600
 
 export default async function BlogsPage() {
   const [blogs, faqs] = await Promise.all([

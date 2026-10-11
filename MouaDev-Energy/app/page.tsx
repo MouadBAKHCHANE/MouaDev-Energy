@@ -15,7 +15,7 @@ export async function generateMetadata(): Promise<Metadata> {
 import { SECTION_REGISTRY, DEFAULT_SECTION_ORDER } from '@/lib/sectionRegistry'
 import type { SectionEntry } from '@/lib/sectionRegistry'
 
-export const revalidate = 0
+export const revalidate = 3600
 
 export default async function Home() {
   const [hp, faqs] = await Promise.all([getHomePage(), getAllFAQs()])
