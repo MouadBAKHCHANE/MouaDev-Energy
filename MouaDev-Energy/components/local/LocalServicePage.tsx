@@ -105,8 +105,8 @@ export default function LocalServicePage({ data, heroBgImage, ctaImage, parent, 
                 </ul>
               )}
               <div className="lp-cta-actions">
-                <Button variant="lime" label="Demander un devis" href={ctaHref} />
-                <CallButton phone={phone} tone="light" />
+                <Button variant="lime" size="sm" label="Demander un devis" href={ctaHref} />
+                <CallButton phone={phone} label="Appeler" tone="light" size="sm" />
               </div>
             </div>
           </div>
@@ -170,8 +170,7 @@ export default function LocalServicePage({ data, heroBgImage, ctaImage, parent, 
           content: ''; position: absolute; left: 0; top: 50%; width: 10px; height: 10px; margin-top: -5px;
           border-radius: 2px; background: var(--color-primary-light, #50b5a2);
         }
-        .lp-cta-actions { display: flex; flex-direction: column; align-items: stretch; gap: 10px; margin-top: 6px; }
-        .lp-cta-actions > a { justify-content: space-between; }
+        .lp-cta-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 6px; }
         .lp-cta-actions > a.call-btn, .lp-hero-actions > a.call-btn { justify-content: flex-start; }
         .lp-hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
 
@@ -199,6 +198,8 @@ export default function LocalServicePage({ data, heroBgImage, ctaImage, parent, 
         @media (max-width: 640px) {
           .lp-hero-actions { flex-direction: column; align-items: stretch; }
           .lp-hero-actions > a { justify-content: space-between; }
+          .lp-cta-actions { flex-direction: column; align-items: stretch; }
+          .lp-cta-actions > a { justify-content: space-between; }
           .lp-section { padding: 40px 16px 60px; }
           .lp-intro { font-size: 17px; line-height: 27px; }
           .lp-h2 { font-size: 22px; }
