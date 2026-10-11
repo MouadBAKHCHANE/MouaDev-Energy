@@ -46,6 +46,7 @@ export default defineType({
     defineField({ name: 'seoDescription', title: 'Description SEO', type: 'text', rows: 3, group: 'seo', description: '~155 caractères max.' }),
 
     defineField({ name: 'heroTitle', title: 'Titre principal (H1)', type: 'string', group: 'content' }),
+    defineField({ name: 'heroSubtitle', title: 'Accroche sous le titre', description: 'Par défaut : les 3 premiers chiffres clés + « devis gratuit ».', type: 'string', group: 'content' }),
     defineField({ name: 'heroBgImage', title: 'Image du hero', type: 'image', group: 'content', options: { hotspot: true } }),
     defineField({
       name: 'intro',

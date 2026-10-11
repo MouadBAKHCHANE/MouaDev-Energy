@@ -4,7 +4,7 @@ import { useRef } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
-import type { CSSProperties } from 'react'
+import type { CSSProperties, ReactNode } from 'react'
 
 interface Crumb {
   label: string
@@ -17,9 +17,13 @@ interface PageHeroProps {
   bgImage?: string
   compact?: boolean
   titleStyle?: CSSProperties
+  /** Accroche sous le titre (optionnelle). */
+  subtitle?: string
+  /** Boutons d'action sous le titre (optionnels). */
+  actions?: ReactNode
 }
 
-export default function PageHero({ crumbs, title, bgImage, compact = false, titleStyle }: PageHeroProps) {
+export default function PageHero({ crumbs, title, bgImage, compact = false, titleStyle, subtitle, actions }: PageHeroProps) {
   const sectionRef = useRef<HTMLElement>(null)
 
   const { scrollYProgress } = useScroll({
@@ -127,6 +131,23 @@ export default function PageHero({ crumbs, title, bgImage, compact = false, titl
         >
           {title}
         </h1>
+
+        {subtitle && (
+          <p
+            style={{
+              fontFamily: "var(--font-jost), 'Jost', sans-serif",
+              fontSize: 'clamp(16px, 1.6vw, 19px)',
+              lineHeight: 1.5,
+              color: 'rgba(255,255,255,0.9)',
+              margin: '18px 0 0',
+              maxWidth: 680,
+            }}
+          >
+            {subtitle}
+          </p>
+        )}
+
+        {actions && <div style={{ marginTop: 28 }}>{actions}</div>}
       </div>
 
       <style>{`

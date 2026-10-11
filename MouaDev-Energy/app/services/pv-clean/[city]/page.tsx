@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { pageTitle } from '@/lib/seo'
-import { getLocalPage, getLocalPages } from '@/lib/queries'
+import { getLocalPage, getLocalPages, getSiteSettings } from '@/lib/queries'
 import { urlFor } from '@/lib/sanity'
 import { serviceJsonLd, breadcrumbJsonLd, faqPageJsonLd } from '@/lib/jsonld'
 import JsonLd from '@/components/seo/JsonLd'
@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: { params: { city: string } })
 }
 
 export default async function LocalPvCleanPage({ params }: { params: { city: string } }) {
-  const data = await getLocalPage(SERVICE, params.city)
+  const [data, settings] = await Promise.all([getLocalPage(SERVICE, params.city), getSiteSettings()])
   if (!data) notFound()
 
   const url = `/services/${SERVICE}/${params.city}`
@@ -58,7 +58,8 @@ export default async function LocalPvCleanPage({ params }: { params: { city: str
         heroBgImage={hero}
         ctaImage={ctaImage}
         parent={PARENT}
-        ctaHref="https://form.typeform.com/to/rRhOu7eb"
+        ctaHref={settings?.typeformUrl ?? 'https://form.typeform.com/to/rRhOu7eb'}
+        phone={settings?.phone ?? '+41 21 512 05 74'}
       />
     </>
   )

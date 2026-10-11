@@ -705,3 +705,56 @@ button {
   60% { transform: rotate(-8deg); }
   80% { transform: rotate(4deg); }
 }
+
+/* ── Bouton « Appeler » (components/ui/CallButton) : gabarit de Button, icône à gauche ── */
+.call-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 24px 8px 8px;
+  border-radius: var(--btn-radius, 14px);
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.32px;
+  line-height: 22.4px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+.call-btn-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--btn-radius, 14px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.25s ease, color 0.25s ease, transform 0.3s ease;
+}
+.call-btn--sm { padding: 7px 16px 7px 7px; gap: 10px; }
+.call-btn--sm .call-btn-icon { width: 36px; height: 36px; }
+
+/* Sur fond sombre (hero, carte devis) */
+.call-btn--light { color: #fff; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.5); }
+.call-btn--light .call-btn-icon { background: #fff; color: var(--color-primary-dark, #2c6262); }
+.call-btn--light:hover,
+.call-btn--light:focus-visible { background: #fff; color: #000; border-color: #fff; }
+.call-btn--light:hover .call-btn-icon,
+.call-btn--light:focus-visible .call-btn-icon { background: var(--color-primary-light, #50b5a2); color: #000; }
+
+/* Sur fond blanc (barre mobile) */
+.call-btn--dark { color: var(--color-primary-dark, #2c6262); background: #fff; border: 1px solid var(--color-primary-dark, #2c6262); }
+.call-btn--dark .call-btn-icon { background: #e0f5f3; color: var(--color-primary-dark, #2c6262); }
+.call-btn--dark:hover,
+.call-btn--dark:focus-visible { background: var(--color-primary-dark, #2c6262); color: #fff; }
+.call-btn--dark:hover .call-btn-icon,
+.call-btn--dark:focus-visible .call-btn-icon { background: #fff; }
+
+.call-btn:hover .call-btn-icon,
+.call-btn:focus-visible .call-btn-icon { transform: rotate(-12deg); }
+
+/* Barre d'action mobile des pages locales : le bouton « retour en haut » passe au-dessus */
+@media (max-width: 760px) {
+  body.has-sticky-cta .scroll-top-btn { bottom: 88px !important; }
+}

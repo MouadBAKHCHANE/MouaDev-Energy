@@ -284,7 +284,7 @@ export async function getLocalPage(service: string, slug: string) {
   return client.fetch(
     `*[_type == "localPage" && service == $service && slug.current == $slug][0] {
       service, city, "slug": slug.current,
-      seoTitle, seoDescription, heroTitle, heroBgImage, intro,
+      seoTitle, seoDescription, heroTitle, heroSubtitle, heroBgImage, intro,
       facts[]{ value, label }, communes,
       sections[]{ heading, body },
       ctaTitle, ctaText, ctaImage,

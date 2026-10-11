@@ -1,12 +1,15 @@
 import Image from 'next/image'
 import PageHero from '@/components/layout/PageHero'
 import Button from '@/components/ui/Button'
+import CallButton from '@/components/ui/CallButton'
+import LocalStickyCta from './LocalStickyCta'
 import LocalFaq from './LocalFaq'
 import { renderInline } from '@/lib/inlineLinks'
 
 export interface LocalServicePageData {
   city: string
   heroTitle?: string
+  heroSubtitle?: string
   intro?: string
   facts?: { value: string; label: string }[]
   communes?: string[]
@@ -23,12 +26,15 @@ interface Props {
   /** Page service parente, ex. { label: 'PV Clean', href: '/services/pv-clean' } */
   parent: { label: string; href: string }
   ctaHref: string
+  phone: string
 }
 
-export default function LocalServicePage({ data, heroBgImage, ctaImage, parent, ctaHref }: Props) {
-  const { city, heroTitle, intro, facts = [], communes = [], sections = [], faqs = [], ctaTitle, ctaText } = data
+export default function LocalServicePage({ data, heroBgImage, ctaImage, parent, ctaHref, phone }: Props) {
+  const { city, heroTitle, heroSubtitle, intro, facts = [], communes = [], sections = [], faqs = [], ctaTitle, ctaText } = data
   // Arguments de la carte devis : repris des chiffres clés de la page (donc vérifiés et éditables)
   const ctaPoints = facts.slice(0, 3).map((f) => f.value)
+  // Accroche du hero : éditable dans Sanity, sinon les mêmes chiffres clés
+  const subtitle = heroSubtitle || (ctaPoints.length > 0 ? `${ctaPoints.join(' · ')} — devis gratuit` : undefined)
 
   return (
     <main>
@@ -42,6 +48,13 @@ export default function LocalServicePage({ data, heroBgImage, ctaImage, parent, 
         title={heroTitle || city}
         bgImage={heroBgImage}
         compact={true}
+        subtitle={subtitle}
+        actions={
+          <div id="lp-hero-actions" className="lp-hero-actions">
+            <Button variant="lime" label="Demander un devis" href={ctaHref} />
+            <CallButton phone={phone} tone="light" />
+          </div>
+        }
       />
 
       <section className="lp-section">
@@ -93,6 +106,7 @@ export default function LocalServicePage({ data, heroBgImage, ctaImage, parent, 
               )}
               <div className="lp-cta-actions">
                 <Button variant="lime" label="Demander un devis" href={ctaHref} />
+                <CallButton phone={phone} tone="light" />
               </div>
             </div>
           </div>
@@ -104,6 +118,8 @@ export default function LocalServicePage({ data, heroBgImage, ctaImage, parent, 
           )}
         </div>
       </section>
+
+      <LocalStickyCta phone={phone} ctaHref={ctaHref} />
 
       <style>{`
         .lp-section { background: #fff; padding: 60px 20px 80px; }
@@ -154,8 +170,35 @@ export default function LocalServicePage({ data, heroBgImage, ctaImage, parent, 
           content: ''; position: absolute; left: 0; top: 50%; width: 10px; height: 10px; margin-top: -5px;
           border-radius: 2px; background: var(--color-primary-light, #50b5a2);
         }
-        .lp-cta-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 6px; }
+        .lp-cta-actions { display: flex; flex-direction: column; align-items: stretch; gap: 10px; margin-top: 6px; }
+        .lp-cta-actions > a { justify-content: space-between; }
+        .lp-cta-actions > a.call-btn, .lp-hero-actions > a.call-btn { justify-content: flex-start; }
+        .lp-hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+
+        /* Barre d'action mobile : masquée au-dessus de 760px */
+        .lp-sticky { display: none; }
+        @media (max-width: 760px) {
+          .lp-sticky {
+            display: grid; grid-template-columns: auto 1fr; gap: 10px;
+            position: fixed; left: 0; right: 0; bottom: 0; z-index: 95;
+            padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+            background: rgba(255,255,255,0.97); border-top: 1px solid #e3eeec;
+            box-shadow: 0 -8px 24px rgba(0,0,0,0.08);
+            transform: translateY(110%); visibility: hidden;
+            transition: transform 0.3s ease, visibility 0s linear 0.3s;
+          }
+          .lp-sticky.is-visible { transform: translateY(0); visibility: visible; transition: transform 0.3s ease, visibility 0s; }
+        }
+        /* Téléphones : bouton d'appel réduit à l'icône pour que « Demander un devis » tienne sur une ligne */
+        @media (max-width: 480px) {
+          .lp-sticky .call-btn-label { display: none; }
+          .lp-sticky .call-btn { padding: 7px; }
+          .lp-sticky .lbl { white-space: nowrap; }
+        }
+
         @media (max-width: 640px) {
+          .lp-hero-actions { flex-direction: column; align-items: stretch; }
+          .lp-hero-actions > a { justify-content: space-between; }
           .lp-section { padding: 40px 16px 60px; }
           .lp-intro { font-size: 17px; line-height: 27px; }
           .lp-h2 { font-size: 22px; }
