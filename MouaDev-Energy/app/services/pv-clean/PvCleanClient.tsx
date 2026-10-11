@@ -653,7 +653,7 @@ export default function PvCleanClient({
                 </h2>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
                   {localPages.map((p) => (
-                    <Link key={p.href} href={p.href} style={{ fontFamily: "var(--font-jost), 'Jost', sans-serif", fontSize: 15, color: '#2c6262', background: '#fff', border: '1px solid #d5ebe8', borderRadius: 999, padding: '7px 16px', textDecoration: 'none' }}>
+                    <Link key={p.href} href={p.href} style={{ fontFamily: "var(--font-jost), 'Jost', sans-serif", fontSize: 15, color: '#2c6262', background: '#fff', border: '1px solid #d5ebe8', borderRadius: 'var(--btn-radius-sm, 10px)', padding: '7px 16px', textDecoration: 'none' }}>
                       Nettoyage de panneaux solaires à {p.city}
                     </Link>
                   ))}

@@ -82,7 +82,6 @@ export default function LocalServicePage({ data, heroBgImage, ctaImage, parent, 
               <Image src={ctaImage} alt={`Nettoyage de panneaux solaires à ${city}`} fill sizes="(max-width: 760px) 100vw, 420px" style={{ objectFit: 'cover' }} />
             </div>
             <div className="lp-cta-body">
-              <span className="lp-cta-label">Devis gratuit</span>
               <h2 className="lp-cta-title">{ctaTitle || `Besoin d’une intervention à ${city} ?`}</h2>
               <p className="lp-cta-text">
                 {ctaText || `Nous intervenons à ${city} et dans les communes voisines, avec la même méthode et les mêmes conditions que partout en Suisse romande.`}
@@ -94,7 +93,6 @@ export default function LocalServicePage({ data, heroBgImage, ctaImage, parent, 
               )}
               <div className="lp-cta-actions">
                 <Button variant="lime" label="Demander un devis" href={ctaHref} />
-                <Button variant="dark" label={`Voir le service ${parent.label}`} href={parent.href} />
               </div>
             </div>
           </div>
@@ -133,20 +131,15 @@ export default function LocalServicePage({ data, heroBgImage, ctaImage, parent, 
         .lp-communes { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
         .lp-communes li {
           font-family: var(--font-jost), 'Jost', sans-serif; font-size: 15px; color: #2c6262;
-          background: #f3f8f7; border: 1px solid #d5ebe8; border-radius: 999px; padding: 6px 14px;
+          background: #f3f8f7; border: 1px solid #d5ebe8; border-radius: var(--btn-radius-sm, 10px); padding: 6px 14px;
         }
         .lp-cta {
           margin: 8px 0 56px; border-radius: 24px; overflow: hidden;
           background: linear-gradient(135deg, var(--color-primary-dark, #2c6262) 0%, var(--color-primary, #2a9b96) 100%);
-          display: grid; grid-template-columns: 42% 1fr; box-shadow: 0 18px 40px rgba(44, 98, 98, 0.18);
+          display: grid; grid-template-columns: 1fr 1fr; box-shadow: 0 18px 40px rgba(44, 98, 98, 0.18);
         }
         .lp-cta-media { position: relative; min-height: 340px; }
         .lp-cta-body { padding: 36px 36px 38px; display: flex; flex-direction: column; gap: 14px; }
-        .lp-cta-label {
-          align-self: flex-start; font-family: var(--font-jost), 'Jost', sans-serif; font-size: 12px; font-weight: 700;
-          letter-spacing: 0.1em; text-transform: uppercase; color: #000;
-          background: var(--color-primary-light, #50b5a2); border-radius: 999px; padding: 5px 12px;
-        }
         .lp-cta-title {
           font-family: var(--font-space-grotesk), 'Space Grotesk', sans-serif;
           font-size: 30px; font-weight: 600; letter-spacing: -0.8px; line-height: 1.15; color: #fff; margin: 0;
@@ -154,13 +147,12 @@ export default function LocalServicePage({ data, heroBgImage, ctaImage, parent, 
         .lp-cta-text { font-family: var(--font-jost), 'Jost', sans-serif; font-size: 16px; line-height: 25px; color: rgba(255,255,255,0.88); margin: 0; }
         .lp-cta-points { list-style: none; padding: 0; margin: 2px 0 6px; display: flex; flex-wrap: wrap; gap: 8px 18px; }
         .lp-cta-points li {
-          position: relative; padding-left: 22px; font-family: var(--font-jost), 'Jost', sans-serif;
+          position: relative; padding-left: 20px; font-family: var(--font-jost), 'Jost', sans-serif;
           font-size: 15px; font-weight: 500; color: #fff;
         }
         .lp-cta-points li::before {
-          content: ''; position: absolute; left: 0; top: 50%; width: 14px; height: 14px; margin-top: -7px;
-          border-radius: 50%; background: var(--color-primary-light, #50b5a2);
-          box-shadow: inset 0 0 0 4px var(--color-primary-dark, #2c6262);
+          content: ''; position: absolute; left: 0; top: 50%; width: 10px; height: 10px; margin-top: -5px;
+          border-radius: 2px; background: var(--color-primary-light, #50b5a2);
         }
         .lp-cta-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 6px; }
         @media (max-width: 640px) {
