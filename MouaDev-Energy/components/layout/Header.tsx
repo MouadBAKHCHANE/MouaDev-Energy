@@ -82,6 +82,21 @@ export default function Header({ siteData }: { siteData?: SiteData }) {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  // Précharge les pages du menu dès que le navigateur est inactif. Sur mobile, les liens du menu
+  // replié ne sont pas visibles, donc Next.js ne les préchargeait pas : au premier tap, la page
+  // mettait plusieurs secondes à arriver.
+  useEffect(() => {
+    const hrefs = Array.from(new Set(navItems.flatMap((item) => [item.href, ...(item.subItems ?? []).map((s) => s.href)])))
+    const run = () => hrefs.forEach((href) => router.prefetch(href))
+    const w = window as Window & { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number; cancelIdleCallback?: (id: number) => void }
+    if (w.requestIdleCallback) {
+      const id = w.requestIdleCallback(run, { timeout: 4000 })
+      return () => w.cancelIdleCallback?.(id)
+    }
+    const id = window.setTimeout(run, 2500)
+    return () => window.clearTimeout(id)
+  }, [navItems, router])
+
   // Lock body scroll when drawer or search is open
   useEffect(() => {
     document.body.style.overflow = (isDrawerOpen || isSearchOpen) ? 'hidden' : ''

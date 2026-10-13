@@ -4,6 +4,7 @@ import './globals.css'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import ScrollTopButton from '@/components/ui/ScrollTopButton'
+import NavProgress from '@/components/ui/NavProgress'
 import { getSiteSettings, getMarketingSettings, getThemeSettings } from '@/lib/queries'
 import { urlFor } from '@/lib/sanity'
 import { SITE_URL, SITE_NAME } from '@/lib/seo'
@@ -129,6 +130,7 @@ export default async function RootLayout({
         />
         <SkipNav />
         <JsonLd data={organizationJsonLd()} />
+        <NavProgress />
         <Header siteData={siteData} />
         <div id="main-content">{children}</div>
         <Footer siteData={siteData} />
