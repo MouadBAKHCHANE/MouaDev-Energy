@@ -135,7 +135,7 @@ export default function Header({ siteData }: { siteData?: SiteData }) {
         }}
       >
         {/* Logo */}
-        <a href="/" style={{ display: 'flex', alignItems: 'center', position: 'relative', height: 48, width: 160 }}>
+        <Link href="/" style={{ display: 'flex', alignItems: 'center', position: 'relative', height: 48, width: 160 }}>
           <img
             src={logoLight}
             alt="Zen Energie Services"
@@ -153,7 +153,7 @@ export default function Header({ siteData }: { siteData?: SiteData }) {
               opacity: isDark ? 1 : 0, transition: 'opacity 0.3s ease', pointerEvents: isDark ? 'auto' : 'none',
             }}
           />
-        </a>
+        </Link>
 
         {/* Right group */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>

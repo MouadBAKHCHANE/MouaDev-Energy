@@ -3,7 +3,7 @@
 import { useRef } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import type { CSSProperties, ReactNode } from 'react'
 
 interface Crumb {
@@ -31,11 +31,10 @@ export default function PageHero({ crumbs, title, bgImage, compact = false, titl
     offset: ['start start', 'end start'],
   })
 
-  // Smooth spring for silky motion
-  const smoothProgress = useSpring(scrollYProgress, { stiffness: 60, damping: 20, restDelta: 0.001 })
-
-  const scale = useTransform(smoothProgress, [0, 1], [1, 1.06])
-  const y     = useTransform(smoothProgress, [0, 1], ['0%', '5%'])
+  // Directement lié au défilement : avec un ressort (useSpring), l'image continuait de bouger après
+  // l'arrêt du scroll, à une vitesse différente de la page.
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.06])
+  const y     = useTransform(scrollYProgress, [0, 1], ['0%', '5%'])
 
   return (
     <section

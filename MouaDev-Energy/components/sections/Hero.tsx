@@ -1,17 +1,11 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 import ArrowIcon from '@/components/ui/ArrowIcon'
 import Button from '@/components/ui/Button'
 import { urlFor } from '@/lib/sanity'
 import { toCSS, TextStyle } from '@/lib/textStyle'
-
-const reveal = {
-  hidden: { opacity: 0, y: 150 },
-  visible: { opacity: 1, y: 0 },
-}
 
 interface HeroProps {
   badge?: string
@@ -106,12 +100,8 @@ export default function Hero({
           <div className="hero-text-content" style={{ flex: 1, paddingRight: 32 }}>
 
             {/* Title row: h1 left, social proof right */}
-            <motion.div
-              variants={reveal}
-              initial="hidden"
-              animate="visible"
-              transition={{ duration: 0.8, ease: 'easeOut' }}
-              className="hero-title-block"
+            <div
+              className="hero-title-block hero-reveal"
               style={{ marginBottom: 4, display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 16 }}
             >
               <div>
@@ -190,16 +180,13 @@ export default function Hero({
                   <span style={{ display: 'block', fontSize: 11, fontWeight: 500, color: '#fff' }}>avis Google</span>
                 </a>
               </div>
-            </motion.div>
+            </div>
 
             {/* Subtitle — desktop only */}
-            <motion.p
-              variants={reveal}
-              initial="hidden"
-              animate="visible"
-              transition={{ duration: 0.8, ease: 'easeOut', delay: 0.15 }}
-              className="hero-subtitle"
+            <p
+              className="hero-subtitle hero-reveal"
               style={{
+                animationDelay: '0.15s',
                 fontFamily: "var(--font-inter), 'Inter', sans-serif",
                 fontSize: 18,
                 lineHeight: '28px',
@@ -210,29 +197,20 @@ export default function Hero({
               }}
             >
               {subtitle}
-            </motion.p>
+            </p>
           </div>
 
           {/* CTA + Social proof bottom row */}
           <div className="hero-bottom" style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 32, flexShrink: 0 }}>
-            <motion.div
-              variants={reveal}
-              initial="hidden"
-              animate="visible"
-              transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
-            >
+            <div className="hero-reveal" style={{ animationDelay: '0.2s' }}>
               <Button variant="lime" label={cta} href={ctaLink} className="hero-cta-link hero-cta-desktop" />
               <Button variant="lime" label="Demander un Devis" href="https://form.typeform.com/to/rRhOu7eb" className="hero-cta-link hero-cta-mobile" />
-            </motion.div>
+            </div>
 
             {/* Social proof — desktop bottom right */}
-            <motion.div
-              className="hero-bottom-social"
-              variants={reveal}
-              initial="hidden"
-              animate="visible"
-              transition={{ duration: 0.8, ease: 'easeOut', delay: 0.25 }}
-              style={{ display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}
+            <div
+              className="hero-bottom-social hero-reveal"
+              style={{ display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0, animationDelay: '0.25s' }}
             >
               <div style={{ display: 'flex' }}>
                 {[
@@ -267,12 +245,20 @@ export default function Hero({
                 {rating} ★
                 <span style={{ display: 'block', fontSize: 12, fontWeight: 500, color: '#fff' }}>avis Google</span>
               </a>
-            </motion.div>
+            </div>
           </div>
         </div>
       </div>
 
       <style>{`
+        /* Apparition en CSS : le texte est présent dès l'affichage, sans attendre le JavaScript
+           (avec framer-motion il restait invisible jusqu'à l'hydratation, puis glissait de 150 px) */
+        .hero-reveal { animation: heroReveal 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
+        @keyframes heroReveal {
+          from { opacity: 0; transform: translateY(24px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+
         /* Desktop: hide title-row social proof, show bottom one */
         .hero-social-proof {
           display: none !important;

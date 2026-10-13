@@ -7,7 +7,7 @@ import SectionLabel from '@/components/ui/SectionLabel'
 import Button from '@/components/ui/Button'
 
 const reveal = {
-  hidden: { opacity: 0, y: 150 },
+  hidden: { opacity: 0, y: 44 },
   visible: { opacity: 1, y: 0 },
 }
 

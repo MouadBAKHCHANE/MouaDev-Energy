@@ -122,9 +122,10 @@ s.parentNode.insertBefore(b,s);})(window.lintrk);`}
         </Script>
       )}
 
-      {/* Custom head scripts */}
+      {/* Custom head scripts (Hotjar…) : chargés quand le navigateur est inactif, après le chargement de la page.
+          En « afterInteractive », ils bloquaient le fil principal pendant l'affichage (~1,3 s sur mobile). */}
       {headScripts && (
-        <Script id="custom-head" strategy="afterInteractive">
+        <Script id="custom-head" strategy="lazyOnload">
           {headScripts}
         </Script>
       )}
