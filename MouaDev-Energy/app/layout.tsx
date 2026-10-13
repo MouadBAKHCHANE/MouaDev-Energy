@@ -14,6 +14,7 @@ import TypeformLeadPopup from '@/components/seo/TypeformLeadPopup'
 import { TrackingHead, TrackingBodyStart, TrackingBodyEnd } from '@/components/seo/TrackingScripts'
 import ThemeStyles from '@/components/seo/ThemeStyles'
 import CookieBanner from '@/components/ui/CookieBanner'
+import { Analytics } from '@vercel/analytics/next'
 
 const barlow = Barlow({
   subsets: ['latin'],
@@ -140,6 +141,8 @@ export default async function RootLayout({
             privacyLink={marketing.cookieConsentPrivacyLink}
           />
         )}
+        {/* Vercel Web Analytics : visiteurs et pages vues, sans cookie (pas de consentement requis) */}
+        <Analytics />
       </body>
     </html>
   )

@@ -116,10 +116,6 @@ export default function ZonesMap({ pages }: Props) {
               )
             })}
           </svg>
-          <p className="zm-legend">
-            <span className="zm-legend-zone" aria-hidden="true" /> Zone d&apos;intervention
-            <span className="zm-legend-dot" aria-hidden="true" /> Page dédiée
-          </p>
         </div>
 
         {lines.length > 0 && (
@@ -192,12 +188,6 @@ export default function ZonesMap({ pages }: Props) {
         }
         .zm-city.has-page .zm-label { font-weight: 700; }
 
-        .zm-legend {
-          display: flex; align-items: center; flex-wrap: wrap; gap: 6px 8px; margin: 10px 0 0;
-          font-family: var(--font-jost), 'Jost', sans-serif; font-size: 13px; color: #666;
-        }
-        .zm-legend-zone { width: 14px; height: 10px; border-radius: 2px; background: rgba(80, 181, 162, 0.38); border: 1px solid var(--color-primary, #2a9b96); }
-        .zm-legend-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--color-primary-dark, #2c6262); margin-left: 10px; }
 
         .zm-lines { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; z-index: 1; }
         .zm-line { fill: none; stroke: var(--color-primary, #2a9b96); stroke-width: 1.6; stroke-dasharray: 5 5; transition: stroke 0.25s ease, stroke-width 0.25s ease; }
